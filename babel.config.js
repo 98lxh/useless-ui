@@ -1,9 +1,10 @@
 module.exports = {
   presets: [
     '@babel/preset-env',
-    "@babel/preset-typescript"
+    "@babel/preset-typescript",
   ],
   plugins: [
-    "@vue/babel-plugin-jsx"
+    "@vue/babel-plugin-jsx",
+    "@babel/transform-typescript"
   ]
 }

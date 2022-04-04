@@ -10,7 +10,6 @@ const Icon = defineComponent({
     }
   },
   setup(props) {
-
     return () => (<i class={`u-icon-${props.name}`}></i>)
   }
 })

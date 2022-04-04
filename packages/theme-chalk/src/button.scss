@@ -1,0 +1,78 @@
+@import "./common/variables.scss";
+@import "./mixins/mixin.scss";
+
+@include b(button){ //u-button
+  display: inline-block !important;
+  border-radius:3px ;
+  font-size: 14px;
+  outline: none;
+  border: #f1f1f1;
+  user-select: none;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity .5s ease-in-out;
+
+  &:hover{
+    opacity: .8;
+  }
+
+  & [class*="u-icon-"]{
+    &+span{
+      margin-left: 5px;
+    }
+  }
+
+  @include when(disabled){
+    cursor: not-allowed;
+    opacity: .6;
+  }
+
+  @include when(loading){
+    pointer-events: none;
+    opacity: .6;
+  }
+
+  @include when(circle){
+    border-radius:50%;
+    padding: 5px 8px;
+  }
+
+
+
+  @include m(primary){
+    @include button-type($--color-white,$--color-primary,$--color-primary)
+  }
+
+  @include m(info){
+    @include button-type($--color-black,$--color-info,$--color-info)
+  }
+
+  @include m(success){
+    @include button-type($--color-white,$--color-success,$--color-success)
+  }
+
+  @include m(danger){
+    @include button-type($--color-white,$--color-danger,$--color-danger)
+  }
+
+  @include m(warning){
+    @include button-type($--color-white,$--color-warning,$--color-warning)
+  }
+
+
+  @include m(small){
+    padding: 0 11px;
+    font-size: 12px;
+    height: 24px;
+  }
+
+  @include m(large){
+    height:36px;
+  }
+
+  @include m(default){
+    height:32px;
+  }
+}

@@ -1,9 +1,99 @@
 @import "../mixins/config.scss";
 
-$--color-primary: #409EFF;
+$red-1:#FFECE8;
+$red-2:#FDCDC5;
+$red-3:#FDCDC5;
+$red-4:#F98981;
+$red-5:#F76560;
+$red-6:#F53F3F;
+$red-7:#CB272D;
+$red-8:#A1151E;
+$red-9:#770813;
+$red-10:#4D000A;
+
+$orangered-1:#FFF3E8;
+$orangered-2:#FDDDC3;
+$orangered-3:#FCC59F;
+$orangered-4:#FAAC7B;
+$orangered-5:#F99057;
+$orangered-6:#F77234;
+$orangered-7:#CC5120;
+$orangered-8:#A23511;
+$orangered-9:#771F06;
+$orangered-10:#4D0E00;
+
+$orange-1:#FFF7E8;
+$orange-2:#FFE4BA;
+$orange-3:#FFCF8B;
+$orange-4:#FFB65D;
+$orange-5:#FF9A2E;
+$orange-6:#FF7D00;
+$orange-7:#D25F00;
+$orange-8:#A64500;
+$orange-9:#792E00;
+$orange-10:#4D1B00;
+
+
+$lime-1:#FCFFE8;
+$lime-2:#EDF8BB;
+$lime-3:#DCF190;
+$lime-4:#C9E968;
+$lime-5:#B5E241;
+$lime-6:#9FDB1D;
+$lime-7:#7EB712;
+$lime-8:#5F940A;
+$lime-9:#437004;
+$lime-10:#2A4D00;
+
+$yellow-1:#FEFFE8;
+$yellow-2:#FEFEBE;
+$yellow-3:#FDFA94;
+$yellow-4:#FCF26B;
+$yellow-5:#FBE842;
+$yellow-6:#FADC19;
+$yellow-7:#CFAF0F;
+$yellow-8:#A38408;
+$yellow-9:#785D03;
+$yellow-10:#4D3800;
+
+$blue-1:#E8F7FF;
+$blue-2:#E8F7FF;
+$blue-3:#9FD4FD;
+$blue-4:#7BC0FC;
+$blue-5:#57A9FB;
+$blue-6:#165DFF;
+$blue-7:#206CCF;
+$blue-8:#114BA3;
+$blue-9:#063078;
+$blue-10:#001A4D;
+
+$purple-1:#F5E8FF;
+$purple-2:#DDBEF6;
+$purple-3:#C396ED;
+$purple-4:#A871E3;
+$purple-5:#8D4EDA;
+$purple-6:#722ED1;
+$purple-7:#551DB0;
+$purple-8:#3C108F;
+$purple-9:#27066E;
+$purple-10:#16004D;
+
+$grey-1:#f7f8fa;
+$grey-2:#f2f3f5;
+$grey-3:#e5e6eb;
+$grey-4:#c9cdd4;
+$grey-5:#a9aeb8;
+$grey-6:#86909c;
+$grey-7:#6b7785;
+$grey-8:#4e5969;
+$grey-9:#272e3b;
+$grey-10:#1d2129;
+
+
+$--color-primary: $blue-6;
 $--color-white: #FFFFFF;
 $--color-black: #000000;
-$--color-success: #67C23A;
-$--color-warning: #E6A23C;
-$--color-danger: #F56C6C;
-$--color-info: #909399;
+$--color-success: $lime-6;
+$--color-warning: $orangered-6;
+$--color-danger: $red-6;
+$--color-info: $grey-4;

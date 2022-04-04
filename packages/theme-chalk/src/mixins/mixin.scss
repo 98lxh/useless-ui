@@ -1,7 +1,7 @@
 @import "../common/variables.scss";
 
 @mixin b($block) {
-    $B: $namespace+'-'+$block;
+    $B: $namespace+$block;
     .#{$B}{
         @content;
     }
@@ -29,3 +29,9 @@
         }
     }
   }
+
+@mixin button-type($color,$backgound-color,$border-color){
+    color: $color;
+    background-color: $backgound-color;
+    border-color:$backgound-color;
+}
