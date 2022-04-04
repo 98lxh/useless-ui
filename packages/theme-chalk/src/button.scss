@@ -9,10 +9,10 @@
   border: #f1f1f1;
   user-select: none;
   padding: 0 20px;
-  display: flex;
-  align-items: center;
   cursor: pointer;
   transition: opacity .5s ease-in-out;
+  vertical-align: middle;
+
 
   &:hover{
     opacity: .8;
@@ -20,6 +20,7 @@
 
   & [class*="u-icon-"]{
     &+span{
+      vertical-align: middle;
       margin-left: 5px;
     }
   }
@@ -36,7 +37,7 @@
 
   @include when(circle){
     border-radius:50%;
-    padding: 5px 8px;
+    padding: 5px 9px;
   }
 
 
@@ -66,13 +67,23 @@
     padding: 0 11px;
     font-size: 12px;
     height: 24px;
+
+    & [class*="u-icon-"]{
+      font-size: 12px;
+    }
   }
 
   @include m(large){
     height:36px;
+    & [class*="u-icon-"]{
+        font-size: 14px;
+    }
   }
 
   @include m(default){
     height:32px;
+    & [class*="u-icon-"]{
+      font-size: 14px;
+    }
   }
 }

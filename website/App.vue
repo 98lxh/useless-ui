@@ -27,5 +27,15 @@
     <u-button type="primary" icon="setting" circle></u-button>
     <u-button type="danger" icon="user" circle></u-button>
     </div>
+
+    <div>
+      <u-button-group>
+        <u-button icon="arrow-left">上一页</u-button>
+        <u-button>xxxxx</u-button>
+        <u-button>上一页
+          <u-icon name="arrow-right"></u-icon>
+        </u-button>
+      </u-button-group>
+    </div>
   </div>
 </template>
