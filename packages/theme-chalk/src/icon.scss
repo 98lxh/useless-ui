@@ -1,0 +1,48 @@
+@import "./common/variables.scss";
+@font-face {
+  font-family: "u-ui-icons"; /* Project id 3301718 */
+  src: url('./fonts/iconfont.woff2') format('woff2'),
+       url('./fonts/iconfont.woff') format('woff'),
+       url('./fonts/iconfont.ttf') format('truetype');
+}
+
+[class^="#{$namespace}-icon-"] {
+  font-family: "u-ui-icons" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.u-icon-user:before {
+  content: "\e68e";
+}
+
+.u-icon-arrowdown:before {
+  content: "\e692";
+}
+
+.u-icon-arrowup:before {
+  content: "\e695";
+}
+
+.u-icon-arrow-left:before {
+  content: "\e743";
+}
+
+.u-icon-arrow-right:before {
+  content: "\e665";
+}
+
+.u-icon-arrow-double-left:before {
+  content: "\e666";
+}
+
+.u-icon-arrow-double-right:before {
+  content: "\e667";
+}
+
+.u-icon-setting:before {
+  content: "\e67d";
+}
+

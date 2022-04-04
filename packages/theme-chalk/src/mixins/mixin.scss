@@ -1,0 +1,31 @@
+@import "../common/variables.scss";
+
+@mixin b($block) {
+    $B: $namespace+'-'+$block;
+    .#{$B}{
+        @content;
+    }
+}
+
+@mixin when($state) {
+    @at-root {
+        &.#{$state-prefix + $state} {
+            @content;
+        }
+    }
+}
+
+@mixin m($modifier) {
+    @at-root {
+        #{&+$modifier-separator+$modifier} {
+            @content;
+        }
+    }
+}
+@mixin e($element) {
+    @at-root {
+        #{&+$element-separator+$element} {
+            @content;
+        }
+    }
+  }
