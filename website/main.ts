@@ -1,7 +1,5 @@
 import { createApp } from "vue";
 import App from './App.vue';
-import Button from "../lib/button";
+import uselessUi from "useless-ui"
 import "theme-chalk/src/index.scss"
-const app = createApp(App)
-app.use(Button)
-app.mount("#app")
+createApp(App).use(uselessUi).mount("#app")

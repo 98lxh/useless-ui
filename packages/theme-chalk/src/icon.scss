@@ -1,17 +1,21 @@
 @import "./common/variables.scss";
 @font-face {
   font-family: "u-ui-icons"; /* Project id 3301718 */
-  src: url('./fonts/iconfont.woff2') format('woff2'),
-       url('./fonts/iconfont.woff') format('woff'),
-       url('./fonts/iconfont.ttf') format('truetype');
+  src: url('./fonts/iconfont.woff2?t=1649073166340') format('woff2'),
+       url('./fonts/iconfont.woff?t=1649073166340') format('woff'),
+       url('./fonts/iconfont.ttf?t=1649073166340') format('truetype');
 }
 
-[class^="#{$namespace}-icon-"] {
+[class^="#{$namespace}icon-"] {
   font-family: "u-ui-icons" !important;
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.u-icon-loading-B:before {
+  content: "\e8fd";
 }
 
 .u-icon-user:before {

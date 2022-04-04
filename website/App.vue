@@ -2,7 +2,6 @@
 </script>
 <template>
   <div>
-  <u-button>xxxx</u-button>
-  <u-icon></u-icon>
+   <u-icon name="arrowup"></u-icon>
   </div>
 </template>

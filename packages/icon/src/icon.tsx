@@ -9,8 +9,9 @@ const Icon = defineComponent({
       default: ''
     }
   },
-  setup() {
-    return () => (<i>xxx</i>)
+  setup(props) {
+
+    return () => (<i class={`u-icon-${props.name}`}></i>)
   }
 })
 
