@@ -17,7 +17,7 @@ const Checkbox = defineComponent({
     const classes = computed(() => ({
       'u-checkbox__input': true,
       'is-checked': isChecked.value,
-      'is-indeterminate': props.indeterminate && !isChecked.value
+      'is-indeterminate': props.indeterminate && !isChecked.value,
     }))
 
     const checkboxIcon = computed(() => {
@@ -27,7 +27,7 @@ const Checkbox = defineComponent({
     })
 
     return () => (
-      <div class="u-checkbox">
+      <div class={['u-checkbox', props.disabled && 'is-disabled']}>
         <span class={classes.value} onClick={handleCheck}>
           {checkboxIcon.value}
         </span>

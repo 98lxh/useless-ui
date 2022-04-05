@@ -23,10 +23,10 @@ const handleCheckChange = (val) => {
 </script>
 <template>
    
-  <u-checkbox v-model="chcked" @change="handleChange" :indeterminate="true">checkbox</u-checkbox> 
+  <u-checkbox v-model="chcked" @change="handleChange" :indeterminate="true" :disabled="true">checkbox</u-checkbox> 
 
   <u-checkbox-group v-model="checkVal" @change="handleCheckChange">
-    <u-checkbox v-for="c in checks" :label="c" :key="c" />
+    <u-checkbox v-for="c in checks" :label="c" :key="c" disabled />
   </u-checkbox-group>
   <!-- <div>
     <div>
