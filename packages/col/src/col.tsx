@@ -59,7 +59,6 @@ const Col = defineComponent({
         }
       })
 
-      console.log(ret)
       return ['u-col', ...ret]
     })
 
