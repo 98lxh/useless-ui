@@ -4,7 +4,10 @@
 
 </script>
 <template>
-  <div>
+<div>
+  <!-- <u-icon name="user"></u-icon> -->
+</div>
+  <!-- <div>
     <div>
       <u-button type="primary">Primary</u-button>
     <u-button type="success">Success</u-button>
@@ -36,6 +39,43 @@
           <u-icon name="arrow-right"></u-icon>
         </u-button>
       </u-button-group>
+    </div> -->
+
+    <div>
+      <u-row>
+        <u-col :span="6" style="background:rgba(0,160,233,.7);">col</u-col>
+        <u-col :span="6" :offset="3" style="background-color: #00a0e9;">col</u-col>
+        <u-col :span="6" :offset="3" style="background:rgba(0,160,233,.7);">col</u-col>
+        <u-col :span="6" style="background-color: #00a0e9;">col</u-col>
+      </u-row>
     </div>
-  </div>
+
+     <div>
+      <u-row :gutter="20" justify="end">
+        <u-col :span="8">
+          <div style="background:rgba(0,160,233,.7);">Col</div>
+        </u-col>
+        <u-col :span="8">
+          <div style="background-color: #00a0e9;">Col</div>
+        </u-col>
+        <u-col :span="8">
+          <div  style="background:rgba(0,160,233,.7);">Col</div>
+        </u-col>
+      </u-row>
+
+      <div>
+      <u-row :gutter="24">
+        <u-col  :xs="24" :sm="8" :md="6" :lg="6" :xl="6">
+          <div style="background:rgba(0,160,233,.7);">Col</div>
+        </u-col>
+        <u-col  :xs="24" :sm="8" :md="6" :lg="6" :xl="6">
+          <div style="background-color: #00a0e9;">Col</div>
+        </u-col>
+        <u-col  :xs="24" :sm="8" :md="6" :lg="6" :xl="6">
+          <div  style="background:rgba(0,160,233,.7);">Col</div>
+        </u-col>
+      </u-row>
+    </div>
+    </div>
+  <!-- </div> -->
 </template>

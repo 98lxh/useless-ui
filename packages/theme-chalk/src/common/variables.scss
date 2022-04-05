@@ -97,3 +97,20 @@ $--color-success: $lime-6;
 $--color-warning: $orangered-6;
 $--color-danger: $red-6;
 $--color-info: $grey-4;
+
+$--sm: 768px !default;
+$--md: 992px !default;
+$--lg: 1200px !default;
+$--xl: 1920px !default;
+
+$--breakpoints: (
+  'xs' : (max-width: $--sm - 1),
+  'sm' : (min-width: $--sm),
+  'md' : (min-width: $--md),
+  'lg' : (min-width: $--lg),
+  'xl' : (min-width: $--xl)
+);
+
+
+
+

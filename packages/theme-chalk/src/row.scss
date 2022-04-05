@@ -1,0 +1,24 @@
+@import "./common/variables.scss";
+@import "./mixins/mixin.scss";
+
+@include b(row){
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+
+  @include when(justify-end){
+    justify-content: flex-end;
+  }
+
+  @include when(justify-space-around){
+    justify-content: space-around;
+  }
+
+  @include when(justify-space-between){
+    justify-content: space-between
+  }
+
+  @include when(justify-space-evenly){
+    justify-content: space-evenly
+  }
+}
