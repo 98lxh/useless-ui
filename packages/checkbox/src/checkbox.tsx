@@ -1,6 +1,6 @@
 import { computed } from "@vue/reactivity";
 import { defineComponent } from "vue";
-import { useCheckbox } from "./hooks/useCheckedbox";
+import { useCheckbox } from "./hooks/useCheckbox";
 
 const Checkbox = defineComponent({
   name: 'UCheckbox',
