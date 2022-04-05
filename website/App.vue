@@ -4,11 +4,30 @@ const chcked = ref(true)
 const handleChange = (newVal) => {
   console.log(newVal)
 }
+
+const checks = ref([
+  '北京',
+  '上海',
+  '广州',
+  '深圳',
+])
+
+const checkVal = ref([
+  '北京',
+  '深圳'
+])
+
+const handleCheckChange = (val) => {
+  console.log(val)
+}
 </script>
 <template>
-   {{chcked}}
-  <u-checkbox v-model:value="chcked" @change="handleChange" :indeterminate="true">checkbox</u-checkbox>
-  <u-checkbox-group></u-checkbox-group>
+   
+  <u-checkbox v-model="chcked" @change="handleChange" :indeterminate="true">checkbox</u-checkbox> 
+
+  <u-checkbox-group v-model="checkVal" @change="handleCheckChange">
+    <u-checkbox v-for="c in checks" :label="c" :key="c" />
+  </u-checkbox-group>
   <!-- <div>
     <div>
       <u-button type="primary">Primary</u-button>

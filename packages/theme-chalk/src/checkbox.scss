@@ -3,6 +3,8 @@
 
 @include b(checkbox){
   display: flex;
+  height: 32px;
+  align-items: center;
   
   @include e(input){
     height: 14px;
@@ -39,7 +41,4 @@
     }
   }
 
-  @include e(label){
-    line-height: 14px;
-  }
 }

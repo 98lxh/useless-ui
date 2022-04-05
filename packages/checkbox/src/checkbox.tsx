@@ -8,7 +8,7 @@ const Checkbox = defineComponent({
     indeterminate: Boolean,
     disabled: Boolean,
     label: [String, Number, Boolean],
-    value: [String, Number, Boolean],
+    modelValue: [String, Number, Boolean],
   },
   emit: ['update:value', 'change'],
   setup(props, { slots }) {
@@ -32,7 +32,7 @@ const Checkbox = defineComponent({
           {checkboxIcon.value}
         </span>
         <span class="u-checkbox__label">
-          {slots.default?.()}
+          {slots.default?.() || props.label}
         </span>
       </div>
     )
