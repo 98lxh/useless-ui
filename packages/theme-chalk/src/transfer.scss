@@ -1,0 +1,51 @@
+@import "./common/variables.scss";
+@import "./mixins/mixin.scss";
+
+@include b(transfer){
+  display: flex;
+  align-items: center;
+
+  @include e(panel){
+    width: 160px;
+    margin: 0 20px;
+    border: 1px solid $grey-3;
+    border-radius: 3px;
+
+    @include e(checkbox){
+      height: 200px;
+      overflow-y: scroll;
+
+      .u-checkbox{
+        transition: background-color .3s ease-in-out;
+        padding: 0 10px;
+        user-select: none;
+        font-size: 14px;
+
+        &:hover{
+        background-color: $grey-3;
+        }
+      }
+    }
+
+    @include e(header){
+      background-color:$grey-3;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      padding:0 10px;
+      align-items: center;
+    }
+  }
+
+  @include e(buttons){
+    display: inline-flex;
+    flex-direction: column;
+
+    .#{$namespace}button{
+      &:first-child{
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+}

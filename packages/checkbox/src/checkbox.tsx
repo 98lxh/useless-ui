@@ -10,7 +10,7 @@ const Checkbox = defineComponent({
     label: [String, Number, Boolean],
     modelValue: [String, Number, Boolean],
   },
-  emit: ['update:value', 'change'],
+  emits: ['change', 'update:modelValue'],
   setup(props, { slots }) {
     const { isChecked, handleCheck } = useCheckbox(props)
 
