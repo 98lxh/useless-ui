@@ -1,12 +1,14 @@
 <script lang="ts" setup>import { ref } from 'vue';
 
-  const loading = ref(true)
-
+const chcked = ref(true)
+const handleChange = (newVal) => {
+  console.log(newVal)
+}
 </script>
 <template>
-<div>
-  <!-- <u-icon name="user"></u-icon> -->
-</div>
+   {{chcked}}
+  <u-checkbox v-model:value="chcked" @change="handleChange" :indeterminate="true">checkbox</u-checkbox>
+  <u-checkbox-group></u-checkbox-group>
   <!-- <div>
     <div>
       <u-button type="primary">Primary</u-button>
@@ -41,7 +43,7 @@
       </u-button-group>
     </div> -->
 
-    <div>
+    <!-- <div>
       <u-row>
         <u-col :span="6" style="background:rgba(0,160,233,.7);">col</u-col>
         <u-col :span="6" :offset="3" style="background-color: #00a0e9;">col</u-col>
@@ -76,6 +78,8 @@
         </u-col>
       </u-row>
     </div>
-    </div>
+    </div> -->
   <!-- </div> -->
+
+
 </template>
