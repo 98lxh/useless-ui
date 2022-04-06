@@ -1,6 +1,5 @@
 import { getCurrentInstance } from 'vue';
-import { computed } from '@vue/reactivity';
-import { watch } from 'vue';
+import { watch, computed } from 'vue';
 import { ITransferPanelProps, IPanelState } from './../transfer.types';
 export const useCheck = (props: ITransferPanelProps, panelState: IPanelState) => {
   const labelProps = computed(() => props.props.label)
