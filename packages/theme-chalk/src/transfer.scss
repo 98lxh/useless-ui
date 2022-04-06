@@ -14,7 +14,8 @@
     @include e(checkbox){
       height: 200px;
       overflow-y: scroll;
-
+      @include scroll();
+      
       .u-checkbox{
         transition: background-color .3s ease-in-out;
         padding: 0 10px;

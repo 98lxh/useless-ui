@@ -36,6 +36,20 @@
     border-color:$backgound-color;
 }
 
+@mixin scroll(){
+ &::-webkit-scrollbar {
+   width : 6px;  
+   height: 1px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: $grey-3;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
 @mixin res($key, $map: $--breakpoints) {
     // 循环断点Map，如果存在则返回
     @if map-has-key($map, $key) {
