@@ -63,7 +63,6 @@ const Col = defineComponent({
     })
 
     const styles = computed(() => {
-      console.log(gutter)
       if (gutter > 0) {
         return {
           paddingLeft: gutter / 2 + 'px',

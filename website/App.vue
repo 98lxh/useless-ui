@@ -5,7 +5,7 @@ import { ref } from 'vue';
   const data = ref<TreeNodeOption[]>()
 
   const getSourceData = (path='0',level=1) => {
-    if(level === 4) return []
+    if(level === 6) return []
     const res:TreeNodeOption[] = []
     for(let i = 0;i<5;i++){
       const nodeKey = `${path}-${i}`
@@ -27,6 +27,6 @@ import { ref } from 'vue';
 </script>
 <template>
 <div>
-  <u-tree :data="data" @select="handleSelect"></u-tree>
+  <u-tree :data="data" @select="handleSelect" checkable checkStrictly></u-tree>
 </div>
 </template>

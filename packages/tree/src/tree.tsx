@@ -1,6 +1,7 @@
-import { defineComponent, PropType, provide, ref } from "vue";
+import { defineComponent, PropType, provide, watch } from "vue";
 import TreeNode from "./tree-node";
 import { TreeNodeOption, TreeProvide } from "./tree.types";
+import { useTree } from '../hooks/useTree'
 
 const Tree = defineComponent({
   name: 'UTree',
@@ -9,12 +10,15 @@ const Tree = defineComponent({
       type: Array as PropType<TreeNodeOption[]>,
       requred: true
     },
+    checkable: Boolean,
+    checkStrictly: Boolean
   },
-  emits: ['select'],
+  emits: ['select', 'checkChange'],
   setup(props, { emit }) {
-    const selectKey = ref('')
+    const { updateDownWard, updateUpWard, selectKey, data } = useTree(props)
     provide<TreeProvide>('UTree', {
-      selectKey
+      selectKey,
+      checkable: props.checkable
     })
 
     const handleExpaned = (node: TreeNodeOption) => {
@@ -26,21 +30,34 @@ const Tree = defineComponent({
       emit('select', node.key)
     }
 
+    const handleCheckChange = (node: TreeNodeOption) => {
+      node.checked = !node.checked;
+      if (props.checkStrictly) {
+        updateDownWard(node.children, node.checked)
+        updateUpWard(node, data.value)
+      }
+    }
+
     const renderNodes = () => {
-      const dfs = (nodes: TreeNodeOption[], level = -1) => {
-        level++
+      const dfs = (nodes: TreeNodeOption[]) => {
         return nodes.map(treeNode => {
+          const nodeProps = {
+            node: treeNode,
+            onSelectChange: handleSelectChange,
+            onChildExpaned: handleExpaned,
+            onCheckChange: handleCheckChange
+          }
           if (treeNode.children.length) {
-            return <TreeNode node={treeNode} onSelectChange={handleSelectChange} onChildExpaned={handleExpaned} level={level} >
-              {dfs(treeNode.children, level)}
+            return <TreeNode {...nodeProps} >
+              {dfs(treeNode.children)}
             </TreeNode>
           } else {
-            return <TreeNode node={treeNode} onSelectChange={handleSelectChange} level={level} />
+            return <TreeNode {...nodeProps} />
           }
         })
       }
 
-      return dfs(props.data)
+      return dfs(data.value)
     }
 
     return () => (

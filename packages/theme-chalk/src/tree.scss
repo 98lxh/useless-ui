@@ -11,6 +11,10 @@
       padding: 0 5px;
       line-height: 26px;
 
+      .u-checkbox{
+        height: auto;
+      }
+
       @include m(title){
         border-radius: 3px;
         padding: 0px 5px;
@@ -26,7 +30,7 @@
       }
 
       .u-icon-arrow-right-filling{
-        font-size: 14px;
+        font-size: 8px;
         cursor: pointer;
         transition: transform .3s ease-in-out;
         margin-right: 5px;

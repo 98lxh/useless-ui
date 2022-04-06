@@ -1,7 +1,8 @@
 import { computed } from "@vue/reactivity";
-import { defineComponent, inject, PropType } from "vue";
+import { defineComponent, PropType } from "vue";
 import { useTreeContext, useTreeNode } from "../hooks/useTreeNode";
 import CollapseTransition from "@useless-ui/collapse-transition"
+import Checkbox from "@useless-ui/checkbox";
 import { TreeNodeOption } from "./tree.types";
 
 const TreeNode = defineComponent({
@@ -15,14 +16,26 @@ const TreeNode = defineComponent({
       type: Number,
       default: 0
     },
+    parentKey: {
+      type: String,
+      default: ''
+    }
   },
-  emits: ['childExpaned', 'selectChange'],
+  emits: ['childExpaned', 'selectChange', 'checkChange'],
   setup(props, { emit, slots }) {
-    const { hasChildren, expanded } = useTreeNode(props)
-    const { selectKey } = useTreeContext()
+    const { hasChildren, expanded, level } = useTreeNode(props)
+    const { selectKey, checkable } = useTreeContext()
+
     const styles = computed(() => ({
-      paddingLeft: props.level * 10 + 'px'
+      paddingLeft: level.value * 10 + 'px'
     }))
+
+    const titleClasses = computed(() => ({
+      "u-tree__node--content--title": true,
+      'is-selected': selectKey.value === props.node.key,
+      'is-diabled': props.node.disabled
+    }))
+
 
 
     const renderNodeIcon = (): JSX.Element => {
@@ -32,20 +45,37 @@ const TreeNode = defineComponent({
         : null
     }
 
+    const renderContent = (): JSX.Element => {
+      return <div class="u-tree__node--content">
+        {renderNodeIcon()}
+        {checkable && <Checkbox disabled={props.node.disabled}
+          key={props.node.key}
+          modelValue={props.node.checked}
+          onChange={handleCheckChange} />}
+
+        <div class={titleClasses.value} onClick={handleLableClick}>
+          {props.parentKey}:{props.node.label}
+        </div>
+      </div>
+    }
+
+    const handleCheckChange = () => {
+      emit('checkChange', props.node)
+    }
+
     const handleIconClick = (e: MouseEvent) => {
       e.stopPropagation();
       emit('childExpaned', props.node)
     }
+
     const handleLableClick = (e: MouseEvent) => {
       e.stopPropagation();
       emit('selectChange', props.node)
     }
+
     return () => (
       <div class="u-tree__node" style={styles.value}>
-        <div class="u-tree__node--content">
-          {renderNodeIcon()}
-          <div class={["u-tree__node--content--title", selectKey.value === props.node.key && 'is-selected']} onClick={handleLableClick}>{props.node.label}</div>
-        </div>
+        {renderContent()}
         <CollapseTransition>
           {
             expanded.value && <div class="u-tree__node--children">

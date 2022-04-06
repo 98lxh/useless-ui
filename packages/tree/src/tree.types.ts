@@ -1,12 +1,10 @@
 
-import { PropType, Ref } from "vue";
+import { Ref } from "vue";
 
 export interface TreeNodeOption {
   key: string,
   label: string,
   parentKey?: string,
-  loading?: boolean,
-  hasChildren?: boolean,
   selected?: boolean,
   checked?: boolean,
   expanded?: boolean,
@@ -15,8 +13,10 @@ export interface TreeNodeOption {
   disabled?: boolean
 }
 
-export const TreeProps = {
-  data: Array as PropType<TreeNodeOption[]>
+export interface ITreeProps {
+  data: TreeNodeOption[],
+  checkable: boolean,
+  checkStrictly: boolean
 }
 
 export interface TreeNodeProps {
@@ -24,5 +24,6 @@ export interface TreeNodeProps {
 }
 
 export interface TreeProvide {
-  selectKey: Ref<string>
+  selectKey: Ref<string>,
+  checkable: boolean
 }

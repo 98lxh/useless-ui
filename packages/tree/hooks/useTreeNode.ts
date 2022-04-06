@@ -1,23 +1,26 @@
+import { TreeNodeProps } from './../src/tree.types';
 
 import { computed } from "@vue/reactivity";
-import { inject } from "vue";
-import { TreeNodeProps, TreeProvide } from "../src/tree.types";
+import { inject, watch } from "vue";
+import { TreeProvide } from "../src/tree.types";
 
 export const useTreeNode = (props: TreeNodeProps) => {
-  const { node } = props;
-  const hasChildren = computed(() => node.children.length > 0)
-  const expanded = computed(() => node.expanded);
+  const hasChildren = computed(() => props.node.children.length > 0)
+  const expanded = computed(() => props.node.expanded);
+  const level = computed(() => props.node.level)
 
   return {
     hasChildren,
-    expanded
+    expanded,
+    level
   }
 }
 
 export const useTreeContext = () => {
-  const { selectKey } = inject<TreeProvide>('UTree')
+  const { selectKey, checkable } = inject<TreeProvide>('UTree')
 
   return {
-    selectKey
+    selectKey,
+    checkable
   }
 }
