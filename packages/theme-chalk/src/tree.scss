@@ -1,0 +1,12 @@
+@import "./common/variables.scss";
+@import "./mixins/mixin.scss";
+
+@include b(tree){
+  
+  @include e(node){
+    
+    @include m(content){
+      display: inline-flex;
+    }
+  }
+}

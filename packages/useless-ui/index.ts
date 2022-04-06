@@ -6,10 +6,13 @@ import Row from '@useless-ui/row';
 import Col from '@useless-ui/col';
 import Checkbox from '@useless-ui/checkbox';
 import CheckboxGroup from '@useless-ui/checkbox-group';
+import CollapseTransition from '@useless-ui/collapse-transition';
 import Transfer from '@useless-ui/transfer';
+import Tree from "@useless-ui/tree"
 
 
-const components = [Button, Icon, ButtonGroup, Row, Col, Checkbox, CheckboxGroup, Transfer]
+const components = [Button, Icon, ButtonGroup,
+  Row, Col, Checkbox, CheckboxGroup, Transfer, CollapseTransition, Tree]
 const install = (app: App): void => {
   components.forEach(comp => {
     app.component(comp.name, comp)
