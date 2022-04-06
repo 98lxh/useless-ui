@@ -14,6 +14,22 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.u-icon-arrow-up-filling:before {
+  content: "\e688";
+}
+
+.u-icon-arrow-down-filling:before {
+  content: "\e689";
+}
+
+.u-icon-arrow-left-filling:before {
+  content: "\e68a";
+}
+
+.u-icon-arrow-right-filling:before {
+  content: "\e68b";
+}
+
 .u-icon-jiahao:before {
   content: "\eaf3";
 }

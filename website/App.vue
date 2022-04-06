@@ -21,7 +21,12 @@ import { ref } from 'vue';
   }
 
   data.value = getSourceData()
+  const handleSelect = (key:string) => {
+    console.log(key)
+  }
 </script>
 <template>
-<u-tree :data="data"></u-tree>
+<div>
+  <u-tree :data="data" @select="handleSelect"></u-tree>
+</div>
 </template>

@@ -1,4 +1,5 @@
-import { PropType } from "vue";
+
+import { PropType, Ref } from "vue";
 
 export interface TreeNodeOption {
   key: string,
@@ -20,4 +21,8 @@ export const TreeProps = {
 
 export interface TreeNodeProps {
   node: TreeNodeOption
+}
+
+export interface TreeProvide {
+  selectKey: Ref<string>
 }

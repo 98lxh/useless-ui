@@ -7,6 +7,40 @@
     
     @include m(content){
       display: inline-flex;
+      line-height: 22px;
+      padding: 0 5px;
+      line-height: 26px;
+
+      @include m(title){
+        border-radius: 3px;
+        padding: 0px 5px;
+        cursor: pointer;
+
+        @include when(selected){
+          color:$blue-6;
+        }
+
+        &:hover{
+          background-color: $grey-3;  
+        }
+      }
+
+      .u-icon-arrow-right-filling{
+        font-size: 14px;
+        cursor: pointer;
+        transition: transform .3s ease-in-out;
+        margin-right: 5px;
+
+        @include when(expanded){
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    @include when(expanded){
+      .u-icon-arrowdown{
+        transform: rotate(180deg);
+      }
     }
   }
 }
