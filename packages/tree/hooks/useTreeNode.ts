@@ -1,7 +1,7 @@
 import { TreeNodeProps } from './../src/tree.types';
 
 import { computed } from "@vue/reactivity";
-import { inject, watch } from "vue";
+import { inject, } from "vue";
 import { TreeProvide } from "../src/tree.types";
 
 export const useTreeNode = (props: TreeNodeProps) => {

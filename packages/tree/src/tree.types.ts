@@ -11,12 +11,14 @@ export interface TreeNodeOption {
   level?: number,
   children?: TreeNodeOption[],
   disabled?: boolean
+  indeterminate?: boolean
 }
 
 export interface ITreeProps {
   data: TreeNodeOption[],
   checkable: boolean,
-  checkStrictly: boolean
+  checkStrictly: boolean,
+  defaultExpaned?: string[]
 }
 
 export interface TreeNodeProps {

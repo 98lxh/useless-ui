@@ -5,9 +5,9 @@ import { ref } from 'vue';
   const data = ref<TreeNodeOption[]>()
 
   const getSourceData = (path='0',level=1) => {
-    if(level === 6) return []
+    if(level === 5) return []
     const res:TreeNodeOption[] = []
-    for(let i = 0;i<5;i++){
+    for(let i = 0;i<2;i++){
       const nodeKey = `${path}-${i}`
       const currentNode = {
         key:nodeKey,
@@ -24,9 +24,14 @@ import { ref } from 'vue';
   const handleSelect = (key:string) => {
     console.log(key)
   }
+  const handleCheckedChange = (key:string[]) => {
+    console.log(key)
+  }
+
+  const defaultExpaned = ['0-0','0-0-0']
 </script>
 <template>
 <div>
-  <u-tree :data="data" @select="handleSelect" checkable checkStrictly></u-tree>
+  <u-tree :data="data" :defaultExpaned="defaultExpaned" @select="handleSelect" @checkedChange="handleCheckedChange" checkable checkStrictly></u-tree>
 </div>
 </template>

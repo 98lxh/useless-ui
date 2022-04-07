@@ -10,12 +10,16 @@ const Tree = defineComponent({
       type: Array as PropType<TreeNodeOption[]>,
       requred: true
     },
+    defaultExpaned: {
+      type: Array as PropType<string[]>,
+      default: () => ([])
+    },
     checkable: Boolean,
     checkStrictly: Boolean
   },
-  emits: ['select', 'checkChange'],
+  emits: ['select', 'checkedChange'],
   setup(props, { emit }) {
-    const { updateDownWard, updateUpWard, selectKey, data } = useTree(props)
+    const { updateDownWard, updateUpWard, selectKey, data, flatList } = useTree(props)
     provide<TreeProvide>('UTree', {
       selectKey,
       checkable: props.checkable
@@ -32,10 +36,14 @@ const Tree = defineComponent({
 
     const handleCheckChange = (node: TreeNodeOption) => {
       node.checked = !node.checked;
+      node.indeterminate = false;
+      let currentCheckedKeys: string[] = []
       if (props.checkStrictly) {
-        updateDownWard(node.children, node.checked)
-        updateUpWard(node, data.value)
+        updateDownWard(node.children!, node.checked)
+        updateUpWard(node, flatList)
       }
+      currentCheckedKeys = flatList.filter(item => item.checked).map(item => item.key)
+      emit('checkedChange', currentCheckedKeys)
     }
 
     const renderNodes = () => {
@@ -56,7 +64,6 @@ const Tree = defineComponent({
           }
         })
       }
-
       return dfs(data.value)
     }
 

@@ -51,10 +51,11 @@ const TreeNode = defineComponent({
         {checkable && <Checkbox disabled={props.node.disabled}
           key={props.node.key}
           modelValue={props.node.checked}
+          indeterminate={props.node.indeterminate}
           onChange={handleCheckChange} />}
 
         <div class={titleClasses.value} onClick={handleLableClick}>
-          {props.parentKey}:{props.node.label}
+          {props.node.label}
         </div>
       </div>
     }

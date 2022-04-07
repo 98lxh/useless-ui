@@ -10,17 +10,7 @@ export const createTreeNode = (node: TreeNodeOption, parentKey: string, level = 
     selected: node.selected || false,
     checked: node.checked || false,
     expanded: node.expanded || false,
+    indeterminate: node.indeterminate || false,
     children: [],
   })
-}
-
-export const dfs = (treeList: TreeNodeOption[], parentKey: string, level = 0) => {
-  const treeNodes: TreeNodeOption[] = []
-  ++level
-  treeList.forEach(item => {
-    const treeNode = createTreeNode(item, parentKey, level)
-    treeNodes.push(treeNode)
-    if (item.children.length) treeNode.children = dfs(item.children, item.key, level)
-  })
-  return treeNodes
 }
