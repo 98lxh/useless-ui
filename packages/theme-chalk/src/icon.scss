@@ -14,6 +14,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.u-icon-error:before {
+  content: "\e65d";
+}
+
+.u-icon-warning:before {
+  content: "\e61c";
+}
+
+.u-icon-info:before {
+  content: "\e7f7";
+}
+
 .u-icon-arrow-up-filling:before {
   content: "\e688";
 }

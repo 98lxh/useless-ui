@@ -7,31 +7,48 @@
   left:calc(50% - 150px);
   border-radius: 5px;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+  background-color: #fff;
   min-width: 300px;
   padding: 10px 20px;
   display: flex;
   align-items: center;
-  font-size: 15px;
+  font-size: 14px;
   margin:auto;
+  transition: all .3s ease-in-out;
+
   @include m(info){
     i{
       background-color:$blue-6 ;
     }
   }
+
    @include m(success){
     i{
       background-color:$--color-success ;
     }
   }
 
+  @include m(error){
+    i{
+      background-color:$--color-danger ;
+    }
+  }
+
+  @include m(warning){
+    i{
+      background-color:$--color-warning ;
+    }
+  }
+
   i{
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     display: inline-block;
     text-align: center;
-    line-height: 25px;
+    line-height: 20px;
     margin-right: 10px;
     color:#fff;
+    font-size: 10px;
     font-weight: bold;
     border-radius: 50%;
   }

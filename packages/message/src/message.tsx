@@ -18,7 +18,7 @@ const Message = defineComponent({
     },
     duration: {
       type: Number,
-      default: 2000
+      default: 3000
     },
     onClose: {
       type: Function as PropType<() => void>,
@@ -39,6 +39,10 @@ const Message = defineComponent({
     const styles = computed(() => ({
       top: `${props.offset}px`
     }))
+
+    const messageIcon = computed(() => {
+      return `u-icon-${props.type}`
+    })
 
     const visiable = ref(false)
     let timer = null;
@@ -62,7 +66,7 @@ const Message = defineComponent({
     return () => (
       <Transition name='zoom-fade' mode="out-in" onBeforeLeave={props.onClose} onAfterLeave={() => emit('destroy')}>
         <div class={classes.value} v-show={visiable.value} style={styles.value}>
-          <i class="u-icon-user"></i>
+          <i class={messageIcon.value}></i>
           <span>{props.message}</span>
         </div>
       </Transition>
