@@ -27,7 +27,7 @@ const TreeNode = defineComponent({
     const { selectKey, checkable } = useTreeContext()
 
     const styles = computed(() => ({
-      paddingLeft: level.value * 10 + 'px'
+      paddingLeft: level.value * 18 + 'px'
     }))
 
     const titleClasses = computed(() => ({

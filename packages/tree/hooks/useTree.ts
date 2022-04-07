@@ -13,7 +13,7 @@ const useGenTreeData = (props: ITreeProps) => {
         const treeNode = createTreeNode(item, parentKey, level)
         if (props.defaultExpaned.includes(treeNode.key)) treeNode.expanded = true
         treeNodes.push(treeNode)
-        if (item.children.length) treeNode.children = dfs(item.children, item.key, level)
+        if (item.children?.length) treeNode.children = dfs(item.children, item.key, level)
       })
       return treeNodes
     }
@@ -77,6 +77,7 @@ const useTreeUpdate = () => {
 export const useTree = (props: ITreeProps) => {
   const selectKey = ref('');
   const data = useGenTreeData(props)
+  console.log(data.value)
   const flatList = useGenFlatList(data.value)
   const { updateDownWard, updateUpWard } = useTreeUpdate();
 
