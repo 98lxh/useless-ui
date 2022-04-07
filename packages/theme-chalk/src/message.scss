@@ -1,0 +1,58 @@
+@import "./common/variables.scss";
+@import "./mixins/mixin.scss";
+
+@include b(message){
+  position: fixed;
+  top: 20px;
+  left:calc(50% - 150px);
+  border-radius: 5px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+  min-width: 300px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  margin:auto;
+  @include m(info){
+    i{
+      background-color:$blue-6 ;
+    }
+  }
+   @include m(success){
+    i{
+      background-color:$--color-success ;
+    }
+  }
+
+  i{
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    text-align: center;
+    line-height: 25px;
+    margin-right: 10px;
+    color:#fff;
+    font-weight: bold;
+    border-radius: 50%;
+  }
+}
+
+
+.zoom-fade-enter-from {
+  opacity: 0;
+  transform: scale(0.92) translateY(0);
+}
+
+.zoom-fade-leave-to {
+  opacity: 0;
+  transform: scale(1.06);
+}
+
+.fade-transform-leave-active,
+.fade-transform-enter-active{
+  transform: scale(1.06);
+    transition: all 0.3s;
+}
+
+
+
