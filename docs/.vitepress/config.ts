@@ -1,18 +1,28 @@
 import { defineConfig } from 'vitepress'
 import demoBlock from 'vitepress-theme-demoblock'
 export default defineConfig({
+  title: 'uselessUI',
   themeConfig: {
+
     sidebar: {
       '/': [
-        { text: '快速开始', link: '/' },
         {
           text: '通用', children: [
-            { text: 'Button 按钮', link: '/component/button/' },
-            { text: 'Icon 图标', link: '/component/icon/' }
+            { text: '按钮 Button', link: '/component/button/' },
+            { text: '图标 Icon★', link: '/component/icon/' },
+          ]
+        },
+        {
+          text: '布局', children: [
+            { text: '栅格 Grid', link: '/component/grid/' },
+            { text: '间隔 Space★', link: '/component/space/' },
           ]
         }
       ]
-    }
+    },
+    nav: [
+      { text: 'github', link: 'https://github.com/98lxh/useless-ui' }
+    ]
   },
   markdown: {
     config: (md) => {
