@@ -1,6 +1,6 @@
 # Button 按钮
 
-<h2>基础用法</h2>
+<h2>基本用法</h2>
 
 按钮分为 `primary` 主要按钮 `dashed` 虚线按钮、`outline` 线形按钮、`text` 文本按钮四种类型。
 

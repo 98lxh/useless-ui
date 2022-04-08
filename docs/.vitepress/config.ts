@@ -9,13 +9,13 @@ export default defineConfig({
         {
           text: '通用', children: [
             { text: '按钮 Button', link: '/component/button/' },
-            { text: '图标 Icon★', link: '/component/icon/' },
+            { text: '图标 Icon-', link: '/component/icon/' },
           ]
         },
         {
           text: '布局', children: [
             { text: '栅格 Grid', link: '/component/grid/' },
-            { text: '间隔 Space★', link: '/component/space/' },
+            { text: '间隔 Space', link: '/component/space/' },
           ]
         }
       ]
