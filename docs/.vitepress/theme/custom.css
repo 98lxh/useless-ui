@@ -24,3 +24,17 @@ p.sidebar-link-item::after{
   background-color: #f0f0f0;
   margin-bottom:5px;
 }
+
+
+th {
+  border:none !important;
+}
+
+td {
+  border:none !important;
+}
+
+
+table{
+  border-collapse:separate;
+}

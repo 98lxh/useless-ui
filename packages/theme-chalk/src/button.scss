@@ -64,8 +64,9 @@
 
   @include m(dashed){
     border: 1px dashed;
-    color:#ccc;
-    border-color: #ccc;
+    background-color: transparent;
+    color:$--color-primary;
+    border-color: $--color-primary;;
 
     &.u-button--success{
       background-color: #e8ffea;
@@ -87,8 +88,8 @@
   }
 
   @include m(outline){
-    border: 1px solid #ccc;
-    color:#ccc;
+    border: 1px solid $--color-primary;
+    color:$--color-primary;
     background-color: transparent;
 
     &.u-button--success{
