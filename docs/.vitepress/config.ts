@@ -7,7 +7,8 @@ export default defineConfig({
         { text: '快速开始', link: '/' },
         {
           text: '通用', children: [
-            { text: '按钮 Button', link: '/component/button/' }
+            { text: 'Button 按钮', link: '/component/button/' },
+            { text: 'Icon 图标', link: '/component/icon/' }
           ]
         }
       ]

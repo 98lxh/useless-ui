@@ -10,10 +10,11 @@ import CollapseTransition from '@useless-ui/collapse-transition';
 import Transfer from '@useless-ui/transfer';
 import Tree from "@useless-ui/tree"
 import Message from "@useless-ui/message";
+import Space from "@useless-ui/space"
 
 
 const components = [Button, Icon, ButtonGroup,
-  Row, Col, Checkbox, CheckboxGroup, Transfer, CollapseTransition, Tree, Message]
+  Row, Col, Checkbox, CheckboxGroup, Transfer, CollapseTransition, Tree, Message, Space]
 const install = (app: App): void => {
   components.forEach(comp => {
     app.component(comp.name, comp)

@@ -1,0 +1,26 @@
+:root {
+  --c-brand: #165DFF;
+  --c-brand-light: #165DFF;
+}
+
+.sidebar-link-item{
+  font-weight: 400 !important;
+  line-height: 30px !important;
+}
+
+.sidebar-link-item.active{
+  background-color: #e6f7ff !important;
+}
+
+p.sidebar-link-item{
+  font-size: 14px !important;
+}
+
+p.sidebar-link-item::after{
+  content: "";
+  display: block;
+  width: 95%;
+  height: 1px;
+  background-color: #f0f0f0;
+  margin-bottom:5px;
+}
