@@ -1,5 +1,4 @@
-import { computed } from "@vue/reactivity";
-import { defineComponent, provide } from "vue";
+import { defineComponent, provide, computed } from "vue";
 const Checkbox = defineComponent({
   name: 'UCheckboxGroup',
   props: {

@@ -1,4 +1,4 @@
-import { computed } from '@vue/reactivity';
+import { computed } from 'vue';
 import { ITransferProps } from './../transfer.types';
 export const useComputedData = (props: ITransferProps) => {
   //calc left right data

@@ -1,4 +1,106 @@
-import { defineComponent, provide, h, inject, computed as computed$1, getCurrentInstance, unref, Transition, watch, reactive as reactive$1, ref, onMounted, onUnmounted, nextTick, createVNode, render } from 'vue';
+import { defineComponent, computed as computed$1, provide, h, inject, getCurrentInstance, unref, Transition, watch, reactive as reactive$1, ref, onMounted, onUnmounted, nextTick, createVNode, render } from 'vue';
+
+const Button = defineComponent({
+    name: 'UButton',
+    props: {
+        type: {
+            type: String,
+            default: 'primary',
+        },
+        status: {
+            type: String,
+            default: "normal"
+        },
+        size: {
+            type: String,
+            default: 'default'
+        },
+        icon: {
+            type: String,
+            default: ""
+        },
+        disabled: {
+            type: Boolean
+        },
+        loading: {
+            type: Boolean
+        },
+        circle: {
+            type: Boolean
+        }
+    },
+    emits: ['click'],
+    setup(props, { slots, emit }) {
+        const classes = computed$1(() => {
+            const { type, size, disabled, loading, circle, status } = props;
+            return {
+                'u-button': true,
+                'is-disabled': disabled,
+                'is-loading': loading,
+                'is-circle': circle,
+                [`u-button--${type}`]: type,
+                [`u-button--${status}`]: status,
+                [`u-button--${size}`]: size,
+            };
+        });
+        const handleClick = (e) => {
+            if (!props.disabled && props.loading)
+                return;
+            emit('click', e);
+        };
+        return () => (<button class={classes.value} onClick={handleClick}>
+      {props.loading ? <i class={`u-icon-loading`}/> : ''}
+      {props.icon && !props.loading ? <i class={`u-icon-${props.icon}`}/> : ''}
+      {slots.default ? <span>{slots.default()}</span> : ''}
+    </button>);
+    }
+});
+
+const withIntall$7 = (comp) => {
+    comp.install = function (app) {
+        app.component(comp.name, comp);
+    };
+    return comp;
+};
+const UButton = withIntall$7(Button);
+
+const Icon = defineComponent({
+    name: "UIcon",
+    props: {
+        name: {
+            type: String,
+            default: ''
+        }
+    },
+    setup(props) {
+        return () => (<i class={`u-icon-${props.name}`}></i>);
+    }
+});
+
+const withIntall$6 = (comp) => {
+    comp.install = function (app) {
+        app.component(comp.name, comp);
+    };
+    return comp;
+};
+const UIcon = withIntall$6(Icon);
+
+const ButtonGroup = defineComponent({
+    name: 'UButtonGroup',
+    setup(_, { slots }) {
+        return () => (<div class="u-button-group">
+        {slots.default && slots.default()}
+      </div>);
+    }
+});
+
+const withIntall$5 = (comp) => {
+    comp.install = function (app) {
+        app.component(comp.name, comp);
+    };
+    return comp;
+};
+const UButtonGroup = withIntall$5(ButtonGroup);
 
 function _typeof(obj) {
   "@babel/helpers - typeof";
@@ -133,7 +235,7 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
       if (it) o = it;
       var i = 0;
 
-      var F = function () { };
+      var F = function () {};
 
       return {
         s: F,
@@ -157,8 +259,8 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
   }
 
   var normalCompletion = true,
-    didErr = false,
-    err;
+      didErr = false,
+      err;
   return {
     s: function () {
       it = it.call(o);
@@ -211,50 +313,50 @@ function makeMap(str, expectsLowerCase) {
 
 
 (_PatchFlagNames = {}, _defineProperty(_PatchFlagNames, 1
-  /* TEXT */
-  , "TEXT"), _defineProperty(_PatchFlagNames, 2
-    /* CLASS */
-    , "CLASS"), _defineProperty(_PatchFlagNames, 4
-      /* STYLE */
-      , "STYLE"), _defineProperty(_PatchFlagNames, 8
-        /* PROPS */
-        , "PROPS"), _defineProperty(_PatchFlagNames, 16
-          /* FULL_PROPS */
-          , "FULL_PROPS"), _defineProperty(_PatchFlagNames, 32
-            /* HYDRATE_EVENTS */
-            , "HYDRATE_EVENTS"), _defineProperty(_PatchFlagNames, 64
-              /* STABLE_FRAGMENT */
-              , "STABLE_FRAGMENT"), _defineProperty(_PatchFlagNames, 128
-                /* KEYED_FRAGMENT */
-                , "KEYED_FRAGMENT"), _defineProperty(_PatchFlagNames, 256
-                  /* UNKEYED_FRAGMENT */
-                  , "UNKEYED_FRAGMENT"), _defineProperty(_PatchFlagNames, 512
-                    /* NEED_PATCH */
-                    , "NEED_PATCH"), _defineProperty(_PatchFlagNames, 1024
-                      /* DYNAMIC_SLOTS */
-                      , "DYNAMIC_SLOTS"), _defineProperty(_PatchFlagNames, 2048
-                        /* DEV_ROOT_FRAGMENT */
-                        , "DEV_ROOT_FRAGMENT"), _defineProperty(_PatchFlagNames, -1
-                          /* HOISTED */
-                          , "HOISTED"), _defineProperty(_PatchFlagNames, -2
-                            /* BAIL */
-                            , "BAIL"), _PatchFlagNames);
+/* TEXT */
+, "TEXT"), _defineProperty(_PatchFlagNames, 2
+/* CLASS */
+, "CLASS"), _defineProperty(_PatchFlagNames, 4
+/* STYLE */
+, "STYLE"), _defineProperty(_PatchFlagNames, 8
+/* PROPS */
+, "PROPS"), _defineProperty(_PatchFlagNames, 16
+/* FULL_PROPS */
+, "FULL_PROPS"), _defineProperty(_PatchFlagNames, 32
+/* HYDRATE_EVENTS */
+, "HYDRATE_EVENTS"), _defineProperty(_PatchFlagNames, 64
+/* STABLE_FRAGMENT */
+, "STABLE_FRAGMENT"), _defineProperty(_PatchFlagNames, 128
+/* KEYED_FRAGMENT */
+, "KEYED_FRAGMENT"), _defineProperty(_PatchFlagNames, 256
+/* UNKEYED_FRAGMENT */
+, "UNKEYED_FRAGMENT"), _defineProperty(_PatchFlagNames, 512
+/* NEED_PATCH */
+, "NEED_PATCH"), _defineProperty(_PatchFlagNames, 1024
+/* DYNAMIC_SLOTS */
+, "DYNAMIC_SLOTS"), _defineProperty(_PatchFlagNames, 2048
+/* DEV_ROOT_FRAGMENT */
+, "DEV_ROOT_FRAGMENT"), _defineProperty(_PatchFlagNames, -1
+/* HOISTED */
+, "HOISTED"), _defineProperty(_PatchFlagNames, -2
+/* BAIL */
+, "BAIL"), _PatchFlagNames);
 /**
  * Dev only
  */
 
 (_slotFlagsText = {}, _defineProperty(_slotFlagsText, 1
-  /* STABLE */
-  , 'STABLE'), _defineProperty(_slotFlagsText, 2
-    /* DYNAMIC */
-    , 'DYNAMIC'), _defineProperty(_slotFlagsText, 3
-      /* FORWARDED */
-      , 'FORWARDED'), _slotFlagsText);
+/* STABLE */
+, 'STABLE'), _defineProperty(_slotFlagsText, 2
+/* DYNAMIC */
+, 'DYNAMIC'), _defineProperty(_slotFlagsText, 3
+/* FORWARDED */
+, 'FORWARDED'), _slotFlagsText);
 
 process.env.NODE_ENV !== 'production' ? Object.freeze({}) : {};
 process.env.NODE_ENV !== 'production' ? Object.freeze([]) : [];
 
-var NOOP = function NOOP() { };
+var NOOP = function NOOP() {};
 
 var extend = Object.assign;
 
@@ -555,7 +657,7 @@ function trigger(target, type, key, newValue, oldValue, oldTarget) {
   var deps = [];
 
   if (type === "clear"
-    /* CLEAR */
+  /* CLEAR */
   ) {
     // collection being cleared
     // trigger all effects for target
@@ -575,8 +677,8 @@ function trigger(target, type, key, newValue, oldValue, oldTarget) {
 
     switch (type) {
       case "add"
-        /* ADD */
-        :
+      /* ADD */
+      :
         if (!isArray(target)) {
           deps.push(depsMap.get(ITERATE_KEY));
 
@@ -591,8 +693,8 @@ function trigger(target, type, key, newValue, oldValue, oldTarget) {
         break;
 
       case "delete"
-        /* DELETE */
-        :
+      /* DELETE */
+      :
         if (!isArray(target)) {
           deps.push(depsMap.get(ITERATE_KEY));
 
@@ -604,8 +706,8 @@ function trigger(target, type, key, newValue, oldValue, oldTarget) {
         break;
 
       case "set"
-        /* SET */
-        :
+      /* SET */
+      :
         if (isMap(target)) {
           deps.push(depsMap.get(ITERATE_KEY));
         }
@@ -635,7 +737,7 @@ function trigger(target, type, key, newValue, oldValue, oldTarget) {
     var effects = [];
 
     var _iterator = _createForOfIteratorHelper(deps),
-      _step;
+        _step;
 
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done;) {
@@ -662,7 +764,7 @@ function trigger(target, type, key, newValue, oldValue, oldTarget) {
 function triggerEffects(dep, debuggerEventExtraInfo) {
   // spread into array for stabilization
   var _iterator2 = _createForOfIteratorHelper(isArray(dep) ? dep : _toConsumableArray(dep)),
-    _step2;
+      _step2;
 
   try {
     for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
@@ -705,8 +807,8 @@ function createArrayInstrumentations() {
 
       for (var i = 0, l = this.length; i < l; i++) {
         track(arr, "get"
-          /* GET */
-          , i + '');
+        /* GET */
+        , i + '');
       } // we run the method using the original args first (which may be reactive)
 
 
@@ -745,20 +847,20 @@ function createGetter() {
   var shallow = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   return function get(target, key, receiver) {
     if (key === "__v_isReactive"
-      /* IS_REACTIVE */
+    /* IS_REACTIVE */
     ) {
       return !isReadonly;
     } else if (key === "__v_isReadonly"
-      /* IS_READONLY */
+    /* IS_READONLY */
     ) {
       return isReadonly;
     } else if (key === "__v_isShallow"
-      /* IS_SHALLOW */
+    /* IS_SHALLOW */
     ) {
       return shallow;
     } else if (key === "__v_raw"
-      /* RAW */
-      && receiver === (isReadonly ? shallow ? shallowReadonlyMap : readonlyMap : shallow ? shallowReactiveMap : reactiveMap).get(target)) {
+    /* RAW */
+    && receiver === (isReadonly ? shallow ? shallowReadonlyMap : readonlyMap : shallow ? shallowReactiveMap : reactiveMap).get(target)) {
       return target;
     }
 
@@ -776,8 +878,8 @@ function createGetter() {
 
     if (!isReadonly) {
       track(target, "get"
-        /* GET */
-        , key);
+      /* GET */
+      , key);
     }
 
     if (shallow) {
@@ -830,12 +932,12 @@ function createSetter() {
     if (target === toRaw(receiver)) {
       if (!hadKey) {
         trigger(target, "add"
-          /* ADD */
-          , key, value);
+        /* ADD */
+        , key, value);
       } else if (hasChanged(value, oldValue)) {
         trigger(target, "set"
-          /* SET */
-          , key, value, oldValue);
+        /* SET */
+        , key, value, oldValue);
       }
     }
 
@@ -850,8 +952,8 @@ function deleteProperty(target, key) {
 
   if (result && hadKey) {
     trigger(target, "delete"
-      /* DELETE */
-      , key, undefined, oldValue);
+    /* DELETE */
+    , key, undefined, oldValue);
   }
 
   return result;
@@ -862,8 +964,8 @@ function has(target, key) {
 
   if (!isSymbol(key) || !builtInSymbols.has(key)) {
     track(target, "has"
-      /* HAS */
-      , key);
+    /* HAS */
+    , key);
   }
 
   return result;
@@ -871,8 +973,8 @@ function has(target, key) {
 
 function ownKeys(target) {
   track(target, "iterate"
-    /* ITERATE */
-    , isArray(target) ? 'length' : ITERATE_KEY);
+  /* ITERATE */
+  , isArray(target) ? 'length' : ITERATE_KEY);
   return Reflect.ownKeys(target);
 }
 
@@ -915,23 +1017,23 @@ function get$1(target, key) {
   // #1772: readonly(reactive(Map)) should return readonly + reactive version
   // of the value
   target = target["__v_raw"
-    /* RAW */
+  /* RAW */
   ];
   var rawTarget = toRaw(target);
   var rawKey = toRaw(key);
 
   if (key !== rawKey) {
     !isReadonly && track(rawTarget, "get"
-      /* GET */
-      , key);
+    /* GET */
+    , key);
   }
 
   !isReadonly && track(rawTarget, "get"
-    /* GET */
-    , rawKey);
+  /* GET */
+  , rawKey);
 
   var _getProto = getProto(rawTarget),
-    has = _getProto.has;
+      has = _getProto.has;
 
   var wrap = isShallow ? toShallow : isReadonly ? toReadonly : toReactive;
 
@@ -949,31 +1051,31 @@ function get$1(target, key) {
 function has$1(key) {
   var isReadonly = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   var target = this["__v_raw"
-    /* RAW */
+  /* RAW */
   ];
   var rawTarget = toRaw(target);
   var rawKey = toRaw(key);
 
   if (key !== rawKey) {
     !isReadonly && track(rawTarget, "has"
-      /* HAS */
-      , key);
+    /* HAS */
+    , key);
   }
 
   !isReadonly && track(rawTarget, "has"
-    /* HAS */
-    , rawKey);
+  /* HAS */
+  , rawKey);
   return key === rawKey ? target.has(key) : target.has(key) || target.has(rawKey);
 }
 
 function size(target) {
   var isReadonly = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
   target = target["__v_raw"
-    /* RAW */
+  /* RAW */
   ];
   !isReadonly && track(toRaw(target), "iterate"
-    /* ITERATE */
-    , ITERATE_KEY);
+  /* ITERATE */
+  , ITERATE_KEY);
   return Reflect.get(target, 'size', target);
 }
 
@@ -986,8 +1088,8 @@ function add(value) {
   if (!hadKey) {
     target.add(value);
     trigger(target, "add"
-      /* ADD */
-      , value, value);
+    /* ADD */
+    , value, value);
   }
 
   return this;
@@ -998,8 +1100,8 @@ function set$1(key, value) {
   var target = toRaw(this);
 
   var _getProto2 = getProto(target),
-    has = _getProto2.has,
-    get = _getProto2.get;
+      has = _getProto2.has,
+      get = _getProto2.get;
 
   var hadKey = has.call(target, key);
 
@@ -1015,12 +1117,12 @@ function set$1(key, value) {
 
   if (!hadKey) {
     trigger(target, "add"
-      /* ADD */
-      , key, value);
+    /* ADD */
+    , key, value);
   } else if (hasChanged(value, oldValue)) {
     trigger(target, "set"
-      /* SET */
-      , key, value, oldValue);
+    /* SET */
+    , key, value, oldValue);
   }
 
   return this;
@@ -1030,8 +1132,8 @@ function deleteEntry(key) {
   var target = toRaw(this);
 
   var _getProto3 = getProto(target),
-    has = _getProto3.has,
-    get = _getProto3.get;
+      has = _getProto3.has,
+      get = _getProto3.get;
 
   var hadKey = has.call(target, key);
 
@@ -1048,8 +1150,8 @@ function deleteEntry(key) {
 
   if (hadKey) {
     trigger(target, "delete"
-      /* DELETE */
-      , key, undefined, oldValue);
+    /* DELETE */
+    , key, undefined, oldValue);
   }
 
   return result;
@@ -1064,8 +1166,8 @@ function clear() {
 
   if (hadItems) {
     trigger(target, "clear"
-      /* CLEAR */
-      , undefined, undefined, oldTarget);
+    /* CLEAR */
+    , undefined, undefined, oldTarget);
   }
 
   return result;
@@ -1075,13 +1177,13 @@ function createForEach(isReadonly, isShallow) {
   return function forEach(callback, thisArg) {
     var observed = this;
     var target = observed["__v_raw"
-      /* RAW */
+    /* RAW */
     ];
     var rawTarget = toRaw(target);
     var wrap = isShallow ? toShallow : isReadonly ? toReadonly : toReactive;
     !isReadonly && track(rawTarget, "iterate"
-      /* ITERATE */
-      , ITERATE_KEY);
+    /* ITERATE */
+    , ITERATE_KEY);
     return target.forEach(function (value, key) {
       // important: make sure the callback is
       // 1. invoked with the reactive map as `this` and 3rd arg
@@ -1094,7 +1196,7 @@ function createForEach(isReadonly, isShallow) {
 function createIterableMethod(method, isReadonly, isShallow) {
   return function () {
     var target = this["__v_raw"
-      /* RAW */
+    /* RAW */
     ];
     var rawTarget = toRaw(target);
     var targetIsMap = isMap(rawTarget);
@@ -1103,16 +1205,16 @@ function createIterableMethod(method, isReadonly, isShallow) {
     var innerIterator = target[method].apply(target, arguments);
     var wrap = isShallow ? toShallow : isReadonly ? toReadonly : toReactive;
     !isReadonly && track(rawTarget, "iterate"
-      /* ITERATE */
-      , isKeyOnly ? MAP_KEY_ITERATE_KEY : ITERATE_KEY); // return a wrapped iterator which returns observed versions of the
+    /* ITERATE */
+    , isKeyOnly ? MAP_KEY_ITERATE_KEY : ITERATE_KEY); // return a wrapped iterator which returns observed versions of the
     // values emitted from the real iterator
 
     return _defineProperty({
       // iterator protocol
       next: function next() {
         var _innerIterator$next = innerIterator.next(),
-          value = _innerIterator$next.value,
-          done = _innerIterator$next.done;
+            value = _innerIterator$next.value,
+            done = _innerIterator$next.done;
 
         return done ? {
           value: value,
@@ -1136,8 +1238,8 @@ function createReadonlyMethod(type) {
     }
 
     return type === "delete"
-      /* DELETE */
-      ? false : this;
+    /* DELETE */
+    ? false : this;
   };
 }
 
@@ -1187,16 +1289,16 @@ function createInstrumentations() {
       return has$1.call(this, key, true);
     },
     add: createReadonlyMethod("add"
-      /* ADD */
+    /* ADD */
     ),
     set: createReadonlyMethod("set"
-      /* SET */
+    /* SET */
     ),
     "delete": createReadonlyMethod("delete"
-      /* DELETE */
+    /* DELETE */
     ),
     clear: createReadonlyMethod("clear"
-      /* CLEAR */
+    /* CLEAR */
     ),
     forEach: createForEach(true, false)
   };
@@ -1213,16 +1315,16 @@ function createInstrumentations() {
       return has$1.call(this, key, true);
     },
     add: createReadonlyMethod("add"
-      /* ADD */
+    /* ADD */
     ),
     set: createReadonlyMethod("set"
-      /* SET */
+    /* SET */
     ),
     "delete": createReadonlyMethod("delete"
-      /* DELETE */
+    /* DELETE */
     ),
     clear: createReadonlyMethod("clear"
-      /* CLEAR */
+    /* CLEAR */
     ),
     forEach: createForEach(true, true)
   };
@@ -1237,25 +1339,25 @@ function createInstrumentations() {
 }
 
 var _createInstrumentatio = /* #__PURE__*/createInstrumentations(),
-  _createInstrumentatio2 = _slicedToArray(_createInstrumentatio, 4),
-  mutableInstrumentations = _createInstrumentatio2[0],
-  readonlyInstrumentations = _createInstrumentatio2[1],
-  shallowInstrumentations = _createInstrumentatio2[2],
-  shallowReadonlyInstrumentations = _createInstrumentatio2[3];
+    _createInstrumentatio2 = _slicedToArray(_createInstrumentatio, 4),
+    mutableInstrumentations = _createInstrumentatio2[0],
+    readonlyInstrumentations = _createInstrumentatio2[1],
+    shallowInstrumentations = _createInstrumentatio2[2],
+    shallowReadonlyInstrumentations = _createInstrumentatio2[3];
 
 function createInstrumentationGetter(isReadonly, shallow) {
   var instrumentations = shallow ? isReadonly ? shallowReadonlyInstrumentations : shallowInstrumentations : isReadonly ? readonlyInstrumentations : mutableInstrumentations;
   return function (target, key, receiver) {
     if (key === "__v_isReactive"
-      /* IS_REACTIVE */
+    /* IS_REACTIVE */
     ) {
       return !isReadonly;
     } else if (key === "__v_isReadonly"
-      /* IS_READONLY */
+    /* IS_READONLY */
     ) {
       return isReadonly;
     } else if (key === "__v_raw"
-      /* RAW */
+    /* RAW */
     ) {
       return target;
     }
@@ -1290,30 +1392,30 @@ function targetTypeMap(rawType) {
     case 'Object':
     case 'Array':
       return 1
-        /* COMMON */
-        ;
+      /* COMMON */
+      ;
 
     case 'Map':
     case 'Set':
     case 'WeakMap':
     case 'WeakSet':
       return 2
-        /* COLLECTION */
-        ;
+      /* COLLECTION */
+      ;
 
     default:
       return 0
-        /* INVALID */
-        ;
+      /* INVALID */
+      ;
   }
 }
 
 function getTargetType(value) {
   return value["__v_skip"
-    /* SKIP */
+  /* SKIP */
   ] || !Object.isExtensible(value) ? 0
-    /* INVALID */
-    : targetTypeMap(toRawType(value));
+  /* INVALID */
+  : targetTypeMap(toRawType(value));
 }
 
 function reactive(target) {
@@ -1346,9 +1448,9 @@ function createReactiveObject(target, isReadonly, baseHandlers, collectionHandle
 
 
   if (target["__v_raw"
-    /* RAW */
+  /* RAW */
   ] && !(isReadonly && target["__v_isReactive"
-    /* IS_REACTIVE */
+  /* IS_REACTIVE */
   ])) {
     return target;
   } // target already has corresponding Proxy
@@ -1364,33 +1466,33 @@ function createReactiveObject(target, isReadonly, baseHandlers, collectionHandle
   var targetType = getTargetType(target);
 
   if (targetType === 0
-    /* INVALID */
+  /* INVALID */
   ) {
     return target;
   }
 
   var proxy = new Proxy(target, targetType === 2
-    /* COLLECTION */
-    ? collectionHandlers : baseHandlers);
+  /* COLLECTION */
+  ? collectionHandlers : baseHandlers);
   proxyMap.set(target, proxy);
   return proxy;
 }
 
 function isReadonly(value) {
   return !!(value && value["__v_isReadonly"
-    /* IS_READONLY */
+  /* IS_READONLY */
   ]);
 }
 
 function isShallow(value) {
   return !!(value && value["__v_isShallow"
-    /* IS_SHALLOW */
+  /* IS_SHALLOW */
   ]);
 }
 
 function toRaw(observed) {
   var raw = observed && observed["__v_raw"
-    /* RAW */
+  /* RAW */
   ];
   return raw ? toRaw(raw) : observed;
 }
@@ -1463,7 +1565,7 @@ var ComputedRefImpl = /*#__PURE__*/function () {
     this.effect.computed = this;
     this.effect.active = this._cacheable = !isSSR;
     this["__v_isReadonly"
-      /* IS_READONLY */
+    /* IS_READONLY */
     ] = isReadonly;
   }
 
@@ -1517,1013 +1619,916 @@ function computed(getterOrOptions, debugOptions) {
 
 Promise.resolve();
 
-const Button = defineComponent({
-  name: 'UButton',
-  props: {
-    type: {
-      type: String,
-      default: 'primary',
-    },
-    status: {
-      type: String,
-      default: "normal"
-    },
-    size: {
-      type: String,
-      default: 'default'
-    },
-    icon: {
-      type: String,
-      default: ""
-    },
-    disabled: {
-      type: Boolean
-    },
-    loading: {
-      type: Boolean
-    },
-    circle: {
-      type: Boolean
-    }
-  },
-  emits: ['click'],
-  setup(props, { slots, emit }) {
-    const classes = computed(() => {
-      const { type, size, disabled, loading, circle, status } = props;
-      return {
-        'u-button': true,
-        'is-disabled': disabled,
-        'is-loading': loading,
-        'is-circle': circle,
-        [`u-button--${type}`]: type,
-        [`u-button--${status}`]: status,
-        [`u-button--${size}`]: size,
-      };
-    });
-    const handleClick = (e) => {
-      if (!props.disabled && props.loading)
-        return;
-      emit('click', e);
-    };
-    return () => (<button class={classes.value} onClick={handleClick}>
-      {props.loading ? <i class={`u-icon-loading`} /> : ''}
-      {props.icon && !props.loading ? <i class={`u-icon-${props.icon}`} /> : ''}
-      {slots.default ? <span>{slots.default()}</span> : ''}
-    </button>);
-  }
-});
-
-const withIntall$7 = (comp) => {
-  comp.install = function (app) {
-    app.component(comp.name, comp);
-  };
-  return comp;
-};
-const UButton = withIntall$7(Button);
-
-const Icon = defineComponent({
-  name: "UIcon",
-  props: {
-    name: {
-      type: String,
-      default: ''
-    }
-  },
-  setup(props) {
-    return () => (<i class={`u-icon-${props.name}`}></i>);
-  }
-});
-
-const withIntall$6 = (comp) => {
-  comp.install = function (app) {
-    app.component(comp.name, comp);
-  };
-  return comp;
-};
-const UIcon = withIntall$6(Icon);
-
-const ButtonGroup = defineComponent({
-  name: 'UButtonGroup',
-  setup(_, { slots }) {
-    return () => (<div class="u-button-group">
-      {slots.default && slots.default()}
-    </div>);
-  }
-});
-
-const withIntall$5 = (comp) => {
-  comp.install = function (app) {
-    app.component(comp.name, comp);
-  };
-  return comp;
-};
-const UButtonGroup = withIntall$5(ButtonGroup);
-
 const Row = defineComponent({
-  name: 'URow',
-  props: {
-    tag: {
-      type: String,
-      default: 'p'
+    name: 'URow',
+    props: {
+        tag: {
+            type: String,
+            default: 'p'
+        },
+        gutter: {
+            type: Number,
+            default: 24
+        },
+        justify: {
+            type: String,
+            default: 'start'
+        }
     },
-    gutter: {
-      type: Number,
-      default: 24
-    },
-    justify: {
-      type: String,
-      default: 'start'
+    setup(props, { slots }) {
+        provide('gutter', props.gutter);
+        const classes = computed(() => [
+            'u-row',
+            props.justify !== 'start' ? `is-justify-${props.justify}` : ''
+        ]);
+        const styles = computed(() => {
+            const ret = {
+                marginLeft: '',
+                marginRight: ''
+            };
+            if (props.gutter > 0) {
+                ret.marginLeft = `-${props.gutter / 2}px`;
+                ret.marginRight = `-${props.gutter / 2}px`;
+            }
+            return ret;
+        });
+        return () => h(props.tag, {
+            class: classes.value,
+            style: styles.value,
+        }, slots.default?.());
     }
-  },
-  setup(props, { slots }) {
-    provide('gutter', props.gutter);
-    const classes = computed(() => [
-      'u-row',
-      props.justify !== 'start' ? `is-justify-${props.justify}` : ''
-    ]);
-    const styles = computed(() => {
-      const ret = {
-        marginLeft: '',
-        marginRight: ''
-      };
-      if (props.gutter > 0) {
-        ret.marginLeft = `-${props.gutter / 2}px`;
-        ret.marginRight = `-${props.gutter / 2}px`;
-      }
-      return ret;
-    });
-    return () => h(props.tag, {
-      class: classes.value,
-      style: styles.value,
-    }, slots.default?.());
-  }
 });
 
 Row.install = (app) => {
-  app.component(Row.name, Row);
+    app.component(Row.name, Row);
 };
 
 const Col = defineComponent({
-  name: 'UCol',
-  props: {
-    tag: {
-      type: String,
-      default: 'div'
+    name: 'UCol',
+    props: {
+        tag: {
+            type: String,
+            default: 'div'
+        },
+        span: {
+            type: Number,
+            default: 24
+        },
+        offset: {
+            type: Number,
+            default: 0
+        },
+        xs: {
+            type: Number,
+            default: 0
+        },
+        sm: {
+            type: Number,
+            default: 0
+        },
+        md: {
+            type: Number,
+            default: 0
+        },
+        lg: {
+            type: Number,
+            default: 0
+        },
+        xl: {
+            type: Number,
+            default: 0
+        }
     },
-    span: {
-      type: Number,
-      default: 24
-    },
-    offset: {
-      type: Number,
-      default: 0
-    },
-    xs: {
-      type: Number,
-      default: 0
-    },
-    sm: {
-      type: Number,
-      default: 0
-    },
-    md: {
-      type: Number,
-      default: 0
-    },
-    lg: {
-      type: Number,
-      default: 0
-    },
-    xl: {
-      type: Number,
-      default: 0
+    setup(props, { slots }) {
+        const gutter = inject('gutter', 0);
+        const classes = computed(() => {
+            const ret = [];
+            const pos = ['span', 'offset'];
+            pos.forEach(item => {
+                const size = props[item];
+                if (typeof size === 'number' && size > 0) {
+                    ret.push(`u-col-${item}-${props[item]}`);
+                }
+            });
+            const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
+            sizes.forEach(size => {
+                if (typeof props[size] === 'number' && props[size] > 0) {
+                    ret.push(`u-col-${size}-${props[size]}`);
+                }
+            });
+            return ['u-col', ...ret];
+        });
+        const styles = computed(() => {
+            if (gutter > 0) {
+                return {
+                    paddingLeft: gutter / 2 + 'px',
+                    paddingRight: gutter / 2 + 'px',
+                };
+            }
+            return {};
+        });
+        return () => h(props.tag, {
+            class: classes.value,
+            style: styles.value
+        }, slots.default?.());
     }
-  },
-  setup(props, { slots }) {
-    const gutter = inject('gutter', 0);
-    const classes = computed(() => {
-      const ret = [];
-      const pos = ['span', 'offset'];
-      pos.forEach(item => {
-        const size = props[item];
-        if (typeof size === 'number' && size > 0) {
-          ret.push(`u-col-${item}-${props[item]}`);
-        }
-      });
-      const sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
-      sizes.forEach(size => {
-        if (typeof props[size] === 'number' && props[size] > 0) {
-          ret.push(`u-col-${size}-${props[size]}`);
-        }
-      });
-      return ['u-col', ...ret];
-    });
-    const styles = computed(() => {
-      if (gutter > 0) {
-        return {
-          paddingLeft: gutter / 2 + 'px',
-          paddingRight: gutter / 2 + 'px',
-        };
-      }
-      return {};
-    });
-    return () => h(props.tag, {
-      class: classes.value,
-      style: styles.value
-    }, slots.default?.());
-  }
 });
 
 Col.install = (app) => {
-  app.component(Col.name, Col);
+    app.component(Col.name, Col);
 };
 
 const useCheckboxGroup = () => {
-  const checkboxGroup = inject('UCheckboxGroup', {});
-  const isGroup = checkboxGroup.name === 'u-checkbox-group';
-  return {
-    isGroup,
-    checkboxGroup
-  };
+    const checkboxGroup = inject('UCheckboxGroup', {});
+    const isGroup = checkboxGroup.name === 'u-checkbox-group';
+    return {
+        isGroup,
+        checkboxGroup
+    };
 };
 const useModel = (props) => {
-  const emit = getCurrentInstance().emit;
-  const { isGroup, checkboxGroup } = useCheckboxGroup();
-  const store = computed$1(() => checkboxGroup ? checkboxGroup.modelValue.value : props.modelValue);
-  return computed$1({
-    get() {
-      return isGroup ? store.value : props.modelValue;
-    },
-    set(newValue) {
-      emit(`update:modelValue`, newValue);
-    }
-  });
+    const emit = getCurrentInstance().emit;
+    const { isGroup, checkboxGroup } = useCheckboxGroup();
+    const store = computed$1(() => checkboxGroup ? checkboxGroup.modelValue.value : props.modelValue);
+    return computed$1({
+        get() {
+            return isGroup ? store.value : props.modelValue;
+        },
+        set(newValue) {
+            emit(`update:modelValue`, newValue);
+        }
+    });
 };
 const useCheckboxStatus = (props, model) => {
-  const isChecked = computed$1(() => {
-    const value = model.value;
-    if (Array.isArray(value)) {
-      return value.includes(props.label);
-    }
-    else {
-      return value;
-    }
-  });
-  return isChecked;
+    const isChecked = computed$1(() => {
+        const value = model.value;
+        if (Array.isArray(value)) {
+            return value.includes(props.label);
+        }
+        else {
+            return value;
+        }
+    });
+    return isChecked;
 };
 const useEvent = (props, model) => {
-  if (props.disabled)
-    return;
-  const emit = getCurrentInstance().emit;
-  const { checkboxGroup } = useCheckboxGroup();
-  const value = model.value;
-  const handleCheck = () => {
-    if (Array.isArray(value)) {
-      //触发组的更新
-      const groupValue = unref(checkboxGroup.modelValue);
-      const index = groupValue.findIndex(m => m === props.label);
-      if (index < 0) {
-        groupValue.push(props.label);
-      }
-      else {
-        groupValue.splice(index, 1);
-      }
-      checkboxGroup.changeEvent(groupValue);
-    }
-    else {
-      model.value = !model.value;
-      emit('update:modelValue', !model.value);
-      emit('change', !model.value);
-    }
-  };
-  return handleCheck;
+    if (props.disabled)
+        return;
+    const emit = getCurrentInstance().emit;
+    const { checkboxGroup } = useCheckboxGroup();
+    const value = model.value;
+    const handleCheck = () => {
+        if (Array.isArray(value)) {
+            //触发组的更新
+            const groupValue = unref(checkboxGroup.modelValue);
+            const index = groupValue.findIndex(m => m === props.label);
+            if (index < 0) {
+                groupValue.push(props.label);
+            }
+            else {
+                groupValue.splice(index, 1);
+            }
+            checkboxGroup.changeEvent(groupValue);
+        }
+        else {
+            model.value = !model.value;
+            emit('update:modelValue', !model.value);
+            emit('change', !model.value);
+        }
+    };
+    return handleCheck;
 };
 const useCheckbox = (props) => {
-  const model = useModel(props);
-  const isChecked = useCheckboxStatus(props, model);
-  const handleCheck = useEvent(props, model);
-  return {
-    isChecked,
-    handleCheck
-  };
+    const model = useModel(props);
+    const isChecked = useCheckboxStatus(props, model);
+    const handleCheck = useEvent(props, model);
+    return {
+        isChecked,
+        handleCheck
+    };
 };
 
 const Checkbox$1 = defineComponent({
-  name: 'UCheckbox',
-  props: {
-    indeterminate: Boolean,
-    disabled: Boolean,
-    label: [String, Number, Boolean],
-    modelValue: [String, Number, Boolean],
-  },
-  emits: ['change', 'update:modelValue'],
-  setup(props, { slots }) {
-    const { isChecked, handleCheck } = useCheckbox(props);
-    const classes = computed(() => ({
-      'u-checkbox__input': true,
-      'is-checked': isChecked.value,
-      'is-indeterminate': props.indeterminate && !isChecked.value,
-    }));
-    const checkboxIcon = computed(() => {
-      const { indeterminate } = props;
-      if (!isChecked.value && !indeterminate)
-        return '';
-      return <i class={isChecked.value ? 'u-icon-success' : 'u-icon-jianhao'} />;
-    });
-    return () => (<div class={['u-checkbox', props.disabled && 'is-disabled']}>
-      <span class={classes.value} onClick={handleCheck}>
-        {checkboxIcon.value}
-      </span>
-      <span class="u-checkbox__label">
-        {slots.default?.() || props.label}
-      </span>
-    </div>);
-  }
+    name: 'UCheckbox',
+    props: {
+        indeterminate: Boolean,
+        disabled: Boolean,
+        label: [String, Number, Boolean],
+        modelValue: [String, Number, Boolean],
+    },
+    emits: ['change', 'update:modelValue'],
+    setup(props, { slots }) {
+        const { isChecked, handleCheck } = useCheckbox(props);
+        const classes = computed$1(() => ({
+            'u-checkbox__input': true,
+            'is-checked': isChecked.value,
+            'is-indeterminate': props.indeterminate && !isChecked.value,
+        }));
+        const checkboxIcon = computed$1(() => {
+            const { indeterminate } = props;
+            if (!isChecked.value && !indeterminate)
+                return '';
+            return <i class={isChecked.value ? 'u-icon-success' : 'u-icon-jianhao'}/>;
+        });
+        return () => (<div class={['u-checkbox', props.disabled && 'is-disabled']}>
+        <span class={classes.value} onClick={handleCheck}>
+          {checkboxIcon.value}
+        </span>
+        <span class="u-checkbox__label">
+          {slots.default?.() || props.label}
+        </span>
+      </div>);
+    }
 });
 
 Checkbox$1.install = (app) => {
-  app.component(Checkbox$1.name, Checkbox$1);
+    app.component(Checkbox$1.name, Checkbox$1);
 };
 
 const Checkbox = defineComponent({
-  name: 'UCheckboxGroup',
-  props: {
-    modelValue: Array
-  },
-  emits: ['change', 'update:modelValue'],
-  setup(props, { emit, slots }) {
-    const modelValue = computed({
-      get() {
-        return props.modelValue;
-      },
-      set(newV) {
-        emit('update:modelValue', newV);
-      }
-    });
-    const changeEvent = (value) => {
-      emit('change', value);
-      emit('update:modelValue', value);
-    };
-    provide('UCheckboxGroup', {
-      modelValue,
-      changeEvent,
-      name: 'u-checkbox-group'
-    });
-    return () => (<div class="u-checkbox-group">
-      {slots?.default()}
-    </div>);
-  }
+    name: 'UCheckboxGroup',
+    props: {
+        modelValue: Array
+    },
+    emits: ['change', 'update:modelValue'],
+    setup(props, { emit, slots }) {
+        const modelValue = computed$1({
+            get() {
+                return props.modelValue;
+            },
+            set(newV) {
+                emit('update:modelValue', newV);
+            }
+        });
+        const changeEvent = (value) => {
+            emit('change', value);
+            emit('update:modelValue', value);
+        };
+        provide('UCheckboxGroup', {
+            modelValue,
+            changeEvent,
+            name: 'u-checkbox-group'
+        });
+        return () => (<div class="u-checkbox-group">
+        {slots?.default()}
+      </div>);
+    }
 });
 
 Checkbox.install = function (app) {
-  app.component(Checkbox.name, Checkbox);
+    app.component(Checkbox.name, Checkbox);
 };
 
 const TransitionHook = (delay) => ({
-  onBeforeEnter(el) {
-    el.style.transition = `${delay}s height ease-in-out`;
-    el.style.height = '0';
-  },
-  onEnter(el) {
-    if (el.scrollHeight !== 0) {
-      el.style.height = `${el.scrollHeight}px`;
+    onBeforeEnter(el) {
+        el.style.transition = `${delay}s height ease-in-out`;
+        el.style.height = '0';
+    },
+    onEnter(el) {
+        if (el.scrollHeight !== 0) {
+            el.style.height = `${el.scrollHeight}px`;
+        }
+        else {
+            el.style.height = '';
+        }
+        el.style.overflow = 'hidden';
+    },
+    onAfterEnter(el) {
+        el.style.transition = '';
+        el.style.height = '';
+    },
+    onBeforeLeave(el) {
+        el.style.height = `${el.scrollHeight}px`;
+        el.style.overflow = 'hidden';
+    },
+    onLeave(el) {
+        if (el.scrollHeight !== 0) {
+            el.style.transition = `${delay}s height ease-in-out`;
+            el.style.height = '0';
+        }
+    },
+    onAfterLeave(el) {
+        el.style.transition = '';
+        el.style.height = '';
     }
-    else {
-      el.style.height = '';
-    }
-    el.style.overflow = 'hidden';
-  },
-  onAfterEnter(el) {
-    el.style.transition = '';
-    el.style.height = '';
-  },
-  onBeforeLeave(el) {
-    el.style.height = `${el.scrollHeight}px`;
-    el.style.overflow = 'hidden';
-  },
-  onLeave(el) {
-    if (el.scrollHeight !== 0) {
-      el.style.transition = `${delay}s height ease-in-out`;
-      el.style.height = '0';
-    }
-  },
-  onAfterLeave(el) {
-    el.style.transition = '';
-    el.style.height = '';
-  }
 });
 const CollapseTransition = defineComponent({
-  name: 'UCollapseTransition',
-  props: {
-    delay: {
-      type: Number,
-      default: 0.3
+    name: 'UCollapseTransition',
+    props: {
+        delay: {
+            type: Number,
+            default: 0.3
+        }
+    },
+    setup(props, { slots }) {
+        return () => h(Transition, TransitionHook(props.delay), {
+            default: () => slots.default()
+        });
     }
-  },
-  setup(props, { slots }) {
-    return () => h(Transition, TransitionHook(props.delay), {
-      default: () => slots.default()
-    });
-  }
 });
 
 const withIntall$4 = (comp) => {
-  comp.install = function (app) {
-    app.component(comp.name, comp);
-  };
-  return comp;
+    comp.install = function (app) {
+        app.component(comp.name, comp);
+    };
+    return comp;
 };
 const UCollapseTransition = withIntall$4(CollapseTransition);
 
 const useCheck = (props, panelState) => {
-  const labelProps = computed$1(() => props.props.label);
-  const keyProps = computed$1(() => props.props.key);
-  const disabledProps = computed$1(() => props.props.disabled);
-  const emit = getCurrentInstance().emit;
-  const checkableData = computed$1(() => {
-    return props.data.filter(item => !item[disabledProps.value]);
-  });
-  const handleCheckedAllChange = (val) => {
-    if (panelState.indeterminate)
-      return panelState.checked = [];
-    panelState.allChecked = val;
-    panelState.checked = val ? checkableData.value.map(item => item[keyProps.value]) : [];
-  };
-  watch(() => panelState.checked, () => {
-    const checkKeys = checkableData.value.map(item => item[keyProps.value]);
-    panelState.allChecked = checkKeys.every(item => panelState.checked.includes(item)) && checkableData.value.length > 0;
-    panelState.indeterminate = checkKeys.some(item => panelState.checked.includes(item)) && !panelState.allChecked;
-    emit('checkedChange', panelState.checked);
-  }, {
-    deep: true
-  });
-  watch(() => props.data, () => {
-    panelState.checked = [];
-  });
-  return {
-    labelProps,
-    keyProps,
-    disabledProps,
-    handleCheckedAllChange
-  };
+    const labelProps = computed$1(() => props.props.label);
+    const keyProps = computed$1(() => props.props.key);
+    const disabledProps = computed$1(() => props.props.disabled);
+    const emit = getCurrentInstance().emit;
+    const checkableData = computed$1(() => {
+        return props.data.filter(item => !item[disabledProps.value]);
+    });
+    const handleCheckedAllChange = (val) => {
+        if (panelState.indeterminate)
+            return panelState.checked = [];
+        panelState.allChecked = val;
+        panelState.checked = val ? checkableData.value.map(item => item[keyProps.value]) : [];
+    };
+    watch(() => panelState.checked, () => {
+        const checkKeys = checkableData.value.map(item => item[keyProps.value]);
+        panelState.allChecked = checkKeys.every(item => panelState.checked.includes(item)) && checkableData.value.length > 0;
+        panelState.indeterminate = checkKeys.some(item => panelState.checked.includes(item)) && !panelState.allChecked;
+        emit('checkedChange', panelState.checked);
+    }, {
+        deep: true
+    });
+    watch(() => props.data, () => {
+        panelState.checked = [];
+    });
+    return {
+        labelProps,
+        keyProps,
+        disabledProps,
+        handleCheckedAllChange
+    };
 };
 
 const TransferPanel = defineComponent({
-  name: 'UTransferPanel',
-  props: {
-    data: {
-      type: Array,
-      default: () => []
-    },
+    name: 'UTransferPanel',
     props: {
-      type: Object
+        data: {
+            type: Array,
+            default: () => []
+        },
+        props: {
+            type: Object
+        },
+        target: {
+            type: Boolean
+        }
     },
-    target: {
-      type: Boolean
+    emits: ['checkedChange'],
+    components: {
+        UCheckbox: Checkbox$1,
+        UCheckboxGroup: Checkbox
+    },
+    setup(props) {
+        const panelState = reactive$1({
+            checked: [],
+            allChecked: false,
+            indeterminate: false
+        });
+        const { keyProps, disabledProps, labelProps, handleCheckedAllChange } = useCheck(props, panelState);
+        return () => (<div class="u-transfer__panel">
+        <div class="u-transfer__panel__header">
+          <UCheckbox v-model={panelState.allChecked} indeterminate={panelState.indeterminate} onChange={handleCheckedAllChange}>
+            <span>{props.target ? '目标项' : '源项'}</span>
+          </UCheckbox>
+          <span>{props.data.length + '/' + panelState.checked.length}</span>
+        </div>
+        <div class="u-transfer__panel__checkbox">
+          <UCheckboxGroup v-model={panelState.checked}>
+            {props.data.map((item) => (<UCheckbox key={item[keyProps.value]} label={item[keyProps.value]} disabled={item[disabledProps.value]}>
+                  {item[labelProps.value]}
+                </UCheckbox>))}
+          </UCheckboxGroup>
+        </div>
+      </div>);
     }
-  },
-  emits: ['checkedChange'],
-  setup(props) {
-    const panelState = reactive$1({
-      checked: [],
-      allChecked: false,
-      indeterminate: false
-    });
-    const { keyProps, disabledProps, labelProps, handleCheckedAllChange } = useCheck(props, panelState);
-    return () => (<div class="u-transfer__panel">
-      <div class="u-transfer__panel__header">
-        <UCheckbox v-model={panelState.allChecked} indeterminate={panelState.indeterminate} onChange={handleCheckedAllChange}>
-          <span>{props.target ? '目标项' : '源项'}</span>
-        </UCheckbox>
-        <span>{props.data.length + '/' + panelState.checked.length}</span>
-      </div>
-      <div class="u-transfer__panel__checkbox">
-        <UCheckboxGroup v-model={panelState.checked}>
-          {props.data.map((item) => (<UCheckbox key={item[keyProps.value]} label={item[keyProps.value]} disabled={item[disabledProps.value]}>
-            {item[labelProps.value]}
-          </UCheckbox>))}
-        </UCheckboxGroup>
-      </div>
-    </div>);
-  }
 });
 
 const useComputedData = (props) => {
-  //calc left right data
-  const propsKey = computed(() => props.props.key);
-  const data = computed(() => {
-    return props.data.reduce((memo, current) => {
-      memo[current[propsKey.value]] = current;
-      return memo;
-    }, {});
-  });
-  const sourceData = computed(() => {
-    return props.data.filter(item => !props.modelValue.includes(item[propsKey.value]));
-  });
-  const targetData = computed(() => {
-    return props.modelValue.reduce((memo, key) => {
-      memo.push(data.value[key]);
-      return memo;
-    }, []);
-  });
-  return {
-    targetData,
-    sourceData,
-    propsKey
-  };
+    //calc left right data
+    const propsKey = computed$1(() => props.props.key);
+    const data = computed$1(() => {
+        return props.data.reduce((memo, current) => {
+            memo[current[propsKey.value]] = current;
+            return memo;
+        }, {});
+    });
+    const sourceData = computed$1(() => {
+        return props.data.filter(item => !props.modelValue.includes(item[propsKey.value]));
+    });
+    const targetData = computed$1(() => {
+        return props.modelValue.reduce((memo, key) => {
+            memo.push(data.value[key]);
+            return memo;
+        }, []);
+    });
+    return {
+        targetData,
+        sourceData,
+        propsKey
+    };
 };
 
 const Transfer = defineComponent({
-  name: 'UTransfer',
-  props: {
-    data: {
-      type: Array,
-    },
-    modelValue: {
-      type: Array
-    },
+    name: 'UTransfer',
     props: {
-      type: Object,
-      default: () => ({
-        label: 'label',
-        key: 'key',
-        disabled: 'disabled'
-      })
-    }
-  },
-  components: {
-    TransferPanel
-  },
-  emits: ['update:modelValue'],
-  setup(props, { emit }) {
-    let { targetData, sourceData } = useComputedData(props);
-    const checkedState = reactive$1({
-      leftChecked: [],
-      rightChecked: []
-    });
-    const onSourceChange = (leftValue) => {
-      checkedState.leftChecked = leftValue;
-    };
-    const onTargetChange = (rigthValue) => {
-      checkedState.rightChecked = rigthValue;
-    };
-    const addToLeft = () => {
-      const currentValue = props.modelValue.splice(0);
-      checkedState.rightChecked.forEach(item => {
-        let index = currentValue.indexOf(item);
-        if (index > -1) {
-          currentValue.splice(index, 1);
+        data: {
+            type: Array,
+        },
+        modelValue: {
+            type: Array
+        },
+        props: {
+            type: Object,
+            default: () => ({
+                label: 'label',
+                key: 'key',
+                disabled: 'disabled'
+            })
         }
-      });
-      emit("update:modelValue", currentValue);
-    };
-    const addToRight = () => {
-      const leftChckedKeys = checkedState.leftChecked.map(key => key);
-      let currentValue = [...props.modelValue, ...leftChckedKeys];
-      emit("update:modelValue", currentValue);
-    };
-    return () => (<div class="u-transfer">
-      <TransferPanel data={sourceData.value} props={props.props} onCheckedChange={onSourceChange} />
-      <div class="u-transfer__buttons">
-        <UButton icon="arrow-left" size="small" disabled={checkedState.rightChecked.length === 0} onClick={addToLeft} />
-        <UButton icon="arrow-right" size="small" disabled={checkedState.leftChecked.length === 0} onClick={addToRight} />
-      </div>
-      <TransferPanel data={targetData.value} props={props.props} target onCheckedChange={onTargetChange} />
-    </div>);
-  }
+    },
+    components: {
+        TransferPanel,
+        UButton
+    },
+    emits: ['update:modelValue'],
+    setup(props, { emit }) {
+        let { targetData, sourceData } = useComputedData(props);
+        const checkedState = reactive$1({
+            leftChecked: [],
+            rightChecked: []
+        });
+        const onSourceChange = (leftValue) => {
+            checkedState.leftChecked = leftValue;
+        };
+        const onTargetChange = (rigthValue) => {
+            checkedState.rightChecked = rigthValue;
+        };
+        const addToLeft = () => {
+            const currentValue = props.modelValue.splice(0);
+            checkedState.rightChecked.forEach(item => {
+                let index = currentValue.indexOf(item);
+                if (index > -1) {
+                    currentValue.splice(index, 1);
+                }
+            });
+            emit("update:modelValue", currentValue);
+        };
+        const addToRight = () => {
+            const leftChckedKeys = checkedState.leftChecked.map(key => key);
+            let currentValue = [...props.modelValue, ...leftChckedKeys];
+            emit("update:modelValue", currentValue);
+        };
+        return () => (<div class="u-transfer">
+        <TransferPanel data={sourceData.value} props={props.props} onCheckedChange={onSourceChange}/>
+        <div class="u-transfer__buttons">
+          <UButton icon="arrow-left" size="small" disabled={checkedState.rightChecked.length === 0} onClick={addToLeft}/>
+          <UButton icon="arrow-right" size="small" disabled={checkedState.leftChecked.length === 0} onClick={addToRight}/>
+        </div>
+        <TransferPanel data={targetData.value} props={props.props} target onCheckedChange={onTargetChange}/>
+      </div>);
+    }
 });
 
 const withIntall$3 = (comp) => {
-  comp.install = function (app) {
-    app.component(comp.name, comp);
-  };
-  return comp;
+    comp.install = function (app) {
+        app.component(comp.name, comp);
+    };
+    return comp;
 };
 const UTransfer = withIntall$3(Transfer);
 
 const useTreeNode = (props) => {
-  const hasChildren = computed(() => props.node.children.length > 0);
-  const expanded = computed(() => props.node.expanded);
-  const level = computed(() => props.node.level);
-  return {
-    hasChildren,
-    expanded,
-    level
-  };
+    const hasChildren = computed(() => props.node.children.length > 0);
+    const expanded = computed(() => props.node.expanded);
+    const level = computed(() => props.node.level);
+    return {
+        hasChildren,
+        expanded,
+        level
+    };
 };
 const useTreeContext = () => {
-  const { selectKey, checkable } = inject('UTree');
-  return {
-    selectKey,
-    checkable
-  };
+    const { selectKey, checkable } = inject('UTree');
+    return {
+        selectKey,
+        checkable
+    };
 };
 
 defineComponent({
-  name: 'UTreeNode',
-  props: {
-    node: {
-      type: Object,
-      required: true
+    name: 'UTreeNode',
+    props: {
+        node: {
+            type: Object,
+            required: true
+        },
+        level: {
+            type: Number,
+            default: 0
+        },
+        parentKey: {
+            type: String,
+            default: ''
+        }
     },
-    level: {
-      type: Number,
-      default: 0
-    },
-    parentKey: {
-      type: String,
-      default: ''
-    }
-  },
-  emits: ['childExpaned', 'selectChange', 'checkChange'],
-  setup(props, { emit, slots }) {
-    const { hasChildren, expanded, level } = useTreeNode(props);
-    const { selectKey, checkable } = useTreeContext();
-    const styles = computed(() => ({
-      paddingLeft: level.value * 18 + 'px'
-    }));
-    const titleClasses = computed(() => ({
-      "u-tree__node--content--title": true,
-      'is-selected': selectKey.value === props.node.key,
-      'is-diabled': props.node.disabled
-    }));
-    const renderNodeIcon = () => {
-      return hasChildren.value ?
-        <i onClick={handleIconClick} class={["u-icon-arrow-right-filling", expanded.value && 'is-expanded']} />
-        : null;
-    };
-    const renderContent = () => {
-      return <div class="u-tree__node--content">
+    emits: ['childExpaned', 'selectChange', 'checkChange'],
+    setup(props, { emit, slots }) {
+        const { hasChildren, expanded, level } = useTreeNode(props);
+        const { selectKey, checkable } = useTreeContext();
+        const styles = computed(() => ({
+            paddingLeft: level.value * 18 + 'px'
+        }));
+        const titleClasses = computed(() => ({
+            "u-tree__node--content--title": true,
+            'is-selected': selectKey.value === props.node.key,
+            'is-diabled': props.node.disabled
+        }));
+        const renderNodeIcon = () => {
+            return hasChildren.value ?
+                <i onClick={handleIconClick} class={["u-icon-arrow-right-filling", expanded.value && 'is-expanded']}/>
+                : null;
+        };
+        const renderContent = () => {
+            return <div class="u-tree__node--content">
         {renderNodeIcon()}
-        {checkable && <Checkbox disabled={props.node.disabled} key={props.node.key} modelValue={props.node.checked} indeterminate={props.node.indeterminate} onChange={handleCheckChange} />}
+        {checkable && <Checkbox disabled={props.node.disabled} key={props.node.key} modelValue={props.node.checked} indeterminate={props.node.indeterminate} onChange={handleCheckChange}/>}
 
         <div class={titleClasses.value} onClick={handleLableClick}>
           {props.node.label}
         </div>
       </div>;
-    };
-    const handleCheckChange = () => {
-      emit('checkChange', props.node);
-    };
-    const handleIconClick = (e) => {
-      e.stopPropagation();
-      emit('childExpaned', props.node);
-    };
-    const handleLableClick = (e) => {
-      e.stopPropagation();
-      emit('selectChange', props.node);
-    };
-    return () => (<div class="u-tree__node" style={styles.value}>
-      {renderContent()}
-      <CollapseTransition>
-        {expanded.value && <div class="u-tree__node--children">
-          {slots.default && slots.default()}
-        </div>}
-      </CollapseTransition>
-    </div>);
-  }
+        };
+        const handleCheckChange = () => {
+            emit('checkChange', props.node);
+        };
+        const handleIconClick = (e) => {
+            e.stopPropagation();
+            emit('childExpaned', props.node);
+        };
+        const handleLableClick = (e) => {
+            e.stopPropagation();
+            emit('selectChange', props.node);
+        };
+        return () => (<div class="u-tree__node" style={styles.value}>
+        {renderContent()}
+        <CollapseTransition>
+          {expanded.value && <div class="u-tree__node--children">
+              {slots.default && slots.default()}
+            </div>}
+        </CollapseTransition>
+      </div>);
+    }
 });
 
 const createTreeNode = (node, parentKey, level = 0) => {
-  return reactive$1({
-    key: node.key,
-    label: node.label,
-    parentKey,
-    level,
-    disabled: node.disabled || false,
-    selected: node.selected || false,
-    checked: node.checked || false,
-    expanded: node.expanded || false,
-    indeterminate: node.indeterminate || false,
-    children: [],
-  });
+    return reactive$1({
+        key: node.key,
+        label: node.label,
+        parentKey,
+        level,
+        disabled: node.disabled || false,
+        selected: node.selected || false,
+        checked: node.checked || false,
+        expanded: node.expanded || false,
+        indeterminate: node.indeterminate || false,
+        children: [],
+    });
 };
 
 const useGenTreeData = (props) => {
-  const data = computed$1(() => {
-    const res = [];
-    const dfs = (treeList, parentKey, level = 0) => {
-      const treeNodes = [];
-      level = level + 1;
-      treeList.forEach(item => {
-        const treeNode = createTreeNode(item, parentKey, level);
-        if (props.defaultExpaned.includes(treeNode.key))
-          treeNode.expanded = true;
-        treeNodes.push(treeNode);
-        if (item.children?.length)
-          treeNode.children = dfs(item.children, item.key, level);
-      });
-      return treeNodes;
-    };
-    props.data.forEach(item => {
-      const treeNode = createTreeNode(item, '');
-      if (props.defaultExpaned.includes(treeNode.key))
-        treeNode.expanded = true;
-      if (item.children)
-        treeNode.children = dfs(item.children, item.key);
-      res.push(treeNode);
+    const data = computed$1(() => {
+        const res = [];
+        const dfs = (treeList, parentKey, level = 0) => {
+            const treeNodes = [];
+            level = level + 1;
+            treeList.forEach(item => {
+                const treeNode = createTreeNode(item, parentKey, level);
+                if (props.defaultExpaned.includes(treeNode.key))
+                    treeNode.expanded = true;
+                treeNodes.push(treeNode);
+                if (item.children?.length)
+                    treeNode.children = dfs(item.children, item.key, level);
+            });
+            return treeNodes;
+        };
+        props.data.forEach(item => {
+            const treeNode = createTreeNode(item, '');
+            if (props.defaultExpaned.includes(treeNode.key))
+                treeNode.expanded = true;
+            if (item.children)
+                treeNode.children = dfs(item.children, item.key);
+            res.push(treeNode);
+        });
+        return res;
     });
-    return res;
-  });
-  return data;
+    return data;
 };
 const useGenFlatList = (sourceData) => {
-  const flatList = [];
-  const dfs = (treeList) => {
-    treeList.forEach(item => {
-      flatList.push(item);
-      if (item.children.length)
-        dfs(item.children);
-    });
-  };
-  dfs(sourceData);
-  return flatList;
+    const flatList = [];
+    const dfs = (treeList) => {
+        treeList.forEach(item => {
+            flatList.push(item);
+            if (item.children.length)
+                dfs(item.children);
+        });
+    };
+    dfs(sourceData);
+    return flatList;
 };
 const useTreeUpdate = () => {
-  const updateDownWard = (children, checked) => {
-    const updateChildren = (children) => {
-      children.forEach(item => {
-        if (item.children.length)
-          updateChildren(item.children);
-        item.checked = checked;
-        item.indeterminate = false;
-      });
+    const updateDownWard = (children, checked) => {
+        const updateChildren = (children) => {
+            children.forEach(item => {
+                if (item.children.length)
+                    updateChildren(item.children);
+                item.checked = checked;
+                item.indeterminate = false;
+            });
+        };
+        updateChildren(children);
     };
-    updateChildren(children);
-  };
-  const updateUpWard = (currentNode, flatList) => {
-    const updateParent = (currentNode) => {
-      const [parentNode] = flatList.filter(item => item.key === currentNode.parentKey);
-      if (parentNode) {
-        const parentAllChecked = parentNode.children.every(item => item.checked);
-        const parentIndeterminate = parentNode.children.some(item => item.checked || item.indeterminate);
-        parentNode.checked = parentAllChecked;
-        parentNode.indeterminate = parentIndeterminate;
-        updateParent(parentNode);
-      }
+    const updateUpWard = (currentNode, flatList) => {
+        const updateParent = (currentNode) => {
+            const [parentNode] = flatList.filter(item => item.key === currentNode.parentKey);
+            if (parentNode) {
+                const parentAllChecked = parentNode.children.every(item => item.checked);
+                const parentIndeterminate = parentNode.children.some(item => item.checked || item.indeterminate);
+                parentNode.checked = parentAllChecked;
+                parentNode.indeterminate = parentIndeterminate;
+                updateParent(parentNode);
+            }
+        };
+        updateParent(currentNode);
     };
-    updateParent(currentNode);
-  };
-  return {
-    updateDownWard, updateUpWard
-  };
+    return {
+        updateDownWard, updateUpWard
+    };
 };
 const useTree = (props) => {
-  const selectKey = ref('');
-  const data = useGenTreeData(props);
-  console.log(data.value);
-  const flatList = useGenFlatList(data.value);
-  const { updateDownWard, updateUpWard } = useTreeUpdate();
-  return {
-    data,
-    selectKey,
-    flatList,
-    updateDownWard,
-    updateUpWard
-  };
+    const selectKey = ref('');
+    const data = useGenTreeData(props);
+    console.log(data.value);
+    const flatList = useGenFlatList(data.value);
+    const { updateDownWard, updateUpWard } = useTreeUpdate();
+    return {
+        data,
+        selectKey,
+        flatList,
+        updateDownWard,
+        updateUpWard
+    };
 };
 
 const Tree = defineComponent({
-  name: 'UTree',
-  props: {
-    data: {
-      type: Array,
-      requred: true
+    name: 'UTree',
+    props: {
+        data: {
+            type: Array,
+            requred: true
+        },
+        defaultExpaned: {
+            type: Array,
+            default: () => ([])
+        },
+        checkable: Boolean,
+        checkStrictly: Boolean
     },
-    defaultExpaned: {
-      type: Array,
-      default: () => ([])
-    },
-    checkable: Boolean,
-    checkStrictly: Boolean
-  },
-  emits: ['select', 'checkedChange'],
-  setup(props, { emit }) {
-    const { updateDownWard, updateUpWard, selectKey, data, flatList } = useTree(props);
-    provide('UTree', {
-      selectKey,
-      checkable: props.checkable
-    });
-    const handleExpaned = (node) => {
-      node.expanded = !node.expanded;
-    };
-    const handleSelectChange = (node) => {
-      selectKey.value = node.key;
-      emit('select', node.key);
-    };
-    const handleCheckChange = (node) => {
-      node.checked = !node.checked;
-      node.indeterminate = false;
-      let currentCheckedKeys = [];
-      if (props.checkStrictly) {
-        updateDownWard(node.children, node.checked);
-        updateUpWard(node, flatList);
-      }
-      currentCheckedKeys = flatList.filter(item => item.checked).map(item => item.key);
-      emit('checkedChange', currentCheckedKeys);
-    };
-    const renderNodes = () => {
-      const dfs = (nodes) => {
-        return nodes.map(treeNode => {
-          const nodeProps = {
-            node: treeNode,
-            onSelectChange: handleSelectChange,
-            onChildExpaned: handleExpaned,
-            onCheckChange: handleCheckChange
-          };
-          if (treeNode.children.length) {
-            return <TreeNode {...nodeProps}>
+    emits: ['select', 'checkedChange'],
+    setup(props, { emit }) {
+        const { updateDownWard, updateUpWard, selectKey, data, flatList } = useTree(props);
+        provide('UTree', {
+            selectKey,
+            checkable: props.checkable
+        });
+        const handleExpaned = (node) => {
+            node.expanded = !node.expanded;
+        };
+        const handleSelectChange = (node) => {
+            selectKey.value = node.key;
+            emit('select', node.key);
+        };
+        const handleCheckChange = (node) => {
+            node.checked = !node.checked;
+            node.indeterminate = false;
+            let currentCheckedKeys = [];
+            if (props.checkStrictly) {
+                updateDownWard(node.children, node.checked);
+                updateUpWard(node, flatList);
+            }
+            currentCheckedKeys = flatList.filter(item => item.checked).map(item => item.key);
+            emit('checkedChange', currentCheckedKeys);
+        };
+        const renderNodes = () => {
+            const dfs = (nodes) => {
+                return nodes.map(treeNode => {
+                    const nodeProps = {
+                        node: treeNode,
+                        onSelectChange: handleSelectChange,
+                        onChildExpaned: handleExpaned,
+                        onCheckChange: handleCheckChange
+                    };
+                    if (treeNode.children.length) {
+                        return <TreeNode {...nodeProps}>
               {dfs(treeNode.children)}
             </TreeNode>;
-          }
-          else {
-            return <TreeNode {...nodeProps} />;
-          }
-        });
-      };
-      return dfs(data.value);
-    };
-    return () => (<div class="u-tree">{renderNodes()}</div>);
-  }
+                    }
+                    else {
+                        return <TreeNode {...nodeProps}/>;
+                    }
+                });
+            };
+            return dfs(data.value);
+        };
+        return () => (<div class="u-tree">{renderNodes()}</div>);
+    }
 });
 
 const withIntall$2 = (comp) => {
-  comp.install = function (app) {
-    app.component(comp.name, comp);
-  };
-  return comp;
+    comp.install = function (app) {
+        app.component(comp.name, comp);
+    };
+    return comp;
 };
 const UTree = withIntall$2(Tree);
 
 const Message$1 = defineComponent({
-  name: 'UMessage',
-  props: {
-    id: {
-      type: String,
-      default: ''
+    name: 'UMessage',
+    props: {
+        id: {
+            type: String,
+            default: ''
+        },
+        message: {
+            type: String,
+            default: ''
+        },
+        type: {
+            type: String,
+            default: 'info'
+        },
+        duration: {
+            type: Number,
+            default: 3000
+        },
+        onClose: {
+            type: Function,
+        },
+        offset: {
+            type: Number,
+            default: 20
+        },
+        center: Boolean,
     },
-    message: {
-      type: String,
-      default: ''
-    },
-    type: {
-      type: String,
-      default: 'info'
-    },
-    duration: {
-      type: Number,
-      default: 3000
-    },
-    onClose: {
-      type: Function,
-    },
-    offset: {
-      type: Number,
-      default: 20
-    },
-    center: Boolean,
-  },
-  emits: ['destroy'],
-  setup(props, { emit }) {
-    const classes = computed$1(() => ({
-      'u-message': true,
-      [`u-message--${props.type}`]: props.type
-    }));
-    const styles = computed$1(() => ({
-      top: `${props.offset}px`
-    }));
-    const messageIcon = computed$1(() => {
-      return `u-icon-${props.type}`;
-    });
-    const visiable = ref(false);
-    let timer = null;
-    const startTimer = () => {
-      timer = setTimeout(() => {
-        visiable.value = false;
-      }, props.duration);
-    };
-    onMounted(() => {
-      visiable.value = true;
-      startTimer();
-    });
-    onUnmounted(() => {
-      clearTimeout(timer);
-      timer = null;
-    });
-    return () => (<Transition name='zoom-fade' mode="out-in" onBeforeLeave={props.onClose} onAfterLeave={() => emit('destroy')}>
-      <div class={classes.value} v-show={visiable.value} style={styles.value}>
-        <i class={messageIcon.value}></i>
-        <span>{props.message}</span>
-      </div>
-    </Transition>);
-  }
+    emits: ['destroy'],
+    setup(props, { emit }) {
+        const classes = computed$1(() => ({
+            'u-message': true,
+            [`u-message--${props.type}`]: props.type
+        }));
+        const styles = computed$1(() => ({
+            top: `${props.offset}px`
+        }));
+        const messageIcon = computed$1(() => {
+            return `u-icon-${props.type}`;
+        });
+        const visiable = ref(false);
+        let timer = null;
+        const startTimer = () => {
+            timer = setTimeout(() => {
+                visiable.value = false;
+            }, props.duration);
+        };
+        onMounted(() => {
+            visiable.value = true;
+            startTimer();
+        });
+        onUnmounted(() => {
+            clearTimeout(timer);
+            timer = null;
+        });
+        return () => (<Transition name='zoom-fade' mode="out-in" onBeforeLeave={props.onClose} onAfterLeave={() => emit('destroy')}>
+        <div class={classes.value} v-show={visiable.value} style={styles.value}>
+          <i class={messageIcon.value}></i>
+          <span>{props.message}</span>
+        </div>
+      </Transition>);
+    }
 });
 
 const instances = [];
 let seed = 1;
 const Message = (options) => {
-  if (typeof options === 'string') {
-    options = {
-      message: options
-    };
-  }
-  let offset = options.offset || 20;
-  instances.forEach(inst => {
-    offset += inst.el.offsetHeight + 20;
-  });
-  console.log(offset);
-  let userClose = options.onClose;
-  let opts = {
-    ...options,
-    id: `message_${seed++}`,
-    offset,
-    onClose: () => {
-      nextTick(() => {
-        const removeIndex = instances.findIndex(inst => inst.props.id === opts.id);
-        instances.splice(removeIndex, 1);
-        instances.forEach(item => {
-          item.el.style.top = item.props.offset - 60 + 'px';
-          item.props.offset = item.props.offset - 60;
-        });
-      });
-      userClose?.();
+    if (typeof options === 'string') {
+        options = {
+            message: options
+        };
     }
-  };
-  const container = document.createElement('div');
-  const messageVnode = createVNode(Message$1, opts);
-  messageVnode.props.onDestroy = () => {
-    render(null, container); //remove dom
-  };
-  render(messageVnode, container);
-  document.body.appendChild(container.firstChild);
-  instances.push(messageVnode);
+    let offset = options.offset || 20;
+    instances.forEach(inst => {
+        offset += inst.el.offsetHeight + 20;
+    });
+    console.log(offset);
+    let userClose = options.onClose;
+    let opts = {
+        ...options,
+        id: `message_${seed++}`,
+        offset,
+        onClose: () => {
+            nextTick(() => {
+                const removeIndex = instances.findIndex(inst => inst.props.id === opts.id);
+                instances.splice(removeIndex, 1);
+                instances.forEach(item => {
+                    item.el.style.top = item.props.offset - 60 + 'px';
+                    item.props.offset = item.props.offset - 60;
+                });
+            });
+            userClose?.();
+        }
+    };
+    const container = document.createElement('div');
+    const messageVnode = createVNode(Message$1, opts);
+    messageVnode.props.onDestroy = () => {
+        render(null, container); //remove dom
+    };
+    render(messageVnode, container);
+    document.body.appendChild(container.firstChild);
+    instances.push(messageVnode);
 };
 
 const withIntall$1 = (comp) => {
-  comp.install = function (app) {
-    app.config.globalProperties.$message = Message;
-  };
-  return comp;
+    comp.install = function (app) {
+        app.config.globalProperties.$message = Message;
+    };
+    return comp;
 };
 const UMessage = withIntall$1(Message);
 
 const Space = defineComponent({
-  name: 'USpace',
-  props: {
-    direction: {
-      type: String,
-      default: 'horizontal'
+    name: 'USpace',
+    props: {
+        direction: {
+            type: String,
+            default: 'horizontal'
+        },
+        wrap: {
+            type: Boolean,
+            default: false
+        },
+        fill: {
+            type: Boolean,
+            default: false
+        },
+        size: {
+            type: Number,
+            default: 5
+        }
     },
-    wrap: {
-      type: Boolean,
-      default: false
-    },
-    fill: {
-      type: Boolean,
-      default: false
-    },
-    size: {
-      type: Number,
-      default: 5
+    setup(props, { slots }) {
+        const classes = computed$1(() => ({
+            'u-space': true,
+            [`is-${props.direction}`]: props.direction,
+            'is-wrap': props.wrap || props.direction === 'vertical',
+            'is-fill': props.fill
+        }));
+        const styles = computed$1(() => ({
+            marginRight: props.size + 'px',
+            marginBottom: props.wrap || props.direction === 'vertical' ? props.size + 'px' : 0
+        }));
+        const renderContent = () => {
+            return slots?.default().map(item => {
+                return <div class="u-space-item" style={styles.value}>{item}</div>;
+            });
+        };
+        return () => (<div class={classes.value}>{renderContent()}</div>);
     }
-  },
-  setup(props, { slots }) {
-    const classes = computed$1(() => ({
-      'u-space': true,
-      [`is-${props.direction}`]: props.direction,
-      'is-wrap': props.wrap || props.direction === 'vertical',
-      'is-fill': props.fill
-    }));
-    const styles = computed$1(() => ({
-      marginRight: props.size + 'px',
-      marginBottom: props.wrap || props.direction === 'vertical' ? props.size + 'px' : 0
-    }));
-    const renderContent = () => {
-      return slots?.default().map(item => {
-        return <div class="u-space-item" style={styles.value}>{item}</div>;
-      });
-    };
-    return () => (<div class={classes.value}>{renderContent()}</div>);
-  }
 });
 
 const withIntall = (comp) => {
-  comp.install = function (app) {
-    app.component(Space.name, Space);
-  };
-  return comp;
+    comp.install = function (app) {
+        app.component(Space.name, Space);
+    };
+    return comp;
 };
 const USpace = withIntall(Space);
 
 const components = [UButton, UIcon, UButtonGroup,
-  Row, Col, Checkbox$1, Checkbox, UTransfer, UCollapseTransition, UTree, UMessage, USpace];
+    Row, Col, Checkbox$1, Checkbox, UTransfer, UCollapseTransition, UTree, UMessage, USpace];
 const install = (app) => {
-  components.forEach(comp => {
-    app.component(comp.name, comp);
-  });
+    components.forEach(comp => {
+        app.component(comp.name, comp);
+    });
 };
 var index = {
-  install
+    install
 };
 
 export { UButton as Button, UButtonGroup as ButtonGroup, Checkbox$1 as Checkbox, Checkbox as CheckboxGroup, Col, UCollapseTransition as CollapseTransition, UIcon as Icon, UMessage as Message, Row, UTransfer as Transfer, UTree as Tree, index as default };

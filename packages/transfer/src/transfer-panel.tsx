@@ -3,7 +3,6 @@ import UCheckbox from "@useless-ui/checkbox";
 import UCheckboxGroup from "@useless-ui/checkbox-group";
 import { Props } from "./transfer.types";
 import { useCheck } from "./hooks/useCheck";
-
 const TransferPanel = defineComponent({
   name: 'UTransferPanel',
   props: {
@@ -19,6 +18,10 @@ const TransferPanel = defineComponent({
     }
   },
   emits: ['checkedChange'],
+  components: {
+    UCheckbox,
+    UCheckboxGroup
+  },
   setup(props) {
     const panelState = reactive({
       checked: [],

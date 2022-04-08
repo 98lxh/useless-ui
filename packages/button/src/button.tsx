@@ -1,6 +1,5 @@
 
-import { computed } from "@vue/reactivity";
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, computed } from "vue";
 
 type IButtonType = 'primary' | 'dashed' | 'danger' | 'outline' | 'text'
 type IButtonStatus = 'warning' | 'danger' | 'success' | 'normal'

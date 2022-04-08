@@ -1,5 +1,4 @@
-import { computed } from "@vue/reactivity";
-import { defineComponent } from "vue";
+import { defineComponent, computed } from "vue";
 import { useCheckbox } from "./hooks/useCheckbox";
 
 const Checkbox = defineComponent({

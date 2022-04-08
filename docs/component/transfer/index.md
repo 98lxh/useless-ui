@@ -1,8 +1,8 @@
-<h1>Transfer</h1>
+<h1>数据穿梭框 Transfer</h1>
 
 <h2>基本用法</h2>
 
-间距组件的基本用法。
+
 
 :::demo 
 
@@ -18,14 +18,13 @@ const generateData = () => {
     data.push({
       key: i,
       label: `Option ${i}`,
-      disabled: i % 4 === 0,
     })
   }
   return data
 }
 
 const data = ref(generateData())
-const value = ref([])
+const value = ref([1,2,3])
 </script>
 ```
 :::

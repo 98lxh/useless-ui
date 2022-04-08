@@ -22,7 +22,8 @@ const Transfer = defineComponent({
     }
   },
   components: {
-    TransferPanel
+    TransferPanel,
+    UButton
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
