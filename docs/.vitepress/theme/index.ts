@@ -6,6 +6,7 @@ import DemoBlock from "vitepress-theme-demoblock/components/DemoBlock.vue"
 import "vitepress-theme-demoblock/theme/styles/index.css"
 import './custom.css';
 import Button from "@useless-ui/button/index"
+import Space from "@useless-ui/space/index"
 import "theme-chalk/src/index.scss"
 // 导入插件的主题
 
@@ -15,6 +16,7 @@ export default {
     app.component("Demo", Demo)
     app.component("DemoBlock", DemoBlock)
     app.component(Button.name, Button)
+    app.component(Space.name, Space)
   },
 
 }

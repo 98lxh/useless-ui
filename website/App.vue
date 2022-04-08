@@ -11,13 +11,40 @@ let id = 0
 
 </script>
 <template>
-  <u-space wrap direction="horizantal" >
-    <u-button @click="showMessage('info')" type="primary" style="width:100%">info Message</u-button>
-    <u-button @click="showMessage('error')" type="danger">error Message</u-button>
-    <u-button @click="showMessage('warning')" type="warning">warning Message</u-button>
-    <u-button @click="showMessage('success')" type="success">success Message</u-button>
-    <u-button @click="showMessage('success')" type="success">success Message</u-button>
-    <u-button @click="showMessage('success')" type="success">success Message</u-button>
-    <u-button @click="showMessage('success')" type="success">success Message</u-button>
+
+ <u-space>
+  <u-space direction="vertical" >
+    <u-button type="primary">primary</u-button>
+    <u-button status="success"  type="primary">primary</u-button>
+    <u-button status="danger"  type="primary">primary</u-button>
+    <u-button status="warning"  type="primary">primary</u-button>
   </u-space>
+  <u-space direction="vertical" >
+    <u-button type="outline">error Message</u-button>
+    <u-button status="success"  type="outline">error Message</u-button>
+    <u-button status="danger"  type="outline">error Message</u-button>
+    <u-button status="warning"  type="outline">error Message</u-button>
+  </u-space>
+  <u-space direction="vertical" >
+    <u-button type="dashed">error Message</u-button>
+    <u-button status="success"  type="dashed">error Message</u-button>
+    <u-button status="danger"  type="dashed">error Message</u-button>
+    <u-button status="warning"  type="dashed">error Message</u-button>
+  </u-space>
+  <u-space direction="vertical" >
+    <u-button type="text">error Message</u-button>
+    <u-button status="success"  type="text">error Message</u-button>
+    <u-button status="danger"  type="text">error Message</u-button>
+    <u-button status="warning"  type="text">error Message</u-button>
+  </u-space>
+
+   <u-space direction="vertical" >
+    <u-button type="primary" circle>
+      <u-icon name="user"></u-icon>
+    </u-button>
+    <u-button status="success"  type="text">error Message</u-button>
+    <u-button status="danger"  type="text">error Message</u-button>
+    <u-button status="warning"  type="text">error Message</u-button>
+  </u-space>
+ </u-space>
 </template>

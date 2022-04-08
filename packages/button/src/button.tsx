@@ -2,7 +2,8 @@
 import { computed } from "@vue/reactivity";
 import { defineComponent, PropType } from "vue";
 
-type IButtonType = 'primary' | 'warning' | 'danger' | 'success' | 'info'
+type IButtonType = 'primary' | 'dashed' | 'danger' | 'outline' | 'text'
+type IButtonStatus = 'warning' | 'danger' | 'success' | 'normal'
 type IButtonSize = 'small' | 'default' | 'large'
 const Button = defineComponent({
   name: 'UButton',
@@ -10,9 +11,10 @@ const Button = defineComponent({
     type: {
       type: String as PropType<IButtonType>,
       default: 'primary',
-      vaildator: (val: string) => {
-        return ['primary', 'warning', 'danger', 'default', 'success'].includes(val)
-      }
+    },
+    status: {
+      type: String as PropType<IButtonStatus>,
+      default: "normal"
     },
     size: {
       type: String as PropType<IButtonSize>,
@@ -35,13 +37,14 @@ const Button = defineComponent({
   emits: ['click'],
   setup(props, { slots, emit }) {
     const classes = computed(() => {
-      const { type, size, disabled, loading, circle } = props;
+      const { type, size, disabled, loading, circle, status } = props;
       return {
         'u-button': true,
         'is-disabled': disabled,
         'is-loading': loading,
         'is-circle': circle,
         [`u-button--${type}`]: type,
+        [`u-button--${status}`]: status,
         [`u-button--${size}`]: size,
       }
     })

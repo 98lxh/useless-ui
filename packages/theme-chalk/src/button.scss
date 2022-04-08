@@ -62,6 +62,68 @@
     @include button-type($--color-white,$--color-warning,$--color-warning)
   }
 
+  @include m(dashed){
+    border: 1px dashed;
+    color:#ccc;
+    border-color: #ccc;
+
+    &.u-button--success{
+      background-color: #e8ffea;
+      color:#30ba38;
+      border-color: #30ba38;
+    }
+
+    &.u-button--danger{
+      background-color: #feece8;
+      color:#f64c4c;
+      border-color: #f64c4c;
+    }
+
+    &.u-button--warning {
+      background-color: #fff7e8;
+      color:#fb9e41;
+      border-color: #fb9e41;
+    }
+  }
+
+  @include m(outline){
+    border: 1px solid #ccc;
+    color:#ccc;
+    background-color: transparent;
+
+    &.u-button--success{
+      color:#30ba38;
+      border:1px solid #30ba38;
+    }
+
+    &.u-button--danger{
+      color:#f64c4c;
+      border-color: #f64c4c;
+    }
+
+    &.u-button--warning {
+      color:#fb9e41;
+      border-color: #fb9e41;
+    }
+  }
+
+  @include m(text){
+    color:$--color-primary;
+    background-color: transparent;
+
+    &.u-button--success{
+      color:#30ba38;
+    }
+
+    &.u-button--danger{
+      color:#f64c4c;
+    }
+
+    &.u-button--warning {
+      color:#fb9e41;
+      border-color: #fb9e41;
+    }
+  }
 
   @include m(small){
     padding: 0 11px;

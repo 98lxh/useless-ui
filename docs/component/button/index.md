@@ -1,12 +1,18 @@
 # Button 按钮
 
-## 基础用法
+<h2>基础用法</h2>
 
-:::demo 使用`type`，`plain`，`round`来定义 Button 的样式
+按钮分为 `primary` 主要按钮、`secondary` 次要按钮（默认） `dashed` 虚线按钮、`outline` 线形按钮、`text` 文本按钮五种类型。
+
+:::demo 
 
 ```vue
 <template>
- <u-button @click="handleClick">xxx</u-button>
+  <u-space>
+    <u-button @click="handleClick">xxx</u-button>
+    <u-button @click="handleClick">xxx</u-button>
+    <u-button @click="handleClick">xxx</u-button>
+  </u-space>
 </template>
 ```
 :::
