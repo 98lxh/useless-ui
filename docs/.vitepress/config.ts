@@ -22,6 +22,11 @@ export default defineConfig({
           text: '数据输入', children: [
             { text: "数据穿梭框 Transfer", link: '/component/transfer/' }
           ]
+        },
+        {
+          text: '反馈', children: [
+            { text: '全局提醒 Message', link: '/component/message/' }
+          ]
         }
       ]
     },
