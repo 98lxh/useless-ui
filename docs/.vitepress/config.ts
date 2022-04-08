@@ -17,6 +17,11 @@ export default defineConfig({
             { text: '栅格 Grid', link: '/component/grid/' },
             { text: '间隔 Space', link: '/component/space/' },
           ]
+        },
+        {
+          text: '数据输入', children: [
+            { text: "数据穿梭框 Transfer", link: '/component/transfer/' }
+          ]
         }
       ]
     },

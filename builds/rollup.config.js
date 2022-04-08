@@ -1,6 +1,6 @@
+import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-import path from 'path';
 import { getPackagesSync } from '@lerna/project';
 import jsx from "acorn-jsx"
 import vue from 'rollup-plugin-vue'

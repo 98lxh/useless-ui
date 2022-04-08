@@ -1,3 +1,12 @@
+<h1>Transfer</h1>
+
+<h2>基本用法</h2>
+
+间距组件的基本用法。
+
+:::demo 
+
+```vue
 <template>
   <u-transfer :data="data" v-model="value"></u-transfer>
 </template>
@@ -18,3 +27,6 @@ const generateData = () => {
 const data = ref(generateData())
 const value = ref([])
 </script>
+```
+:::
+

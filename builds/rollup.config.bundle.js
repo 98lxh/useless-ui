@@ -3,8 +3,17 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import path from 'path';
 import jsx from "acorn-jsx"
 import vue from 'rollup-plugin-vue'
+import babel from "rollup-plugin-babel"
 
-//获取当前package目录下的package.json
+const config = {
+  babel: {
+    exclude: ["node_modules/**"],
+    plugins: [
+      "@vue/babel-plugin-jsx",
+    ]
+  }
+}
+
 // const inputs = getPackagesSync().map(pck => pck.name).filter(name => name.includes('@useless-ui'));
 export default {
   input: path.resolve(__dirname, `../packages/useless-ui/index.ts`),
@@ -18,7 +27,7 @@ export default {
     vue({
       target: 'browser'
     }),
-    typescript({ //默认调用tsconfig.json 生成声明文件
+    typescript({
       tsconfigOverride: {
         exclude: [
           'node_modules',
@@ -26,7 +35,7 @@ export default {
         ]
       }
     }),
-    ["@vue/babel-plugin-jsx"]
+    babel(),
   ],
   external(id) { // 排除vue本身
     return /^vue/.test(id)

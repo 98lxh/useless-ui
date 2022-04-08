@@ -21,9 +21,12 @@ const Transfer = defineComponent({
       })
     }
   },
+  components: {
+    TransferPanel
+  },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    let { propsKey, targetData, sourceData } = useComputedData(props)
+    let { targetData, sourceData } = useComputedData(props)
 
     const checkedState = reactive({
       leftChecked: [],
