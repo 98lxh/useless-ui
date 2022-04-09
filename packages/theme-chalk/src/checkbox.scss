@@ -7,10 +7,10 @@
   align-items: center;
   
   @include e(input){
-    height: 14px;
-    width: 14px;
+    height: 12px;
+    width: 12px;
     display: inline-block;
-    border: 1px solid $grey-6;
+    border: 2px solid $grey-4;
     display: inline-flex;
     border-radius: 2px;
     cursor: pointer;
