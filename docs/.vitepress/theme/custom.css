@@ -38,3 +38,16 @@ td {
 table{
   border-collapse:separate;
 }
+
+
+/* &::-webkit-scrollbar {
+  width : 2px;  
+  height: 1px;
+ }
+ &::-webkit-scrollbar-thumb {
+   border-radius: 2px;
+   background: $grey-3;
+ }
+ &::-webkit-scrollbar-track {
+   background: rgba(255, 255, 255, 0.2);
+ } */
