@@ -1,5 +1,4 @@
-import { computed } from "@vue/reactivity";
-import { defineComponent, PropType } from "vue";
+import { defineComponent, PropType, computed } from "vue";
 import { useTreeContext, useTreeNode } from "../hooks/useTreeNode";
 import CollapseTransition from "@useless-ui/collapse-transition"
 import Checkbox from "@useless-ui/checkbox";
@@ -21,10 +20,13 @@ const TreeNode = defineComponent({
       default: ''
     }
   },
+  components: {
+    Checkbox
+  },
   emits: ['childExpaned', 'selectChange', 'checkChange'],
   setup(props, { emit, slots }) {
-    const { hasChildren, expanded, level } = useTreeNode(props)
-    const { selectKey, checkable } = useTreeContext()
+    const { hasChildren, expanded, level, disabled } = useTreeNode(props)
+    const { selectedKey, checkable } = useTreeContext()
 
     const styles = computed(() => ({
       paddingLeft: level.value * 18 + 'px'
@@ -32,10 +34,25 @@ const TreeNode = defineComponent({
 
     const titleClasses = computed(() => ({
       "u-tree__node--content--title": true,
-      'is-selected': selectKey.value === props.node.key,
-      'is-diabled': props.node.disabled
+      'is-selected': selectedKey.value === props.node.key,
+      'is-disabled': disabled.value
     }))
 
+    const handleCheckChange = () => {
+      if (disabled.value) return
+      emit('checkChange', props.node)
+    }
+
+    const handleIconClick = (e: MouseEvent) => {
+      e.stopPropagation();
+      emit('childExpaned', props.node)
+    }
+
+    const handleLableClick = (e: MouseEvent) => {
+      e.stopPropagation();
+      if (disabled.value) return
+      emit('selectChange', props.node)
+    }
 
 
     const renderNodeIcon = (): JSX.Element => {
@@ -48,7 +65,7 @@ const TreeNode = defineComponent({
     const renderContent = (): JSX.Element => {
       return <div class="u-tree__node--content">
         {renderNodeIcon()}
-        {checkable && <Checkbox disabled={props.node.disabled}
+        {checkable && <Checkbox disabled={disabled.value}
           key={props.node.key}
           modelValue={props.node.checked}
           indeterminate={props.node.indeterminate}
@@ -58,20 +75,6 @@ const TreeNode = defineComponent({
           {props.node.label}
         </div>
       </div>
-    }
-
-    const handleCheckChange = () => {
-      emit('checkChange', props.node)
-    }
-
-    const handleIconClick = (e: MouseEvent) => {
-      e.stopPropagation();
-      emit('childExpaned', props.node)
-    }
-
-    const handleLableClick = (e: MouseEvent) => {
-      e.stopPropagation();
-      emit('selectChange', props.node)
     }
 
     return () => (

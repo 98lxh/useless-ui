@@ -25,6 +25,11 @@
           color:$blue-6;
         }
 
+        @include when(disabled){
+          opacity: .6;
+          pointer-events: none;
+        }
+
         &:hover{
           background-color: $grey-3;  
         }

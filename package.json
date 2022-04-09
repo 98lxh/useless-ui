@@ -10,7 +10,9 @@
     "build": "webpack --config builds/webpack.config.js",
     "build:esm-bundle": "rollup -c ./builds/rollup.config.bundle.js",
     "build:esm": "rollup -c ./builds/rollup.config.js",
-    "docs:dev": "vitepress dev docs"
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",

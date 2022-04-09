@@ -1,4 +1,4 @@
-import { defineComponent, PropType, provide, watch } from "vue";
+import { defineComponent, PropType, provide } from "vue";
 import TreeNode from "./tree-node";
 import { TreeNodeOption, TreeProvide } from "./tree.types";
 import { useTree } from '../hooks/useTree'
@@ -15,13 +15,23 @@ const Tree = defineComponent({
       default: () => ([])
     },
     checkable: Boolean,
-    checkStrictly: Boolean
+    checkStrictly: Boolean,
+    checkedKeys: {
+      type: Array as PropType<string[]>,
+      default: []
+    },
+    selectedKey: {
+      type: String,
+    }
   },
-  emits: ['select', 'checkedChange'],
+  emits: ['selectedChange', 'checkedChange', 'update:selectKey', 'update:checkedKeys'],
+  components: {
+    TreeNode
+  },
   setup(props, { emit }) {
-    const { updateDownWard, updateUpWard, selectKey, data, flatList } = useTree(props)
+    const { updateDownWard, updateUpWard, selectedKey, checkedKeys, data, flatList } = useTree(props)
     provide<TreeProvide>('UTree', {
-      selectKey,
+      selectedKey,
       checkable: props.checkable
     })
 
@@ -30,8 +40,9 @@ const Tree = defineComponent({
     }
 
     const handleSelectChange = (node: TreeNodeOption) => {
-      selectKey.value = node.key
-      emit('select', node.key)
+      selectedKey.value = node.key
+      emit('selectedChange', node.key)
+      console.log(selectedKey.value)
     }
 
     const handleCheckChange = (node: TreeNodeOption) => {
@@ -44,6 +55,7 @@ const Tree = defineComponent({
       }
       currentCheckedKeys = flatList.filter(item => item.checked).map(item => item.key)
       emit('checkedChange', currentCheckedKeys)
+      checkedKeys.value = currentCheckedKeys
     }
 
     const renderNodes = () => {

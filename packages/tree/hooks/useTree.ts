@@ -1,7 +1,19 @@
-import { computed, ref } from 'vue';
+import { computed, ref, getCurrentInstance } from 'vue';
 import { createTreeNode } from './../utils';
 import { TreeNodeOption } from './../src/tree.types';
 import { ITreeProps } from '../src/tree.types';
+
+const useModel = (props: ITreeProps, key: string) => {
+  const emit = getCurrentInstance().emit;
+  return computed({
+    get() {
+      return props[key]
+    },
+    set(newValue) {
+      emit(`update:${key}`, newValue)
+    }
+  })
+}
 
 const useGenTreeData = (props: ITreeProps) => {
   const data = computed(() => {
@@ -47,7 +59,7 @@ const useTreeUpdate = () => {
     const updateChildren = (children: TreeNodeOption[]) => {
       children.forEach(item => {
         if (item.children.length) updateChildren(item.children)
-        item.checked = checked
+        item.checked = !item.disabled && checked
         item.indeterminate = false
       })
     }
@@ -60,8 +72,8 @@ const useTreeUpdate = () => {
       if (parentNode) {
         const parentAllChecked = parentNode.children.every(item => item.checked)
         const parentIndeterminate = parentNode.children.some(item => item.checked || item.indeterminate)
-        parentNode.checked = parentAllChecked
-        parentNode.indeterminate = parentIndeterminate
+        parentNode.checked = !parentNode.disabled && parentAllChecked
+        parentNode.indeterminate = !parentNode.disabled && parentIndeterminate
         updateParent(parentNode)
       }
     }
@@ -75,15 +87,17 @@ const useTreeUpdate = () => {
 
 
 export const useTree = (props: ITreeProps) => {
-  const selectKey = ref('');
+  const selectedKey = typeof props.selectedKey === 'undefined' ? ref('') : useModel(props, 'selectedKey')
+  console.log(props)
+  const checkedKeys = useModel(props, 'checkedKeys')
   const data = useGenTreeData(props)
-  console.log(data.value)
   const flatList = useGenFlatList(data.value)
   const { updateDownWard, updateUpWard } = useTreeUpdate();
 
   return {
     data,
-    selectKey,
+    selectedKey,
+    checkedKeys,
     flatList,
     updateDownWard,
     updateUpWard

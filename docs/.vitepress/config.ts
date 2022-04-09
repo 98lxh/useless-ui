@@ -19,6 +19,11 @@ export default defineConfig({
           ]
         },
         {
+          text: "数据展示", children: [
+            { text: '树 Tree', link: "/component/tree/" }
+          ]
+        },
+        {
           text: '数据输入', children: [
             { text: "数据穿梭框 Transfer", link: '/component/transfer/' }
           ]

@@ -18,6 +18,7 @@ export interface ITreeProps {
   data: TreeNodeOption[],
   checkable: boolean,
   checkStrictly: boolean,
+  selectedKey?: string,
   defaultExpaned?: string[]
 }
 
@@ -26,6 +27,6 @@ export interface TreeNodeProps {
 }
 
 export interface TreeProvide {
-  selectKey: Ref<string>,
+  selectedKey: Ref<any>,
   checkable: boolean
 }
