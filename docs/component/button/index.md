@@ -175,10 +175,8 @@ const showLoading = () => {
 <template>
   <u-space :size="20" direction="vertical">
     <u-button-group>
-      <u-button icon="arrow-left">Prev</u-button>
-      <u-button>Next
-        <u-icon name="arrow-right"></u-icon>
-      </u-button>
+      <u-button >Prev</u-button>
+      <u-button>Next</u-button>
     </u-button-group>
     
     <u-button-group>

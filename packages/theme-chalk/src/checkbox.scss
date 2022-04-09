@@ -7,8 +7,8 @@
   align-items: center;
   
   @include e(input){
-    height: 12px;
-    width: 12px;
+    height: 13px;
+    width: 13px;
     display: inline-block;
     border: 2px solid $grey-4;
     display: inline-flex;

@@ -38,7 +38,7 @@
 
 @mixin scroll(){
  &::-webkit-scrollbar {
-   width : 6px;  
+   width : 2px;  
    height: 1px;
   }
   &::-webkit-scrollbar-thumb {

@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 import demoBlock from 'vitepress-theme-demoblock'
 export default defineConfig({
-  title: 'uselessUI',
+  title: 'UselessUI',
   themeConfig: {
 
     sidebar: {
@@ -9,7 +9,7 @@ export default defineConfig({
         {
           text: '通用', children: [
             { text: '按钮 Button', link: '/component/button/' },
-            { text: '图标 Icon-', link: '/component/icon/' },
+            { text: '图标 Icon', link: '/component/icon/' },
           ]
         },
         {
