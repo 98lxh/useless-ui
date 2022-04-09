@@ -1,5 +1,5 @@
 import { defineComponent, provide, computed } from "vue";
-const Checkbox = defineComponent({
+const CheckboxGroup = defineComponent({
   name: 'UCheckboxGroup',
   props: {
     modelValue: Array
@@ -34,4 +34,4 @@ const Checkbox = defineComponent({
   }
 })
 
-export default Checkbox
+export default CheckboxGroup
