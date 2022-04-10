@@ -11,10 +11,10 @@ import Transfer from '@useless-ui/transfer';
 import Tree from "@useless-ui/tree"
 import Message from "@useless-ui/message";
 import Space from "@useless-ui/space"
-
+import Popover from '@useless-ui/popover';
 
 const components = [Button, Icon, ButtonGroup,
-  Row, Col, Checkbox, CheckboxGroup, Transfer, CollapseTransition, Tree, Message, Space]
+  Row, Col, Checkbox, CheckboxGroup, Transfer, CollapseTransition, Tree, Message, Space, Popover]
 const install = (app: App): void => {
   components.forEach(comp => {
     app.component(comp.name, comp)
