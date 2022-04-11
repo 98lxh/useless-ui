@@ -1,0 +1,74 @@
+@import "./common/variables.scss";
+@import "./mixins/mixin.scss";
+
+@include b(input){
+  position:relative;
+
+   @include when(disabled){
+      cursor:not-allowed;
+    }
+
+  @include m(prefix){
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 20px;
+      width: 20px;
+      height: 28px;
+      overflow: hidden;
+  }
+
+  @include m(suffix){
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      font-size: 20px;
+      width: 20px;
+      height: 28px;
+      transform: translateY(-50%);
+  }
+
+  @include e(input){
+    border-radius: 2px;
+    padding: 0 10px;
+    border:1px solid #f2f3f5;
+    height: 32px;
+    width: 290px;;
+    box-sizing: border-box;
+    background-color: #f2f3f5;
+    transition: background-color .3s ease-in-out,border .3s linear;
+
+    @include when(disabled){
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    @include when(error){
+      background-color: #feece8;
+      border: 1px solid #feece8;
+
+      &:focus-visible{
+         outline: none;
+         border:1px solid $--color-danger;
+         background-color: #fff;
+      }
+    }
+
+    @include when(prefix){
+      padding-left:30px
+    }
+
+    @include when(suffix){
+      padding-right:30px
+    }
+
+    &:focus-visible{
+     outline: none;
+     border:1px solid $--color-primary;
+     background-color: #fff;
+    }
+  }
+
+   
+}

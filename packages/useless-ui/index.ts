@@ -13,9 +13,25 @@ import Message from "@useless-ui/message";
 import Space from "@useless-ui/space"
 import Popover from '@useless-ui/popover';
 import Tooltip from "@useless-ui/tooltip"
+import Input from "@useless-ui/input"
 
-const components = [Button, Icon, ButtonGroup,
-  Row, Col, Checkbox, CheckboxGroup, Transfer, CollapseTransition, Tree, Message, Space, Popover, Tooltip]
+const components = [
+  Button,
+  Icon,
+  ButtonGroup,
+  Row,
+  Col,
+  Checkbox,
+  CheckboxGroup,
+  Transfer,
+  CollapseTransition,
+  Tree,
+  Message,
+  Space,
+  Popover,
+  Tooltip,
+  Input
+]
 const install = (app: App): void => {
   components.forEach(comp => {
     app.component(comp.name, comp)
@@ -33,7 +49,11 @@ export {
   Transfer,
   CollapseTransition,
   Tree,
-  Message
+  Message,
+  Space,
+  Popover,
+  Tooltip,
+  Input
 }
 
 export default {
