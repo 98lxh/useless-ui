@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 import demoBlock from 'vitepress-theme-demoblock'
 export default defineConfig({
   title: 'UselessUI',
+  base: '/useless-docs/',
   themeConfig: {
-
     sidebar: {
       '/': [
         {
