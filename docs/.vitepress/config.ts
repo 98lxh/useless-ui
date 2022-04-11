@@ -29,6 +29,7 @@ export default defineConfig({
           text: '数据输入', children: [
             { text: "复选框 Checkbox", link: '/component/checkbox/' },
             { text: "数据穿梭框 Transfer", link: '/component/transfer/' },
+            { text: '输入框 Input', link: '/component/input/' }
           ]
         },
         {
