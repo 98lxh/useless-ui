@@ -82,7 +82,7 @@ const TreeNode = defineComponent({
         {renderContent()}
         <CollapseTransition>
           {
-            expanded.value && <div class="u-tree__node--children">
+            <div class="u-tree__node--children" v-show={expanded.value}>
               {slots.default && slots.default()}
             </div>
           }

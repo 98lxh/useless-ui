@@ -28,6 +28,14 @@ const Popover = defineComponent({
     },
     triggerCtx: {
       type: Object
+    },
+    color: {
+      type: String,
+      default: '#fff'
+    },
+    bgColor: {
+      type: String,
+      default: '#000'
     }
   },
   setup(props) {
@@ -61,11 +69,16 @@ const Popover = defineComponent({
 
     return () => (
       <Transition name='zoom-fade-popover' mode="out-in" ref={popoverNodeRef}>
-        <div class={classes.value} style={position.value} v-show={visiable.value}
+        <div class={classes.value} style={{
+          ...position.value,
+          backgroundColor: props.bgColor,
+          color: props.color
+        }} v-show={visiable.value}
           onMouseenter={() => contentMouseOver.value = true}
           onMouseleave={() => contentMouseOver.value = false}
         >
           {props.content}
+          <div class="popover-node__arrow" style={{ backgroundColor: props.bgColor }}></div>
         </div>
       </Transition >
     )

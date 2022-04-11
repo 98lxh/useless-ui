@@ -10,9 +10,18 @@
 <template>
  <u-checkbox label="option1" v-model="checked"></u-checkbox>
 </template>
-<script setup>
-  import { ref } from 'vue';
-  const checked = ref('')
+<script>
+  import { ref ,defineComponent } from 'vue';
+  export default defineComponent({
+    name:'Demo',
+    setup(){
+      const checked = ref('')
+
+      return {
+        checked
+      }
+    }
+  })
 </script>
 ```
 :::

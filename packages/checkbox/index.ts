@@ -1,8 +1,15 @@
-import { App } from 'vue';
+import { App } from "vue";
 import Checkbox from "./src/checkbox";
 
-Checkbox.install = (app: App) => {
-  app.component(Checkbox.name, Checkbox)
+type SFCWithInstall<T> = T & { install(app: App): void }
+
+const withIntall = <T>(comp: T) => {
+  (comp as SFCWithInstall<T>).install = function (app: App) {
+    app.component((comp as any).name, comp)
+  }
+  return comp as SFCWithInstall<T>
 }
 
-export default Checkbox
+const UCheckbox = withIntall(Checkbox)
+
+export default UCheckbox

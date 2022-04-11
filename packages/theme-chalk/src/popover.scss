@@ -10,11 +10,8 @@
   z-index: 9999;
  
   &.is-placement-top{
-    &::after{
-      content: '';
-      display: block;
+    .popover-node__arrow{
       position: absolute;
-      background-color: #fff;
       box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
       transform: rotate(45deg);
       bottom: -5px;
@@ -25,11 +22,8 @@
   }
 
   &.is-placement-left{
-    &::after{
-      content: '';
-      display: block;
+    .popover-node__arrow{
       position: absolute;
-      background-color: #fff;
       box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
       transform: rotate(45deg);
       margin-left: 1px;
@@ -41,11 +35,8 @@
   }
 
   &.is-placement-right{
-    &::after{
-      content: '';
-      display: block;
+  .popover-node__arrow{
       position: absolute;
-      background-color: #fff;
       box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
       transform: rotate(45deg);
       margin-left: 1px;
@@ -57,11 +48,8 @@
   }
 
   &.is-placement-bottom{
-    &::after{
-      content: '';
-      display: block;
+   .popover-node__arrow{
       position: absolute;
-      background-color: #fff;
       box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
       transform: rotate(45deg);
       margin-left: 1px;

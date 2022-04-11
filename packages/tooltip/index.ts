@@ -1,15 +1,15 @@
 import { App } from "vue";
-import CheckboxGroup from "../checkbox/src/checkbox-group";
+import Tooltip from "./src/tooltip";
 
 type SFCWithInstall<T> = T & { install(app: App): void }
 
 const withIntall = <T>(comp: T) => {
   (comp as SFCWithInstall<T>).install = function (app: App) {
-    app.component((comp as any).name, comp)
+    app.component(Tooltip.name, Tooltip)
   }
   return comp as SFCWithInstall<T>
 }
 
-const UCheckboxGroup = withIntall(CheckboxGroup)
+const UTooltip = withIntall(Tooltip)
 
-export default UCheckboxGroup
+export default UTooltip

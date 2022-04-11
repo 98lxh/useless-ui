@@ -12,7 +12,9 @@ export interface PopoverProps {
   title?: string,
   trigger?: PopoverTriggerType
   content?: string;
-  placement?: PopoverPlacementType
+  placement?: PopoverPlacementType,
+  color?: string
+  bgColor?: string
 }
 
 export interface PopoverNodeProps {

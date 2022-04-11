@@ -3,7 +3,13 @@ import { PopoverPlacementType } from './../popover.types';
 import { render, VNode } from 'vue';
 import { createVNode } from 'vue';
 import PopoverNode from './../popover-node'
-export const createPopoverNode = (triggerEl: HTMLElement, content: string | VNode[], placement: PopoverPlacementType, triggerCtx: any) => {
+export const createPopoverNode = (triggerEl: HTMLElement,
+  content: string | VNode[],
+  placement: PopoverPlacementType,
+  triggerCtx: any,
+  color: string,
+  bgColor: string,
+) => {
   const triggerRect = triggerEl.getBoundingClientRect()
   const container = document.createElement('div')
   const onClose = () => {
@@ -15,7 +21,9 @@ export const createPopoverNode = (triggerEl: HTMLElement, content: string | VNod
     content,
     placement,
     triggerRect,
-    triggerCtx
+    triggerCtx,
+    color,
+    bgColor
   })
   render(vnode, container)
   document.body.appendChild(container.firstChild)

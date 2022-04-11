@@ -6,7 +6,7 @@ import DemoBlock from "vitepress-theme-demoblock/components/DemoBlock.vue"
 // 导入主题样式
 import "vitepress-theme-demoblock/theme/styles/index.css"
 import './custom.css';
-import uselessUi from "./../../../lib/index.esm"
+import uselessUi from "../../../lib/index.esm"
 import "theme-chalk/src/index.scss"
 // 导入插件的主题
 

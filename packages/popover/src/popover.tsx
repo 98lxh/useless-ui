@@ -21,6 +21,14 @@ const Popover = defineComponent({
     placement: {
       type: String as PropType<PopoverPlacementType>,
       default: 'top'
+    },
+    color: {
+      type: String,
+      default: '#fff'
+    },
+    bgColor: {
+      type: String,
+      default: '#000'
     }
   },
   setup(props, { slots }) {
