@@ -8,12 +8,12 @@
 
 ```vue
 <template>
-  <u-space>
-    <u-button>Primary</u-button>
-    <u-button type="dashed">Dashed</u-button>
-    <u-button type="outline">Outline</u-button>
-    <u-button type="text">Text</u-button>
-  </u-space>
+  <use-space>
+    <use-button>Primary</use-button>
+    <use-button type="dashed">Dashed</use-button>
+    <use-button type="outline">Outline</use-button>
+    <use-button type="text">Text</use-button>
+  </use-space>
 </template>
 ```
 :::
@@ -26,10 +26,10 @@
 
 ```vue
 <template>
-  <u-space>
-    <u-button icon="setting"></u-button>
-    <u-button icon="setting">Setting</u-button>
-  </u-space>
+  <use-space>
+    <use-button icon="setting"></use-button>
+    <use-button icon="setting">Setting</use-button>
+  </use-space>
 </template>
 ```
 :::
@@ -42,10 +42,10 @@
 
 ```vue
 <template>
-  <u-space>
-    <u-button>Square</u-button>
-    <u-button icon="setting" circle></u-button>
-  </u-space>
+  <use-space>
+    <use-button>Square</use-button>
+    <use-button icon="setting" circle></use-button>
+  </use-space>
 </template>
 ```
 :::
@@ -58,11 +58,11 @@
 
 ```vue
 <template>
-  <u-space :size="20">
-    <u-button size="small">Samll</u-button>
-    <u-button size="default">Default</u-button>
-    <u-button size="large">Large</u-button>
-  </u-space>
+  <use-space :size="20">
+    <use-button size="small">Samll</use-button>
+    <use-button size="default">Default</use-button>
+    <use-button size="large">Large</use-button>
+  </use-space>
 </template>
 ```
 :::
@@ -75,28 +75,28 @@
 
 ```vue
 <template>
- <u-space>
-  <u-space direction="vertical">
-    <u-button status="success">Success</u-button>
-    <u-button status="warning">Warning</u-button>
-    <u-button status="danger">Danger</u-button>
-  </u-space>
-  <u-space direction="vertical" >
-    <u-button status="success"  type="outline">Success</u-button>
-    <u-button status="warning"  type="outline">Warning</u-button>
-    <u-button status="danger"  type="outline">Danger</u-button>
-  </u-space>
-  <u-space direction="vertical" >
-    <u-button status="success"  type="dashed">Success</u-button>
-    <u-button status="warning"  type="dashed">Warning</u-button>
-    <u-button status="danger"  type="dashed">Danger</u-button>
-  </u-space>
-  <u-space direction="vertical" >
-    <u-button status="success"  type="text">Success</u-button>
-    <u-button status="warning"  type="text">Warning</u-button>
-    <u-button status="danger"  type="text">Danger</u-button>
-  </u-space>
- </u-space>
+ <use-space>
+  <use-space direction="vertical">
+    <use-button status="success">Success</use-button>
+    <use-button status="warning">Warning</use-button>
+    <use-button status="danger">Danger</use-button>
+  </use-space>
+  <use-space direction="vertical" >
+    <use-button status="success"  type="outline">Success</use-button>
+    <use-button status="warning"  type="outline">Warning</use-button>
+    <use-button status="danger"  type="outline">Danger</use-button>
+  </use-space>
+  <use-space direction="vertical" >
+    <use-button status="success"  type="dashed">Success</use-button>
+    <use-button status="warning"  type="dashed">Warning</use-button>
+    <use-button status="danger"  type="dashed">Danger</use-button>
+  </use-space>
+  <use-space direction="vertical" >
+    <use-button status="success"  type="text">Success</use-button>
+    <use-button status="warning"  type="text">Warning</use-button>
+    <use-button status="danger"  type="text">Danger</use-button>
+  </use-space>
+ </use-space>
 </template>
 ```
 :::
@@ -110,32 +110,32 @@
 
 ```vue
 <template>
- <u-space>
-  <u-space direction="vertical">
-    <u-button disabled>Success</u-button>
-    <u-button status="success" disabled>Success</u-button>
-    <u-button status="warning" disabled>Warning</u-button>
-    <u-button status="danger" disabled>Danger</u-button>
-  </u-space>
-  <u-space direction="vertical" >
-    <u-button type="outline" disabled>Primary</u-button>
-    <u-button status="success"  type="outline" disabled>Success</u-button>
-    <u-button status="warning"  type="outline" disabled>Warning</u-button>
-    <u-button status="danger"  type="outline" disabled>Danger</u-button>
-  </u-space>
-  <u-space direction="vertical" >
-    <u-button type="dashed" disabled>Primary</u-button>
-    <u-button status="success"  type="dashed" disabled>Success</u-button>
-    <u-button status="warning"  type="dashed" disabled>Warning</u-button>
-    <u-button status="danger"  type="dashed" disabled>Danger</u-button>
-  </u-space>
-  <u-space direction="vertical" >
-    <u-button type="text" disabled>Primary</u-button>
-    <u-button status="success"  type="text" disabled>Success</u-button>
-    <u-button status="warning"  type="text" disabled>Warning</u-button>
-    <u-button status="danger"  type="text" disabled>Danger</u-button>
-  </u-space>
- </u-space>
+ <use-space>
+  <use-space direction="vertical">
+    <use-button disabled>Success</use-button>
+    <use-button status="success" disabled>Success</use-button>
+    <use-button status="warning" disabled>Warning</use-button>
+    <use-button status="danger" disabled>Danger</use-button>
+  </use-space>
+  <use-space direction="vertical" >
+    <use-button type="outline" disabled>Primary</use-button>
+    <use-button status="success"  type="outline" disabled>Success</use-button>
+    <use-button status="warning"  type="outline" disabled>Warning</use-button>
+    <use-button status="danger"  type="outline" disabled>Danger</use-button>
+  </use-space>
+  <use-space direction="vertical" >
+    <use-button type="dashed" disabled>Primary</use-button>
+    <use-button status="success"  type="dashed" disabled>Success</use-button>
+    <use-button status="warning"  type="dashed" disabled>Warning</use-button>
+    <use-button status="danger"  type="dashed" disabled>Danger</use-button>
+  </use-space>
+  <use-space direction="vertical" >
+    <use-button type="text" disabled>Primary</use-button>
+    <use-button status="success"  type="text" disabled>Success</use-button>
+    <use-button status="warning"  type="text" disabled>Warning</use-button>
+    <use-button status="danger"  type="text" disabled>Danger</use-button>
+  </use-space>
+ </use-space>
 </template>
 ```
 :::
@@ -148,11 +148,11 @@
 
 ```vue
 <template>
-  <u-space :size="20">
-    <u-button loading>Loading</u-button>
-    <u-button loading type="outline">Loading</u-button>
-    <u-button :loading="loading" @click="showLoading">Click Me</u-button>
-  </u-space>
+  <use-space :size="20">
+    <use-button loading>Loading</use-button>
+    <use-button loading type="outline">Loading</use-button>
+    <use-button :loading="loading" @click="showLoading">Click Me</use-button>
+  </use-space>
 </template>
 <script setup>
 import { ref } from 'vue'
@@ -167,23 +167,23 @@ const showLoading = () => {
 
 <h2>按钮组合</h2>
 
-通过`u-button-group`组件使按钮以组合的形式出现
+通过`use-button-group`组件使按钮以组合的形式出现
 
 :::demo 
 
 ```vue
 <template>
-  <u-space :size="20" direction="vertical">
-    <u-button-group>
-      <u-button >Prev</u-button>
-      <u-button>Next</u-button>
-    </u-button-group>
+  <use-space :size="20" direction="vertical">
+    <use-button-group>
+      <use-button >Prev</use-button>
+      <use-button>Next</use-button>
+    </use-button-group>
     
-    <u-button-group>
-      <u-button>User</u-button>
-      <u-button icon="user"></u-button>
-    </u-button-group>
-  </u-space>
+    <use-button-group>
+      <use-button>User</use-button>
+      <use-button icon="user"></use-button>
+    </use-button-group>
+  </use-space>
 </template>
 ```
 :::

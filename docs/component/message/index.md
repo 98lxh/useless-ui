@@ -8,7 +8,7 @@
 
 ```vue
 <template>
-  <u-button @click="()=>this.$message('Info Message')">Info Message</u-button>
+  <use-button @click="()=>this.$message('Info Message')">Info Message</use-button>
 </template>
 ```
 :::
@@ -21,12 +21,12 @@
 
 ```vue
 <template>
-  <u-space>
-    <u-button @click="()=>this.$message(createMessage('info'))">Info Message</u-button>
-    <u-button status="success" @click="()=>this.$message(createMessage('success'))">Success Message</u-button>
-    <u-button status="warning" @click="()=>this.$message(createMessage('warning'))">Warning Message</u-button>
-    <u-button status="danger" @click="()=>this.$message(createMessage('error'))">Error Message</u-button>
-  </u-space>
+  <use-space>
+    <use-button @click="()=>this.$message(createMessage('info'))">Info Message</use-button>
+    <use-button status="success" @click="()=>this.$message(createMessage('success'))">Success Message</use-button>
+    <use-button status="warning" @click="()=>this.$message(createMessage('warning'))">Warning Message</use-button>
+    <use-button status="danger" @click="()=>this.$message(createMessage('error'))">Error Message</use-button>
+  </use-space>
 </template>
 <script setup>
 const createMessage = (type) => ({
@@ -45,12 +45,12 @@ const createMessage = (type) => ({
 
 ```vue
 <template>
-  <u-space>
-    <u-button @click="()=>this.$message(createMessage(1000))">1000 ms</u-button>
-    <u-button @click="()=>this.$message(createMessage(3000))">3000 ms</u-button>
-    <u-button @click="()=>this.$message(createMessage(5000))">5000 ms</u-button>
-    <u-button @click="()=>this.$message(createMessage(10000))">10000 ms</u-button>
-  </u-space>
+  <use-space>
+    <use-button @click="()=>this.$message(createMessage(1000))">1000 ms</use-button>
+    <use-button @click="()=>this.$message(createMessage(3000))">3000 ms</use-button>
+    <use-button @click="()=>this.$message(createMessage(5000))">5000 ms</use-button>
+    <use-button @click="()=>this.$message(createMessage(10000))">10000 ms</use-button>
+  </use-space>
 </template>
 <script setup>
 const createMessage = (duration) => ({

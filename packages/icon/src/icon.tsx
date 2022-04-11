@@ -2,7 +2,7 @@ import { defineComponent } from "vue";
 
 
 const Icon = defineComponent({
-  name: "UIcon",
+  name: "UseIcon",
   props: {
     name: {
       type: String,

@@ -5,7 +5,7 @@ type IButtonType = 'primary' | 'dashed' | 'danger' | 'outline' | 'text'
 type IButtonStatus = 'warning' | 'danger' | 'success' | 'normal'
 type IButtonSize = 'small' | 'default' | 'large'
 const Button = defineComponent({
-  name: 'UButton',
+  name: 'UseButton',
   props: {
     type: {
       type: String as PropType<IButtonType>,

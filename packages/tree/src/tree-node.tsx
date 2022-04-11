@@ -5,7 +5,7 @@ import Checkbox from "@useless-ui/checkbox";
 import { TreeNodeOption } from "./tree.types";
 
 const TreeNode = defineComponent({
-  name: 'UTreeNode',
+  name: 'UseTreeNode',
   props: {
     node: {
       type: Object as PropType<TreeNodeOption>,

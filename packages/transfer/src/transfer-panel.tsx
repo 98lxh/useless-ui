@@ -4,7 +4,7 @@ import UCheckboxGroup from "@useless-ui/checkbox-group";
 import { Props } from "./transfer.types";
 import { useCheck } from "./hooks/useCheck";
 const TransferPanel = defineComponent({
-  name: 'UTransferPanel',
+  name: 'UseTransferPanel',
   props: {
     data: {
       type: Array as PropType<any[]>,

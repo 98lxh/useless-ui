@@ -4,7 +4,7 @@ import { TreeNodeOption, TreeProvide } from "./tree.types";
 import { useTree } from '../hooks/useTree'
 
 const Tree = defineComponent({
-  name: 'UTree',
+  name: 'UseTree',
   props: {
     data: {
       type: Array as PropType<TreeNodeOption[]>,

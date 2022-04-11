@@ -8,12 +8,12 @@
 
 ```vue
 <template>
-  <u-space>
+  <use-space>
     <span style="line-height:30px">space:</span>
-    <u-button>Item1</u-button>
-    <u-button>Item2</u-button>
-    <u-button>Item3</u-button>
-  </u-space>
+    <use-button>Item1</use-button>
+    <use-button>Item2</use-button>
+    <use-button>Item3</use-button>
+  </use-space>
 </template>
 ```
 :::
@@ -27,18 +27,18 @@
 ```vue
 <template>
   <p>vertical:</p>
-  <u-space direction="vertical" fill>
+  <use-space direction="vertical" fill>
     <div class='space-item'>Item1</div>
     <div class='space-item'>Item2</div>
     <div class='space-item'>Item3</div>
-  </u-space>
+  </use-space>
 
   <p>horzantal:</p>
-    <u-space>
-    <u-button>Item1</u-button>
-    <u-button>Item2</u-button>
-    <u-button>Item3</u-button>
-  </u-space>
+    <use-space>
+    <use-button>Item1</use-button>
+    <use-button>Item2</use-button>
+    <use-button>Item3</use-button>
+  </use-space>
 </template>
 <style>
 .space-item{
@@ -60,16 +60,16 @@
 
 ```vue
 <template>
-  <u-space :size="size" fill>
-    <u-button>Item1</u-button>
-    <u-button>Item2</u-button>
-    <u-button>Item3</u-button>
-  </u-space>
+  <use-space :size="size" fill>
+    <use-button>Item1</use-button>
+    <use-button>Item2</use-button>
+    <use-button>Item3</use-button>
+  </use-space>
 
-  <u-space style="margin-top:10px">
-    <u-button icon="jiahao" circle @click="handleSize('plus')"></u-button>
-    <u-button icon="jianhao" circle @click="handleSize('sub')"></u-button>
-  </u-space>
+  <use-space style="margin-top:10px">
+    <use-button icon="jiahao" circle @click="handleSize('plus')"></use-button>
+    <use-button icon="jianhao" circle @click="handleSize('sub')"></use-button>
+  </use-space>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
@@ -91,17 +91,17 @@ const handleSize = (mode:'plus'|'sub') => {
 
 ```vue
 <template>
-  <u-space style="width:300px" wrap>
-    <u-button>Item1</u-button>
-    <u-button>Item2</u-button>
-    <u-button>Item3</u-button>
-    <u-button>Item4</u-button>
-    <u-button>Item5</u-button>
-    <u-button>Item6</u-button>
-    <u-button>Item7</u-button>
-    <u-button>Item8</u-button>
-    <u-button>Item9</u-button>
-  </u-space>
+  <use-space style="width:300px" wrap>
+    <use-button>Item1</use-button>
+    <use-button>Item2</use-button>
+    <use-button>Item3</use-button>
+    <use-button>Item4</use-button>
+    <use-button>Item5</use-button>
+    <use-button>Item6</use-button>
+    <use-button>Item7</use-button>
+    <use-button>Item8</use-button>
+    <use-button>Item9</use-button>
+  </use-space>
 </template>
 ```
 :::

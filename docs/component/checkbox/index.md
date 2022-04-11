@@ -8,7 +8,7 @@
 
 ```vue
 <template>
- <u-checkbox label="option1" v-model="checked"></u-checkbox>
+ <use-checkbox label="option1" v-model="checked"></use-checkbox>
 </template>
 <script>
   import { ref ,defineComponent } from 'vue';
@@ -35,7 +35,7 @@
 
 ```vue
 <template>
- <u-checkbox v-model="value" disabled>option</u-checkbox>
+ <use-checkbox v-model="value" disabled>option</use-checkbox>
 </template>
 <script setup>
   import { ref } from 'vue';
@@ -46,16 +46,16 @@
 
 <h2>复选框组</h2>
 
-通过`<u-checkbox-group>`组件展示复选框组
+通过`<use-checkbox-group>`组件展示复选框组
 
 :::demo 
 
 ```vue
 <template>
   {{checks}}
-  <u-checkbox-group v-model="checks">
-    <u-checkbox v-for="c in data" :label="c"></u-checkbox>
- </u-checkbox-group>
+  <use-checkbox-group v-model="checks">
+    <use-checkbox v-for="c in data" :label="c"></use-checkbox>
+ </use-checkbox-group>
 </template>
 <script setup>
   import { ref } from 'vue';

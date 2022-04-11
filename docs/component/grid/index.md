@@ -8,56 +8,56 @@
 
 ```vue
 <template>
-  <u-row>
-    <u-col :span="8" class="odd">
+  <use-row>
+    <use-col :span="8" class="odd">
       <div>col-8<div>
-    </u-col>
-    <u-col :span="8" class="even">
+    </use-col>
+    <use-col :span="8" class="even">
       <div>col-8</div>
-    </u-col>
-    <u-col :span="8" class="odd">
+    </use-col>
+    <use-col :span="8" class="odd">
       <div>col-8</div>
-    </u-col>
-  </u-row>
+    </use-col>
+  </use-row>
 
-  <u-row>
-    <u-col :span="10" class="odd">
+  <use-row>
+    <use-col :span="10" class="odd">
       <div>col-10<div>
-    </u-col>
-    <u-col :span="14" class="even">
+    </use-col>
+    <use-col :span="14" class="even">
       <div>col-14</div>
-    </u-col>
-  </u-row>
+    </use-col>
+  </use-row>
 
-   <u-row>
-    <u-col :span="8" class="odd">
+   <use-row>
+    <use-col :span="8" class="odd">
       <div>col-8<div>
-    </u-col>
-    <u-col :span="4" class="even">
+    </use-col>
+    <use-col :span="4" class="even">
       <div>col-4</div>
-    </u-col>
-    <u-col :span="4" class="odd">
+    </use-col>
+    <use-col :span="4" class="odd">
       <div>col-4</div>
-    </u-col>
-    <u-col :span="8" class="even">
+    </use-col>
+    <use-col :span="8" class="even">
       <div>col-8</div>
-    </u-col>
-  </u-row>
+    </use-col>
+  </use-row>
 
-  <u-row>
-    <u-col :span="6" class="odd">
+  <use-row>
+    <use-col :span="6" class="odd">
       <div>col-6<div>
-    </u-col>
-    <u-col :span="6" class="even">
+    </use-col>
+    <use-col :span="6" class="even">
       <div>col-6</div>
-    </u-col>
-    <u-col :span="6" class="odd">
+    </use-col>
+    <use-col :span="6" class="odd">
       <div>col-6</div>
-    </u-col>
-    <u-col :span="6" class="even">
+    </use-col>
+    <use-col :span="6" class="even">
       <div>col-6</div>
-    </u-col>
-  </u-row>
+    </use-col>
+  </use-row>
 </template>
 
 <style>
@@ -87,29 +87,29 @@
 
 ```vue
 <template>
-  <u-row>
-    <u-col  class="odd" :span="6" :offset="6">
+  <use-row>
+    <use-col  class="odd" :span="6" :offset="6">
       <div>col-6|offset-6<div>
-    </u-col>
-    <u-col class="even" :span="6" :offset="3">
+    </use-col>
+    <use-col class="even" :span="6" :offset="3">
       <div>col-6|offset-3</div>
-    </u-col>
-  </u-row>
+    </use-col>
+  </use-row>
 
-  <u-row>
-    <u-col  class="odd" :span="6" :offset="3">
+  <use-row>
+    <use-col  class="odd" :span="6" :offset="3">
       <div>col-6|offset-3<div>
-    </u-col>
-    <u-col class="even" :span="6" :offset="9">
+    </use-col>
+    <use-col class="even" :span="6" :offset="9">
       <div>col-6|offset-9</div>
-    </u-col>
-  </u-row>
+    </use-col>
+  </use-row>
 
-  <u-row>
-    <u-col class="even" :span="8" :offset="8">
+  <use-row>
+    <use-col class="even" :span="8" :offset="8">
       <div>col-8|offset-8</div>
-    </u-col>
-  </u-row>
+    </use-col>
+  </use-row>
 </template>
 
 <style>
@@ -140,44 +140,44 @@
 ```vue
 <template>
   <span>start</span>
-  <u-row :gutter="24" justify="start">
-    <u-col  class="odd" :span="10">
+  <use-row :gutter="24" justify="start">
+    <use-col  class="odd" :span="10">
       <div>col-12<div>
-    </u-col>
-    <u-col class="even" :span="10">
+    </use-col>
+    <use-col class="even" :span="10">
       <div>col-12</div>
-    </u-col>
-  </u-row>
+    </use-col>
+  </use-row>
 
   <span>end</span>
-  <u-row :gutter="24" justify="end">
-    <u-col  class="odd" :span="10">
+  <use-row :gutter="24" justify="end">
+    <use-col  class="odd" :span="10">
       <div>col-12<div>
-    </u-col>
-    <u-col class="even" :span="10">
+    </use-col>
+    <use-col class="even" :span="10">
       <div>col-12</div>
-    </u-col>
-  </u-row>
+    </use-col>
+  </use-row>
 
   <span>between</span>
-  <u-row :gutter="24" justify="space-between">
-    <u-col  class="odd" :span="10">
+  <use-row :gutter="24" justify="space-between">
+    <use-col  class="odd" :span="10">
       <div>col-12<div>
-    </u-col>
-    <u-col class="even" :span="10">
+    </use-col>
+    <use-col class="even" :span="10">
       <div>col-12</div>
-    </u-col>
-  </u-row>
+    </use-col>
+  </use-row>
 
   <span>around</span>
-  <u-row :gutter="24" justify="space-around">
-    <u-col  class="odd" :span="10">
+  <use-row :gutter="24" justify="space-around">
+    <use-col  class="odd" :span="10">
       <div>col-12<div>
-    </u-col>
-    <u-col class="even" :span="10">
+    </use-col>
+    <use-col class="even" :span="10">
       <div>col-12</div>
-    </u-col>
-  </u-row>
+    </use-col>
+  </use-row>
 </template>
 
 <style>
@@ -208,20 +208,20 @@
 
 ```vue
 <template>
-  <u-row>
-    <u-col  class="odd" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
+  <use-row>
+    <use-col  class="odd" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
       <div>1<div>
-    </u-col>
-     <u-col  class="even" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
+    </use-col>
+     <use-col  class="even" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
       <div>2<div>
-    </u-col>
-    <u-col  class="odd" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
+    </use-col>
+    <use-col  class="odd" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
       <div>3<div>
-    </u-col>
-     <u-col  class="even" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
+    </use-col>
+     <use-col  class="even" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
       <div>4<div>
-    </u-col>
-  </u-row>
+    </use-col>
+  </use-row>
 </template>
 <style>
 .odd,.even{

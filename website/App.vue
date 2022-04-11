@@ -1,7 +1,7 @@
 <template>
- <u-space style="padding:60px" >
-    <u-tooltip content="信息" placement="right">
-      <u-button>打开</u-button>
-    </u-tooltip>
- </u-space>
+ <use-space style="padding:60px" >
+    <use-tooltip content="信息" placement="right">
+      <use-button>打开</use-button>
+    </use-tooltip>
+ </use-space>
 </template>

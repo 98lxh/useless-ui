@@ -8,7 +8,7 @@
 
 ```vue
 <template>
-  <u-tree :data="treeData" :default-expaned="['0-0']"></u-tree>
+  <use-tree :data="treeData" :default-expaned="['0-0']"></use-tree>
 </template>
 <script setup>
   import { ref } from 'vue';
@@ -60,9 +60,9 @@
 
 ```vue
 <template>
-  <u-tree :data="treeData" checkable
+  <use-tree :data="treeData" checkable
           :default-expaned="['0-0', '0-1']">
-  </u-tree>
+  </use-tree>
 </template>
 <script setup>
   import { ref } from 'vue';
@@ -132,10 +132,10 @@
 
 ```vue
 <template>
-  <u-tree :data="treeData" checkable
+  <use-tree :data="treeData" checkable
           :default-expaned="['0-0', '0-1']" 
           checkStrictly>
-  </u-tree>
+  </use-tree>
 </template>
 <script setup>
   import { ref } from 'vue';

@@ -2,7 +2,7 @@ import { defineComponent, PropType, computed } from "vue";
 import { SpaceDirection } from "./space.types";
 
 const Space = defineComponent({
-  name: 'USpace',
+  name: 'UseSpace',
   props: {
     direction: {
       type: String as PropType<SpaceDirection>,

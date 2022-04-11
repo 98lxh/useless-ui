@@ -3,7 +3,7 @@ import { computed } from "@vue/reactivity";
 import { defineComponent, h, provide } from "vue";
 
 const Row = defineComponent({
-  name: 'URow',
+  name: 'UseRow',
   props: {
     tag: {
       type: String,

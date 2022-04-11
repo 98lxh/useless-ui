@@ -3,7 +3,7 @@ import { PopoverNodeContent, PopoverNodePositionType, PopoverPlacementType } fro
 import { calculatePosition } from "./utils/calculatePositon";
 
 const Popover = defineComponent({
-  name: "UPopoverNode",
+  name: "UsePopoverNode",
   props: {
     title: {
       type: String,

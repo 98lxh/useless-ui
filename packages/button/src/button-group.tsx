@@ -1,7 +1,7 @@
 import { defineComponent } from "vue";
 
 const ButtonGroup = defineComponent({
-  name: 'UButtonGroup',
+  name: 'UseButtonGroup',
   setup(_, { slots }) {
 
     return () => (

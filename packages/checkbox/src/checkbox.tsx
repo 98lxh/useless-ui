@@ -2,7 +2,7 @@ import { defineComponent, computed } from "vue";
 import { useCheckbox } from "./hooks/useCheckbox";
 
 const Checkbox = defineComponent({
-  name: 'UCheckbox',
+  name: 'UseCheckbox',
   props: {
     indeterminate: Boolean,
     disabled: Boolean,

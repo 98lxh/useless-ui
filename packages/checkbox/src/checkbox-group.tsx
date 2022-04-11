@@ -1,6 +1,6 @@
 import { defineComponent, provide, computed } from "vue";
 const CheckboxGroup = defineComponent({
-  name: 'UCheckboxGroup',
+  name: 'UseCheckboxGroup',
   props: {
     modelValue: Array
   },

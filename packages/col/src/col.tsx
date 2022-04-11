@@ -3,7 +3,7 @@ import { computed } from "@vue/reactivity";
 import { defineComponent, h, inject } from "vue";
 
 const Col = defineComponent({
-  name: 'UCol',
+  name: 'UseCol',
   props: {
     tag: {
       type: String,

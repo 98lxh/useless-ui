@@ -35,7 +35,7 @@ const TransitionHook = (delay: number) => ({
 })
 
 const CollapseTransition = defineComponent({
-  name: 'UCollapseTransition',
+  name: 'UseCollapseTransition',
   props: {
     delay: {
       type: Number,

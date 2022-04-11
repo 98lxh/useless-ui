@@ -4,7 +4,7 @@ import UButton from "@useless-ui/button";
 import { DataItem, Key, Props } from "./transfer.types";
 import { useComputedData } from "./hooks/useComputedData";
 const Transfer = defineComponent({
-  name: 'UTransfer',
+  name: 'UseTransfer',
   props: {
     data: {
       type: Array as PropType<DataItem[]>,

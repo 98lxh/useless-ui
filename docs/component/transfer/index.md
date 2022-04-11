@@ -9,7 +9,7 @@
 ```vue
 <template>
   <p>当前目标项:{{value}}</p>
-  <u-transfer :data="data" v-model="value"></u-transfer>
+  <use-transfer :data="data" v-model="value"></use-transfer>
 </template>
 <script setup>
 import { ref } from 'vue';
@@ -39,7 +39,7 @@ const value = ref([1,2,3])
 ```vue
 <template>
   <p>当前目标项:{{value}}</p>
-  <u-transfer :data="data" v-model="value"></u-transfer>
+  <use-transfer :data="data" v-model="value"></use-transfer>
 </template>
 <script setup>
 import { ref } from 'vue';

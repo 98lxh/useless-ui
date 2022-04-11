@@ -4,7 +4,7 @@ import { PopoverPlacementType, PopoverTriggerType } from "./popover.types";
 
 
 const Popover = defineComponent({
-  name: "UPopover",
+  name: "UsePopover",
   props: {
     title: {
       type: String,
