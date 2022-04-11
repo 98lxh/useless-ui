@@ -24,11 +24,11 @@ const Popover = defineComponent({
     },
     color: {
       type: String,
-      default: '#fff'
+      default: '#000'
     },
     bgColor: {
       type: String,
-      default: '#000'
+      default: '#fff'
     }
   },
   setup(props, { slots }) {

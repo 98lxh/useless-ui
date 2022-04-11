@@ -4,6 +4,8 @@
 @include b(button-group){
   &>.#{$namespace}button{
     border-radius: 0px;
+    display: inline-flex;
+    align-items: center;
     border-left: 1px solid $--color-white;
 
     &:first-child{

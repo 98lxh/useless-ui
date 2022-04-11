@@ -21,7 +21,8 @@ export default defineConfig({
         {
           text: "数据展示", children: [
             { text: '树 Tree', link: "/component/tree/" },
-            { text: '气泡卡片 Popover', link: '/component/popover/' }
+            { text: '气泡卡片 Popover', link: '/component/popover/' },
+            { text: '文字气泡 Tooltip', link: '/component/tooltip/' },
           ]
         },
         {

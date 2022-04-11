@@ -3,10 +3,11 @@
 
 @include b(transfer){
   display: flex;
+  width: 400px;
   align-items: center;
 
   @include e(panel){
-    width: 160px;
+    width: 180px;
     margin: 0 20px;
     border: 1px solid $grey-3;
     border-radius: 3px;

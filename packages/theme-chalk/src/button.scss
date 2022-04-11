@@ -2,7 +2,8 @@
 @import "./mixins/mixin.scss";
 
 @include b(button){ //u-button
-  display: inline-block !important;
+  display: inline-flex !important;
+  align-items: center;
   border-radius:3px ;
   font-size: 14px;
   outline: none;
@@ -14,6 +15,9 @@
   transition: opacity .5s ease-in-out;
   vertical-align: middle;
 
+  span{
+    white-space: nowrap;
+  }
 
   &:hover{
     opacity: .8;
