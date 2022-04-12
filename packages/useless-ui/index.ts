@@ -14,6 +14,7 @@ import Space from "@useless-ui/space"
 import Popover from '@useless-ui/popover';
 import Tooltip from "@useless-ui/tooltip"
 import Input from "@useless-ui/input"
+import Modal from "@useless-ui/modal"
 
 const components = [
   Button,
@@ -30,7 +31,8 @@ const components = [
   Space,
   Popover,
   Tooltip,
-  Input
+  Input,
+  Modal
 ]
 const install = (app: App): void => {
   components.forEach(comp => {
@@ -53,7 +55,8 @@ export {
   Space,
   Popover,
   Tooltip,
-  Input
+  Input,
+  Modal
 }
 
 export default {
