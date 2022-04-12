@@ -47,7 +47,15 @@
         <use-icon name="user"></use-icon>
       </template>
     </use-input>
-     <use-input placeholder="Default">
+     <use-input placeholder="Loading...">
+      <template #suffix>
+        <use-icon name="loading"></use-icon>
+      </template>
+    </use-input>
+      <use-input placeholder="Loading user information">
+      <template #prefix>
+        <use-icon name="user"></use-icon>
+      </template>
       <template #suffix>
         <use-icon name="loading"></use-icon>
       </template>
@@ -57,4 +65,50 @@
 ```
 :::
 
-todo
+<h2>密码输入框</h2>
+
+用于输入密码,可以通过`show-password`属性配置是否可以显示密码内容
+
+:::demo 
+
+```vue
+<template>
+  <use-space :size="15" direction="vertical">
+    <use-input placeholder="Connot be displayed in clear text" 
+               v-model:value="password"
+               type="password"
+               >
+    </use-input>
+     <use-input placeholder="Can be displayed in clear text" 
+                v-model:value="password"
+                type="password"
+                show-password
+                >
+    </use-input>
+  </use-space>
+</template>
+<script setup lang="ts">
+import { ref } from 'vue'
+const password = ref('')
+</script>
+```
+:::
+
+
+`<Input>`Props
+
+| 参数名      | 描述           | 类型              | 默认值 |
+| -------------- | ---------------- | ------------------- | ------ |
+| value(v-model) | 绑定值        | string              | -      |
+| disabled       | 是否禁用     | boolean             | false  |
+| error          | 是否为错误状态 | boolean             | false  |
+| placeholder    | 提示文字     | string              | -      |
+| type           | input的类型   | 'text' | 'password' | 'text' |
+| show-passoword | 是否可以显示密码 | boolean             | false  |
+
+
+`<Input>`Slots
+| 参数名 | 描述   | 类型 |
+| ------ | -------- | ---- |
+| suffix | 前缀元素 | -    |
+| prefix | 后缀元素 | -    |
