@@ -70,5 +70,14 @@
     }
   }
 
-   
+  .u-icon-eye,
+  .u-icon-eye-close{
+    @include when(showpassword){
+      transition: color .3s ease-in-out;
+      &:hover{
+        color:$--color-primary;
+        cursor:pointer;
+      }
+    }
+  }
 }

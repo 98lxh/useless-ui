@@ -1,5 +1,6 @@
 import { computed, defineComponent, PropType } from "vue";
 import { InputValueType, InputType } from "./input.types";
+import Icon from "@useless-ui/icon"
 import { useInput } from './hooks/useInput'
 const inputProps = {
   type: {
@@ -17,14 +18,20 @@ const inputProps = {
   },
   error: {
     type: Boolean
+  },
+  showPassword: {
+    type: Boolean
   }
 }
 
 const Input = defineComponent({
   name: 'UseInput',
   props: inputProps,
+  components: {
+    Icon
+  },
   setup(props, { slots }) {
-    const { modelValue } = useInput(props)
+    const { modelValue, type, handleShowPassword } = useInput(props)
     const classes = computed(() => ({
       'u-input__input': true,
       'is-disabled': props.disabled,
@@ -32,6 +39,17 @@ const Input = defineComponent({
       'is-prefix': slots.prefix,
       'is-suffix': slots.suffix
     }))
+
+    const renderSuffix = () => {
+      if (props.type === 'password') {
+        return <Icon
+          class={props.showPassword && 'is-showpassword'}
+          name={type.value === 'password' ? 'eye-close' : 'eye'}
+          onClick={handleShowPassword} />
+      }
+      return slots.suffix && slots.suffix()
+    }
+
     return () => (
       <div class={['u-input', props.disabled && 'is-disabled']}>
         <span class="u-input--prefix" v-show={slots.prefix}>
@@ -39,9 +57,10 @@ const Input = defineComponent({
         </span>
         <input class={classes.value}
           placeholder={props.placeholder}
+          type={type.value}
           v-model={modelValue.value} />
-        <span class="u-input--suffix" v-show={slots.suffix}>
-          {slots.prefix && slots.suffix()}
+        <span class="u-input--suffix" v-show={slots.suffix || props.type === 'password'}>
+          {renderSuffix()}
         </span>
       </div>
     )

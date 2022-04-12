@@ -1,5 +1,5 @@
 
-export type InputType = 'text' | 'number' | 'password'
+export type InputType = 'text' | 'password'
 export type InputValueType = 'number' | 'string'
 
 export interface InputProps {
@@ -8,4 +8,5 @@ export interface InputProps {
   value: number | string,
   error?: boolean,
   disabled?: boolean,
+  showPassword: boolean
 }

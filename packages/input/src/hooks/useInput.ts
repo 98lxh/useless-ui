@@ -1,7 +1,5 @@
-
-import { computed } from "@vue/reactivity";
-import { getCurrentInstance } from "vue";
-import { InputProps } from "../input.types";
+import { getCurrentInstance, computed, ref, Ref } from "vue";
+import { InputProps, InputType } from "../input.types";
 
 const useModel = (props: InputProps) => {
   const emit = getCurrentInstance().emit
@@ -16,10 +14,24 @@ const useModel = (props: InputProps) => {
   })
 }
 
-export const useInput = (inputProps: InputProps) => {
-  const modelValue = useModel(inputProps)
-
+const useInputPassword = (inputProps: InputProps, type: Ref<InputType>) => {
+  const handleShowPassword = () => {
+    if (!inputProps.showPassword) return
+    const newType = type.value === 'password' ? 'text' : 'password'
+    type.value = newType
+  }
   return {
-    modelValue
+    handleShowPassword
+  }
+}
+
+export const useInput = (inputProps: InputProps) => {
+  const type = ref(inputProps.type)
+  const modelValue = useModel(inputProps)
+  const { handleShowPassword } = useInputPassword(inputProps, type)
+  return {
+    modelValue,
+    handleShowPassword,
+    type
   }
 }
