@@ -9,8 +9,14 @@ const Icon = defineComponent({
       default: ''
     }
   },
-  setup(props) {
-    return () => (<i class={`u-icon-${props.name}`}></i>)
+  emits: ['click'],
+  setup(props, { emit }) {
+
+    const handleIconClick = (event) => {
+      emit('click', event)
+    }
+
+    return () => (<i class={`u-icon-${props.name}`} onClick={handleIconClick}></i>)
   }
 })
 
