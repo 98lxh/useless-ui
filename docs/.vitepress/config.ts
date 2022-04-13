@@ -37,6 +37,11 @@ export default defineConfig({
             { text: '全局提醒 Message', link: '/component/message/' },
             { text: '模态框 Modal', link: "/component/modal/" }
           ]
+        },
+        {
+          text: "其他", children: [
+            { text: '折叠渐变 Collapse Transition', link: '/component/collapseTransition/' }
+          ]
         }
       ]
     },
