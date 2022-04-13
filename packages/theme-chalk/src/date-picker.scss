@@ -2,12 +2,68 @@
 @import "./mixins/mixin.scss";
 
 @include b(date-picker){
+  display: inline-block;
+
   @include e(panel){
-    display: inline-block;
-    width: 300px;
-    height: 300px;
     background-color: #fff;
     border: 1px solid $grey-3;
     border-radius: 3px;
+    position: absolute;
+    top:45px;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+
+    .panel__nav{
+      height: 30px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      align-items: center;
+      border-bottom: 1px solid $grey-3;
+      font-size: 14px;
+
+      i{
+        font-size: 10px;
+      }
+
+      
+    }
+  
+    .panel__content{
+      padding:0 5px;
+      .cell{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: 24px;
+        width: 24px;
+        padding: 5px;
+        font-size: 14px;
+      }
+    }
+
+    .panel__footer{
+      border-top: 1px solid $grey-3;
+      
+      button{
+        margin: 5px;
+        float: right;
+      }
+    }
   }
 }
+
+// zoom-fade
+.zoom-fade-date-enter-active,
+.zoom-fade-date-leave-active {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top;
+}
+
+.zoom-fade-date-enter-from {
+  transform: scaleY(0.92);
+}
+
+.zoom-fade-date-leave-to {
+  transform: scaleY(.62);
+}
+

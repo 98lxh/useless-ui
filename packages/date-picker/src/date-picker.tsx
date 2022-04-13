@@ -1,7 +1,9 @@
-import { computed, defineComponent, ref } from "vue"
-import Input from "./../../input"
+import { computed, defineComponent, ref, Transition } from "vue"
 import { useClickOutSide } from "./hooks/useClickOutside"
 import { getYearMonthDay } from "./utils/formatDate"
+import Input from "./../../input"
+import Icon from "./../../icon"
+import PickerPanel from "./picker-panel"
 
 const datePickerProps = {
   value: {
@@ -21,7 +23,7 @@ const Datepicker = defineComponent({
     const formatDate = computed(() => {
       const { year, month, day } = getYearMonthDay(props.value)
 
-      return `${year}-${month}-${day}`
+      return `${year}-${month + 1}-${day}`
     })
 
     const visible = ref(false)
@@ -37,11 +39,9 @@ const Datepicker = defineComponent({
     useClickOutSide(datePickerRef, closeDatePickerPanel)
 
     return () => (
-      <div class="u-date-picker">
+      <div class="u-date-picker" ref={datePickerRef}>
         <Input value={formatDate.value as any} onFocus={handleFocus} />
-        <div class="u-date-picker__panel" v-show={visible.value} ref={datePickerRef}>
-          content
-        </div>
+        <PickerPanel visible={visible.value} value={props.value} />
       </div>
     )
   }
