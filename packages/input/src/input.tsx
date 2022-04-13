@@ -30,7 +30,8 @@ const Input = defineComponent({
   components: {
     Icon
   },
-  setup(props, { slots }) {
+  emits: ['focus', 'blur'],
+  setup(props, { slots, emit }) {
     const { modelValue, type, handleShowPassword } = useInput(props)
     const classes = computed(() => ({
       'u-input__input': true,
@@ -39,6 +40,14 @@ const Input = defineComponent({
       'is-prefix': slots.prefix,
       'is-suffix': slots.suffix
     }))
+
+    const handleFocus = (event) => {
+      emit('focus', event)
+    }
+
+    const handleBlur = (event) => {
+      emit('blur', event)
+    }
 
     const renderSuffix = () => {
       if (props.type === 'password') {
@@ -57,6 +66,8 @@ const Input = defineComponent({
         </span>
         <input class={classes.value}
           placeholder={props.placeholder}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           type={type.value}
           v-model={modelValue.value} />
         <span class="u-input--suffix" v-show={slots.suffix || props.type === 'password'}>

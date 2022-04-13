@@ -15,6 +15,7 @@ import Popover from '@useless-ui/popover';
 import Tooltip from "@useless-ui/tooltip"
 import Input from "@useless-ui/input"
 import Modal from "@useless-ui/modal"
+import DatePicker from "@useless-ui/date-picker"
 
 const components = [
   Button,
@@ -32,7 +33,8 @@ const components = [
   Popover,
   Tooltip,
   Input,
-  Modal
+  Modal,
+  DatePicker
 ]
 const install = (app: App): void => {
   components.forEach(comp => {
@@ -56,7 +58,8 @@ export {
   Popover,
   Tooltip,
   Input,
-  Modal
+  Modal,
+  DatePicker
 }
 
 export default {
