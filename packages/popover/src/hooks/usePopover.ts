@@ -5,12 +5,13 @@ import { createPopoverNode } from "./../utils/createPopoverNode"
 
 const useEventMouse = (triggerRef: Ref<any>, content: string | VNode[], triggerProps: PopoverProps) => {
   let listener: any
+  let el: any
   const { trigger, placement, color, bgColor } = triggerProps
   const triggerCtx = reactive({
     triggerEventOver: false
   })
   onMounted(() => {
-    const el = triggerRef.value.$el
+    el = triggerRef.value.$el
     listener = (isOpen: boolean) => {
       if (isOpen) {
         triggerCtx.triggerEventOver = true
@@ -26,9 +27,8 @@ const useEventMouse = (triggerRef: Ref<any>, content: string | VNode[], triggerP
   })
 
   onUnmounted(() => {
-    const el = triggerRef.value.$el;
-    el.removeListener(trigger === 'hover' ? 'mouseenter' : 'click', listener)
-    el.removeListener('mouseleave', listener)
+    el.removeEventListener(trigger === 'hover' ? 'mouseenter' : 'click', listener)
+    el.removeEventListener('mouseleave', listener)
   })
 }
 

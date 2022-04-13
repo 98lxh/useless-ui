@@ -78,7 +78,11 @@ const Popover = defineComponent({
           onMouseleave={() => contentMouseOver.value = false}
         >
           {props.content}
-          <div class="popover-node__arrow" style={{ backgroundColor: props.bgColor }}></div>
+          <div class="popover-node__arrow"
+            style={{
+              backgroundColor: props.bgColor,
+              borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor
+            }} />
         </div>
       </Transition >
     )
