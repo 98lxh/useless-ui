@@ -45,25 +45,26 @@
 
   @include m(primary){
     transition: opacity .3s ease-in-out;
+     &:not(.is-disabled){
     &:hover{
       opacity: .8;
     }
+  }
     @include button-type($--color-white,$--color-primary,$--color-primary)
   }
 
   @include m(success){
      transition: opacity .3s ease-in-out;
+    &:not(.is-disabled){
     &:hover{
-      opacity: .8;
+        opacity: .8;
+      } 
     }
     @include button-type($--color-white,$--color-success,$--color-success)
   }
 
   @include m(danger){
      transition: opacity .3s ease-in-out;
-    &:hover{
-      opacity: .8;
-    }
     @include button-type($--color-white,$--color-danger,$--color-danger)
   }
 
@@ -79,38 +80,43 @@
     color:$grey-8 ;
     background-color: #f2f3f5;
     transition: background-color .3s ease-in-out;
-
-    &:hover{
-      background-color: #e5e6eb;
+    &:not(.is-disabled){
+       &:hover{
+        background-color: #e5e6eb;
+      }
     }
+  
 
      &.u-button--success{
       background-color: #e8ffea;
       color:#4dcd6a;
-
+      &:not(.is-disabled){
       &:hover{
        background-color: #aff0b5;
       }
+    }
     }
 
     &.u-button--danger{
       background-color: #feece8;
       color:#f64c4c;
       border-color: #f64c4c;
-
+      &:not(.is-disabled){
       &:hover{
         background-color: #fccdc5;
       }
+    }
     }
 
     &.u-button--warning {
       background-color: #fff7e8;
       color:#fb9e41;
       border-color: #fb9e41;
-
+      &:not(.is-disabled){
       &:hover{
        background-color: #fee4ba;
       }
+    }
     }
   }
 
@@ -121,39 +127,43 @@
     background-color: #f2f3f5;
     border-color: $grey-3;
     transition: background-color .3s ease-in-out;
-
+    &:not(.is-disabled){
     &:hover{
       background-color: #e5e6eb;
     }
+  }
 
     &.u-button--success{
       background-color: #e8ffea;
       color:#30ba38;
       border-color: #30ba38;
-
+      &:not(.is-disabled){
       &:hover{
        background-color: #aff0b5;
       }
+    }
     }
 
     &.u-button--danger{
       background-color: #feece8;
       color:#f64c4c;
       border-color: #f64c4c;
-
+      &:not(.is-disabled){
        &:hover{
         background-color: #fccdc5;
       }
+    }
     }
 
     &.u-button--warning {
       background-color: #fff7e8;
       color:#fb9e41;
       border-color: #fb9e41;
-
+      &:not(.is-disabled){
       &:hover{
        background-color: #fee4ba;
       }
+    }
     }
   }
 

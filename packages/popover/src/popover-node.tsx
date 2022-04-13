@@ -72,6 +72,7 @@ const Popover = defineComponent({
         <div class={classes.value} style={{
           ...position.value,
           backgroundColor: props.bgColor,
+          borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor,
           color: props.color
         }} v-show={visiable.value}
           onMouseenter={() => contentMouseOver.value = true}

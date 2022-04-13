@@ -17,7 +17,7 @@ const modalProps = {
   },
   maskClosable: {
     type: Boolean,
-    default: false
+    default: true
   },
   confirmText: {
     type: String

@@ -35,7 +35,7 @@ export default defineConfig({
         {
           text: '反馈', children: [
             { text: '全局提醒 Message', link: '/component/message/' },
-            { text: '对话框 Modal', link: "/component/modal/" }
+            { text: '模态框 Modal', link: "/component/modal/" }
           ]
         }
       ]

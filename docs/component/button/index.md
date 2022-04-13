@@ -2,14 +2,15 @@
 
 <h2>基本用法</h2>
 
-按钮分为 `primary` 主要按钮 `dashed` 虚线按钮、`outline` 线形按钮、`text` 文本按钮四种类型。
+按钮分为 `primary` 主要按钮 `secondary`次要按钮  `dashed` 虚线按钮、`outline` 线形按钮、`text` 文本按钮四种类型。
 
 :::demo 
 
 ```vue
 <template>
   <use-space>
-    <use-button>Primary</use-button>
+    <use-button type="primary">Primary</use-button>
+    <use-button>Secondary</use-button>
     <use-button type="dashed">Dashed</use-button>
     <use-button type="outline">Outline</use-button>
     <use-button type="text">Text</use-button>
@@ -27,8 +28,8 @@
 ```vue
 <template>
   <use-space>
-    <use-button icon="setting"></use-button>
-    <use-button icon="setting">Setting</use-button>
+    <use-button type="primary" icon="setting"></use-button>
+    <use-button type="primary" icon="setting">Setting</use-button>
   </use-space>
 </template>
 ```
@@ -43,8 +44,8 @@
 ```vue
 <template>
   <use-space>
-    <use-button>Square</use-button>
-    <use-button icon="setting" circle></use-button>
+    <use-button type="primary">Square</use-button>
+    <use-button type="primary" icon="setting" circle></use-button>
   </use-space>
 </template>
 ```
@@ -76,6 +77,11 @@
 ```vue
 <template>
  <use-space>
+  <use-space direction="vertical">
+    <use-button type="primary" status="success">Success</use-button>
+    <use-button type="primary" status="warning">Warning</use-button>
+    <use-button type="primary" status="danger">Danger</use-button>
+  </use-space>
   <use-space direction="vertical">
     <use-button status="success">Success</use-button>
     <use-button status="warning">Warning</use-button>
@@ -111,26 +117,32 @@
 ```vue
 <template>
  <use-space>
+   <use-space direction="vertical">
+    <use-button type="primary" disabled>Normal</use-button>
+    <use-button type="primary" status="success" disabled>Success</use-button>
+    <use-button type="primary" status="warning" disabled>Warning</use-button>
+    <use-button type="primary" status="danger" disabled>Danger</use-button>
+  </use-space>
   <use-space direction="vertical">
-    <use-button disabled>Success</use-button>
+    <use-button disabled>Normal</use-button>
     <use-button status="success" disabled>Success</use-button>
     <use-button status="warning" disabled>Warning</use-button>
     <use-button status="danger" disabled>Danger</use-button>
   </use-space>
   <use-space direction="vertical" >
-    <use-button type="outline" disabled>Primary</use-button>
+    <use-button type="outline" disabled>Normal</use-button>
     <use-button status="success"  type="outline" disabled>Success</use-button>
     <use-button status="warning"  type="outline" disabled>Warning</use-button>
     <use-button status="danger"  type="outline" disabled>Danger</use-button>
   </use-space>
   <use-space direction="vertical" >
-    <use-button type="dashed" disabled>Primary</use-button>
+    <use-button type="dashed" disabled>Normal</use-button>
     <use-button status="success"  type="dashed" disabled>Success</use-button>
     <use-button status="warning"  type="dashed" disabled>Warning</use-button>
     <use-button status="danger"  type="dashed" disabled>Danger</use-button>
   </use-space>
   <use-space direction="vertical" >
-    <use-button type="text" disabled>Primary</use-button>
+    <use-button type="text" disabled>Normal</use-button>
     <use-button status="success"  type="text" disabled>Success</use-button>
     <use-button status="warning"  type="text" disabled>Warning</use-button>
     <use-button status="danger"  type="text" disabled>Danger</use-button>
@@ -193,7 +205,7 @@ const showLoading = () => {
 
 | 参数名 | 描述         | 类型                                      | 默认值 |
 | -------- | -------------- | ------------------------------------------- | --------- |
-| type     | 按钮的类型 | `primary`、`dashed`、`outline` 、`text`        | `primary` |
+| type     | 按钮的类型 | `primary`、`dashed`、`outline` 、`text` 、 `secondary`      | `secondary`|
 | cricle   | 按钮是否圆角 | boolean                                     | false     |
 | status   | 按钮的状态 | `normal` 、 `warning` 、 `success` 、 `danger` | `normal`  |
 | size     | 按钮的尺寸 | `small` 、 `default` 、 `large`               | `default` |

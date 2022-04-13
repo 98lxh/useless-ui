@@ -24,16 +24,16 @@
 <template>
   <use-space direction="vertical">
     <use-tooltip content="this is tooltip content">
-      <use-button type="outline">Top</use-button>
+      <use-button>Top</use-button>
     </use-tooltip>
      <use-tooltip content="this is tooltip content" placement="left">
-      <use-button type="outline">Left</use-button>
+      <use-button>Left</use-button>
     </use-tooltip>
     <use-tooltip content="this is tooltip content" placement="right">
-      <use-button type="outline">Right</use-button>
+      <use-button>Right</use-button>
     </use-tooltip>
     <use-tooltip content="this is tooltip content" placement="bottom">
-      <use-button type="outline">Bottom</use-button>
+      <use-button>Bottom</use-button>
     </use-tooltip>
   </use-space>
 </template>
