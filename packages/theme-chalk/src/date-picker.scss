@@ -1,0 +1,13 @@
+@import "./common/variables.scss";
+@import "./mixins/mixin.scss";
+
+@include b(date-picker){
+  @include e(panel){
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    background-color: #fff;
+    border: 1px solid $grey-3;
+    border-radius: 3px;
+  }
+}
