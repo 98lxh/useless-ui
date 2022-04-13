@@ -63,4 +63,5 @@ const Modal = defineComponent({
   }
 })
 
+console.log(Teleport)
 export default Modal

@@ -1,7 +1,7 @@
 
 import { defineComponent, PropType, computed } from "vue";
 
-type IButtonType = 'primary' | 'dashed' | 'danger' | 'outline' | 'text'
+type IButtonType = 'primary' | 'dashed' | 'danger' | 'outline' | 'text' | 'secondary'
 type IButtonStatus = 'warning' | 'danger' | 'success' | 'normal'
 type IButtonSize = 'small' | 'default' | 'large'
 const Button = defineComponent({
@@ -9,7 +9,7 @@ const Button = defineComponent({
   props: {
     type: {
       type: String as PropType<IButtonType>,
-      default: 'primary',
+      default: 'secondary',
     },
     status: {
       type: String as PropType<IButtonStatus>,
