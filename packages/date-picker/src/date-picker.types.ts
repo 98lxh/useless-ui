@@ -1,7 +1,12 @@
-export type DatePickerType = 'month' | 'year' | 'day'
+export type DatePickerType = 'month' | 'year' | 'date'
+
+export type DatePickerValueType = Date | null | 'string'
+
 export interface DatePickerProps {
-  value: Date,
-  type: DatePickerType
+  value: DatePickerValueType,
+  type: DatePickerType,
+  placeholder?: string
+  disabled?: boolean
 }
 
 export interface PickerPanelProps {

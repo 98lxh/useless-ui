@@ -10,7 +10,7 @@ import { getDate, getYearMonthDay } from '../utils/formatDate'
 const MonthPicker = defineComponent({
   name: 'UseMonthPicker',
   setup() {
-    const { currentDate, changeCurrentDate, changePickerType } = inject(injectDatePicker)!
+    const { currentDate, changeCurrentDate, changePickerType, originType, closeDatePickerPanel } = inject(injectDatePicker)!
     const { currentYear, visibleMonth } = useMonthPicker(currentDate)
 
     const changeCurrentYear = (mode: 'prev' | 'next') => {
@@ -33,7 +33,11 @@ const MonthPicker = defineComponent({
       const { day } = getYearMonthDay(currentDate.value)
       const date = getDate(currentYear.value, month, day)
       changeCurrentDate(date)
-      changePickerType('day')
+      if (originType === 'date') {
+        changePickerType('date')
+      } else {
+        closeDatePickerPanel()
+      }
     }
 
     const renderNav = () => {

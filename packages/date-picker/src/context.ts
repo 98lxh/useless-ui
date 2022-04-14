@@ -6,7 +6,8 @@ export interface DatePicker {
   closeDatePickerPanel: () => void,
   openDatePickerPanel: () => void,
   changeCurrentDate: (newDate: Date) => void,
-  changePickerType: (type: DatePickerType) => void
+  changePickerType: (type: DatePickerType) => void,
+  originType: DatePickerType
 }
 
 export const injectDatePicker: InjectionKey<DatePicker> = Symbol();

@@ -8,8 +8,8 @@ import { getDate, getYearMonthDay } from '../utils/formatDate'
 const YearPicker = defineComponent({
   name: 'UseYearPicker',
   setup() {
-    const { currentDate, changeCurrentDate, changePickerType } = inject(injectDatePicker)!
-    const { visibleYears, startYear } = useYearPicker(currentDate)
+    const { currentDate, changeCurrentDate, changePickerType, closeDatePickerPanel, originType } = inject(injectDatePicker)!
+    const { visibleYears, startYear, getStartYear } = useYearPicker(currentDate)
 
     const isSelectYear = (year: number) => {
       const { year: y } = getYearMonthDay(currentDate.value)
@@ -33,10 +33,15 @@ const YearPicker = defineComponent({
     const prevYear = changeVisibleYears.bind(null, 'prev')
     const nextYear = changeVisibleYears.bind(null, 'next')
 
-    const chooseYear = (year: number) => {
+    const chooseYear = (year: number, isNotCurrentYear = false) => {
       const { month, day } = getYearMonthDay(currentDate.value)
       changeCurrentDate(getDate(year, month, day))
-      changePickerType('day')
+      if (originType === 'date') {
+        changePickerType('date')
+      } else {
+        closeDatePickerPanel()
+        if (isNotCurrentYear) startYear.value = getStartYear(year)
+      }
     }
 
     const renderNav = () => {
@@ -55,16 +60,17 @@ const YearPicker = defineComponent({
           visibleYears.value.map((row, i) => (
             <div class="year">
               {
-                row.map((year, i) => {
+                row.map((year) => {
+                  const notCurrentYear = isNotCurrentYear(year)
                   const classes = computed(() => ({
                     'year-cell': true,
                     'is-select-year': isSelectYear(year),
                     'is-current-year': isCurrentYear(year),
-                    'not-current-year': isNotCurrentYear(year)
+                    'not-current-year': notCurrentYear
                   }))
                   return <span
                     class={classes.value}
-                    onClick={() => chooseYear(year)}
+                    onClick={() => chooseYear(year, notCurrentYear)}
                   >
                     {year}
                   </span>

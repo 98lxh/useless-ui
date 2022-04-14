@@ -1,6 +1,6 @@
 import { defineComponent, provide, ref, PropType } from "vue"
 import { injectDatePicker } from "./context"
-import { DatePickerType } from "./date-picker.types"
+import { DatePickerType, DatePickerValueType } from "./date-picker.types"
 import { useDatePicker } from "./hooks/useDatePicker"
 import { useClickOutSide } from "./hooks/useClickOutside"
 import DayPicker from "./pickers/day-picker"
@@ -12,12 +12,19 @@ import Icon from "./../../icon"
 
 const datePickerProps = {
   value: {
-    type: Date,
-    default: () => new Date()
+    type: Date as PropType<DatePickerValueType>,
   },
   type: {
     type: String as PropType<DatePickerType>,
     default: "day"
+  },
+  placeholder: {
+    type: String,
+    default: ''
+  },
+  disabled: {
+    type: Boolean,
+    default: false
   }
 }
 
@@ -51,7 +58,7 @@ const Datepicker = defineComponent({
 
     const renderPicker = () => {
       switch (currentType.value) {
-        case 'day':
+        case 'date':
           return <DayPicker />
         case 'year':
           return <YearPicker />
@@ -68,14 +75,20 @@ const Datepicker = defineComponent({
       panelVisible: visible,
       closeDatePickerPanel,
       openDatePickerPanel,
-      changePickerType
+      changePickerType,
+      originType: props.type
     })
 
     return () => (
       <div class="u-date-picker" ref={datePickerRef}>
-        <Input value={formatDate.value as any} v-slots={{
-          suffix: () => <Icon name="calendar" />
-        }} onFocus={openDatePickerPanel} />
+        <Input
+          value={props.value && formatDate.value as any}
+          placeholder={props.placeholder}
+          disabled={props.disabled}
+          v-slots={{
+            suffix: () => <Icon name="calendar" />
+          }}
+          onFocus={openDatePickerPanel} />
         {renderPicker()}
       </div>
     )

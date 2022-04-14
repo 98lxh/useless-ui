@@ -11,6 +11,7 @@ export const useYearPicker = (currentDate: Ref<Date>) => {
 
   return {
     visibleYears,
-    startYear
+    startYear,
+    getStartYear
   }
 }
