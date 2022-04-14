@@ -1,14 +1,23 @@
-import { computed, defineComponent, ref, Transition } from "vue"
+import { defineComponent, provide, ref, PropType } from "vue"
+import { injectDatePicker } from "./context"
+import { DatePickerType } from "./date-picker.types"
+import { useDatePicker } from "./hooks/useDatePicker"
 import { useClickOutSide } from "./hooks/useClickOutside"
-import { getYearMonthDay } from "./utils/formatDate"
+import DayPicker from "./pickers/day-picker"
+import YearPicker from "./pickers/year-pickers"
+import MonthPicker from './pickers/month-picker'
 import Input from "./../../input"
 import Icon from "./../../icon"
-import PickerPanel from "./picker-panel"
+
 
 const datePickerProps = {
   value: {
     type: Date,
     default: () => new Date()
+  },
+  type: {
+    type: String as PropType<DatePickerType>,
+    default: "day"
   }
 }
 
@@ -18,17 +27,13 @@ const Datepicker = defineComponent({
   components: {
     Input
   },
+  emits: ['update:value'],
   setup(props) {
-
-    const formatDate = computed(() => {
-      const { year, month, day } = getYearMonthDay(props.value)
-
-      return `${year}-${month + 1}-${day}`
-    })
+    const { currentDate, currentType, formatDate } = useDatePicker(props)
 
     const visible = ref(false)
     const datePickerRef = ref<Element>()
-    const handleFocus = () => {
+    const openDatePickerPanel = () => {
       visible.value = true
     }
 
@@ -36,12 +41,42 @@ const Datepicker = defineComponent({
       visible.value = false
     }
 
+    const changeCurrentDate = (date: Date) => {
+      currentDate.value = date
+    }
+
+    const changePickerType = (type: DatePickerType) => {
+      currentType.value = type
+    }
+
+    const renderPicker = () => {
+      switch (currentType.value) {
+        case 'day':
+          return <DayPicker />
+        case 'year':
+          return <YearPicker />
+        case 'month':
+          return <MonthPicker />
+      }
+    }
+
     useClickOutSide(datePickerRef, closeDatePickerPanel)
+
+    provide(injectDatePicker, {
+      currentDate,
+      changeCurrentDate,
+      panelVisible: visible,
+      closeDatePickerPanel,
+      openDatePickerPanel,
+      changePickerType
+    })
 
     return () => (
       <div class="u-date-picker" ref={datePickerRef}>
-        <Input value={formatDate.value as any} onFocus={handleFocus} />
-        <PickerPanel visible={visible.value} value={props.value} />
+        <Input value={formatDate.value as any} v-slots={{
+          suffix: () => <Icon name="calendar" />
+        }} onFocus={openDatePickerPanel} />
+        {renderPicker()}
       </div>
     )
   }

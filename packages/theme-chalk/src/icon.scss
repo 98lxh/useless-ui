@@ -14,6 +14,19 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.u-icon-arrow-right:before {
+  content: "\e744";
+}
+
+.u-icon-calendar:before {
+  content: "\e699";
+}
+
+.u-icon-snow:before {
+  content: "\e627";
+}
+
+
 .u-icon-eye:before {
   content: "\e78f";
 }
@@ -83,7 +96,7 @@
   content: "\e743";
 }
 
-.u-icon-arrow-right:before {
+.u-icon-arrow-right1:before {
   content: "\e665";
 }
 
