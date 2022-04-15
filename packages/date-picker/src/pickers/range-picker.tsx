@@ -1,4 +1,4 @@
-import { defineComponent, inject, ref, watch } from "vue";
+import { defineComponent, inject, ref, Teleport, watch } from "vue";
 import { injectDatePicker } from "../context";
 import DayPicker from "./day-picker";
 
@@ -38,16 +38,12 @@ const RangerPicker = defineComponent({
         isMove: isMove.value
       }
 
-      return (<div class="u-date-picker-range">
-        <div class="pickers-wrapper">
-          <div class="picker-from">
-            <DayPicker {...dayPickerProps} />
-          </div>
-          <div class="picker-to">
-            <DayPicker isTarget {...dayPickerProps} />
-          </div>
+      return (
+        <div class="u-date-picker-range">
+          <DayPicker {...dayPickerProps} />
+          <DayPicker isTarget {...dayPickerProps} />
         </div>
-      </div>)
+      )
     }
   }
 })

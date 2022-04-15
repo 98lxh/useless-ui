@@ -3,8 +3,6 @@
 
 @include b(date-picker){
   display: inline-block;
-  position: relative;
-
   .u-icon-calendar{
     font-size: 16px;
   }
@@ -14,12 +12,12 @@
     width: 250px;
     border: 1px solid $grey-3;
     border-radius: 3px;
-    position: absolute;
+    position: fixed;
+    z-index: 1000;
     top:35px;
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
 
     .panel__nav{
-      height: 20px;
       display: flex;
       justify-content: space-around;
       padding: 5px 20px;
@@ -64,7 +62,7 @@
 
       .year-cell,.month-cell {
         height: 42px;
-        width: 70px;
+        width: 69px;
         position: relative;
         cursor: pointer;
         transition: background-color .2s ease-in-out;
@@ -164,6 +162,7 @@
         position: relative;
         cursor: pointer;
         transition: background-color .2s ease-in-out;
+        box-sizing: content-box;
 
        &.day-cell{
         &:not(.not-current-month){
@@ -246,7 +245,7 @@
 
     .panel__footer{
       border-top: 1px solid $grey-3;
-      
+      min-height: 35px;
       button{
         margin: 5px;
         float: right;

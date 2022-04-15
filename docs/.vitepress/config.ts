@@ -29,7 +29,8 @@ export default defineConfig({
           text: '数据输入', children: [
             { text: "复选框 Checkbox", link: '/component/checkbox/' },
             { text: "数据穿梭框 Transfer", link: '/component/transfer/' },
-            { text: '输入框 Input', link: '/component/input/' }
+            { text: '输入框 Input', link: '/component/input/' },
+            { text: '日期选择 DatePicker', link: '/component/datepicker/' }
           ]
         },
         {
@@ -40,7 +41,7 @@ export default defineConfig({
         },
         {
           text: "其他", children: [
-            { text: '折叠渐变 Collapse Transition', link: '/component/collapseTransition/' }
+            { text: '折叠渐变 CollapseTransition', link: '/component/collapseTransition/' }
           ]
         }
       ]

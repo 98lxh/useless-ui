@@ -8,23 +8,11 @@
   align-items: center;
   background-color: #f2f3f5;
   cursor: pointer;
-  
+
   .u-input{
     .u-input__input{
-      width: 130px;
+      width: 125px;
       text-align: center;
-    }
-  }
-}
-
-@include b(date-picker-range){
-  .pickers-wrapper{
-    .picker-to{
-      .u-date-picker__panel{
-        left: 250px;
-        border-left: none;
-        box-shadow: none;
-      }
     }
   }
 }

@@ -214,10 +214,9 @@ const DayPicker = defineComponent({
       if (props.isTarget) {
         return <Button type="primary" size="small" onClick={handleConfirmRangeValue}>确定</Button>
       }
-      return <div style="height:34px"></div>
     }
 
-    return () => (<PickerPanel v-slots={{
+    return () => (<PickerPanel isTaget={props.isTarget} v-slots={{
       nav: () => renderNav(),
       content: () => renderContent(),
       footer: () => renderFooter()

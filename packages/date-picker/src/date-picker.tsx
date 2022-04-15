@@ -1,6 +1,6 @@
-import { defineComponent, provide, ref, PropType } from "vue"
+import { defineComponent, provide, ref, PropType, Ref } from "vue"
 import { injectDatePicker } from "./context"
-import { DatePickerType, DatePickerValueType, DatePickerRenageValue } from "./date-picker.types"
+import { DatePickerType } from "./date-picker.types"
 import { useDatePicker } from "./hooks/useDatePicker"
 import { useClickOutSide } from "./hooks/useClickOutside"
 import DayPicker from "./pickers/day-picker"
@@ -40,7 +40,11 @@ const Datepicker = defineComponent({
   name: "UseDatePicker",
   props: datePickerProps,
   components: {
-    Input
+    Input,
+    DayPicker,
+    MonthPicker,
+    YearPicker,
+    RangerPicker
   },
   emits: ['update:value'],
   setup(props) {
@@ -117,7 +121,8 @@ const Datepicker = defineComponent({
       closeDatePickerPanel,
       openDatePickerPanel,
       changePickerType,
-      originType: props.type
+      originType: props.type,
+      datePickerRef,
     })
 
     return () => (
