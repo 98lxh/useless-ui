@@ -1,30 +1,38 @@
 import { defineComponent, provide, ref, PropType } from "vue"
 import { injectDatePicker } from "./context"
-import { DatePickerType, DatePickerValueType } from "./date-picker.types"
+import { DatePickerType, DatePickerValueType, DatePickerRenageValue } from "./date-picker.types"
 import { useDatePicker } from "./hooks/useDatePicker"
 import { useClickOutSide } from "./hooks/useClickOutside"
 import DayPicker from "./pickers/day-picker"
 import YearPicker from "./pickers/year-pickers"
 import MonthPicker from './pickers/month-picker'
+import RangerPicker from "./pickers/range-picker"
 import Input from "./../../input"
 import Icon from "./../../icon"
 
 
 const datePickerProps = {
-  value: {
-    type: Date as PropType<DatePickerValueType>,
-  },
   type: {
     type: String as PropType<DatePickerType>,
     default: "day"
   },
   placeholder: {
-    type: String,
+    type: [
+      String,
+      Array
+    ],
     default: ''
   },
   disabled: {
     type: Boolean,
     default: false
+  },
+  value: {
+    type: [
+      Date,
+      Array,
+      String
+    ],
   }
 }
 
@@ -64,6 +72,39 @@ const Datepicker = defineComponent({
           return <YearPicker />
         case 'month':
           return <MonthPicker />
+        default:
+          return <RangerPicker />
+      }
+    }
+
+    const renderInput = () => {
+      const inputProps = {
+        disabled: props.disabled,
+        onFocus: openDatePickerPanel,
+      }
+
+      if (props.type === 'range') {
+        const valueLen = props.value ? (props.value as any).length : 0
+        return <div class="range-input__wrapper" onClick={openDatePickerPanel}>
+          <Input
+            value={valueLen === 0 ? '' : formatDate.value[0]}
+            placeholder={props.placeholder[0] as any}
+            {...inputProps} />
+          <span>-</span>
+          <Input
+            value={valueLen === 0 ? '' : formatDate.value[1]}
+            placeholder={props.placeholder[1] as any}
+            {...inputProps} />
+          <Icon name="calendar" />
+        </div>
+      } else {
+        return <Input
+          value={props.value && formatDate.value as any}
+          placeholder={props.placeholder as any}
+          v-slots={{
+            suffix: () => <Icon name="calendar" />
+          }}
+          {...inputProps} />
       }
     }
 
@@ -81,14 +122,7 @@ const Datepicker = defineComponent({
 
     return () => (
       <div class="u-date-picker" ref={datePickerRef}>
-        <Input
-          value={props.value && formatDate.value as any}
-          placeholder={props.placeholder}
-          disabled={props.disabled}
-          v-slots={{
-            suffix: () => <Icon name="calendar" />
-          }}
-          onFocus={openDatePickerPanel} />
+        {renderInput()}
         {renderPicker()}
       </div>
     )

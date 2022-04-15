@@ -1,5 +1,6 @@
 import { getYearMonthDay, getDate, buildDays, buildWeeks } from '../utils/formatDate';
 import { computed, reactive, ref, Ref } from "vue"
+import { DatePickerType, DatePickerValueType } from '../date-picker.types';
 
 const getVisibleDays = (value: Date) => {
   const { year, month } = getYearMonthDay(value)
@@ -13,11 +14,23 @@ const getVisibleDays = (value: Date) => {
   return dates
 }
 
+const getCurrentDate = (currenDate: Ref<DatePickerValueType>, isTarget: Boolean, type: DatePickerType) => {
+  if (type === 'range') {
+    if (isTarget) return currenDate.value[1]
+    if (!isTarget) return currenDate.value[0]
+  }
+  return currenDate.value
+}
 
-export const useDayPicker = (currenDate: Ref<Date>, changeCurrentDate: any) => {
+
+export const useDayPicker = (currenDate: Ref<DatePickerValueType>, isTarget: Boolean, type: DatePickerType) => {
   const days = computed(() => buildDays())
   const weeks = computed(() => buildWeeks())
-  const calendar = ref(getYearMonthDay(currenDate.value))
+  const originCalendar = getYearMonthDay(getCurrentDate(currenDate, isTarget, type))
+  const calendar = ref({
+    ...originCalendar,
+    month: isTarget ? originCalendar.month + 1 : originCalendar.month
+  })
 
   const visibleDays = computed(() => {
     const { year, month, day } = calendar.value
@@ -26,6 +39,7 @@ export const useDayPicker = (currenDate: Ref<Date>, changeCurrentDate: any) => {
 
   return {
     visibleDays,
+    getCurrentDate,
     days,
     weeks,
     calendar

@@ -1,11 +1,12 @@
-export type DatePickerType = 'month' | 'year' | 'date'
+export type DatePickerRenageValue = [Date, Date] | [Date]
+export type DatePickerType = 'month' | 'year' | 'date' | 'range'
 
-export type DatePickerValueType = Date | null | 'string'
+export type DatePickerValueType = Date | null | 'string' | DatePickerRenageValue
 
 export interface DatePickerProps {
   value: DatePickerValueType,
   type: DatePickerType,
-  placeholder?: string
+  placeholder?: string | string[],
   disabled?: boolean
 }
 

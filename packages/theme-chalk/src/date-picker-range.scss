@@ -1,0 +1,30 @@
+@import "./common/variables.scss";
+@import "./mixins/mixin.scss";
+
+.range-input__wrapper{
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f2f3f5;
+  cursor: pointer;
+  
+  .u-input{
+    .u-input__input{
+      width: 130px;
+      text-align: center;
+    }
+  }
+}
+
+@include b(date-picker-range){
+  .pickers-wrapper{
+    .picker-to{
+      .u-date-picker__panel{
+        left: 250px;
+        border-left: none;
+        box-shadow: none;
+      }
+    }
+  }
+}

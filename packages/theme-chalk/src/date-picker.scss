@@ -3,6 +3,7 @@
 
 @include b(date-picker){
   display: inline-block;
+  position: relative;
 
   .u-icon-calendar{
     font-size: 16px;
@@ -14,13 +15,13 @@
     border: 1px solid $grey-3;
     border-radius: 3px;
     position: absolute;
-    top:45px;
+    top:35px;
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
 
     .panel__nav{
       height: 20px;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       padding: 5px 20px;
       align-items: center;
       border-bottom: 1px solid $grey-3;
@@ -167,8 +168,12 @@
        &.day-cell{
         &:not(.not-current-month){
          &:not(.is-select){
-           &:hover{
-           background-color: $grey-3;
+           &:not(.is-cell-start){
+             &:not(.is-cell-end){
+                &:hover{
+                  background-color: $grey-3;
+                }
+             }
            }
          }
         }
@@ -177,6 +182,31 @@
        @include when(select){
          background-color: $--color-primary;
          color:#fff;
+       }
+
+        @include when(cell-start){
+         margin: 3px 0px;
+         padding: 2px 5px;
+         background-color: $--color-primary;
+         color:#fff;
+       }
+
+        @include when(cell-end){
+            &:not(.not-current-month){
+              margin: 3px 0px;
+              padding: 2px 5px;
+              background-color: $--color-primary;
+              color:#fff;
+            }
+       }
+
+       @include when(cell-move){
+         &:not(.not-current-month){
+          margin: 5px 0px;
+          padding: 0px 5px;
+          background-color:#e8f3ff ;
+          border-radius: 0px;
+         }
        }
 
         @include when(today){

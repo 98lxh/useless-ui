@@ -25,12 +25,12 @@ const MonthPicker = defineComponent({
       return currentYear.value === y && month === m
     }
     const isSelectMonth = (month: number) => {
-      const { year: y, month: m } = getYearMonthDay(currentDate.value)
+      const { year: y, month: m } = getYearMonthDay(currentDate.value as Date)
       return currentYear.value === y && month === m
     }
 
     const chooseMonth = (month: number) => {
-      const { day } = getYearMonthDay(currentDate.value)
+      const { day } = getYearMonthDay(currentDate.value as Date)
       const date = getDate(currentYear.value, month, day)
       changeCurrentDate(date)
       if (originType === 'date') {

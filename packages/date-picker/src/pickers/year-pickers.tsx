@@ -9,10 +9,10 @@ const YearPicker = defineComponent({
   name: 'UseYearPicker',
   setup() {
     const { currentDate, changeCurrentDate, changePickerType, closeDatePickerPanel, originType } = inject(injectDatePicker)!
-    const { visibleYears, startYear, getStartYear } = useYearPicker(currentDate)
+    const { visibleYears, startYear, getStartYear } = useYearPicker(currentDate as any)
 
     const isSelectYear = (year: number) => {
-      const { year: y } = getYearMonthDay(currentDate.value)
+      const { year: y } = getYearMonthDay(currentDate.value as Date)
       return y === year
     }
 
@@ -34,7 +34,7 @@ const YearPicker = defineComponent({
     const nextYear = changeVisibleYears.bind(null, 'next')
 
     const chooseYear = (year: number, isNotCurrentYear = false) => {
-      const { month, day } = getYearMonthDay(currentDate.value)
+      const { month, day } = getYearMonthDay(currentDate.value as Date)
       changeCurrentDate(getDate(year, month, day))
       if (originType === 'date') {
         changePickerType('date')
