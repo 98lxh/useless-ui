@@ -13,9 +13,9 @@
   &.is-placement-top{
     .popover-node__arrow{
       position: absolute;
-      transform: rotate(45deg) translateX(-50%);
-      bottom: -9px;
-      left: 50%;
+      transform: rotate(45deg);
+      bottom: -5px;
+      left:calc(50% - 10px);
       margin-left: 1px;
       width: 8px;
       height: 8px;
@@ -29,7 +29,7 @@
     .popover-node__arrow{
       position: absolute;
       transform: rotate(45deg) translateY(-50%);
-      right:-3px;
+      right:-2px;
       top: 50%;
       width: 8px;
       height: 8px;
@@ -44,7 +44,7 @@
       position: absolute;
       transform: rotate(45deg) translateY(-50%);
       top: 50%;
-      left:-9px;
+      left:-8px;
       width: 8px;
       height: 8px;
       border: 1px solid $grey-3;
@@ -130,7 +130,7 @@
     .popover-node__arrow{
       position: absolute;
       transform: rotate(45deg) ;
-      bottom: -6px;
+      bottom: -5px;
       left: 10px;
       margin-left: 1px;
       width: 8px;
@@ -145,7 +145,7 @@
     .popover-node__arrow{
       position: absolute;
       transform: rotate(45deg) ;
-      bottom: -6px;
+      bottom: -5px;
       right: 10px;
       margin-left: 1px;
       width: 8px;

@@ -1,5 +1,5 @@
-import { computed, defineComponent, onMounted, PropType, ref, Transition, nextTick, watch } from "vue";
-import { PopoverNodeContent, PopoverNodePositionType, PopoverPlacementType } from "./popover.types";
+import { computed, defineComponent, onMounted, PropType, ref, Transition, nextTick, watch, onUnmounted } from "vue";
+import { PopoverNodeContent, PopoverNodePositionType, PopoverPlacementType, PopoverTriggerType } from "./popover.types";
 import { calculatePosition } from "./utils/calculatePositon";
 
 const Popover = defineComponent({
@@ -36,20 +36,46 @@ const Popover = defineComponent({
     bgColor: {
       type: String,
       default: '#000'
+    },
+    trigger: {
+      type: String as PropType<PopoverTriggerType>,
+      default: 'hover'
+    },
+    triggerEl: {
+      type: Object
     }
   },
   setup(props) {
     const visiable = ref(false)
     const popoverNodeRef = ref<HTMLElement>()
     const position = ref<PopoverNodePositionType>({})
-    const contentMouseOver = ref(false)
+    const contentMouseOver = ref(props.trigger === 'click' ? true : false)
+    const contentRef = ref<Element>()
     const classes = computed(() => ({
       'u-popover-node': true,
       [`is-placement-${props.placement}`]: props.placement
     }))
 
-    onMounted(() => {
-      visiable.value = true
+    const styles = computed(() => ({
+      ...position.value,
+      backgroundColor: props.bgColor,
+      borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor,
+      color: props.color
+    }))
+
+    const handleMouse = (state: boolean) => {
+      if (props.trigger === 'hover') {
+        contentMouseOver.value = state
+      }
+    }
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (contentRef.value && !contentRef.value.contains(e.target as any) && !props.triggerEl.contains(e.target as any)) {
+        contentMouseOver.value = false
+      }
+    }
+
+    const initCalcPopoverContentPosition = () => {
       nextTick(() => {
         const contentSize = {
           height: popoverNodeRef.value.clientHeight,
@@ -57,6 +83,16 @@ const Popover = defineComponent({
         }
         position.value = calculatePosition(props.triggerRect, contentSize, props.placement)
       })
+    }
+
+    onMounted(() => {
+      visiable.value = true
+      initCalcPopoverContentPosition()
+    })
+
+    if (props.trigger === 'click') document.addEventListener('click', handleClickOutside)
+    onUnmounted(() => {
+      if (props.trigger === 'click') document.removeEventListener('click', handleClickOutside)
     })
 
     watch([props.triggerCtx, contentMouseOver], () => {
@@ -73,14 +109,10 @@ const Popover = defineComponent({
         <div
           v-show={visiable.value}
           class={classes.value}
-          style={{
-            ...position.value,
-            backgroundColor: props.bgColor,
-            borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor,
-            color: props.color
-          }}
-          onMouseenter={() => contentMouseOver.value = true}
-          onMouseleave={() => contentMouseOver.value = false}
+          ref={contentRef}
+          style={styles.value}
+          onMouseenter={() => handleMouse(true)}
+          onMouseleave={() => handleMouse(false)}
         >
           {props.content}
           <div class="popover-node__arrow"
