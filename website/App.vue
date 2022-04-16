@@ -1,8 +1,9 @@
 <template>
-   <div :style="{position: 'relative', width: '440px', height: '280px',margin:'100px'}">
-
-
+   <div :style="{padding:'300px'}">
     <use-tooltip content="this is tooltip content" placement="br" trigger="hover">
+    <use-button>Mouse over to dispxxxxxxxxxxxxlay tooltip</use-button>
+  </use-tooltip>
+     <use-tooltip content="this is tooltip content" placement="br" trigger="click">
     <use-button>Mouse over to dispxxxxxxxxxxxxlay tooltip</use-button>
   </use-tooltip>
   </div>

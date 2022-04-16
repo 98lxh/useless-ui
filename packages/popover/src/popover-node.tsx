@@ -13,9 +13,6 @@ const Popover = defineComponent({
       type: Object as PropType<PopoverNodeContent>,
       default: ''
     },
-    triggerRect: {
-      type: Object as PropType<DOMRect>
-    },
     placement: {
       type: String as PropType<PopoverPlacementType>
     },
@@ -69,38 +66,45 @@ const Popover = defineComponent({
       }
     }
 
-    const handleClickOutside = (e: MouseEvent) => {
-      if (contentRef.value && !contentRef.value.contains(e.target as any) && !props.triggerEl.contains(e.target as any)) {
+    const handleClickOutside = (e) => {
+      if (!contentRef.value.contains(e.target) && !props.triggerEl.contains(e.target)) {
         contentMouseOver.value = false
+        props.triggerCtx.instance = null
       }
     }
 
-    const initCalcPopoverContentPosition = () => {
+    const calcPopoverContentPosition = () => {
       nextTick(() => {
         const contentSize = {
           height: popoverNodeRef.value.clientHeight,
           width: popoverNodeRef.value.clientWidth
         }
-        position.value = calculatePosition(props.triggerRect, contentSize, props.placement)
+        position.value = calculatePosition(props.triggerEl, contentSize, props.placement)
       })
     }
 
     onMounted(() => {
       visiable.value = true
-      initCalcPopoverContentPosition()
+      calcPopoverContentPosition()
     })
 
-    if (props.trigger === 'click') document.addEventListener('click', handleClickOutside)
+    if (props.trigger === 'click') {
+      document.addEventListener('click', handleClickOutside)
+      document.addEventListener('scroll', calcPopoverContentPosition)
+      window.addEventListener('resize', calcPopoverContentPosition)
+    }
+
     onUnmounted(() => {
-      if (props.trigger === 'click') document.removeEventListener('click', handleClickOutside)
+      if (props.trigger === 'click') {
+        document.removeEventListener('click', handleClickOutside)
+        document.removeEventListener('scroll', calcPopoverContentPosition)
+        document.removeEventListener('resize', calcPopoverContentPosition)
+      }
     })
 
     watch([props.triggerCtx, contentMouseOver], () => {
       if (!props.triggerCtx.triggerEventOver && !contentMouseOver.value) {
-        visiable.value = false
-        setTimeout(() => {
-          props.onClose()
-        }, 100)
+        props.onClose()
       }
     })
 

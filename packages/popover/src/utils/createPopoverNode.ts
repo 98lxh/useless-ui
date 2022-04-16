@@ -10,22 +10,23 @@ export const createPopoverNode = (triggerEl: HTMLElement,
   bgColor: string,
   trigger: PopoverTriggerType,
 ) => {
-  const triggerRect = triggerEl.getBoundingClientRect()
   const container = document.createElement('div')
   const onClose = () => {
-    render(null, container)
+    vnode.el.className += ' zoom-fade-popover-leave-active zoom-fade-popover-leave-to'
+    setTimeout(() => {
+      render(null, container)
+    }, 100)
   }
 
   const vnode = createVNode(PopoverNode, {
     onClose,
     content,
     placement,
-    triggerRect,
     triggerCtx,
     color,
     bgColor,
     trigger,
-    triggerEl
+    triggerEl,
   })
   render(vnode, container)
   document.body.appendChild(container.firstChild)

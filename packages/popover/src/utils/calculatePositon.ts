@@ -3,7 +3,8 @@ type ContentSizeType = {
   height: number,
   width: number
 }
-export const calculatePosition = (triggerRect: DOMRect, contentSize: ContentSizeType, placement: PopoverPlacementType): PopoverNodePositionType => {
+export const calculatePosition = (triggerEl: any, contentSize: ContentSizeType, placement: PopoverPlacementType): PopoverNodePositionType => {
+  const triggerRect = triggerEl.getBoundingClientRect()
   const positonMap = {
     bottom: {
       top: triggerRect.top + triggerRect.height + 10 + 'px',
