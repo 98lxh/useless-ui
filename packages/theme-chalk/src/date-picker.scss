@@ -61,7 +61,7 @@
       }
 
       .year-cell,.month-cell {
-        height: 42px;
+        height: 50px;
         width: 69px;
         position: relative;
         cursor: pointer;
@@ -255,17 +255,31 @@
 }
 
 // zoom-fade
-.zoom-fade-date-enter-active,
-.zoom-fade-date-leave-active {
+.zoom-fade-top-enter-active,
+.zoom-fade-top-leave-active {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: bottom;
+}
+
+.zoom-fade-top-enter-from {
+  transform: scaleY(0.92);
+}
+
+.zoom-fade-top-leave-to {
+  transform: scaleY(.62);
+}
+
+.zoom-fade-bottom-enter-active,
+.zoom-fade-bottom-leave-active {
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: top;
 }
 
-.zoom-fade-date-enter-from {
+.zoom-fade-bottom-enter-from {
   transform: scaleY(0.92);
 }
 
-.zoom-fade-date-leave-to {
+.zoom-fade-bottom-leave-to {
   transform: scaleY(.62);
 }
 

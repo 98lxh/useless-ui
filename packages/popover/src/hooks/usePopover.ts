@@ -10,8 +10,9 @@ const useEventMouse = (triggerRef: Ref<any>, content: string | VNode[], triggerP
   const triggerCtx = reactive({
     triggerEventOver: false
   })
+
   onMounted(() => {
-    el = triggerRef.value.$el
+    el = triggerRef.value.$el || triggerRef.value
     listener = (isOpen: boolean) => {
       if (isOpen) {
         triggerCtx.triggerEventOver = true

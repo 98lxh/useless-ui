@@ -47,6 +47,7 @@ const Popover = defineComponent({
       'u-popover-node': true,
       [`is-placement-${props.placement}`]: props.placement
     }))
+
     onMounted(() => {
       visiable.value = true
       nextTick(() => {
@@ -69,12 +70,15 @@ const Popover = defineComponent({
 
     return () => (
       <Transition name='zoom-fade-popover' mode="out-in" ref={popoverNodeRef}>
-        <div class={classes.value} style={{
-          ...position.value,
-          backgroundColor: props.bgColor,
-          borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor,
-          color: props.color
-        }} v-show={visiable.value}
+        <div
+          v-show={visiable.value}
+          class={classes.value}
+          style={{
+            ...position.value,
+            backgroundColor: props.bgColor,
+            borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor,
+            color: props.color
+          }}
           onMouseenter={() => contentMouseOver.value = true}
           onMouseleave={() => contentMouseOver.value = false}
         >

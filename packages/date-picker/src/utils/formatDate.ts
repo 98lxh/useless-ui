@@ -1,3 +1,4 @@
+import { DatePickerValueType } from './../date-picker.types';
 export const getYearMonthDay = (date: Date) => {
   let year = date.getFullYear()
   let month = date.getMonth()
@@ -14,7 +15,6 @@ export const getDate = (year: number, month: number, day = 1) => {
 }
 
 export const buildDays = () => {
-
   let arr = Array(42).fill(0)
   arr.forEach((_, i) => arr[i] = i + 1)
   return chunk(arr, 7)
@@ -36,7 +36,13 @@ export const buildMonth = () => {
   return chunk(baseList.map(item => item + '月'), 3)
 }
 
-const chunk = <T>(a: T[], len: number): T[][] => {
+export const dateSort = (dateArr: any) => {
+  const values = dateArr.map((d) => new Date(d).valueOf())
+  values.sort((s, e) => s - e)
+  return values.map(v => new Date(v))
+}
+
+const chunk = <T = any>(a: T[], len: number): T[][] => {
   let index = 0;
   let resIndex = 0;
   const arr = []

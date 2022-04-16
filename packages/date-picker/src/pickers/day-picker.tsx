@@ -1,6 +1,6 @@
 import { defineComponent, inject, ref, computed } from 'vue'
 import { useDayPicker } from '../hooks/useDayPicker'
-import { getDate, getYearMonthDay } from './../utils/formatDate'
+import { dateSort, getDate, getYearMonthDay } from './../utils/formatDate'
 import { injectDatePicker } from './../context'
 import Icon from "./../../../icon"
 import Button from "./../../../button"
@@ -76,21 +76,16 @@ const DayPicker = defineComponent({
           emit('changeCellStart', date)
           emit('changeIsMove', true)
         }
-
-        if (props.cellEnd && props.cellStart) {
-          if (props.isMove) {
-            const rangeDates = [
-              new Date(props.cellStart).valueOf(),
-              new Date(props.cellEnd).valueOf()
-            ]
-            rangeDates.sort((s, e) => s - e)
-            changeCurrentDate(rangeDates.map(d => new Date(d)) as any)
-            return emit('changeIsMove', false)
-          }
-          emit('changeCellStart', date)
-          emit('changeCellEnd', null)
-          emit('changeIsMove', true)
+        if (props.isMove) {
+          changeCurrentDate(dateSort([
+            props.cellStart,
+            props.cellEnd
+          ]))
+          return emit('changeIsMove', false)
         }
+        emit('changeCellStart', date)
+        emit('changeCellEnd', null)
+        emit('changeIsMove', true)
       }
     }
 
@@ -102,14 +97,12 @@ const DayPicker = defineComponent({
     }
 
     const isCellMove = (date: Date) => {
-      if (props.cellEnd && props.cellStart) {
-        if (
-          date > props.cellStart && date < props.cellEnd ||
-          date > props.cellEnd && date < props.cellStart
-        ) {
-          return true
-        }
-        return false
+      if (!props.cellEnd || !props.cellStart) return false
+      if (
+        date > props.cellStart && date < props.cellEnd ||
+        date > props.cellEnd && date < props.cellStart
+      ) {
+        return true
       }
     }
 
@@ -194,7 +187,7 @@ const DayPicker = defineComponent({
                 'is-cell-end': originType === 'range' && isCellEnd(day)
               }))
               return <span
-                class={classes.value} key={(i) * 7 + (j)}
+                class={classes.value} key={j}
                 onClick={() => chooseDate(day)}
                 onMousemove={() => handleMousemove(day)}
               >

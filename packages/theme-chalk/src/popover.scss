@@ -13,8 +13,9 @@
   &.is-placement-top{
     .popover-node__arrow{
       position: absolute;
-      transform: rotate(45deg);
-      bottom: -5px;
+      transform: rotate(45deg) translateX(-50%);
+      bottom: -9px;
+      left: 50%;
       margin-left: 1px;
       width: 8px;
       height: 8px;
@@ -27,9 +28,9 @@
   &.is-placement-left{
     .popover-node__arrow{
       position: absolute;
-      transform: rotate(45deg);
-      right:-5px;
-      top: 8px;
+      transform: rotate(45deg) translateY(-50%);
+      right:-3px;
+      top: 50%;
       width: 8px;
       height: 8px;
       border: 1px solid $grey-3;
@@ -41,9 +42,9 @@
   &.is-placement-right{
   .popover-node__arrow{
       position: absolute;
-      transform: rotate(45deg);
-      left:-5px;
-      top: 7px;
+      transform: rotate(45deg) translateY(-50%);
+      top: 50%;
+      left:-9px;
       width: 8px;
       height: 8px;
       border: 1px solid $grey-3;
@@ -52,11 +53,40 @@
     }
   }
 
+  &.is-placement-rt{
+    .popover-node__arrow{
+        position: absolute;
+        transform: rotate(45deg);
+        top: 10px;
+        left:-5px;
+        width: 8px;
+        height: 8px;
+        border: 1px solid $grey-3;
+        border-top: none;
+        border-right: none;
+      }
+    }
+
+    &.is-placement-rb{
+      .popover-node__arrow{
+          position: absolute;
+          transform: rotate(45deg);
+          bottom: 10px;
+          left:-5px;
+          width: 8px;
+          height: 8px;
+          border: 1px solid $grey-3;
+          border-top: none;
+          border-right: none;
+        }
+      }
+
   &.is-placement-bottom{
    .popover-node__arrow{
       position: absolute;
-      transform: rotate(45deg);
-      top: -5px;
+      transform: rotate(45deg) translateX(-50%);
+      top: -2px;
+      left: 50%;
       width: 8px;
       height: 8px;
       border: 1px solid $grey-3;
@@ -66,12 +96,102 @@
     }
   }
 
+  &.is-placement-bl{
+    .popover-node__arrow{
+       position: absolute;
+       transform: rotate(45deg);
+       top: -5px;
+       left: 10px;
+       width: 8px;
+       height: 8px;
+       border: 1px solid $grey-3;
+       border-right: none;
+       border-bottom: none;
+       z-index: 0;
+     }
+   }
+
+   &.is-placement-br{
+    .popover-node__arrow{
+       position: absolute;
+       transform: rotate(45deg);
+       top: -5px;
+       right: 10px;
+       width: 8px;
+       height: 8px;
+       border: 1px solid $grey-3;
+       border-right: none;
+       border-bottom: none;
+       z-index: 0;
+     }
+   }
+
+  &.is-placement-tl{
+    .popover-node__arrow{
+      position: absolute;
+      transform: rotate(45deg) ;
+      bottom: -6px;
+      left: 10px;
+      margin-left: 1px;
+      width: 8px;
+      height: 8px;
+      border: 1px solid $grey-3;
+      border-top: none;
+      border-left: none;
+    }
+  }
+
+  &.is-placement-tr{
+    .popover-node__arrow{
+      position: absolute;
+      transform: rotate(45deg) ;
+      bottom: -6px;
+      right: 10px;
+      margin-left: 1px;
+      width: 8px;
+      height: 8px;
+      border: 1px solid $grey-3;
+      border-top: none;
+      border-left: none;
+    }
+  }
+
+  &.is-placement-lt{
+    .popover-node__arrow{
+      position: absolute;
+      transform: rotate(45deg);
+      right:-5px;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      border: 1px solid $grey-3;
+       border-bottom: none;
+      border-left: none;
+    }
+  }
+
+  &.is-placement-lb{
+    .popover-node__arrow{
+      position: absolute;
+      transform: rotate(45deg);
+      right:-5px;
+      bottom: 10px;
+      width: 8px;
+      height: 8px;
+      border: 1px solid $grey-3;
+       border-bottom: none;
+      border-left: none;
+    }
+  }
+
+
 }
 
 // zoom-fade
 .zoom-fade-popover-enter-active,
 .zoom-fade-popover-leave-active {
   transition: transform 0.3s, opacity 0.3s ease-out,top .3s linear;
+  transform-origin: left;
 }
 
 .zoom-fade-popover-enter-from {

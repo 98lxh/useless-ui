@@ -7,7 +7,8 @@ const PickerPanel = defineComponent({
     isTaget: Boolean
   },
   setup(props, { slots }) {
-    const { panelVisible, datePickerRef } = inject(injectDatePicker)!
+    const { panelVisible, datePickerRef, originType } = inject(injectDatePicker)!
+    const isToTop = ref(false);
     const panelPosition = reactive({
       x: '',
       y: ''
@@ -16,23 +17,27 @@ const PickerPanel = defineComponent({
     const PanelStyle = computed(() => ({
       top: panelPosition.y,
       left: panelPosition.x,
-      borderLeft: props.isTaget && 'none',
+      borderLeft: originType === 'range' && 'none',
       boxShadow: props.isTaget && 'none',
     }))
 
     const changePanelPosition = () => {
-      const rect = datePickerRef.value.getBoundingClientRect();
-      panelPosition.x = rect.x + (props.isTaget ? 248 : 0) + 'px'
-      panelPosition.y = rect.y + 35 + 'px'
+      if (!panelVisible.value) return
+      const PicerRect = datePickerRef.value.getBoundingClientRect();
+      isToTop.value = document.documentElement.clientHeight - PicerRect.y - 310 < 0;
+      panelPosition.x = PicerRect.x + (props.isTaget ? 248 : 0) + 'px'
+      panelPosition.y = isToTop.value ? PicerRect.y - 310 + 'px' : PicerRect.y + 35 + 'px'
     }
 
     onMounted(() => {
       changePanelPosition()
       document.addEventListener('scroll', changePanelPosition)
+      window.addEventListener('resize', changePanelPosition)
     })
 
     onUnmounted(() => {
       document.removeEventListener('scroll', changePanelPosition)
+      window.removeEventListener('resize', changePanelPosition)
     })
 
     watch([panelVisible], () => {
@@ -41,23 +46,25 @@ const PickerPanel = defineComponent({
       }
     })
 
-    return () => (<Teleport to="body">
-      <Transition name="zoom-fade-date">
-        <div class="u-date-picker__panel"
-          v-show={panelVisible.value}
-          style={PanelStyle.value}>
-          <div class="panel__nav">
-            {slots.nav && slots.nav()}
+    return () => (
+      <Teleport to="body">
+        <Transition name={`zoom-fade-${isToTop.value ? 'top' : 'bottom'}`}>
+          <div class="u-date-picker__panel"
+            v-show={panelVisible.value}
+            style={PanelStyle.value}
+          >
+            <div class="panel__nav">
+              {slots.nav && slots.nav()}
+            </div>
+            <div class="panel__content">
+              {slots.content && slots.content()}
+            </div>
+            <div class="panel__footer">
+              {slots.footer && slots.footer()}
+            </div>
           </div>
-          <div class="panel__content">
-            {slots.content && slots.content()}
-          </div>
-          <div class="panel__footer">
-            {slots.footer && slots.footer()}
-          </div>
-        </div>
-      </Transition>
-    </Teleport>)
+        </Transition>
+      </Teleport>)
   }
 })
 

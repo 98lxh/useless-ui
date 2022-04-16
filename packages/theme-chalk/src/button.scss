@@ -4,6 +4,7 @@
 @include b(button){ //u-button
   display: inline-flex !important;
   align-items: center;
+  justify-content: center;
   border-radius:3px ;
   font-size: 14px;
   outline: none;
