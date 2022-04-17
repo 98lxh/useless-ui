@@ -1,56 +1,62 @@
 import { computed, defineComponent, onMounted, PropType, ref, Transition, nextTick, watch, onUnmounted } from "vue";
 import { PopoverNodeContent, PopoverNodePositionType, PopoverPlacementType, PopoverTriggerType } from "./popover.types";
 import { calculatePosition } from "./utils/calculatePositon";
+import { calculatePlacement } from "./utils/placementStrategy";
+
+const popoverProps = {
+  title: {
+    type: String,
+    default: ''
+  },
+  content: {
+    type: Object as PropType<PopoverNodeContent>,
+    default: ''
+  },
+  placement: {
+    type: String as PropType<PopoverPlacementType>
+  },
+  position: {
+    type: Object as PropType<PopoverNodePositionType>,
+    default: () => ({})
+  },
+  onClose: {
+    type: Function as PropType<() => void>
+  },
+  triggerCtx: {
+    type: Object
+  },
+  color: {
+    type: String,
+    default: '#fff'
+  },
+  bgColor: {
+    type: String,
+    default: '#000'
+  },
+  trigger: {
+    type: String as PropType<PopoverTriggerType>,
+    default: 'hover'
+  },
+  triggerEl: {
+    type: Object as PropType<Element>
+  }
+}
+
 
 const Popover = defineComponent({
   name: "UsePopoverNode",
-  props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    content: {
-      type: Object as PropType<PopoverNodeContent>,
-      default: ''
-    },
-    placement: {
-      type: String as PropType<PopoverPlacementType>
-    },
-    position: {
-      type: Object as PropType<PopoverNodePositionType>,
-      default: () => ({})
-    },
-    onClose: {
-      type: Function as PropType<() => void>
-    },
-    triggerCtx: {
-      type: Object
-    },
-    color: {
-      type: String,
-      default: '#fff'
-    },
-    bgColor: {
-      type: String,
-      default: '#000'
-    },
-    trigger: {
-      type: String as PropType<PopoverTriggerType>,
-      default: 'hover'
-    },
-    triggerEl: {
-      type: Object
-    }
-  },
+  props: popoverProps,
   setup(props) {
     const visiable = ref(false)
     const popoverNodeRef = ref<HTMLElement>()
     const position = ref<PopoverNodePositionType>({})
+    const triggerRect = props.triggerEl.getBoundingClientRect()
     const contentMouseOver = ref(props.trigger === 'click' ? true : false)
+    const placement = ref<PopoverPlacementType>('top')
     const contentRef = ref<Element>()
     const classes = computed(() => ({
       'u-popover-node': true,
-      [`is-placement-${props.placement}`]: props.placement
+      [`is-placement-${placement.value}`]: props.placement
     }))
 
     const styles = computed(() => ({
@@ -74,12 +80,14 @@ const Popover = defineComponent({
     }
 
     const calcPopoverContentPosition = () => {
+      if (!visiable.value) return
       nextTick(() => {
         const contentSize = {
           height: popoverNodeRef.value.clientHeight,
           width: popoverNodeRef.value.clientWidth
         }
-        position.value = calculatePosition(props.triggerEl, contentSize, props.placement)
+        placement.value = calculatePlacement(triggerRect, contentSize, props.placement)
+        position.value = calculatePosition(triggerRect, contentSize, placement.value)
       })
     }
 
@@ -90,15 +98,11 @@ const Popover = defineComponent({
 
     if (props.trigger === 'click') {
       document.addEventListener('click', handleClickOutside)
-      document.addEventListener('scroll', calcPopoverContentPosition)
-      window.addEventListener('resize', calcPopoverContentPosition)
     }
 
     onUnmounted(() => {
       if (props.trigger === 'click') {
         document.removeEventListener('click', handleClickOutside)
-        document.removeEventListener('scroll', calcPopoverContentPosition)
-        document.removeEventListener('resize', calcPopoverContentPosition)
       }
     })
 
@@ -118,8 +122,11 @@ const Popover = defineComponent({
           onMouseenter={() => handleMouse(true)}
           onMouseleave={() => handleMouse(false)}
         >
-          {props.content}
-          <div class="popover-node__arrow"
+          <div>
+            {props.content}
+          </div>
+          <div
+            class="popover-node__arrow"
             style={{
               backgroundColor: props.bgColor,
               borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor

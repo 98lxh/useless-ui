@@ -1,16 +1,9 @@
 <template>
-   <div :style="{padding:'300px'}">
-    <use-tooltip content="this is tooltip content" placement="br" trigger="hover">
-    <use-button>Mouse over to dispxxxxxxxxxxxxlay tooltip</use-button>
-  </use-tooltip>
-     <use-tooltip content="this is tooltip content" placement="br" trigger="click">
-    <use-button>Mouse over to dispxxxxxxxxxxxxlay tooltip</use-button>
-  </use-tooltip>
-  </div>
+<div style="padding:300px">
+  <use-date-picker v-model:value="value" type="range" :placeholder="['开始时间','结束时间']"></use-date-picker>
+</div>
 </template>
-
-<style>
-.button{
-  width: 200px;
-}
-</style>
+<script setup lang="ts">
+import { ref } from 'vue';
+const value = ref(null)
+</script>

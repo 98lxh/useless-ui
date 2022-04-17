@@ -22,3 +22,8 @@ export interface PopoverNodeProps {
   content?: PopoverNodeContent,
   placement: PopoverPlacementType
 }
+
+export type ContentSizeType = {
+  height: number,
+  width: number
+}
