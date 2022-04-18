@@ -4,6 +4,8 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { getPackagesSync } from '@lerna/project';
 import jsx from "acorn-jsx"
 import vue from 'rollup-plugin-vue'
+import babel from "rollup-plugin-babel"
+const extensions = [".ts", ".js", ".tsx"];
 
 const inputs = getPackagesSync().map(pck => pck.name).filter(name => name.includes('@useless-ui'));
 export default inputs.map(name => {
@@ -27,7 +29,7 @@ export default inputs.map(name => {
           exclude: ['node_modules'],
         }
       }),
-      ["@vue/babel-plugin-jsx"]
+      babel({ extensions }),
     ],
     acornInjectPlugins: [jsx()],
     external(id) { // 对vue本身 和 自己写的包 都排除掉不打包

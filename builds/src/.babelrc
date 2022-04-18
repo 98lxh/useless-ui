@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    "@babel/transform-typescript",
+    "@vue/babel-plugin-jsx",
+    "external-helpers"
+  ]
+}

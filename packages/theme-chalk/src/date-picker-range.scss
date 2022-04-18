@@ -16,3 +16,16 @@
     }
   }
 }
+
+@include b(date-picker-range){
+  display: inline-flex;
+
+  .u-date-picker__panel{
+    box-shadow: none;
+  }
+
+  .u-date-picker__panel:last-child{
+    margin-left: -5px;
+    border-left: none;
+  }
+}

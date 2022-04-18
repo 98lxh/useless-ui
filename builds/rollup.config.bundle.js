@@ -5,15 +5,7 @@ import jsx from "acorn-jsx"
 import vue from 'rollup-plugin-vue'
 import babel from "rollup-plugin-babel"
 
-const config = {
-  babel: {
-    exclude: ["node_modules/**"],
-    plugins: [
-      "@vue/babel-plugin-jsx",
-    ]
-  }
-}
-
+const extensions = [".ts", ".js", ".tsx"];
 // const inputs = getPackagesSync().map(pck => pck.name).filter(name => name.includes('@useless-ui'));
 export default {
   input: path.resolve(__dirname, `../packages/useless-ui/index.ts`),
@@ -29,13 +21,14 @@ export default {
     }),
     typescript({
       tsconfigOverride: {
+        compilerOptions: { declaration: true },
         exclude: [
           'node_modules',
           'website'
         ]
       }
     }),
-    babel(),
+    babel({ extensions }),
   ],
   external(id) { // 排除vue本身
     return /^vue/.test(id)

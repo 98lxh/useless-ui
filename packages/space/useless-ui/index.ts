@@ -1,5 +1,5 @@
 import { App } from 'vue';
-import "../mixins/src/position-target";
+import "../../mixins/src/position-target"
 import Button from "@useless-ui/button";
 import Icon from "@useless-ui/icon";
 import ButtonGroup from '@useless-ui/button-group';

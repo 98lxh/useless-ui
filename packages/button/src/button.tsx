@@ -1,9 +1,6 @@
-
 import { defineComponent, PropType, computed } from "vue";
+import { IButtonSize, IButtonStatus, IButtonType } from "./button.types";
 
-type IButtonType = 'primary' | 'dashed' | 'danger' | 'outline' | 'text' | 'secondary'
-type IButtonStatus = 'warning' | 'danger' | 'success' | 'normal'
-type IButtonSize = 'small' | 'default' | 'large'
 const Button = defineComponent({
   name: 'UseButton',
   props: {

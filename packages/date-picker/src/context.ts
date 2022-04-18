@@ -8,7 +8,6 @@ export interface DatePicker {
   changeCurrentDate: (newDate: DatePickerValueType) => void,
   changePickerType: (type: DatePickerType) => void,
   originType: DatePickerType,
-  datePickerRef: Ref<Element>,
 }
 
 export const injectDatePicker: InjectionKey<DatePicker> = Symbol();

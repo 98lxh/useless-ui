@@ -12,8 +12,6 @@
     width: 250px;
     border: 1px solid $grey-3;
     border-radius: 3px;
-    position: fixed;
-    z-index: 1000;
     top:35px;
     box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
 
@@ -283,3 +281,9 @@
   transform: scaleY(.62);
 }
 
+
+@include b(picker-wrapper){
+  position: absolute;
+  top:500px;
+  z-index: 1000;
+}

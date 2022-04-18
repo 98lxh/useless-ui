@@ -3,13 +3,6 @@ import { render, VNode } from 'vue';
 import { createVNode } from 'vue';
 import PopoverNode from './../popover-node'
 
-const positionContainer = document.createElement('div')
-positionContainer.style.position = 'absolute';
-positionContainer.style.top = '0px'
-positionContainer.style.left = '0px'
-positionContainer.style.width = '100%'
-document.body.appendChild(positionContainer)
-
 export const createPopoverNode = (triggerEl: HTMLElement,
   content: string | VNode[],
   placement: PopoverPlacementType,
@@ -37,7 +30,6 @@ export const createPopoverNode = (triggerEl: HTMLElement,
     triggerEl,
   })
   render(vnode, container)
-  positionContainer.appendChild(container.firstChild)
-
+  document.getElementById('position-target').appendChild(container.firstChild)
   return vnode
 }

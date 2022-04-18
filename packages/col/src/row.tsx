@@ -30,8 +30,8 @@ const Row = defineComponent({
         marginRight: ''
       }
       if (props.gutter > 0) {
-        ret.marginLeft = `-${props.gutter / 2}px`;
-        ret.marginRight = `-${props.gutter / 2}px`;
+        ret.marginLeft = '-' + (props.gutter / 2).toString() + 'px';
+        ret.marginRight = '-' + (props.gutter / 2).toString() + 'px';
       }
 
       return ret

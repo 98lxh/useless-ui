@@ -19,7 +19,7 @@ const Popover = defineComponent({
       default: 'hover'
     },
     placement: {
-      type: String as PropType<PopoverPlacementType>,
+      type: String as PropType<any>,
       default: 'top'
     },
     color: {

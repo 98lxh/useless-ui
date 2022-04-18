@@ -1,4 +1,4 @@
-import { defineComponent, provide, ref, PropType, Ref } from "vue"
+import { defineComponent, provide, ref, PropType, Teleport, Transition, computed } from "vue"
 import { injectDatePicker } from "./context"
 import { DatePickerType } from "./date-picker.types"
 import { useDatePicker } from "./hooks/useDatePicker"
@@ -52,6 +52,17 @@ const Datepicker = defineComponent({
 
     const visible = ref(false)
     const datePickerRef = ref<Element>()
+
+    const getPickerPosition = () => {
+      const pickerRect = datePickerRef.value.getBoundingClientRect()
+      const pickerTop = (datePickerRef.value as any).offsetTop + pickerRect.height + 10
+      const pickerLeft = (datePickerRef.value as any).offsetLeft
+      return {
+        top: pickerTop + 'px',
+        left: pickerLeft + 'px'
+      }
+    }
+
     const openDatePickerPanel = () => {
       visible.value = true
     }
@@ -69,16 +80,24 @@ const Datepicker = defineComponent({
     }
 
     const renderPicker = () => {
+      let Picker
       switch (currentType.value) {
         case 'date':
-          return <DayPicker />
+          Picker = DayPicker
+          break
         case 'year':
-          return <YearPicker />
+          Picker = YearPicker
+          break
         case 'month':
-          return <MonthPicker />
+          Picker = MonthPicker
+          break
         default:
-          return <RangerPicker />
+          Picker = RangerPicker
+          break
       }
+      return <div class="u-picker-wrapper" style={getPickerPosition()}>
+        <Picker />
+      </div>
     }
 
     const renderInput = () => {
@@ -86,25 +105,24 @@ const Datepicker = defineComponent({
         disabled: props.disabled,
         onFocus: openDatePickerPanel,
       }
-
       if (props.type === 'range') {
         const valueLen = props.value ? (props.value as any).length : 0
         return <div class="range-input__wrapper" onClick={openDatePickerPanel}>
           <Input
             value={valueLen === 0 ? '' : formatDate.value[0]}
-            placeholder={props.placeholder[0] as any}
+            placeholder={props.placeholder[0] as string}
             {...inputProps} />
           <span>-</span>
           <Input
             value={valueLen === 0 ? '' : formatDate.value[1]}
-            placeholder={props.placeholder[1] as any}
+            placeholder={props.placeholder[1] as string}
             {...inputProps} />
           <Icon name="calendar" />
         </div>
       } else {
         return <Input
           value={props.value && formatDate.value as any}
-          placeholder={props.placeholder as any}
+          placeholder={props.placeholder as string}
           v-slots={{
             suffix: () => <Icon name="calendar" />
           }}
@@ -122,13 +140,16 @@ const Datepicker = defineComponent({
       openDatePickerPanel,
       changePickerType,
       originType: props.type,
-      datePickerRef,
     })
 
     return () => (
       <div class="u-date-picker" ref={datePickerRef}>
         {renderInput()}
-        {renderPicker()}
+        <Teleport to="#position-target">
+          <Transition name="zoom-fade-bottom">
+            {visible.value && renderPicker()}
+          </Transition>
+        </Teleport>
       </div>
     )
   }

@@ -1,7 +1,5 @@
 <template>
-<div style="padding:300px">
-  <use-date-picker v-model:value="value" type="range" :placeholder="['开始时间','结束时间']"></use-date-picker>
-</div>
+  <use-date-picker v-model:value="value" type="month" placeholder="请选择一个月份"></use-date-picker>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue';
