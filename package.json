@@ -1,6 +1,7 @@
 {
-  "name": "root",
-  "private": true,
+  "name": "useless-ui",
+  "private": false,
+  "version": "0.1.1",
   "workspaces": [
     "packages/*"
   ],
@@ -10,7 +11,7 @@
     "build:theme": "gulp build --gulpfile packages/theme-chalk/gulpfile.js",
     "build": "webpack --config builds/webpack.config.js",
     "build:esm-bundle": "rollup -c builds/rollup.config.bundle.js",
-    "build:esm": "rollup -c ./builds/rollup.config.js",
+    "build:esm": "npx --max_old_space_size=4096 rollup -c ./builds/rollup.config.js ",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:serve": "vitepress serve docs"

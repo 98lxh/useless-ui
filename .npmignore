@@ -1,0 +1,9 @@
+packages/
+builds/
+docs/
+node_modules/
+typings/
+website/
+
+*.md
+babel.config.js
