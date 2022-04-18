@@ -66,6 +66,9 @@
   width:100%;
   line-height:40px;
   text-align:center;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
   color:white
 }
 .odd{
@@ -118,6 +121,9 @@
   width:100%;
   line-height:40px;
   text-align:center;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
   color:white
 }
 .odd{
@@ -186,6 +192,9 @@
   width:100%;
   line-height:40px;
   text-align:center;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
   color:white
 }
 .odd{

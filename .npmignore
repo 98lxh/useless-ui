@@ -6,4 +6,6 @@ typings/
 website/
 
 *.md
+*.log
+*.json
 babel.config.js
