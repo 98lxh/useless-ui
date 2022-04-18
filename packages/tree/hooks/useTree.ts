@@ -88,7 +88,6 @@ const useTreeUpdate = () => {
 
 export const useTree = (props: ITreeProps) => {
   const selectedKey = typeof props.selectedKey === 'undefined' ? ref('') : useModel(props, 'selectedKey')
-  console.log(props)
   const checkedKeys = useModel(props, 'checkedKeys')
   const data = useGenTreeData(props)
   const flatList = useGenFlatList(data.value)

@@ -42,7 +42,6 @@ const Tree = defineComponent({
     const handleSelectChange = (node: TreeNodeOption) => {
       selectedKey.value = node.key
       emit('selectedChange', node.key)
-      console.log(selectedKey.value)
     }
 
     const handleCheckChange = (node: TreeNodeOption) => {

@@ -4,7 +4,7 @@
 @include b(row){
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: flex-start;
 
   @include when(justify-end){
     justify-content: flex-end;

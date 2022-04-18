@@ -17,7 +17,6 @@ const Message = (options: IMessageParams) => {
     offset += inst.el.offsetHeight + 20
   })
 
-  console.log(offset)
 
   let userClose = options.onClose
   let opts = {
