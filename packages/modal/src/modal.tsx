@@ -8,12 +8,14 @@ const modalProps = {
     type: Boolean
   },
   originPosition: {
-    type: Object as PropType<ModalPosition>,
-    default: ''
+    type: Object as PropType<ModalPosition | null>,
   },
   targetPosition: {
-    type: Object as PropType<ModalPosition>,
-    default: ''
+    type: Object as PropType<ModalPosition | null>,
+    default: {
+      x: '50%',
+      y: '50%',
+    }
   },
   maskClosable: {
     type: Boolean,
@@ -36,6 +38,13 @@ const Modal = defineComponent({
   emits: ['update:visible', 'confirm', 'cancel'],
   setup(props, { slots, emit }) {
     const { visible, modalRef, modalContainerRef } = useModal(props)
+
+    if (visible.value === true) {
+      visible.value = false
+      setTimeout(() => {
+        visible.value = true
+      }, 500)
+    }
 
     const handleCloseModal = () => {
       if (!props.maskClosable) return
@@ -86,5 +95,4 @@ const Modal = defineComponent({
   }
 })
 
-console.log(Teleport)
 export default Modal

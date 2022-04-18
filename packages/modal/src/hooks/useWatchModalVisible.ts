@@ -17,8 +17,8 @@ export const useWatchModalVisible = (
       oX = originPosition.x + 'px'
       oY = originPosition.y + 'px'
     } else {
-      oX = mouseLocation.x + 'px'
-      oY = mouseLocation.y + 'px'
+      oX = mouseLocation.x ? mouseLocation.x + 'px' : '50%'
+      oY = mouseLocation.y ? mouseLocation.y + 'px' : '50%'
     }
 
     if (targetPosition) {
