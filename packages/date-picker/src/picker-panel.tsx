@@ -1,5 +1,4 @@
-import { computed, defineComponent, inject, watch, reactive, ref, Teleport, Transition, onMounted, onUnmounted } from 'vue'
-import { injectDatePicker } from './context'
+import { defineComponent } from 'vue'
 
 const PickerPanel = defineComponent({
   name: 'UsePickerPanel',
@@ -7,7 +6,6 @@ const PickerPanel = defineComponent({
     isTaget: Boolean
   },
   setup(_, { slots }) {
-    const isToTop = ref(false);
     return () => (
       <div class="u-date-picker__panel">
         <div class="panel__nav">

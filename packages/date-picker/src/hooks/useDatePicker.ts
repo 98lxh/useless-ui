@@ -1,7 +1,7 @@
 import { DatePickerValueType } from './../date-picker.types';
 import { getDate } from './../utils/formatDate';
 import { computed, getCurrentInstance, Ref, ref, watch } from "vue";
-import { DatePickerProps, DatePickerType } from "../date-picker.types";
+import { DatePickerType } from "../date-picker.types";
 import { getYearMonthDay } from "../utils/formatDate";
 
 const genFormatDate = (currentDate: Ref<any>, type: DatePickerType) => {

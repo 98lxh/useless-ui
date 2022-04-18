@@ -3,13 +3,13 @@ import { injectDatePicker } from "./context"
 import { DatePickerType } from "./date-picker.types"
 import { useDatePicker } from "./hooks/useDatePicker"
 import { useClickOutSide } from "./hooks/useClickOutside"
+import { createPositionTarget } from "./utils/createPositionTarget"
 import DayPicker from "./pickers/day-picker"
 import YearPicker from "./pickers/year-pickers"
 import MonthPicker from './pickers/month-picker'
 import RangerPicker from "./pickers/range-picker"
 import Input from "./../../input"
 import Icon from "./../../icon"
-
 
 const datePickerProps = {
   type: {
@@ -52,11 +52,13 @@ const Datepicker = defineComponent({
 
     const visible = ref(false)
     const datePickerRef = ref<Element>()
+    const positonTarget = createPositionTarget()
 
     const getPickerPosition = () => {
       const pickerRect = datePickerRef.value.getBoundingClientRect()
-      const pickerTop = (datePickerRef.value as any).offsetTop + pickerRect.height + 10
-      const pickerLeft = (datePickerRef.value as any).offsetLeft
+
+      const pickerTop = pickerRect.top + pickerRect.height + document.documentElement.scrollTop + 5
+      const pickerLeft = pickerRect.left + document.documentElement.scrollLeft
       return {
         top: pickerTop + 'px',
         left: pickerLeft + 'px'
@@ -145,7 +147,7 @@ const Datepicker = defineComponent({
     return () => (
       <div class="u-date-picker" ref={datePickerRef}>
         {renderInput()}
-        <Teleport to="#position-target">
+        <Teleport to={positonTarget}>
           <Transition name="zoom-fade-bottom">
             {visible.value && renderPicker()}
           </Transition>
