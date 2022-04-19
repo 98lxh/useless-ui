@@ -1,6 +1,6 @@
 import { computed, ref, getCurrentInstance } from 'vue';
-import { createTreeNode } from './../utils';
-import { TreeNodeOption } from './../src/tree.types';
+import { createTreeNode } from '../utils';
+import { TreeNodeOption } from '../src/tree.types';
 import { ITreeProps } from '../src/tree.types';
 
 const useModel = (props: ITreeProps, key: string) => {

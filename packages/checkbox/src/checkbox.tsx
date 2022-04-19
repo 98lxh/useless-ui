@@ -1,5 +1,5 @@
 import { defineComponent, computed } from "vue";
-import { useCheckbox } from "./hooks/useCheckbox";
+import { useCheckbox } from "./hooks/use-checkbox";
 
 const Checkbox = defineComponent({
   name: 'UseCheckbox',

@@ -1,6 +1,5 @@
 import { computed, Ref, ref } from "vue"
-import { DatePickerValueType } from "../date-picker.types"
-import { buildMonth, getYearMonthDay } from "../utils/formatDate"
+import { buildMonth, getYearMonthDay } from "../utils/date-helper"
 
 export const useMonthPicker = (currentDate: Ref<any>) => {
   const { year } = getYearMonthDay(currentDate.value)

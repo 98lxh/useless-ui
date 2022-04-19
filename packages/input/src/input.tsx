@@ -1,7 +1,8 @@
-import { computed, defineComponent, PropType } from "vue";
-import { InputValueType, InputType } from "./input.types";
-import Icon from "@useless-ui/icon"
-import { useInput } from './hooks/useInput'
+import { computed, defineComponent, PropType } from "vue"
+import { InputValueType, InputType } from "./input.types"
+import { useInput } from './hooks/use-input'
+import Icon from "../../icon"
+
 const inputProps = {
   type: {
     type: String as PropType<InputType>,

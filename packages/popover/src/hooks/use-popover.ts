@@ -1,6 +1,6 @@
 import { onMounted, Ref, VNode, reactive, onUnmounted } from 'vue';
-import { PopoverProps } from './../popover.types';
-import { createPopoverNode } from "./../utils/createPopoverNode"
+import { PopoverProps } from '../popover.types';
+import { createPopoverNode } from "../utils/create-popover-node"
 
 
 const useEventMouse = (triggerRef: Ref<any>, content: string | VNode[], triggerProps: PopoverProps) => {

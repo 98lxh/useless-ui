@@ -1,9 +1,9 @@
-import { defineComponent, provide, ref, PropType, Teleport, Transition, computed } from "vue"
+import { defineComponent, provide, ref, PropType, Teleport, Transition } from "vue"
 import { injectDatePicker } from "./context"
 import { DatePickerType } from "./date-picker.types"
-import { useDatePicker } from "./hooks/useDatePicker"
-import { useClickOutSide } from "./hooks/useClickOutside"
-import { createPositionTarget } from "./utils/createPositionTarget"
+import { useDatePicker } from "./hooks/use-date-picker"
+import { useClickOutSide } from "./hooks/use-click-outside"
+import { createPositionTarget } from "./utils/create-position-target"
 import DayPicker from "./pickers/day-picker"
 import YearPicker from "./pickers/year-pickers"
 import MonthPicker from './pickers/month-picker'

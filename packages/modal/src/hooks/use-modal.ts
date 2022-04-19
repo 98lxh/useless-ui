@@ -1,7 +1,7 @@
 
-import { computed, getCurrentInstance, onUnmounted, reactive, ref, Ref, watch } from "vue";
+import { computed, getCurrentInstance, onUnmounted, reactive, ref, Ref } from "vue";
+import { useWatchModalVisible } from "./use-watch-modal-visible";
 import { ModalProps } from "../modal.types";
-import { useWatchModalVisible } from "./useWatchModalVisible";
 
 const useModel = (props: ModalProps): Ref<boolean> => {
   const emit = getCurrentInstance().emit;

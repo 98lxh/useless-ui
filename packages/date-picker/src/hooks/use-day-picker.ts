@@ -1,18 +1,6 @@
-import { getYearMonthDay, getDate, buildDays, buildWeeks } from '../utils/formatDate';
-import { computed, reactive, ref, Ref } from "vue"
+import { computed, ref, Ref } from "vue"
 import { DatePickerType, DatePickerValueType } from '../date-picker.types';
-
-const getVisibleDays = (value: Date) => {
-  const { year, month } = getYearMonthDay(value)
-  const currentFirstDay = getDate(year, month) as any;
-  const week = currentFirstDay.getDay()
-  const startDay = currentFirstDay - week * 60 * 60 * 1000 * 24
-  const dates = []
-  for (let i = 0; i < 42; i++) {
-    dates.push(new Date(startDay + i * 60 * 60 * 1000 * 24))
-  }
-  return dates
-}
+import { getYearMonthDay, getDate, buildDays, buildWeeks, getVisibleDays } from '../utils/date-helper';
 
 const getCurrentDate = (currenDate: Ref<DatePickerValueType>, isTarget: Boolean, type: DatePickerType) => {
   if (type === 'range') {

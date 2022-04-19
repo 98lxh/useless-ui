@@ -1,7 +1,7 @@
-import { defineComponent, PropType, Teleport } from "vue";
-import { useModal } from "./hooks/useModal";
-import Button from "@useless-ui/button"
-import { ModalPosition } from "./modal.types";
+import { defineComponent, PropType, Teleport } from "vue"
+import { useModal } from "./hooks/use-modal"
+import { ModalPosition } from "./modal.types"
+import Button from "../../button"
 
 const modalProps = {
   visible: {

@@ -1,6 +1,6 @@
 import { computed } from "@vue/reactivity";
 import { Ref, ref } from "vue";
-import { buildYears, getYearMonthDay } from "../utils/formatDate";
+import { buildYears, getYearMonthDay } from "../utils/date-helper";
 
 const getStartYear = (year: number) => Math.floor(year / 10) * 10 - 1
 

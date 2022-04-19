@@ -1,5 +1,5 @@
 
-import { ContentSizeType, PopoverPlacementType } from './../popover.types';
+import { ContentSizeType, PopoverPlacementType } from '../popover.types';
 
 
 const placementStrategy = {

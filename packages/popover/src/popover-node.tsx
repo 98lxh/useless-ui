@@ -1,7 +1,7 @@
 import { computed, defineComponent, onMounted, PropType, ref, Transition, nextTick, watch, onUnmounted } from "vue";
 import { PopoverNodeContent, PopoverNodePositionType, PopoverPlacementType, PopoverTriggerType } from "./popover.types";
-import { calculatePosition } from "./utils/calculatePositon";
-import { calculatePlacement } from "./utils/placementStrategy";
+import { calculatePosition } from "./utils/calculate-positon";
+import { calculatePlacement } from "./utils/placement-strategy";
 
 const popoverProps = {
   title: {
@@ -122,7 +122,7 @@ const Popover = defineComponent({
           onMouseenter={() => handleMouse(true)}
           onMouseleave={() => handleMouse(false)}
         >
-          <div>
+          <div class="popover-node__content">
             {props.content}
           </div>
           <div

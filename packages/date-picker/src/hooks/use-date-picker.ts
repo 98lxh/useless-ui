@@ -1,37 +1,11 @@
-import { DatePickerValueType } from './../date-picker.types';
-import { getDate } from './../utils/formatDate';
 import { computed, getCurrentInstance, Ref, ref, watch } from "vue";
+import { DatePickerValueType } from '../date-picker.types';
 import { DatePickerType } from "../date-picker.types";
-import { getYearMonthDay } from "../utils/formatDate";
-
-const genFormatDate = (currentDate: Ref<any>, type: DatePickerType) => {
-  const { year, month, day } = getYearMonthDay(
-    Array.isArray(currentDate.value) ? currentDate.value[0] : currentDate.value
-  )
-  let date: any
-  switch (type) {
-    case 'date':
-      date = `${year}-${month + 1}-${day}`
-      break;
-    case 'month':
-      date = `${year}-${month + 1}-1`
-      break;
-    case 'year':
-      date = `${year}-1-1`
-      break;
-    case 'range':
-      const startDate = `${year}-${month + 1}-${day}`
-      const { year: eY, month: eM, day: eD } = getYearMonthDay(currentDate.value[1])
-      date = [startDate, `${eY}-${eM + 2}-${eD}`]
-      break
-  }
-  return date
-}
-
+import { getYearMonthDay, getDate, genFormatDate } from "../utils/date-helper";
 
 const useWatchCurrentDate = (currentDate: Ref<any>, type: DatePickerType) => {
   const emit = getCurrentInstance().emit;
-  watch(currentDate, (newV) => {
+  watch(currentDate, () => {
     emit('update:value', genFormatDate(currentDate, type))
   }, {
     deep: true

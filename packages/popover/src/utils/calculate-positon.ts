@@ -1,4 +1,4 @@
-import { PopoverPlacementType, PopoverNodePositionType, ContentSizeType } from './../popover.types';
+import { PopoverPlacementType, PopoverNodePositionType, ContentSizeType } from '../popover.types';
 
 
 export const calculatePosition = (triggerRect: DOMRect, contentSize: ContentSizeType, placement: PopoverPlacementType): PopoverNodePositionType => {

@@ -1,5 +1,5 @@
 import { computed } from 'vue';
-import { ITransferProps } from './../transfer.types';
+import { ITransferProps } from '../transfer.types';
 export const useComputedData = (props: ITransferProps) => {
   //calc left right data
   const propsKey = computed(() => props.props.key)

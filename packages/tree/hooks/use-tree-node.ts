@@ -1,4 +1,4 @@
-import { TreeNodeProps } from './../src/tree.types';
+import { TreeNodeProps } from '../src/tree.types';
 import { inject, computed } from "vue";
 import { TreeProvide } from "../src/tree.types";
 

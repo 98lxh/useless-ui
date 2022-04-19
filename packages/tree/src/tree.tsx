@@ -1,7 +1,7 @@
 import { defineComponent, PropType, provide } from "vue";
 import TreeNode from "./tree-node";
 import { TreeNodeOption, TreeProvide } from "./tree.types";
-import { useTree } from '../hooks/useTree'
+import { useTree } from '../hooks/use-tree'
 
 const Tree = defineComponent({
   name: 'UseTree',

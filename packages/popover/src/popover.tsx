@@ -1,7 +1,6 @@
 import { cloneVNode, defineComponent, PropType, ref } from "vue";
-import { usePopover } from "./hooks/usePopover"
-import { PopoverPlacementType, PopoverTriggerType } from "./popover.types";
-
+import { usePopover } from "./hooks/use-popover"
+import { PopoverTriggerType } from "./popover.types";
 
 const Popover = defineComponent({
   name: "UsePopover",

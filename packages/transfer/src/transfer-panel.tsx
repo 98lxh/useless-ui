@@ -1,8 +1,9 @@
 import { defineComponent, PropType, reactive } from "vue";
-import UCheckbox from "@useless-ui/checkbox";
-import UCheckboxGroup from "@useless-ui/checkbox-group";
 import { Props } from "./transfer.types";
-import { useCheck } from "./hooks/useCheck";
+import { useCheck } from "./hooks/use-check";
+import UCheckboxGroup from "../../checkbox-group";
+import UCheckbox from "../../checkbox";
+
 const TransferPanel = defineComponent({
   name: 'UseTransferPanel',
   props: {
