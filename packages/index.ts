@@ -1,3 +1,4 @@
+import { App } from 'vue';
 import Button from "./button";
 import Icon from "./icon";
 import ButtonGroup from './button-group';
@@ -17,7 +18,7 @@ import Modal from "./modal"
 import DatePicker from "./date-picker";
 import Form from "./form"
 
-export {
+const components = [
   Button,
   Icon,
   ButtonGroup,
@@ -36,4 +37,34 @@ export {
   Modal,
   DatePicker,
   Form
+]
+
+
+const install = (app: App): void => {
+  components.forEach(comp => {
+    app.component(comp.name, comp)
+  })
+}
+
+
+export {
+  Button,
+  Icon,
+  ButtonGroup,
+  Row,
+  Col,
+  Checkbox,
+  CheckboxGroup,
+  Transfer,
+  CollapseTransition,
+  Tree,
+  Message,
+  Space,
+  Popover,
+  Tooltip,
+  Input,
+  Modal,
+  DatePicker,
+  Form,
+  install
 }
