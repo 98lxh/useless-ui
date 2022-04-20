@@ -14,12 +14,13 @@ import Icon from "./../../icon"
 const datePickerProps = {
   type: {
     type: String as PropType<DatePickerType>,
-    default: "day"
+    default: "date"
   },
   placeholder: {
     type: [
       String,
-      Array
+      Array,
+      null
     ],
     default: ''
   },

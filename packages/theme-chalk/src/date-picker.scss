@@ -1,5 +1,6 @@
 @import "./common/variables.scss";
 @import "./mixins/mixin.scss";
+@import "./date-picker-range.scss";
 
 @include b(date-picker){
   display: inline-block;
