@@ -9,7 +9,7 @@ const useModel = (props: InputProps) => {
     },
     set(newValue) {
       if (props.disabled) return
-      emit('update:value', newValue)
+      emit('update:value', props.type === 'number' ? Number(newValue) : newValue)
     }
   })
 }

@@ -1,4 +1,4 @@
-import { Component, PropType } from 'vue';
+import { PropType } from 'vue';
 import { defineComponent } from 'vue';
 import NumberField from '../fields/number-field';
 import StringField from '../fields/string-field';

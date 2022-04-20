@@ -1,5 +1,5 @@
 
-export type InputType = 'text' | 'password'
+export type InputType = 'text' | 'password' | 'number'
 export type InputValueType = 'number' | 'string'
 
 export interface InputProps {

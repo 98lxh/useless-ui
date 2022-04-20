@@ -10,7 +10,12 @@ const NumberField = defineComponent({
     Input
   },
   setup(props) {
-    return () => <Input value={props.value} />
+    const handleChange = (event) => {
+      const value = event.target.value
+      props.onChange(Number(value))
+    }
+
+    return () => <Input value={props.value} type="number" onInput={handleChange} />
   }
 })
 

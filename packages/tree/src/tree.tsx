@@ -57,8 +57,8 @@ const Tree = defineComponent({
       checkedKeys.value = currentCheckedKeys
     }
 
-    const renderNodes = () => {
-      const dfs = (nodes: TreeNodeOption[]) => {
+    const renderTreeNodes = () => {
+      const scanTree = (nodes: TreeNodeOption[]) => {
         return nodes.map(treeNode => {
           const nodeProps = {
             node: treeNode,
@@ -68,18 +68,18 @@ const Tree = defineComponent({
           }
           if (treeNode.children.length) {
             return <TreeNode {...nodeProps} >
-              {dfs(treeNode.children)}
+              {scanTree(treeNode.children)}
             </TreeNode>
           } else {
             return <TreeNode {...nodeProps} />
           }
         })
       }
-      return dfs(data.value)
+      return scanTree(data.value)
     }
 
     return () => (
-      <div class="u-tree">{renderNodes()}</div>
+      <div class="u-tree">{renderTreeNodes()}</div>
     )
   }
 })
