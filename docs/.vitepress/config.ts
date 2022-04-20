@@ -7,7 +7,7 @@ export default defineConfig({
     sidebar: {
       '/': [
         {
-          text: '安装使用', link: "/component/install/",
+          text: '快速上手', link: "/component/quickstart/",
         },
         {
           text: '通用', children: [
