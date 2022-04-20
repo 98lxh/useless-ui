@@ -4,7 +4,7 @@ module.exports = {
   mode: 'production',
   entry: path.resolve(__dirname, '../packages/useless-ui/index.ts'), // 打包入口
   output: {
-    path: path.resolve(__dirname, '../lib'), // 出口
+    path: path.resolve(__dirname, '../dist/lib'), // 出口
     filename: 'index.js',
     libraryTarget: 'umd', //打包格式 commonJs AMD 不支持es6 可以在浏览器直接使用
     library: 'useless-ui'

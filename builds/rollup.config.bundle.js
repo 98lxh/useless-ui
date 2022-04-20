@@ -11,7 +11,7 @@ export default {
   input: path.resolve(__dirname, `../packages/useless-ui/index.ts`),
   output: {
     format: 'es',
-    file: `lib/index.js`,
+    file: `dist/es/index.js`,
   },
   acornInjectPlugins: [jsx()],
   plugins: [
