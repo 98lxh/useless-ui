@@ -4,7 +4,6 @@ import Popover from "./../../popover"
 import Input from "./../../input"
 import Icon from "./../../icon"
 import { SelectOption } from "./select.types";
-import { emit } from "process";
 
 const SelectProps = {
   options:{
