@@ -28,6 +28,10 @@ const Popover = defineComponent({
     bgColor: {
       type: String,
       default: '#fff'
+    },
+    showArrow:{
+      type:Boolean,
+      default:true
     }
   },
   setup(props, { slots }) {

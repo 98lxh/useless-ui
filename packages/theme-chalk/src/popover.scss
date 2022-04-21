@@ -190,8 +190,8 @@
 // zoom-fade
 .zoom-fade-popover-enter-active,
 .zoom-fade-popover-leave-active {
-  transition: transform 0.3s, opacity 0.3s ease-out,top .3s linear;
-  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),top .3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: 0% 0%;
 }
 
 .zoom-fade-popover-enter-from {

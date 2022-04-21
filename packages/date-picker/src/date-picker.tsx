@@ -149,7 +149,7 @@ const Datepicker = defineComponent({
       <div class="u-date-picker" ref={datePickerRef}>
         {renderInput()}
         <Teleport to={positonTarget}>
-          <Transition name="zoom-fade-bottom">
+          <Transition name="zoom-fade-datepicker">
             {visible.value && renderPicker()}
           </Transition>
         </Teleport>
