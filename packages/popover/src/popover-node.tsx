@@ -55,7 +55,7 @@ const Popover = defineComponent({
     const popoverNodeRef = ref<HTMLElement>()
     const position = ref<PopoverNodePositionType>({})
     const triggerRect = props.triggerEl.getBoundingClientRect()
-    const contentEventOver = ref(props.trigger === 'click' ? true : false)
+    const contentMouseOver = ref(props.trigger === 'click' ? true : false)
     const placement = ref<PopoverPlacementType>('top')
     const contentRef = ref<Element>()
     const classes = computed(() => ({
@@ -72,13 +72,13 @@ const Popover = defineComponent({
 
     const handleMouse = (state: boolean) => {
       if (props.trigger === 'hover') {
-        contentEventOver.value = state
+        contentMouseOver.value = state
       }
     }
 
     const handleClickOutside = (e) => {
       if (!contentRef.value.contains(e.target) && !props.triggerEl.contains(e.target)) {
-        contentEventOver.value = false
+        contentMouseOver.value = false
         props.triggerCtx.instance = null
       }
     }
@@ -91,7 +91,7 @@ const Popover = defineComponent({
           width: popoverNodeRef.value.clientWidth
         }
         placement.value = calculatePlacement(triggerRect, contentSize, props.placement)
-        position.value = calculatePosition(triggerRect, contentSize, placement.value,props.showArrow)
+        position.value = calculatePosition(triggerRect, contentSize, placement.value)
       })
     }
 
@@ -110,8 +110,8 @@ const Popover = defineComponent({
       }
     })
 
-    watch([props.triggerCtx, contentEventOver], () => {
-      if (!props.triggerCtx.triggerEventOver && !contentEventOver.value) {
+    watch([props.triggerCtx, contentMouseOver], () => {
+      if (!props.triggerCtx.triggerEventOver && !contentMouseOver.value) {
         props.onClose()
       }
     })
@@ -127,10 +127,11 @@ const Popover = defineComponent({
           onMouseenter={() => handleMouse(true)}
           onMouseleave={() => handleMouse(false)}
         >
-          {props.content}
+          <div class="popover-node__content">
+            {props.content}
+          </div>
           <div
             class="popover-node__arrow"
-            v-show={props.showArrow}
             style={{
               backgroundColor: props.bgColor,
               borderColor: 

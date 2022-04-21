@@ -5,7 +5,7 @@ import { createPopoverNode } from "../utils/create-popover-node"
 
 const useEventMouse = (triggerRef: Ref<any>, content: string | VNode[], triggerProps: PopoverProps) => {
   let el: any
-  const { trigger } = triggerProps
+  const { trigger, placement, color, bgColor } = triggerProps
   const triggerCtx = reactive({
     triggerEventOver: false,
     instance: null
@@ -18,7 +18,7 @@ const useEventMouse = (triggerRef: Ref<any>, content: string | VNode[], triggerP
       triggerCtx.instance.props.onClose()
       return triggerCtx.instance = null
     }
-    triggerCtx.instance = createPopoverNode(el, content, triggerCtx, triggerProps)
+    triggerCtx.instance = createPopoverNode(el, content, placement, triggerCtx, color, bgColor, trigger)
   }
 
   const handleClosePopover = () => {

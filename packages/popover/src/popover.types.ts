@@ -15,7 +15,6 @@ export interface PopoverProps {
   placement?: PopoverPlacementType,
   color?: string
   bgColor?: string
-  showArrow?:boolean
 }
 
 export interface PopoverNodeProps {
