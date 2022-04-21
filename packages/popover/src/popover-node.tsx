@@ -43,7 +43,7 @@ const popoverProps = {
   showArrow:{
     type:Boolean,
     default:true
-  }
+  },
 }
 
 
@@ -116,6 +116,7 @@ const Popover = defineComponent({
       }
     })
 
+
     return () => (
       <Transition name='zoom-fade-popover' mode="out-in" ref={popoverNodeRef}>
         <div
@@ -132,7 +133,10 @@ const Popover = defineComponent({
             v-show={props.showArrow}
             style={{
               backgroundColor: props.bgColor,
-              borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor
+              borderColor: 
+                          props.bgColor !==  '#000' 
+                                         ? '#e5e6eb' 
+                                         : props.bgColor
             }} />
         </div>
       </Transition >

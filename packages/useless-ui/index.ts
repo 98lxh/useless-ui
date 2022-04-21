@@ -17,6 +17,7 @@ import Input from "@useless-ui/input"
 import Modal from "@useless-ui/modal"
 import DatePicker from "@useless-ui/date-picker";
 import Form from "@useless-ui/form"
+import Select from "@useless-ui/select"
 
 const components = [
   Button,
@@ -36,7 +37,8 @@ const components = [
   Input,
   Modal,
   DatePicker,
-  Form
+  Form,
+  Select
 ]
 const install = (app: App): void => {
   components.forEach(comp => {
@@ -62,7 +64,8 @@ export {
   Input,
   Modal,
   DatePicker,
-  Form
+  Form,
+  Select
 }
 
 export default {

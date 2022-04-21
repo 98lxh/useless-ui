@@ -1,0 +1,29 @@
+{
+  "name": "@useless-ui/select",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "98lxh <582658211@qq.com>",
+  "homepage": "https://github.com/98lxh/useless-ui#readme",
+  "license": "ISC",
+  "main": "lib/select.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/98lxh/useless-ui.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/98lxh/useless-ui/issues"
+  }
+}

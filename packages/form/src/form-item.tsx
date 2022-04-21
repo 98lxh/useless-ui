@@ -22,7 +22,6 @@ const FormItem = defineComponent({
   setup(props) {
     return () => {
       const schema = props.schema as Schema
-      //TODO:没有指定type 猜测
       const type = schema.type
       let Component: any
       switch (type) {

@@ -1,0 +1,22 @@
+@import "./common/variables.scss";
+@import "./mixins/mixin.scss";
+
+@include b(select){
+  .u-icon-arrowdown{
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+}
+
+@include b(select-option){
+  line-height: 36px;
+  min-width: 270px;
+  padding:0 10px;
+  user-select: none;
+  cursor: pointer;
+
+  &:hover{
+    background-color: #f2f3f5;
+  }
+}

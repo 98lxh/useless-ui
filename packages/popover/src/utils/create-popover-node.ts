@@ -14,6 +14,7 @@ export const createPopoverNode = (
 
   const onClose = () => {
     vnode.el.className += ' zoom-fade-popover-leave-active zoom-fade-popover-leave-to'
+    triggerCtx.instance = null;
     setTimeout(() => {
       render(null, container)
     }, 100)

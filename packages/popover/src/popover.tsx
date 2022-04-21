@@ -1,10 +1,8 @@
-import { cloneVNode, defineComponent, PropType, ref } from "vue";
+import { cloneVNode, defineComponent,defineExpose ,PropType, ref } from "vue";
 import { usePopover } from "./hooks/use-popover"
 import { PopoverTriggerType } from "./popover.types";
 
-const Popover = defineComponent({
-  name: "UsePopover",
-  props: {
+const popoverProps =  {
     title: {
       type: String,
       default: ''
@@ -32,17 +30,34 @@ const Popover = defineComponent({
     showArrow:{
       type:Boolean,
       default:true
+    },
+    visible:{
+     type:Boolean,
+     default:true
     }
-  },
-  setup(props, { slots }) {
+  }
+
+const Popover = defineComponent({
+  name: "UsePopover",
+  props:popoverProps,
+  setup(props, { slots,expose }) {
     const triggerRef = ref()
-    usePopover(props, triggerRef, slots)
+    const { triggerCtx } = usePopover(props, triggerRef, slots)
+
+    const close = () => {
+      triggerCtx.instance.props.onClose()
+    }
+    
     const renderTrigger = () => {
       const triggerVnode = slots.default!()[0]
       return cloneVNode(triggerVnode, {
         ref: triggerRef,
       })
     }
+
+    expose({
+      close
+    })
 
     return () => (
       renderTrigger()
