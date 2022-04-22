@@ -1,15 +1,13 @@
-import { PopoverPlacementType, PopoverTriggerType } from '../popover.types';
+import { PopoverPlacementType, PopoverProps, PopoverTriggerType } from '../popover.types';
 import { render, VNode } from 'vue';
 import { createVNode } from 'vue';
 import PopoverNode from '../popover-node'
 import { createPositionTarget } from './create-position-target';
-export const createPopoverNode = (triggerEl: HTMLElement,
+export const createPopoverNode = (
+  triggerEl: HTMLElement,
   content: string | VNode[],
-  placement: PopoverPlacementType,
   triggerCtx: any,
-  color: string,
-  bgColor: string,
-  trigger: PopoverTriggerType,
+  triggerProps:PopoverProps,
 ) => {
   const container = document.createElement('div')
   const positionTarget = createPositionTarget()
@@ -22,15 +20,13 @@ export const createPopoverNode = (triggerEl: HTMLElement,
   }
 
   const vnode = createVNode(PopoverNode, {
+    ...triggerProps,
     onClose,
     content,
-    placement,
     triggerCtx,
-    color,
-    bgColor,
-    trigger,
     triggerEl,
   })
+  
   render(vnode, container)
   positionTarget.appendChild(container.firstChild)
   return vnode

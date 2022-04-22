@@ -40,9 +40,9 @@ const popoverProps = {
   triggerEl: {
     type: Object as PropType<Element>
   },
-  showArrow:{
-    type:Boolean,
-    default:true
+  showArrow: {
+    type: Boolean,
+    default: true
   },
 }
 
@@ -91,7 +91,7 @@ const Popover = defineComponent({
           width: popoverNodeRef.value.clientWidth
         }
         placement.value = calculatePlacement(triggerRect, contentSize, props.placement)
-        position.value = calculatePosition(triggerRect, contentSize, placement.value)
+        position.value = calculatePosition(triggerRect, contentSize, placement.value, props.showArrow)
       })
     }
 
@@ -132,12 +132,13 @@ const Popover = defineComponent({
           </div>
           <div
             class="popover-node__arrow"
+            v-show={props.showArrow}
             style={{
               backgroundColor: props.bgColor,
-              borderColor: 
-                          props.bgColor !==  '#000' 
-                                         ? '#e5e6eb' 
-                                         : props.bgColor
+              borderColor:
+                props.bgColor !== '#000'
+                  ? '#e5e6eb'
+                  : props.bgColor
             }} />
         </div>
       </Transition >
