@@ -29,6 +29,7 @@ export const useInput = (inputProps: InputProps) => {
   const type = ref(inputProps.type)
   const modelValue = useModel(inputProps)
   const { handleShowPassword } = useInputPassword(inputProps, type)
+
   return {
     modelValue,
     handleShowPassword,

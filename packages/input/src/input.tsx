@@ -1,4 +1,4 @@
-import { computed, defineComponent, PropType } from "vue"
+import { computed, defineComponent, PropType, ref } from "vue"
 import { InputValueType, InputType } from "./input.types"
 import { useInput } from './hooks/use-input'
 import Icon from "../../icon"
@@ -18,7 +18,10 @@ const inputProps = {
     type: Boolean
   },
   error: {
-    type: Boolean
+    type: [
+      Boolean,
+      Object
+    ]
   },
   showPassword: {
     type: Boolean
@@ -37,7 +40,7 @@ const Input = defineComponent({
     const classes = computed(() => ({
       'u-input__input': true,
       'is-disabled': props.disabled,
-      'is-error': props.error,
+      'is-error':typeof props.error === 'object' ? props.error.error : props.error,
       'is-prefix': slots.prefix,
       'is-suffix': slots.suffix
     }))

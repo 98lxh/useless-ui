@@ -1,0 +1,25 @@
+@import "./common/variables.scss";
+@import "./mixins/mixin.scss";
+
+@include b(form-item){
+
+  .u-form-item__label{
+    display: inline-block;
+    margin-right: 10px;
+
+    span{
+      color:$red-6;
+      margin-right: 5px;
+    }
+  }
+
+  .u-form-item--error{
+    height: 36px;
+    line-height: 36px;
+    color:$red-6;
+    p{
+      margin: 0px;
+      font-size: 14px;
+    }
+  }
+}

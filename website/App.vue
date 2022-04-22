@@ -1,65 +1,26 @@
 <template>
-  {{value}}
-  <use-select v-model:value="value" :options="options" placeholder="请选择" />
+  <p>当前选中:{{value}}</p>
+  <use-select v-model:value="value" :options="options" placeholder="请选择一个城市" />
 </template>
 <script setup>
-import {ref} from "vue";
+import {ref} from 'vue';
 const value = ref('')
 const options =  [
         {
-          label: "Everybody's Got Something to Hide Except Me and My Monkey",
-          value: 'song0',
-          disabled: true
+          label: "Beijing",
+          value: 'Beijing',
         },
         {
-          label: 'Drive My Car',
-          value: 'song1'
+          label: 'Shanghai',
+          value: 'Shanghai'
         },
         {
-          label: 'Norwegian Wood',
-          value: 'song2'
+          label: 'Guangzhou',
+          value: 'Guangzhou'
         },
         {
-          label: "You Won't See",
-          value: 'song3',
-          disabled: true
+          label: "Shenzhen",
+          value: 'Shenzhen',
         },
-        {
-          label: 'Nowhere Man',
-          value: 'song4'
-        },
-        {
-          label: 'Think For Yourself',
-          value: 'song5'
-        },
-        {
-          label: 'The Word',
-          value: 'song6'
-        },
-        {
-          label: 'Michelle',
-          value: 'song7',
-          disabled: true
-        },
-        {
-          label: 'What goes on',
-          value: 'song8'
-        },
-        {
-          label: 'Girl',
-          value: 'song9'
-        },
-        {
-          label: "I'm looking through you",
-          value: 'song10'
-        },
-        {
-          label: 'In My Life',
-          value: 'song11'
-        },
-        {
-          label: 'Wait',
-          value: 'song12'
-        }
       ]
 </script>

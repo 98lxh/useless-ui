@@ -2,6 +2,7 @@
 @import "./mixins/mixin.scss";
 
 @include b(select){
+  display: inline-block;
   .u-icon-arrowdown{
     font-size: 12px;
     font-weight: 800;

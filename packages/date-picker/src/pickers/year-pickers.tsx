@@ -57,7 +57,7 @@ const YearPicker = defineComponent({
     const renderContent = () => {
       return <>
         {
-          visibleYears.value.map((row, i) => (
+          visibleYears.value.map((row) => (
             <div class="year">
               {
                 row.map((year) => {

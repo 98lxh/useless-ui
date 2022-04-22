@@ -6,7 +6,7 @@ export interface InputProps {
   type?: InputType,
   placeholder?: string,
   value: number | string,
-  error?: boolean,
+  error?: any,
   disabled?: boolean,
   showPassword: boolean
 }

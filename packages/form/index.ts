@@ -1,5 +1,6 @@
 import { App } from "vue";
 import Form from "./src/form";
+import FormItem from "./src/form-item"
 
 type SFCWithInstall<T> = T & { install(app: App): void }
 
@@ -11,5 +12,9 @@ const withIntall = <T>(comp: T) => {
 }
 
 const UForm = withIntall(Form)
+const UFormItem = withIntall(FormItem)
 
-export default UForm
+export {
+  UForm,
+  UFormItem
+}

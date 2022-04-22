@@ -16,7 +16,7 @@ import Tooltip from "@useless-ui/tooltip"
 import Input from "@useless-ui/input"
 import Modal from "@useless-ui/modal"
 import DatePicker from "@useless-ui/date-picker";
-import Form from "@useless-ui/form"
+import {UForm as Form,UFormItem as FormItem} from "@useless-ui/form"
 import Select from "@useless-ui/select"
 
 const components = [
@@ -38,6 +38,7 @@ const components = [
   Modal,
   DatePicker,
   Form,
+  FormItem,
   Select
 ]
 const install = (app: App): void => {
