@@ -3,11 +3,21 @@
 
 @include b(select){
   display: inline-block;
+  cursor: pointer;
+
+  span{
+    display: inline-block;
+  }
+
   .u-icon-arrowdown{
     font-size: 12px;
     font-weight: 800;
   }
 
+  .u-input{
+    pointer-events: none;
+    caret-color: transparent;
+  }
 }
 
 @include b(select-option){
@@ -16,8 +26,16 @@
   padding:0 10px;
   user-select: none;
   cursor: pointer;
+  font-size: 14px;
+
+  @include when(disabled){
+    opacity: .6;
+    cursor: not-allowed;
+  }
 
   &:hover{
-    background-color: #f2f3f5;
+    &:not(.is-disabled){
+      background-color: #f2f3f5;
+    }
   }
 }

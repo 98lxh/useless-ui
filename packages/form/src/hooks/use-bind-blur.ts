@@ -1,10 +1,10 @@
-import { cloneVNode, reactive, ref, Ref, VNode } from "vue";
+import { VNode } from "vue";
 
 export const useBindBlur = (slots:VNode[],state:any,listener:any) => {
   const scanSlots = (vnodes:VNode[]) => {
     vnodes.forEach(vnode => {
       const VnodeName = vnode.type &&(vnode.type as any).name 
-      if( VnodeName === 'UseInput') {
+      if( VnodeName === 'UseInput' || VnodeName === 'UseSelect') {
         vnode.props.error = state
         vnode.props.onBlur = listener
       }

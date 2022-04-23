@@ -35,8 +35,9 @@ const Input = defineComponent({
     Icon
   },
   emits: ['focus', 'blur', 'input', 'update:value'],
-  setup(props, { slots, emit }) {
+  setup(props, { slots, emit, expose }) {
     const { modelValue, type, handleShowPassword } = useInput(props)
+    const inputRef = ref<HTMLInputElement>()
     const classes = computed(() => ({
       'u-input__input': true,
       'is-disabled': props.disabled,
@@ -58,6 +59,10 @@ const Input = defineComponent({
       emit('input', event)
     }
 
+    const focus = () => {
+      inputRef.value && inputRef.value.focus()
+    }
+
     const renderSuffix = () => {
       if (props.type === 'password') {
         return <Icon
@@ -68,6 +73,10 @@ const Input = defineComponent({
       return slots.suffix && slots.suffix()
     }
 
+    expose({
+      focus
+    })
+
     return () => (
       <div class={['u-input', props.disabled && 'is-disabled']}>
         <span class="u-input--prefix" v-show={slots.prefix}>
@@ -75,6 +84,7 @@ const Input = defineComponent({
         </span>
         <input
           class={classes.value}
+          ref={inputRef}
           placeholder={props.placeholder}
           onFocus={handleFocus}
           onBlur={handleBlur}

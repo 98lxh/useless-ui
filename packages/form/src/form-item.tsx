@@ -1,4 +1,4 @@
-import { PropType, Transition } from 'vue';
+import { getCurrentInstance, PropType, Transition } from 'vue';
 import { defineComponent } from 'vue';
 import { FieldRule } from './form.types';
 import { useFormItem } from './hooks/use-form-item';
@@ -24,9 +24,7 @@ const FormItem = defineComponent({
   name: 'UseFormItem',
   props: formItemProps,
   setup(props, { slots }) {
-
-    const { formItemValue, state, validate, labelWidth, required,rule } = useFormItem(props)
-
+    const { formItemValue, state, validate, labelWidth, required, rule } = useFormItem(props)
     const renderLabel = () => {
       return (<label
         class="u-form-item__label"
@@ -40,7 +38,7 @@ const FormItem = defineComponent({
     const renderContent = () => {
       const VNodes = slots.default && slots.default()
       useBindBlur(VNodes, state, () => {
-        rule.value && validate(formItemValue.value)
+        rule.value && validate()
       })
       return VNodes
     }

@@ -34,7 +34,8 @@ export default defineConfig({
             { text: "数据穿梭框 Transfer", link: '/component/transfer/' },
             { text: '输入框 Input', link: '/component/input/' },
             { text: '日期选择器 DatePicker', link: '/component/datepicker/' },
-            { text: '选择器 Select',link:'/component/select/' }
+            { text: '选择器 Select',link:'/component/select/' },
+            { text: "表单 From",link:'/component/form/' }
           ]
         },
         {
