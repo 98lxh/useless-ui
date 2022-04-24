@@ -8,32 +8,47 @@
 
 ```vue
 <template>
-  <use-form :modal="form" :label-width="70" :rules="rules">
-   <use-form-item label="用户名:" prop="name">
+  <use-form :model="form" :label-width="50">
+   <use-form-item label="name:" prop="name">
     <use-input v-model:value="form.name"></use-input>
    </use-form-item>
-   <use-form-item label="密码:" prop="password">
-    <use-input v-model:value="form.password"></use-input>
+   <use-form-item label="post:" prop="post">
+    <use-input v-model:value="form.post"></use-input>
+   </use-form-item>
+   <use-form-item label="city:" prop="city">
+    <use-select v-model:value="form.city" :options="options"></use-select>
+   </use-form-item>
+   <use-form-item>
+    <use-button @click="register">Register</use-button>
    </use-form-item>
   </use-form>
 </template>
-<script lang="ts" setup>
+<script setup lang="ts">
 import { reactive } from 'vue';
 const form = reactive({
   name:'',
-  password:'',
+  post:'',
+  city:''
 }) 
 
-const rules = {
-    'name':{
-      message:'用户名必须在6位以上',
-      required:true,
-      len:6
-    },
-   'password':{
-      required:true,
-      message:'密码为必填项',
-   },
+const options = [
+  {
+    value:'Beijing',
+    label:'北京'
+  },
+  {
+    value:'HengShui',
+    label:'衡水'
+  },
+  {
+    value:'Disabled',
+    label:'Disabled',
+    disabled:true
+  }
+]
+
+const register = () => {
+  console.log('register....')
 }
 
 </script>

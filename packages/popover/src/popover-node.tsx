@@ -44,6 +44,10 @@ const popoverProps = {
     type: Boolean,
     default: true
   },
+  padding:{
+    type:String,
+    default:'10px'
+  }
 }
 
 
@@ -67,6 +71,7 @@ const Popover = defineComponent({
       ...position.value,
       backgroundColor: props.bgColor,
       borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor,
+      padding:props.padding,
       color: props.color
     }))
 

@@ -16,6 +16,12 @@ const SelectProps = {
   value: {
     type: String,
     default: ""
+  },
+  error:{
+    type:[
+      Boolean,
+      Object
+    ]
   }
 }
 
@@ -68,6 +74,7 @@ const Select = defineComponent({
           ref={popoverRef}
           trigger="click"
           showArrow={false}
+          padding="5px 0px"
           placement="bl"
           v-slots={{
             content: () => renderOptions()
@@ -78,6 +85,7 @@ const Select = defineComponent({
               placeholder={props.placeholder}
               onBlur={handleInputBlur}
               ref={inputRef}
+              error={props.error}
               v-slots={{
                 suffix: () => <Icon name='arrowdown' />
               }}

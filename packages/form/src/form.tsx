@@ -1,9 +1,9 @@
-import { defineComponent, PropType, provide, ref } from "vue";
+import { computed, defineComponent, PropType, provide, ref } from "vue";
 import { injectFormKey } from "./context";
-import { FormModal, FieldRule } from "./form.types";
+import { FormModal, FieldRule, FormLayoutType } from "./form.types";
 
 const formProps = {
-  modal: {
+  model: {
     type: Object as PropType<FormModal>,
     required: true
   },
@@ -12,6 +12,10 @@ const formProps = {
   },
   labelWidth: {
     type: Number,
+  },
+  layout:{
+    type:String as PropType<FormLayoutType>,
+    default:'horizontal'
   }
 }
 
@@ -21,6 +25,11 @@ const Form = defineComponent({
   setup(props, { slots, expose }) {
 
     const validateFns = ref<any>([])
+
+    const classes = computed(()=>({
+      'u-form':true,
+      [`is-${props.layout}`]:props.layout
+    }))
 
     const changeValidateFns = (validateFn: any) => {
       validateFns.value.push(validateFn)
@@ -41,7 +50,7 @@ const Form = defineComponent({
     }
 
     provide(injectFormKey, {
-      modal: props.modal,
+      model: props.model,
       rules: props.rules,
       labelWidth: props.labelWidth,
       changeValidateFns
@@ -51,7 +60,7 @@ const Form = defineComponent({
       validate
     })
 
-    return () => (<div class='u-form'>
+    return () => (<div class={classes.value}>
       {slots.default && slots.default()}
     </div>)
   }

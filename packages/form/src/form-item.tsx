@@ -1,8 +1,7 @@
-import { getCurrentInstance, PropType, Transition } from 'vue';
-import { defineComponent } from 'vue';
-import { FieldRule } from './form.types';
+import { defineComponent, PropType, Transition,nextTick, onUnmounted } from 'vue';
 import { useFormItem } from './hooks/use-form-item';
 import { useBindBlur } from './hooks/use-bind-blur';
+import { Rule } from 'async-validator';
 
 const formItemProps = {
   label: {
@@ -14,17 +13,20 @@ const formItemProps = {
     default: ''
   },
   rule: {
-    type: Object as PropType<FieldRule>
+    type: Object as PropType<Rule>
   },
   labelWidth: {
     type: Number,
   }
 }
+
 const FormItem = defineComponent({
   name: 'UseFormItem',
   props: formItemProps,
   setup(props, { slots }) {
-    const { formItemValue, state, validate, labelWidth, required, rule } = useFormItem(props)
+    const { state, validate, labelWidth, required, rule,model } = useFormItem(props)
+    let timer:any = 0;
+
     const renderLabel = () => {
       return (<label
         class="u-form-item__label"
@@ -38,7 +40,9 @@ const FormItem = defineComponent({
     const renderContent = () => {
       const VNodes = slots.default && slots.default()
       useBindBlur(VNodes, state, () => {
-        rule.value && validate()
+        timer = setTimeout(()=>{
+          rule.value && validate()
+        },100)
       })
       return VNodes
     }
@@ -46,7 +50,6 @@ const FormItem = defineComponent({
     const renderErrorMessage = () => {
       return <div
         class="u-form-item--error"
-        style={{ paddingLeft: labelWidth.value + 10 + 'px' }}
       >
         <Transition name="zoom-fade-bottom">
           {state.error && <p>{state.errorMessage}</p>}
@@ -54,11 +57,20 @@ const FormItem = defineComponent({
       </div>
     }
 
+
+    onUnmounted(()=>{
+      if(timer){
+        window.clearTimeout(timer)
+      }
+    })
+
     return () => {
-      return <div class="u-form-item">
+      return <div class='u-form-item'>
         {renderLabel()}
-        {renderContent()}
-        {renderErrorMessage()}
+        <div class="u-form-item--content">
+          {renderContent()}
+          {renderErrorMessage()}
+        </div>
       </div>
     }
   }

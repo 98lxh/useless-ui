@@ -1,11 +1,32 @@
 @import "./common/variables.scss";
 @import "./mixins/mixin.scss";
 
+
+@include b(form){
+  @include when(vertical){
+    .u-form-item__label{
+      display: block;
+    }
+  }
+
+  @include when(inline){
+    display: flex;
+  }
+}
+
 @include b(form-item){
+  margin:0px 5px;
+  
+  .u-form-item--content{
+    display: inline-flex;
+    flex-direction: column;
+  }
 
   .u-form-item__label{
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 5px;
+    font-size: 16px;
+    line-height: 32px;
 
     span{
       color:$red-6;
@@ -14,8 +35,8 @@
   }
 
   .u-form-item--error{
-    height: 36px;
-    line-height: 36px;
+    height: 22px;
+    line-height: 22px;
     color:$red-6;
     p{
       margin: 0px;

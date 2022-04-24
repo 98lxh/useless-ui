@@ -1,40 +1,41 @@
 @import "./common/variables.scss";
 @import "./mixins/mixin.scss";
 
-@include b(select){
+@include b(select) {
   display: inline-block;
   cursor: pointer;
 
-  span{
+  span {
     display: inline-block;
   }
 
-  .u-icon-arrowdown{
+  .u-icon-arrowdown {
     font-size: 12px;
     font-weight: 800;
   }
 
-  .u-input{
+  .u-input {
     pointer-events: none;
     caret-color: transparent;
   }
 }
 
-@include b(select-option){
-  line-height: 36px;
-  min-width: 270px;
-  padding:0 10px;
+@include b(select-option) {
+  line-height: 28px;
+  min-width: 290px;
+  padding: 0 10px;
   user-select: none;
+  box-sizing: border-box;
   cursor: pointer;
   font-size: 14px;
 
-  @include when(disabled){
+  @include when(disabled) {
     opacity: .6;
     cursor: not-allowed;
   }
 
-  &:hover{
-    &:not(.is-disabled){
+  &:hover {
+    &:not(.is-disabled) {
       background-color: #f2f3f5;
     }
   }

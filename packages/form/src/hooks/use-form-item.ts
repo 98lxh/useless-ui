@@ -1,33 +1,33 @@
-import { computed, inject, reactive } from "vue";
-import Schema from "async-validator";
+import { computed, inject, onUnmounted, reactive } from "vue";
 import { FormItemProps } from "../form.types"
 import { injectFormKey } from "../context";
+import Schema from "async-validator";
 
-const useValidate = (props: FormItemProps, state: any, rule: any, modal: any) => {
+const useValidate = (props: FormItemProps, state: any, rule: any, model: any) => {
   return () => {
     return new Promise((resolve) => {
-      const descriptor = {}
-      descriptor[props.prop] = rule
-      const validator = new Schema(descriptor)
-      let data = {}
-      data[props.prop] = modal[props.prop]
-      validator.validate({ [props.prop]: modal[props.prop] }, errors => {
-        if (errors) {
-          state.error = true
-          state.errorMessage = errors[0].message
-          resolve({ state: false, errors })
-        } else {
-          state.error = false
-          state.errorMessage = ''
-          resolve({ state: true })
-        }
-      })
+        const descriptor = {}
+        descriptor[props.prop] = rule
+        const validator = new Schema(descriptor)
+        let data = {}
+        data[props.prop] = model[props.prop]
+        validator.validate({ [props.prop]: model[props.prop] }, errors => {
+          if (errors) {
+            state.error = true
+            state.errorMessage = errors[0].message
+            resolve({ state: false, errors })
+          } else {
+            state.error = false
+            state.errorMessage = ''
+            resolve({ state: true })
+          }
+        })
     })
   }
 }
 
 export const useFormItem = (props: FormItemProps) => {
-  const { modal, rules, labelWidth: formLabelWidth, changeValidateFns } = inject(injectFormKey);
+  const { model, rules, labelWidth: formLabelWidth, changeValidateFns } = inject(injectFormKey);
 
   const state = reactive({
     error: false,
@@ -39,11 +39,9 @@ export const useFormItem = (props: FormItemProps) => {
     return rules && rules[props.prop] || {}
   })
 
-  const validate = useValidate(props, state, rule.value, modal)
+  const validate = useValidate(props, state, rule.value, model)
 
   if (props.prop) changeValidateFns(validate)
-
-  const formItemValue = computed(() => modal[props.prop])
 
 
   const labelWidth = computed(() => {
@@ -63,12 +61,11 @@ export const useFormItem = (props: FormItemProps) => {
   })
 
   return {
-    modal,
+    model,
     state,
-    formItemValue,
     validate,
     labelWidth,
     required,
-    rule
+    rule,
   }
 }

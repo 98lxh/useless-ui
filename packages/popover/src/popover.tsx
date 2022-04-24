@@ -34,6 +34,10 @@ const popoverProps =  {
     visible:{
      type:Boolean,
      default:true
+    },
+    padding:{
+      type:String,
+      default:'10px'
     }
   }
 

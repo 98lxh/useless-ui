@@ -1,11 +1,11 @@
-import { FieldRule, FormModal } from './form.types';
+import { FieldRule, FormLayoutType, FormModal } from './form.types';
 
 import type { InjectionKey } from 'vue'
 
 interface FormProvide {
-  modal:FormModal,
+  model:FormModal,
   rules?:FieldRule,
-  labelWidth?:number
+  labelWidth?:number,
   changeValidateFns:(vFn:any)=>void
 }
 
