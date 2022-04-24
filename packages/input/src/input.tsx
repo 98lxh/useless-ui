@@ -63,6 +63,10 @@ const Input = defineComponent({
       inputRef.value && inputRef.value.focus()
     }
 
+    const blur = () => {
+      inputRef.value && inputRef.value.blur()
+    }
+
     const renderSuffix = () => {
       if (props.type === 'password') {
         return <Icon
@@ -74,7 +78,8 @@ const Input = defineComponent({
     }
 
     expose({
-      focus
+      focus,
+      blur
     })
 
     return () => (

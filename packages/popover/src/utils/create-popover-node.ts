@@ -1,11 +1,11 @@
-import { PopoverPlacementType, PopoverProps, PopoverTriggerType } from '../popover.types';
-import { render, VNode } from 'vue';
-import { createVNode } from 'vue';
+import { PopoverProps, ContentType } from '../popover.types';
+import { render} from 'vue';
+import { createVNode }from 'vue';
 import PopoverNode from '../popover-node'
 import { createPositionTarget } from './create-position-target';
 export const createPopoverNode = (
   triggerEl: HTMLElement,
-  content: string | VNode[],
+  content: ContentType,
   triggerCtx: any,
   triggerProps:PopoverProps,
 ) => {

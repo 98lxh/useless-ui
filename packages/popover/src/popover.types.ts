@@ -2,6 +2,7 @@ import { VNode } from 'vue';
 export type PopoverTriggerType = 'hover' | 'click'
 export type PopoverPlacementType = 'top' | 'tl' | 'tr' | 'bottom' | 'bl' | 'br' | 'left' | 'lt' | 'lb' | 'right' | 'rt' | 'rb'
 export type PopoverNodeContent = string | VNode[];
+export type ContentType = string | Function
 export type PopoverNodePositionType = {
   top?: string,
   left?: string,

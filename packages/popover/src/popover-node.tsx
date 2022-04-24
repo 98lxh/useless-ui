@@ -9,7 +9,10 @@ const popoverProps = {
     default: ''
   },
   content: {
-    type: Object as PropType<PopoverNodeContent>,
+    type: [
+      Function,
+      String
+    ],
     default: ''
   },
   placement: {
@@ -121,7 +124,6 @@ const Popover = defineComponent({
       }
     })
 
-
     return () => (
       <Transition name='zoom-fade-popover' mode="out-in" ref={popoverNodeRef}>
         <div
@@ -133,7 +135,7 @@ const Popover = defineComponent({
           onMouseleave={() => handleMouse(false)}
         >
           <div class="popover-node__content">
-            {props.content}
+            {typeof props.content === 'function' ? props.content() : props.content}
           </div>
           <div
             class="popover-node__arrow"

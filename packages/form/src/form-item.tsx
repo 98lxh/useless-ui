@@ -40,9 +40,7 @@ const FormItem = defineComponent({
     const renderContent = () => {
       const VNodes = slots.default && slots.default()
       useBindBlur(VNodes, state, () => {
-        timer = setTimeout(()=>{
-          rule.value && validate()
-        },100)
+        rule.value && validate()
       })
       return VNodes
     }

@@ -1,5 +1,5 @@
 
-import { defineComponent, PropType, ref, watch } from "vue";
+import { defineComponent, nextTick, onUnmounted, PropType, ref, watch } from "vue";
 import Popover from "./../../popover"
 import Input from "./../../input"
 import Icon from "./../../icon"
@@ -32,6 +32,7 @@ const Select = defineComponent({
   setup(props, { emit }) {
     const popoverRef = ref()
     const inputRef = ref()
+    let timer:any
 
     const selectValue = ref<SelectOption>(
       props.options.filter(opt => opt.value === props.value)[0] ||
@@ -40,6 +41,7 @@ const Select = defineComponent({
 
     const handleSelect = (option: SelectOption) => {
       if (option.disabled) return
+      emit('update:value', option.value)
       selectValue.value = option
       popoverRef.value.close()
     }
@@ -61,11 +63,13 @@ const Select = defineComponent({
     }
 
     const handleInputBlur = (e) => {
-      emit('blur', e)
+      timer = setTimeout(()=>{
+        emit('blur', e)
+      },100)
     }
 
-    watch(selectValue, (newValue) => {
-      emit('update:value', newValue.value)
+    onUnmounted(()=>{
+      if(timer) window.clearTimeout(timer)
     })
 
     return () => (
