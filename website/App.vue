@@ -9,6 +9,9 @@
     <use-form-item label="城市:" prop="city">
       <use-select v-model:value="form.city" :options="option"></use-select>
     </use-form-item>
+    <use-form-item label="日期:" prop="date">
+      <use-date-picker v-model:value="form.date" :options="option"></use-date-picker>
+    </use-form-item>
     <use-form-item>
       <use-button @click="submit">登录</use-button>
     </use-form-item>
@@ -22,7 +25,8 @@ const formRef = ref()
 const form = reactive({
   name: '',
   password: '',
-  city: ''
+  city: '',
+  date: ''
 })
 
 const rules = {
@@ -38,6 +42,10 @@ const rules = {
     required: true,
     message: '城市为必填项',
   },
+  date: {
+    required: true,
+    message: '必填'
+  }
 }
 
 const option = [

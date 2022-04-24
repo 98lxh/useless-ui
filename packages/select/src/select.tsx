@@ -32,8 +32,6 @@ const Select = defineComponent({
   setup(props, { emit }) {
     const popoverRef = ref()
     const inputRef = ref()
-    let timer:any
-
     const selectValue = ref<SelectOption>(
       props.options.filter(opt => opt.value === props.value)[0] ||
       { label: '', value: '' }
@@ -63,14 +61,8 @@ const Select = defineComponent({
     }
 
     const handleInputBlur = (e) => {
-      timer = setTimeout(()=>{
         emit('blur', e)
-      },100)
     }
-
-    onUnmounted(()=>{
-      if(timer) window.clearTimeout(timer)
-    })
 
     return () => (
       <div class="u-select">

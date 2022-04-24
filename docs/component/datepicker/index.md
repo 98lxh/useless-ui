@@ -66,6 +66,25 @@ const value = ref(null)
 ```
 :::
 
+<h2>验证状态</h2>
+
+:::demo 
+
+```vue
+<template>
+  <use-space direction="vertical">
+    <use-date-picker v-model:value="value" placeholder="默认状态"></use-date-picker>
+    <use-date-picker v-model:value="value" error placeholder="错误状态"></use-date-picker>
+  </use-space>
+</template>
+<script setup lang="ts">
+import { ref } from 'vue';
+const value = ref(null)
+</script>
+```
+:::
+
+
 
 `DatePicker`Props
 

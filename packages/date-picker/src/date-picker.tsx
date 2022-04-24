@@ -34,6 +34,12 @@ const datePickerProps = {
       Array,
       String
     ],
+  },
+  error:{
+    type:[
+      Boolean,
+      Object
+    ]
   }
 }
 
@@ -47,8 +53,8 @@ const Datepicker = defineComponent({
     YearPicker,
     RangerPicker
   },
-  emits: ['update:value'],
-  setup(props) {
+  emits: ['update:value','blur'],
+  setup(props,{emit}) {
     const { currentDate, currentType, formatDate } = useDatePicker(props)
 
     const visible = ref(false)
@@ -57,7 +63,6 @@ const Datepicker = defineComponent({
 
     const getPickerPosition = () => {
       const pickerRect = datePickerRef.value.getBoundingClientRect()
-
       const pickerTop = pickerRect.top + pickerRect.height + document.documentElement.scrollTop + 5
       const pickerLeft = pickerRect.left + document.documentElement.scrollLeft
       return {
@@ -72,6 +77,7 @@ const Datepicker = defineComponent({
 
     const closeDatePickerPanel = () => {
       visible.value = false
+      emit('blur')
     }
 
     const changeCurrentDate = (date: Date) => {
@@ -107,6 +113,7 @@ const Datepicker = defineComponent({
       const inputProps = {
         disabled: props.disabled,
         onFocus: openDatePickerPanel,
+        error:props.error
       }
       if (props.type === 'range') {
         const valueLen = props.value ? (props.value as any).length : 0

@@ -1,10 +1,16 @@
 import { VNode } from "vue";
 
+const bindVnodeNames = [
+  'UseInput',
+  'UseSelect',
+  'UseDatePicker'
+]
+
 export const useBindBlur = (slots: VNode[], state: any, listener: any) => {
   const scanSlots = (vnodes: VNode[]) => {
     vnodes.forEach(vnode => {
       const VNodeName = vnode.type && (vnode.type as any).name
-      if (VNodeName === 'UseInput' || VNodeName === 'UseSelect') {
+      if (bindVnodeNames.includes(VNodeName)) {
         vnode.props.error = state
         vnode.props.onBlur = listener
       }

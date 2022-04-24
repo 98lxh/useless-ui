@@ -30,7 +30,7 @@
   font-size: 14px;
 
   @include when(disabled) {
-    opacity: .6;
+    opacity: .3;
     cursor: not-allowed;
   }
 
