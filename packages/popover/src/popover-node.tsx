@@ -1,5 +1,5 @@
 import { computed, defineComponent, onMounted, PropType, ref, Transition, nextTick, watch, onUnmounted } from "vue";
-import { PopoverNodeContent, PopoverNodePositionType, PopoverPlacementType, PopoverTriggerType } from "./popover.types";
+import { PopoverNodePositionType, PopoverPlacementType, PopoverTriggerType } from "./popover.types";
 import { calculatePosition } from "./utils/calculate-positon";
 import { calculatePlacement } from "./utils/placement-strategy";
 
@@ -47,9 +47,9 @@ const popoverProps = {
     type: Boolean,
     default: true
   },
-  padding:{
-    type:String,
-    default:'10px'
+  padding: {
+    type: String,
+    default: '10px'
   }
 }
 
@@ -74,7 +74,7 @@ const Popover = defineComponent({
       ...position.value,
       backgroundColor: props.bgColor,
       borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor,
-      padding:props.padding,
+      padding: props.padding,
       color: props.color
     }))
 
@@ -125,7 +125,7 @@ const Popover = defineComponent({
     })
 
     return () => (
-      <Transition name='zoom-fade-popover' mode="out-in" ref={popoverNodeRef}>
+      <Transition name={`zoom-fade-${props.placement}`} mode="out-in" ref={popoverNodeRef}>
         <div
           v-show={visiable.value}
           class={classes.value}
@@ -142,10 +142,7 @@ const Popover = defineComponent({
             v-show={props.showArrow}
             style={{
               backgroundColor: props.bgColor,
-              borderColor:
-                props.bgColor !== '#000'
-                  ? '#e5e6eb'
-                  : props.bgColor
+              borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor
             }} />
         </div>
       </Transition >

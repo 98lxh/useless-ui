@@ -121,7 +121,7 @@ const Datepicker = defineComponent({
       }
       if (props.type === 'range') {
         const valueLen = props.value ? (props.value as any).length : 0
-        return <div class="range-input__wrapper" onClick={openDatePickerPanel}>
+        return <div class="range-input__wrapper" >
           <Input
             value={valueLen === 0 ? '' : formatDate.value[0]}
             placeholder={props.placeholder[0] as string}
@@ -160,7 +160,7 @@ const Datepicker = defineComponent({
       <div class="u-date-picker" ref={datePickerRef}>
         {renderInput()}
         <Teleport to={positonTarget}>
-          <Transition name="zoom-fade-bottom">
+          <Transition name="zoom-fade-panel">
             {visible.value && renderPicker()}
           </Transition>
         </Teleport>

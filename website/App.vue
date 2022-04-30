@@ -1,63 +1,105 @@
 <template>
-  <use-form :model="form" :label-width="70" :rules="rules" ref="formRef" layout="vertical">
-    <use-form-item label="用户名:" prop="name">
-      <use-input v-model:value="form.name"></use-input>
-    </use-form-item>
-    <use-form-item label="密码:" prop="password">
-      <use-input v-model:value="form.password"></use-input>
-    </use-form-item>
-    <use-form-item label="城市:" prop="city">
-      <use-select v-model:value="form.city" :options="option"></use-select>
-    </use-form-item>
-    <use-form-item label="日期:" prop="date">
-      <use-date-picker v-model:value="form.date" :options="option"></use-date-picker>
-    </use-form-item>
-    <use-form-item>
-      <use-button @click="submit">登录</use-button>
-    </use-form-item>
-  </use-form>
+  <div :style="{position: 'relative', width: '440px', height: '280px',margin:'300px'}">
+    <use-popover placement="tl">
+      <use-button class="button" :style="{position: 'absolute',top:'0',left:'70px'}">TL</use-button>
+      <template #content>
+        <p>Here is the text content</p>
+        <p>Here is the text content</p>
+      </template>
+    </use-popover>
+
+     <use-popover placement="top">
+      <use-button class="button" :style="{position: 'absolute',top:'0',left:'200px'}">TOP</use-button>
+      <template #content>
+        <p>Here is the text content</p>
+        <p>Here is the text content</p>
+      </template>
+    </use-popover>
+
+    <use-popover placement="tr">
+      <use-button class="button" :style="{position: 'absolute',top:'0',left:'330px'}">TR</use-button>
+      <template #content>
+        <p>Here is the text content</p>
+        <p>Here is the text content</p>
+      </template>
+    </use-popover>
+
+    <use-popover placement="lt">
+      <use-button class="button" :style="{position: 'absolute',top:'50px',left:'30px'}">LT</use-button>
+      <template #content>
+        <p>Here is the text content</p>
+        <p>Here is the text content</p>
+      </template>
+    </use-popover>
+
+    <use-popover placement="left">
+      <use-button class="button" :style="{position: 'absolute',top:'100px',left:'30px'}">LEFT</use-button>
+      <template #content>
+        <p>Here is the text content</p>
+        <p>Here is the text content</p>
+      </template>
+    </use-popover>
+
+     <use-popover placement="lb">
+      <use-button class="button" :style="{position: 'absolute',top:'150px',left:'30px'}">LB</use-button>
+      <template #content>
+        <p>Here is the text content</p>
+        <p>Here is the text content</p>
+      </template>
+    </use-popover>
+
+     <use-popover placement="bl">
+      <use-button class="button" :style="{position: 'absolute',top:'200px',left:'70px'}">BL</use-button>
+      <template #content>
+        <p>Here is the text content</p>
+        <p>Here is the text content</p>
+      </template>
+    </use-popover>
+
+     <use-popover placement="bottom">
+      <use-button class="button" :style="{position: 'absolute',top:'200px',left:'200px'}">BOTTOM</use-button>
+      <template #content>
+        <p>Here is the text content</p>
+        <p>Here is the text content</p>
+      </template>
+    </use-popover>
+
+    <use-popover placement="br">
+      <use-button class="button" :style="{position: 'absolute',top:'200px',left:'330px'}">BR</use-button>
+      <template #content>
+        <p>Here is the text content</p>
+        <p>Here is the text content</p>
+      </template>
+    </use-popover>
+
+     <use-popover placement="rt">
+      <use-button class="button" :style="{position: 'absolute',top:'50px',left:'360px'}">RT</use-button>
+      <template #content>
+        <p>Here is the text content</p>
+        <p>Here is the text content</p>
+      </template>
+    </use-popover>
+
+    <use-popover placement="right">
+      <use-button class="button" :style="{position: 'absolute',top:'100px',left:'360px'}">RIGHT</use-button>
+      <template #content>
+        <p>Here is the text content</p>
+        <p>Here is the text content</p>
+      </template>
+    </use-popover>
+
+     <use-popover placement="rb">
+      <use-button class="button" :style="{position: 'absolute',top:'150px',left:'360px'}">RB</use-button>
+      <template #content>
+        <p>Here is the text content</p>
+        <p>Here is the text content</p>
+      </template>
+    </use-popover>
+  </div>
 </template>
-<script lang="ts" setup>
-import { reactive, ref } from 'vue';
 
-const formRef = ref()
-
-const form = reactive({
-  name: '',
-  password: '',
-  city: '',
-  date: ''
-})
-
-const rules = {
-  'name': [
-    { max: 6, min: 3, message: '用户名必须在3~6位之间' },
-    { required: true, message: '用户名为必填项' }
-  ],
-  'password': {
-    required: true,
-    message: '密码为必填项',
-  },
-  'city': {
-    required: true,
-    message: '城市为必填项',
-  },
-  date: {
-    required: true,
-    message: '必填'
-  }
+<style>
+.button{
+  width: 100px;
 }
-
-const option = [
-  {
-    label: 'Shanghai',
-    value: 'Shanghai'
-  }
-]
-
-const submit = () => {
-  formRef.value.validate((error) => {
-    if (!error) console.log('请求..')
-  })
-}
-</script>
+</style>
