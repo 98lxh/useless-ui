@@ -1,4 +1,4 @@
-import { PopoverProps, ContentType } from '../popover.types';
+import { PopoverProps, ContentType, PopoverPlacementType } from '../popover.types';
 import { render } from 'vue';
 import { createVNode } from 'vue';
 import PopoverNode from '../popover-node'
@@ -10,9 +10,12 @@ export const createPopoverNode = (
   triggerProps: PopoverProps,
 ) => {
   const container = document.createElement('div')
+
   const positionTarget = createPositionTarget()
+
   const onClose = () => {
-    vnode.el.className += ` zoom-fade-${triggerProps.placement}-leave-active zoom-fade-${triggerProps.placement}-leave-to`
+    const { placement } = triggerCtx
+    vnode.el.className += ` zoom-fade-${placement}-leave-active zoom-fade-${placement}-leave-to`
     triggerCtx.instance = null;
     setTimeout(() => {
       render(null, container)

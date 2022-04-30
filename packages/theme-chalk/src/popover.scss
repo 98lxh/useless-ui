@@ -346,12 +346,12 @@
 
 .zoom-fade-bl-enter-from {
   opacity: 0;
-  transform: scale(0.1);
+  transform: scale(0.3);
 }
 
 .zoom-fade-bl-leave-to {
   opacity: 0;
-  transform: scale(.3);
+  transform: scale(.1);
 }
 
 .zoom-fade-bottom-enter-active,

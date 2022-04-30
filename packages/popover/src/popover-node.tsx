@@ -1,7 +1,8 @@
-import { computed, defineComponent, onMounted, PropType, ref, Transition, nextTick, watch, onUnmounted } from "vue";
+import { computed, defineComponent, onMounted, PropType, ref, Transition, nextTick, watch, } from "vue";
 import { PopoverNodePositionType, PopoverPlacementType, PopoverTriggerType } from "./popover.types";
 import { calculatePosition } from "./utils/calculate-positon";
 import { calculatePlacement } from "./utils/placement-strategy";
+import { useClick } from "./hooks/use-click";
 
 const popoverProps = {
   title: {
@@ -61,34 +62,30 @@ const Popover = defineComponent({
     const visiable = ref(false)
     const popoverNodeRef = ref<HTMLElement>()
     const position = ref<PopoverNodePositionType>({})
-    const triggerRect = props.triggerEl.getBoundingClientRect()
-    const contentMouseOver = ref(props.trigger === 'click' ? true : false)
     const placement = ref<PopoverPlacementType>('top')
+    const triggerRect = props.triggerEl.getBoundingClientRect()
+    const contentMouseOver = ref(false)
     const contentRef = ref<Element>()
+
     const classes = computed(() => ({
       'u-popover-node': true,
       [`is-placement-${placement.value}`]: props.placement
     }))
 
-    const styles = computed(() => ({
-      ...position.value,
+    const basicStyle = computed(() => ({
       backgroundColor: props.bgColor,
       borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor,
+    }))
+
+    const styles = computed(() => ({
+      ...position.value,
+      ...basicStyle.value,
       padding: props.padding,
       color: props.color
     }))
 
     const handleMouse = (state: boolean) => {
-      if (props.trigger === 'hover') {
-        contentMouseOver.value = state
-      }
-    }
-
-    const handleClickOutside = (e) => {
-      if (!contentRef.value.contains(e.target) && !props.triggerEl.contains(e.target)) {
-        contentMouseOver.value = false
-        props.triggerCtx.instance = null
-      }
+      if (props.trigger === 'hover') contentMouseOver.value = state
     }
 
     const calcPopoverContentPosition = () => {
@@ -98,8 +95,11 @@ const Popover = defineComponent({
           height: popoverNodeRef.value.clientHeight,
           width: popoverNodeRef.value.clientWidth
         }
-        placement.value = calculatePlacement(triggerRect, contentSize, props.placement)
-        position.value = calculatePosition(triggerRect, contentSize, placement.value, props.showArrow)
+        //计算popover弹出的位置和方向
+        const currentPlacement = calculatePlacement(triggerRect, contentSize, props.placement)
+        position.value = calculatePosition(triggerRect, contentSize, currentPlacement, props.showArrow)
+        props.triggerCtx.placement = currentPlacement
+        placement.value = currentPlacement
       })
     }
 
@@ -108,28 +108,24 @@ const Popover = defineComponent({
       calcPopoverContentPosition()
     })
 
+    //处理trigger为click
     if (props.trigger === 'click') {
-      document.addEventListener('click', handleClickOutside)
+      useClick(props, contentRef)
     }
 
-    onUnmounted(() => {
-      if (props.trigger === 'click') {
-        document.removeEventListener('click', handleClickOutside)
-      }
-    })
-
     watch([props.triggerCtx, contentMouseOver], () => {
-      if (!props.triggerCtx.triggerEventOver && !contentMouseOver.value) {
+      if (!props.triggerCtx.triggerEventOver && !contentMouseOver.value && props.trigger === 'hover') {
         props.onClose()
       }
     })
 
+
     return () => (
-      <Transition name={`zoom-fade-${props.placement}`} mode="out-in" ref={popoverNodeRef}>
+      <Transition name={`zoom-fade-${placement.value}`} mode="out-in" ref={popoverNodeRef}>
         <div
-          v-show={visiable.value}
           class={classes.value}
           ref={contentRef}
+          v-show={visiable.value}
           style={styles.value}
           onMouseenter={() => handleMouse(true)}
           onMouseleave={() => handleMouse(false)}
@@ -140,10 +136,7 @@ const Popover = defineComponent({
           <div
             class="popover-node__arrow"
             v-show={props.showArrow}
-            style={{
-              backgroundColor: props.bgColor,
-              borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor
-            }} />
+            style={basicStyle.value} />
         </div>
       </Transition >
     )
