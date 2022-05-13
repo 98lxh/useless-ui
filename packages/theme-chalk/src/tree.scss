@@ -22,7 +22,7 @@
         cursor: pointer;
 
         @include when(selected){
-          color:$blue-6;
+          color:$--color-primary;
         }
 
         @include when(disabled){

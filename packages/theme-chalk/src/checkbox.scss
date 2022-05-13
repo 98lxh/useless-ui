@@ -29,13 +29,13 @@
     }
 
     @include when(checked){
-      background-color: $blue-6;
-      border-color:$blue-6 ;
+      background-color: $--color-primary;
+      border-color: $--color-primary;
     }
 
     @include when(indeterminate){
-      background-color: $blue-6;
-      border-color:$blue-6 ;
+      background-color:$--color-primary;
+      border-color:$--color-primary;
     }
   }
 

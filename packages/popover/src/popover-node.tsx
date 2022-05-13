@@ -98,8 +98,7 @@ const Popover = defineComponent({
         //计算popover弹出的位置和方向
         const currentPlacement = calculatePlacement(triggerRect, contentSize, props.placement)
         position.value = calculatePosition(triggerRect, contentSize, currentPlacement, props.showArrow)
-        props.triggerCtx.placement = currentPlacement
-        placement.value = currentPlacement
+        placement.value = props.triggerCtx.placement = currentPlacement
       })
     }
 
@@ -121,7 +120,7 @@ const Popover = defineComponent({
 
 
     return () => (
-      <Transition name={`zoom-fade-${placement.value}`} mode="out-in" ref={popoverNodeRef}>
+      <Transition name={`zoom-fade-${props.placement}`} mode="out-in" ref={popoverNodeRef}>
         <div
           class={classes.value}
           ref={contentRef}
