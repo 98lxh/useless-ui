@@ -1,4 +1,4 @@
-<h1>间隔 Space</h1>
+# 间隔 Space
 
 <h2>基本用法</h2>
 
@@ -42,7 +42,7 @@
 </template>
 <style>
 .space-item{
-  background-color:#165DFF;
+  background-color:#4d9375;
   color:#fff;
   line-height:30px;
   text-align:center;

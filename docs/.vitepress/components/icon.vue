@@ -87,7 +87,7 @@ const copy = (iconName:string) => {
         height:100%;
         border-radius:5px;
         position:absolute;
-        background-color:#e6f7ff;
+        background-color:#edfff3;
         display:flex;
         justify-content:center;
         align-items:center;

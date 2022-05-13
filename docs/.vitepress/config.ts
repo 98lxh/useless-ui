@@ -1,13 +1,26 @@
 import { defineConfig } from 'vitepress'
 import demoBlock from 'vitepress-theme-demoblock'
 export default defineConfig({
-  title: 'UselessUI',
+  title: ' Useless UI',
   base: '/useless-docs/',
+  head: [
+    [
+      'link',
+      {
+        rel: 'icon',
+        href: '/logo.png',
+      },
+    ],
+  ],
   themeConfig: {
+    logo: "/logo.png",
     sidebar: {
       '/': [
         {
-          text: '快速上手', link: "/component/quickstart/",
+          text: '快速上手',
+          children: [
+            { text: '安装引入', link: "/component/quickstart/" }
+          ],
         },
         {
           text: '通用', children: [
@@ -34,8 +47,8 @@ export default defineConfig({
             { text: "数据穿梭框 Transfer", link: '/component/transfer/' },
             { text: '输入框 Input', link: '/component/input/' },
             { text: '日期选择器 DatePicker', link: '/component/datepicker/' },
-            { text: '选择器 Select',link:'/component/select/' },
-            { text: "表单 Form",link:'/component/form/' }
+            { text: '选择器 Select', link: '/component/select/' },
+            { text: "表单 Form", link: '/component/form/' }
           ]
         },
         {

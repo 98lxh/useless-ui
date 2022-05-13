@@ -1,4 +1,4 @@
-<h1>模态框 Modal</h1>
+# 模态框 Modal
 
 <h2>基本使用</h2>
 
@@ -54,7 +54,7 @@ const handleVisible = () => {
 
 <h2>自定义动画</h2>
 
-通过`originPosition`,`targetPosition`设置动画的开始位置和结束位置，没啥吊用
+通过`originPosition`,`targetPosition`设置动画的开始位置和结束位置
 
 :::demo 
 

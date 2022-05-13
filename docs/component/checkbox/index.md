@@ -1,4 +1,4 @@
-<h1>复选框 checkbox</h1>
+# 复选框 checkbox
 
 <h2>基本用法</h2>
 

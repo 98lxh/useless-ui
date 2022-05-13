@@ -1,4 +1,4 @@
-<h1>日期选择 DatePicker</h1>
+# 日期选择 DatePicker
 
 <h2>基本使用</h2>
 

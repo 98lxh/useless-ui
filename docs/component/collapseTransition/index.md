@@ -1,4 +1,4 @@
-<h1>折叠渐变 Collapse Transition</h1>
+# 折叠渐变 Collapse Transition
 
 <h2>基本使用</h2>
 

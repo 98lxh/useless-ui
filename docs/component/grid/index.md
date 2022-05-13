@@ -1,4 +1,4 @@
-<h1>栅格 Grid</h1>
+# 栅格 Grid
 
 
 <h2>基本用法</h2>
@@ -69,14 +69,15 @@
   white-space:nowrap;
   text-overflow:ellipsis;
   overflow:hidden;
-  color:white
+  color:black;
+  font-size:14px;
 }
 .odd{
-  background-color:#6aa1ff;
+  background-color:#e0f0e0;
 }
 
 .even{
-  background-color:#2c6cfe;
+  background-color:#c2e1c2;
 }
 </style>
 ```
@@ -124,14 +125,15 @@
   white-space:nowrap;
   text-overflow:ellipsis;
   overflow:hidden;
-  color:white
+  color:black;
+  font-size:14px;
 }
 .odd{
-  background-color:#6aa1ff;
+  background-color:#e0f0e0;
 }
 
 .even{
-  background-color:#2c6cfe;
+  background-color:#c2e1c2;
 }
 </style>
 ```
@@ -195,14 +197,15 @@
   white-space:nowrap;
   text-overflow:ellipsis;
   overflow:hidden;
-  color:white
+  color:black;
+  font-size:14px;
 }
 .odd{
-  background-color:#6aa1ff;
+  background-color:#e0f0e0;
 }
 
 .even{
-  background-color:#2c6cfe;
+  background-color:#c2e1c2;
 }
 </style>
 ```
@@ -238,14 +241,18 @@
   width:100%;
   line-height:40px;
   text-align:center;
-  color:white
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  color:black;
+  font-size:14px;
 }
 .odd{
-  background-color:#6aa1ff;
+  background-color:#e0f0e0;
 }
 
 .even{
-  background-color:#2c6cfe;
+  background-color:#c2e1c2;
 }
 </style>
 ```

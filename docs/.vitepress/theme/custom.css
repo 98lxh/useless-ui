@@ -1,20 +1,26 @@
 :root {
-  --c-brand: #165DFF;
-  --c-brand-light: #165DFF;
+  --c-brand: #4d9375;
+  --c-brand-light: #4d9375;
 }
 
 .sidebar-link-item{
   font-weight: 400 !important;
-  line-height: 28px !important;
-  font-size: 16px !important;
+  line-height: 21px !important;
+  font-size: 14px !important;
+  border-radius: 10px;
+}
+
+.sidebar-link{
+  padding:0px 15px;
 }
 
 .sidebar-link-item.active{
-  background-color: #e6f7ff !important;
+  background-color: rgb(237, 255, 243) !important;
+  padding-left: 10px;
 }
 
 p.sidebar-link-item{
-  font-size: 14px !important;
+  font-size: 12px !important;
 }
 
 p.sidebar-link-item::after{
@@ -22,7 +28,7 @@ p.sidebar-link-item::after{
   display: block;
   width: 95%;
   height: 1px;
-  background-color: #f0f0f0;
+  background-color: rgb(237, 255, 243);
   margin-bottom:5px;
 }
 
@@ -41,14 +47,16 @@ table{
 }
 
 
-/* &::-webkit-scrollbar {
+.sidebar::-webkit-scrollbar {
   width : 2px;  
   height: 1px;
  }
- &::-webkit-scrollbar-thumb {
+
+ .sidebar::-webkit-scrollbar-thumb {
    border-radius: 2px;
-   background: $grey-3;
- }
- &::-webkit-scrollbar-track {
+   background: #ccc;
+}
+
+.sidebar::-webkit-scrollbar-track {
    background: rgba(255, 255, 255, 0.2);
- } */
+ }
