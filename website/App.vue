@@ -1,105 +1,18 @@
 <template>
-  <div :style="{position: 'relative', width: '440px', height: '280px',margin:'300px'}">
-    <use-popover placement="tl" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'0',left:'70px'}">TL</use-button>
+  <use-space style="padding:800px 100px">
+    <use-popover>
       <template #content>
         <p>Here is the text content</p>
         <p>Here is the text content</p>
       </template>
+      <use-button>Hover</use-button>
     </use-popover>
-
-     <use-popover placement="top" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'0',left:'200px'}">TOP</use-button>
+    <use-popover trigger="click">
       <template #content>
         <p>Here is the text content</p>
         <p>Here is the text content</p>
       </template>
+      <use-button>Click</use-button>
     </use-popover>
-
-    <use-popover placement="tr" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'0',left:'330px'}">TR</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-    <use-popover placement="lt" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'50px',left:'30px'}">LT</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-    <use-popover placement="left" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'100px',left:'30px'}">LEFT</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-     <use-popover placement="lb" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'150px',left:'30px'}">LB</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-     <use-popover placement="bl" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'200px',left:'70px'}">BL</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-     <use-popover placement="bottom" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'200px',left:'200px'}">BOTTOM</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-    <use-popover placement="br">
-      <use-button class="button" :style="{position: 'absolute',top:'200px',left:'330px'}">BR</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-     <use-popover placement="rt" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'50px',left:'360px'}">RT</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-    <use-popover placement="right">
-      <use-button class="button" :style="{position: 'absolute',top:'100px',left:'360px'}">RIGHT</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-     <use-popover placement="rb">
-      <use-button class="button" :style="{position: 'absolute',top:'150px',left:'360px'}">RB</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-  </div>
+  </use-space>
 </template>
-
-<style>
-.button{
-  width: 100px;
-}
-</style>
