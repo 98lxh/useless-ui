@@ -74,7 +74,7 @@ const Popover = defineComponent({
 
     const basicStyle = computed(() => ({
       backgroundColor: props.bgColor,
-      borderColor: props.bgColor !== '#000' ? '#e5e6eb' : props.bgColor,
+      borderColor: props.bgColor !== '#404040' ? '#e5e6eb' : props.bgColor,
     }))
 
     const styles = computed(() => ({
