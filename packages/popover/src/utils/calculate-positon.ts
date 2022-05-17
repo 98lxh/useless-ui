@@ -13,7 +13,6 @@ export const calculatePosition = (
   const triggerLeft = triggerRect.left + scrollLeft
   const arrowHeight = isShowArrow ? 10 : 3;
 
-  console.log(document.documentElement.scrollTop)
   const positonMap = {
     bottom: {
       top: triggerTop + triggerRect.height + arrowHeight + 'px',
