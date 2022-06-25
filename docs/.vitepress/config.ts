@@ -2,7 +2,6 @@ import { defineConfig } from 'vitepress'
 import demoBlock from 'vitepress-theme-demoblock'
 export default defineConfig({
   title: ' Useless UI',
-  base: '/useless-docs/',
   head: [
     [
       'link',
