@@ -14,7 +14,7 @@
      <span style="font-weight:600">Title</span>
     </template>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero adipisci animi quibusdam consequatur voluptate, fugit et architecto? Minus rem perferendis autem iusto quisquam aliquid cupiditate eveniet esse explicabo? Ipsam atque numquam alias nostrum accusantium, incidunt quae consectetur earum. Odio sit culpa eos est velit reprehenderit molestiae ullam totam asperiores explicabo?
-  <use-modal>
+  </use-modal>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
@@ -40,7 +40,7 @@ const handleVisible = () => {
       <span style="font-weight:600">Title</span>
     </template>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero adipisci animi quibusdam consequatur voluptate, fugit et architecto? Minus rem perferendis autem iusto quisquam aliquid cupiditate eveniet esse explicabo? Ipsam atque numquam alias nostrum accusantium, incidunt quae consectetur earum. Odio sit culpa eos est velit reprehenderit molestiae ullam totam asperiores explicabo?
-  <use-modal>
+  </use-modal>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
@@ -65,38 +65,41 @@ const handleVisible = () => {
     <use-button @click="handleVisibleBottom">LeftTop to RightBottom</use-button>
     <use-button @click="handleVisibleMiddle">Middle to Middle</use-button>
   </use-space>
-  <use-modal v-model:visible="visibleTop" 
-             confirmText="Confirm" 
-             cancelText="Cancel"
-             :origin-position="{x:'50%',y:0}"
-             >
+  <use-modal 
+     v-model:visible="visibleTop" 
+     confirmText="Confirm" 
+     cancelText="Cancel"
+     :origin-position="{x:'50%',y:0}"
+  >
     <template #title>
       <span style="font-weight:600">Title</span>
     </template>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero adipisci animi quibusdam consequatur voluptate, fugit et architecto? Minus rem perferendis autem iusto quisquam aliquid cupiditate eveniet esse explicabo? Ipsam atque numquam alias nostrum accusantium, incidunt quae consectetur earum. Odio sit culpa eos est velit reprehenderit molestiae ullam totam asperiores explicabo?
-  <use-modal>
-  <use-modal v-model:visible="visibleBottom" 
-             confirmText="Confirm" 
-             cancelText="Cancel"
-             :origin-position="{x:0,y:0}"
-             :target-position="{x:'70%',y:'70%'}"
-             >
+  </use-modal>
+  <use-modal 
+     v-model:visible="visibleBottom" 
+     confirmText="Confirm" 
+     cancelText="Cancel"
+     :origin-position="{x:0,y:0}"
+    :target-position="{x:'70%',y:'70%'}"
+  >
     <template #title>
       <span style="font-weight:600">Title</span>
     </template>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero adipisci animi quibusdam consequatur voluptate, fugit et architecto? Minus rem perferendis autem iusto quisquam aliquid cupiditate eveniet esse explicabo? Ipsam atque numquam alias nostrum accusantium, incidunt quae consectetur earum. Odio sit culpa eos est velit reprehenderit molestiae ullam totam asperiores explicabo?
-  <use-modal>
-    <use-modal v-model:visible="visibleMiddle" 
-             confirmText="Confirm" 
-             cancelText="Cancel"
-             :origin-position="{x:'50%',y:'50%'}"
-             :target-position="{x:'50%',y:'50%'}"
-             >
+  </use-modal>
+  <use-modal 
+     v-model:visible="visibleMiddle" 
+     confirmText="Confirm" 
+     cancelText="Cancel"
+     :origin-position="{x:'50%',y:'50%'}"
+     :target-position="{x:'50%',y:'50%'}"
+  >
     <template #title>
       <span style="font-weight:600">Title</span>
     </template>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero adipisci animi quibusdam consequatur voluptate, fugit et architecto? Minus rem perferendis autem iusto quisquam aliquid cupiditate eveniet esse explicabo? Ipsam atque numquam alias nostrum accusantium, incidunt quae consectetur earum. Odio sit culpa eos est velit reprehenderit molestiae ullam totam asperiores explicabo?
-  <use-modal>
+  </use-modal>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'

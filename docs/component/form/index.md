@@ -150,7 +150,7 @@ const register = () => {
     <use-select v-model:value="formModel.city" :options="options"></use-select>
    </use-form-item>
    <use-form-item label="birthday:" prop="birthday">
-    <use-date-picker v-model:value="formModel.birthday"></use-select>
+    <use-date-picker v-model:value="formModel.birthday"></use-date-picker>
    </use-form-item>
    <use-form-item>
     <use-button @click="register">Register</use-button>
@@ -159,8 +159,8 @@ const register = () => {
 </template>
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-const formRef = ref()
-const formModel = reactive({
+const formRef = ref(null)
+const formModel = ref({
   name:'',
   password:'',
   city:'',
@@ -221,7 +221,6 @@ const register = () => {
     }
   })
 }
-
 </script>
 ```
 :::

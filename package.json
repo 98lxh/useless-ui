@@ -16,8 +16,8 @@
   "typings": "./dist/es/packages/index.d.ts",
   "main": "./dist/es/index.js",
   "scripts": {
-    "website-dev": "webpack serve --config ./website/webpack.config.js",
-    "website-build": "webpack --config ./website/webpack.config.js",
+    "website:dev": "webpack serve --config ./website/webpack.config.js",
+    "website:build": "webpack --config ./website/webpack.config.js",
     "build:theme": "gulp build --gulpfile packages/theme-chalk/gulpfile.js",
     "build": "webpack --config builds/webpack.config.js",
     "build:esm-bundle": "rollup -c builds/rollup.config.bundle.js",

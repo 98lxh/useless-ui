@@ -10,7 +10,7 @@
 <template>
   <use-row>
     <use-col :span="8" class="odd">
-      <div>col-8<div>
+      <div>col-8</div>
     </use-col>
     <use-col :span="8" class="even">
       <div>col-8</div>
@@ -22,7 +22,7 @@
 
   <use-row>
     <use-col :span="10" class="odd">
-      <div>col-10<div>
+      <div>col-10</div>
     </use-col>
     <use-col :span="14" class="even">
       <div>col-14</div>
@@ -31,7 +31,7 @@
 
    <use-row>
     <use-col :span="8" class="odd">
-      <div>col-8<div>
+      <div>col-8</div>
     </use-col>
     <use-col :span="4" class="even">
       <div>col-4</div>
@@ -46,7 +46,7 @@
 
   <use-row>
     <use-col :span="6" class="odd">
-      <div>col-6<div>
+      <div>col-6</div>
     </use-col>
     <use-col :span="6" class="even">
       <div>col-6</div>
@@ -93,7 +93,7 @@
 <template>
   <use-row>
     <use-col  class="odd" :span="6" :offset="6">
-      <div>col-6|offset-6<div>
+      <div>col-6|offset-6</div>
     </use-col>
     <use-col class="even" :span="6" :offset="3">
       <div>col-6|offset-3</div>
@@ -102,7 +102,7 @@
 
   <use-row>
     <use-col  class="odd" :span="6" :offset="3">
-      <div>col-6|offset-3<div>
+      <div>col-6|offset-3</div>
     </use-col>
     <use-col class="even" :span="6" :offset="9">
       <div>col-6|offset-9</div>
@@ -150,7 +150,7 @@
   <span>start</span>
   <use-row :gutter="24" justify="start">
     <use-col  class="odd" :span="10">
-      <div>col-12<div>
+      <div>col-12</div>
     </use-col>
     <use-col class="even" :span="10">
       <div>col-12</div>
@@ -160,7 +160,7 @@
   <span>end</span>
   <use-row :gutter="24" justify="end">
     <use-col  class="odd" :span="10">
-      <div>col-12<div>
+      <div>col-12</div>
     </use-col>
     <use-col class="even" :span="10">
       <div>col-12</div>
@@ -170,7 +170,7 @@
   <span>between</span>
   <use-row :gutter="24" justify="space-between">
     <use-col  class="odd" :span="10">
-      <div>col-12<div>
+      <div>col-12</div>
     </use-col>
     <use-col class="even" :span="10">
       <div>col-12</div>
@@ -180,7 +180,7 @@
   <span>around</span>
   <use-row :gutter="24" justify="space-around">
     <use-col  class="odd" :span="10">
-      <div>col-12<div>
+      <div>col-12</div>
     </use-col>
     <use-col class="even" :span="10">
       <div>col-12</div>
@@ -222,16 +222,16 @@
 <template>
   <use-row>
     <use-col  class="odd" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
-      <div>1<div>
+      <div>1</div>
     </use-col>
      <use-col  class="even" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
-      <div>2<div>
+      <div>2</div>
     </use-col>
     <use-col  class="odd" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
-      <div>3<div>
+      <div>3</div>
     </use-col>
      <use-col  class="even" :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
-      <div>4<div>
+      <div>4</div>
     </use-col>
   </use-row>
 </template>
