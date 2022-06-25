@@ -11,6 +11,6 @@ tagline: 一个Vue3组件库 使用TypeScript
 
 <script setup>
   const handleClick = () => {
-    window.location = "/useless-docs/component/quickstart/"
+    window.location = "/component/quickstart/"
   }
 </script>
