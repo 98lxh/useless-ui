@@ -16,7 +16,7 @@ import Tooltip from './tooltip'
 import Input from './input'
 import Modal from "./modal"
 import DatePicker from "./date-picker";
-import Form from "./form"
+import { UForm as Form, UFormItem as FormItem } from "./form"
 
 const components = [
   Button,
@@ -36,7 +36,8 @@ const components = [
   Input,
   Modal,
   DatePicker,
-  Form
+  Form,
+  FormItem
 ]
 
 

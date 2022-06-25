@@ -1,14 +1,14 @@
 
 import { createVNode, nextTick, render, VNode } from "vue"
-import { IMessageParams } from "./message.types"
-import MessageComonent from './message';
+import { IMessageOptions, IMessageParams } from "../src/message.types"
+import MessageComonent from '../src/message';
 
 const instances: VNode[] = [];
 let seed = 1
-const Message = (options: IMessageParams) => {
+const message = (options: IMessageParams) => {
   if (typeof options === 'string') {
     options = {
-      message: options
+      content: options
     }
   }
 
@@ -46,4 +46,34 @@ const Message = (options: IMessageParams) => {
   instances.push(messageVnode)
 }
 
-export default Message
+message.info = function (options: IMessageOptions) {
+  message({
+    ...options,
+    type: 'info'
+  })
+}
+
+message.success = function (options: IMessageOptions) {
+  message({
+    ...options,
+    type: 'success'
+  })
+}
+
+
+message.warning = function (options: IMessageOptions) {
+  message({
+    ...options,
+    type: 'warning'
+  })
+}
+
+message.error = function (options: IMessageOptions) {
+  message({
+    ...options,
+    type: 'error'
+  })
+}
+
+
+export default message

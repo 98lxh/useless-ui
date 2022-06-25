@@ -1,34 +1,37 @@
 import { defineComponent, PropType, Transition, computed, ref, onMounted, onUnmounted } from "vue";
 import { MessageType } from './message.types'
 
+
+const MessageProps = {
+  id: {
+    type: String,
+    default: ''
+  },
+  content: {
+    type: String,
+    default: ''
+  },
+  type: {
+    type: String as PropType<MessageType>,
+    default: 'info'
+  },
+  duration: {
+    type: Number,
+    default: 3000
+  },
+  onClose: {
+    type: Function as PropType<() => void>,
+  },
+  offset: {
+    type: Number,
+    default: 20
+  },
+  center: Boolean,
+}
+
 const Message = defineComponent({
   name: 'UMessage',
-  props: {
-    id: {
-      type: String,
-      default: ''
-    },
-    message: {
-      type: String,
-      default: ''
-    },
-    type: {
-      type: String as PropType<MessageType>,
-      default: 'info'
-    },
-    duration: {
-      type: Number,
-      default: 3000
-    },
-    onClose: {
-      type: Function as PropType<() => void>,
-    },
-    offset: {
-      type: Number,
-      default: 20
-    },
-    center: Boolean,
-  },
+  props: MessageProps,
   emits: ['destroy'],
   setup(props, { emit }) {
     const classes = computed(() => ({
@@ -67,7 +70,7 @@ const Message = defineComponent({
       <Transition name='zoom-fade' mode="out-in" onBeforeLeave={props.onClose} onAfterLeave={() => emit('destroy')}>
         <div class={classes.value} v-show={visiable.value} style={styles.value}>
           <i class={messageIcon.value}></i>
-          <span>{props.message}</span>
+          <span>{props.content}</span>
         </div>
       </Transition>
     )
