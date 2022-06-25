@@ -1,6 +1,5 @@
 
-import { computed } from "@vue/reactivity";
-import { defineComponent, h, provide } from "vue";
+import { defineComponent, h, provide, computed } from "vue";
 
 const Row = defineComponent({
   name: 'UseRow',

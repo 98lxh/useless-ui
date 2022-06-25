@@ -2,7 +2,7 @@ import { defineComponent, inject, computed } from 'vue'
 import { useYearPicker } from '../hooks/use-year-picker'
 import PickerPanel from '../picker-panel'
 import { injectDatePicker } from './../context'
-import Icon from "./../../../icon"
+import Icon from "@useless-ui/icon"
 import { getDate, getYearMonthDay } from '../utils/date-helper'
 
 const YearPicker = defineComponent({

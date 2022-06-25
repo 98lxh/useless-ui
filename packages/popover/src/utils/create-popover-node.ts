@@ -19,7 +19,7 @@ export const createPopoverNode = (
     setTimeout(() => {
       render(null, container)
     }, 200)
-    triggerProps.onClose()
+    triggerProps.onClose && triggerProps.onClose()
   }
 
   const vnode = createVNode(PopoverNode, {

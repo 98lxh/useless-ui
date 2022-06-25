@@ -1,6 +1,5 @@
 
-import { computed } from "@vue/reactivity";
-import { defineComponent, h, inject } from "vue";
+import { defineComponent, h, inject, computed } from "vue";
 
 const Col = defineComponent({
   name: 'UseCol',

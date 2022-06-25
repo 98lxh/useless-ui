@@ -1,9 +1,9 @@
 
 import { defineComponent, watch, PropType, ref } from "vue";
 import { SelectOption } from "./select.types";
-import Popover from "./../../popover"
-import Input from "./../../input"
-import Icon from "./../../icon"
+import Popover from "@useless-ui/popover"
+import Input from "@useless-ui/input"
+import Icon from "@useless-ui/icon"
 
 const SelectProps = {
   options: {

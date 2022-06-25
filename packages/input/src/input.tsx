@@ -1,7 +1,7 @@
 import { computed, defineComponent, PropType, ref } from "vue"
 import { InputValueType, InputType } from "./input.types"
 import { useInput } from './hooks/use-input'
-import Icon from "../../icon"
+import Icon from "@useless-ui/icon"
 
 const inputProps = {
   type: {

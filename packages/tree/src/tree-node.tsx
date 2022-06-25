@@ -1,8 +1,8 @@
 import { defineComponent, PropType, computed } from "vue";
 import { useTreeContext, useTreeNode } from "../hooks/use-tree-node";
 import { TreeNodeOption } from "./tree.types";
-import CollapseTransition from "../../collapse-transition"
-import Checkbox from "../../checkbox";
+import CollapseTransition from "@useless-ui/collapse-transition"
+import Checkbox from "@useless-ui/checkbox";
 
 const TreeNode = defineComponent({
   name: 'UseTreeNode',

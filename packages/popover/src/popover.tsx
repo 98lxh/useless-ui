@@ -1,4 +1,4 @@
-import { cloneVNode, defineComponent, defineExpose, PropType, ref } from "vue";
+import { cloneVNode, defineComponent, PropType, ref } from "vue";
 import { usePopover } from "./hooks/use-popover"
 import { PopoverTriggerType } from "./popover.types";
 

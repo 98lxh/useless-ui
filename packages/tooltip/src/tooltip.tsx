@@ -1,6 +1,6 @@
 import { defineComponent, PropType } from "vue";
-import { PopoverPlacementType } from "./../../popover/src/popover.types";
-import Popover from "./../../popover/src/popover";
+import { PopoverPlacementType } from "@useless-ui/popover/src/popover.types";
+import Popover from "@useless-ui/popover";
 const Tooltip = defineComponent({
   name: 'UseTooltip',
   props: {

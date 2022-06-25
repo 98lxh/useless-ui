@@ -8,8 +8,8 @@ import DayPicker from "./pickers/day-picker"
 import YearPicker from "./pickers/year-pickers"
 import MonthPicker from './pickers/month-picker'
 import RangerPicker from "./pickers/range-picker"
-import Input from "./../../input"
-import Icon from "./../../icon"
+import Input from "@useless-ui/input"
+import Icon from "@useless-ui/icon"
 
 const datePickerProps = {
   type: {

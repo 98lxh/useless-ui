@@ -1,4 +1,4 @@
-import { defineComponent, PropType, Transition, onUnmounted, VNode } from 'vue';
+import { defineComponent, PropType, Transition, onUnmounted } from 'vue';
 import { useFormItem } from './hooks/use-form-item';
 import { useBindBlur } from './hooks/use-bind-blur';
 import { Rule } from 'async-validator';

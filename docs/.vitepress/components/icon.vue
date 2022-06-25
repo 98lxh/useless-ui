@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import message from "@useless-ui/message"
 const icons = [
   'arrow-right',
   'calendar',
@@ -29,6 +30,10 @@ const copy = (iconName:string) => {
   document.body.appendChild(input)
   input.select()
   document.execCommand('Copy')
+  message({
+    type:'success',
+    message:`复制 ${iconName} 成功!`
+  })
   input.remove()
 }
 

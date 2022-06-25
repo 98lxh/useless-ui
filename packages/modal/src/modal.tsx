@@ -1,7 +1,7 @@
 import { defineComponent, PropType, Teleport } from "vue"
 import { useModal } from "./hooks/use-modal"
 import { ModalPosition } from "./modal.types"
-import Button from "../../button"
+import Button from "@useless-ui/button"
 
 const modalProps = {
   visible: {

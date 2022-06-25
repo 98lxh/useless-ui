@@ -2,7 +2,7 @@ import { defineComponent, inject } from 'vue'
 import { injectDatePicker } from './../context'
 import { useMonthPicker } from '../hooks/use-month-picker'
 import PickerPanel from '../picker-panel'
-import Icon from "./../../../icon"
+import Icon from "@useless-ui/icon"
 import { getDate, getYearMonthDay } from '../utils/date-helper'
 
 

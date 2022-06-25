@@ -2,7 +2,7 @@ import { defineComponent, PropType, reactive } from "vue";
 import { DataItem, Key, Props } from "./transfer.types";
 import { useComputedData } from "./hooks/use-computed-data";
 import TransferPanel from "./transfer-panel";
-import UButton from "../../button";
+import UButton from "@useless-ui/button";
 
 const Transfer = defineComponent({
   name: 'UseTransfer',
