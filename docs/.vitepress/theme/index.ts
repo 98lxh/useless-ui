@@ -9,12 +9,11 @@ import "vitepress-theme-demoblock/theme/styles/index.css"
 import "theme-chalk/src/index.scss"
 import './custom.css';
 
-(window as any).message = message
-
 export default {
   ...Theme,
   enhanceApp({ app }) {
     app.use(uselessUi)
+    app.use(message)
     app.component("Demo", Demo)
     app.component("DemoBlock", DemoBlock)
     app.component("Icon", Icon)

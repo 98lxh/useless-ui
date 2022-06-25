@@ -8,16 +8,8 @@
 
 ```vue
 <template>
-  <use-button @click="() => showMessage()">Info Message</use-button>
+  <use-button @click="()=> this.$message.info('Info Message')">Info Message</use-button>
 </template>
-
-<script setup lang="ts">
-// import message from 'useless-ui/message'
-
-const showMessage = () => {
-  message('Info Message')
-}
-</script>
 ```
 :::
 
@@ -30,20 +22,16 @@ const showMessage = () => {
 ```vue
 <template>
   <use-space>
-    <use-button @click="() => createMessage('info')">Info Message</use-button>
-    <use-button status="success" @click="() => createMessage('success')">Success Message</use-button>
-    <use-button status="warning" @click="() => createMessage('warning')">Warning Message</use-button>
-    <use-button status="danger" @click="() => createMessage('error')">Error Message</use-button>
+    <use-button @click="()=>this.$message.info(createMessage('info'))">Info Message</use-button>
+    <use-button status="success" @click="()=>this.$message.success(createMessage('success'))">Success Message</use-button>
+    <use-button status="warning" @click="()=>this.$message.warning(createMessage('warning'))">Warning Message</use-button>
+    <use-button status="danger" @click="()=>this.$message.error(createMessage('error'))">Error Message</use-button>
   </use-space>
 </template>
-<script setup lang="ts">
-// import message from 'useless-ui/message'
-
-const createMessage = (type) => (
-  message[type]({
-    content:'测试消息'
-  })
-)
+<script setup>
+const createMessage = (type) => ({
+  content:`${type} Message`,
+})
 </script>
 ```
 :::
@@ -57,26 +45,22 @@ const createMessage = (type) => (
 ```vue
 <template>
   <use-space>
-    <use-button @click="() => createMessage(1000)">1000 ms</use-button>
-    <use-button @click="() => createMessage(3000)">3000 ms</use-button>
-    <use-button @click="() => createMessage(5000)">5000 ms</use-button>
-    <use-button @click="() => createMessage(10000)">10000 ms</use-button>
+    <use-button @click="()=>this.$message.info(createMessage(1000))">1000 ms</use-button>
+    <use-button @click="()=>this.$message.info(createMessage(3000))">3000 ms</use-button>
+    <use-button @click="()=>this.$message.info(createMessage(5000))">5000 ms</use-button>
+    <use-button @click="()=>this.$message.info(createMessage(10000))">10000 ms</use-button>
   </use-space>
 </template>
 <script setup>
-// import message from 'useless-ui/message'
-
-const createMessage = (duration) => {
-  message.info({
-    duration,
-    content:`${duration}ms 后关闭`
-  })
-}
+const createMessage = (duration) => ({
+  content:`${duration}ms 后自动关闭`,
+  duration
+})
 </script>
 ```
 :::
 
-MessageMethod
+`MessageMethod`
 | 参数名 | 描述                     | 类型                                | 默认值 |
 | --------- | -------------------------- | ------------------------------------- | ------ |
 | message   | 消息内容               | string                                | -      |
