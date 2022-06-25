@@ -120,7 +120,10 @@ const Popover = defineComponent({
 
 
     return () => (
-      <Transition name={`zoom-fade-${props.placement}`} mode="out-in" ref={popoverNodeRef}>
+      <Transition
+        name={`zoom-fade-${props.placement}`}
+        mode="out-in"
+        ref={popoverNodeRef}>
         <div
           class={classes.value}
           ref={contentRef}

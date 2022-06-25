@@ -7,8 +7,8 @@ const useEventMouse = (
   content: ContentType,
   triggerProps: PopoverProps
 ) => {
-  let el: any
-  let timer: any
+  let el: HTMLElement
+  let timer: NodeJS.Timeout | null = null
   const { trigger } = triggerProps
 
   const triggerCtx = reactive({
@@ -19,6 +19,7 @@ const useEventMouse = (
 
   const handleOpenPopover = () => {
     triggerCtx.triggerEventOver = trigger === 'click' ? false : true
+
     if (triggerCtx.instance && trigger === 'click') {
       triggerCtx.triggerEventOver = false
       triggerCtx.instance.props.onClose(triggerCtx.placement)

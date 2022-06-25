@@ -3,6 +3,7 @@ import { render } from 'vue';
 import { createVNode } from 'vue';
 import PopoverNode from '../popover-node'
 import { createPositionTarget } from './create-position-target';
+
 export const createPopoverNode = (
   triggerEl: HTMLElement,
   content: ContentType,
@@ -19,7 +20,8 @@ export const createPopoverNode = (
     triggerCtx.instance = null;
     setTimeout(() => {
       render(null, container)
-    }, 100)
+    }, 200)
+    triggerProps.onClose()
   }
 
   const vnode = createVNode(PopoverNode, {

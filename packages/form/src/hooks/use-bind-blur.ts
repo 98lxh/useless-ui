@@ -6,7 +6,7 @@ const bindVnodeNames = [
   'UseDatePicker'
 ]
 
-export const useBindBlur = (slots: VNode[], state: any, listener: any) => {
+export const useBindBlur = (slots: VNode[], state: any, listener: Function) => {
   const scanSlots = (vnodes: VNode[]) => {
     vnodes.forEach(vnode => {
       const VNodeName = vnode.type && (vnode.type as any).name

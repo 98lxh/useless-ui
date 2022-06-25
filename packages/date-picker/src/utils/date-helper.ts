@@ -1,10 +1,10 @@
 import { Ref } from 'vue';
 import { DatePickerType } from '../date-picker.types';
+
 export const getYearMonthDay = (date: Date) => {
   let year = date.getFullYear()
   let month = date.getMonth()
   let day = date.getDate()
-
   return {
     year, month, day
   }
@@ -71,7 +71,9 @@ export const genFormatDate = (currentDate: Ref<any>, type: DatePickerType) => {
   const { year, month, day } = getYearMonthDay(
     Array.isArray(currentDate.value) ? currentDate.value[0] : currentDate.value
   )
-  let date: any
+
+  let date: string | [string, string]
+
   switch (type) {
     case 'date':
       date = `${year}-${month + 1}-${day}`

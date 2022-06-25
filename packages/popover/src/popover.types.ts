@@ -16,6 +16,7 @@ export interface PopoverProps {
   placement?: PopoverPlacementType,
   color?: string
   bgColor?: string
+  onClose?: () => void
 }
 
 export interface PopoverNodeProps {

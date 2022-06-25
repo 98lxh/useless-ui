@@ -1,6 +1,6 @@
-import { defineComponent, provide, ref, PropType, Teleport, Transition } from "vue"
+import { defineComponent, provide, ref, PropType, Teleport, Transition, watch } from "vue"
 import { injectDatePicker } from "./context"
-import { DatePickerType } from "./date-picker.types"
+import { DatePickerType, InputProps } from "./date-picker.types"
 import { useDatePicker } from "./hooks/use-date-picker"
 import { useClickOutSide } from "./hooks/use-click-outside"
 import { createPositionTarget } from "./utils/create-position-target"
@@ -20,7 +20,6 @@ const datePickerProps = {
     type: [
       String,
       Array,
-      null
     ],
     default: ''
   },
@@ -65,10 +64,10 @@ const Datepicker = defineComponent({
       const pickerRect = datePickerRef.value.getBoundingClientRect()
       const pickerTop = pickerRect.top + pickerRect.height + document.documentElement.scrollTop + 5
       const pickerLeft = pickerRect.left + document.documentElement.scrollLeft
-      return {
+      return ({
         top: pickerTop + 'px',
         left: pickerLeft + 'px'
-      }
+      })
     }
 
     const openDatePickerPanel = () => {
@@ -77,10 +76,6 @@ const Datepicker = defineComponent({
 
     const closeDatePickerPanel = () => {
       visible.value = false
-    }
-
-    const inputBlur = () => {
-      emit('blur')
     }
 
     const changeCurrentDate = (date: Date) => {
@@ -107,42 +102,66 @@ const Datepicker = defineComponent({
           Picker = RangerPicker
           break
       }
-      return <div class="u-picker-wrapper" style={getPickerPosition()}>
-        <Picker />
-      </div>
+      return (
+        <div class="u-picker-wrapper" style={getPickerPosition()}>
+          <Picker />
+        </div>
+      )
+    }
+
+    const rangePickerInput = (inputProps: InputProps<'range'>) => {
+      const hasDeaultValue = props.value
+      return (
+        <div class="range-input__wrapper" >
+          <Input
+            {...inputProps}
+            value={hasDeaultValue ? inputProps.value[0] : ''}
+            placeholder={inputProps?.placeholder[0] || ''}
+          />
+          <span>-</span>
+          <Input
+            {...inputProps}
+            value={hasDeaultValue ? inputProps.value[0] : ''}
+            placeholder={inputProps?.placeholder[1] || ''}
+          />
+          <Icon name="calendar" />
+        </div>
+      )
+    }
+
+    const pickerInput = (inputProps: InputProps) => {
+      const hasDeaultValue = props.value
+      return (
+        <Input
+          {...inputProps}
+          value={hasDeaultValue ? inputProps.value : ''}
+          placeholder={inputProps.placeholder}
+          v-slots={{
+            suffix: () => (<Icon name="calendar" />)
+          }}
+        />
+      )
     }
 
     const renderInput = () => {
       const inputProps = {
         disabled: props.disabled,
         onFocus: openDatePickerPanel,
-        onBlur: inputBlur,
-        error: props.error
+        error: props.error,
+        value: formatDate.value,
+        placeholder: props.placeholder
       }
-      if (props.type === 'range') {
-        const valueLen = props.value ? (props.value as any).length : 0
-        return <div class="range-input__wrapper" >
-          <Input
-            value={valueLen === 0 ? '' : formatDate.value[0]}
-            placeholder={props.placeholder[0] as string}
-            {...inputProps} />
-          <span>-</span>
-          <Input
-            value={valueLen === 0 ? '' : formatDate.value[1]}
-            placeholder={props.placeholder[1] as string}
-            {...inputProps} />
-          <Icon name="calendar" />
-        </div>
-      } else {
-        return <Input
-          value={props.value && formatDate.value as any}
-          placeholder={props.placeholder as string}
-          v-slots={{
-            suffix: () => <Icon name="calendar" />
-          }}
-          {...inputProps} />
-      }
+
+      return (
+        (Array.isArray(formatDate.value) || Array.isArray(props.placeholder))
+          ? rangePickerInput(inputProps as InputProps<'range'>)
+          : pickerInput(inputProps as InputProps)
+      )
     }
+
+    watch(visible, () => { 
+      if(!visible.value) emit('blur')
+    })
 
     useClickOutSide(datePickerRef, closeDatePickerPanel)
 

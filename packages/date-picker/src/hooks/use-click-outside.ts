@@ -17,12 +17,12 @@ const whiteClass = ['nav-year',
   'days',
 ]
 
-const isWhite = (classList: any) => {
+const isWhite = (classList: string) => {
   if (!classList.length) return whiteClass.includes(classList)
   return [...classList].some(c => whiteClass.includes(c))
 }
 
-export const useClickOutSide = (ref: Ref<Element>, handler: any) => {
+export const useClickOutSide = (ref: Ref<Element>, handler: Function) => {
   const listener = (event) => {
     if (!ref.value || !ref.value.contains(event.target) && !isWhite(event.target.classList)) {
       handler()

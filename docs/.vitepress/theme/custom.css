@@ -3,6 +3,11 @@
   --c-brand-light: #4d9375;
 }
 
+
+.sidebar{
+  border-right: none !important;
+}
+
 .sidebar-link-item{
   font-weight: 400 !important;
   line-height: 21px !important;
@@ -48,7 +53,7 @@ table{
 
 
 .sidebar::-webkit-scrollbar {
-  width : 2px;  
+  width : 5px;  
   height: 1px;
  }
 
@@ -58,5 +63,20 @@ table{
 }
 
 .sidebar::-webkit-scrollbar-track {
-   background: rgba(255, 255, 255, 0.2);
+   background: transparent
+ }
+
+
+ html::-webkit-scrollbar {
+  width : 5px;  
+  height: 1px;
+ }
+
+ html::-webkit-scrollbar-thumb {
+   border-radius: 2px;
+   background: #ccc;
+}
+
+html::-webkit-scrollbar-track {
+   background: transparent
  }

@@ -1,9 +1,9 @@
 
-import { defineComponent, nextTick, onUnmounted, PropType, ref, watch } from "vue";
+import { defineComponent, watch, PropType, ref } from "vue";
+import { SelectOption } from "./select.types";
 import Popover from "./../../popover"
 import Input from "./../../input"
 import Icon from "./../../icon"
-import { SelectOption } from "./select.types";
 
 const SelectProps = {
   options: {
@@ -17,8 +17,8 @@ const SelectProps = {
     type: String,
     default: ""
   },
-  error:{
-    type:[
+  error: {
+    type: [
       Boolean,
       Object
     ]
@@ -30,8 +30,8 @@ const Select = defineComponent({
   props: SelectProps,
   emits: ['update:value', 'blur'],
   setup(props, { emit }) {
-    const popoverRef = ref()
-    const inputRef = ref()
+    const popoverRef = ref(null)
+    const inputRef = ref(null)
     const selectValue = ref<SelectOption>(
       props.options.filter(opt => opt.value === props.value)[0] ||
       { label: '', value: '' }
@@ -42,10 +42,11 @@ const Select = defineComponent({
       emit('update:value', option.value)
       selectValue.value = option
       popoverRef.value.close()
+      emit('blur')
     }
 
-    const renderOptions = () => {
-      return props.options.map((option) => {
+    const renderOptions = () => (
+      props.options.map((option) => {
         const optionClass = {
           'u-select-option': true,
           'is-disabled': option.disabled
@@ -54,14 +55,10 @@ const Select = defineComponent({
           {option.label}
         </div>
       })
-    }
+    )
 
     const handleFocus = () => {
       inputRef.value.focus()
-    }
-
-    const handleInputBlur = (e) => {
-        emit('blur', e)
     }
 
     return () => (
@@ -70,6 +67,7 @@ const Select = defineComponent({
           ref={popoverRef}
           trigger="click"
           showArrow={false}
+          onClose={() => emit('blur')}
           padding="5px 0px"
           placement="bl"
           v-slots={{
@@ -79,7 +77,6 @@ const Select = defineComponent({
             <Input
               value={selectValue.value.label}
               placeholder={props.placeholder}
-              onBlur={handleInputBlur}
               ref={inputRef}
               error={props.error}
               v-slots={{

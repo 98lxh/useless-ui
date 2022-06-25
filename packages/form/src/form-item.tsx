@@ -1,4 +1,4 @@
-import { defineComponent, PropType, Transition,nextTick, onUnmounted } from 'vue';
+import { defineComponent, PropType, Transition, onUnmounted, VNode } from 'vue';
 import { useFormItem } from './hooks/use-form-item';
 import { useBindBlur } from './hooks/use-bind-blur';
 import { Rule } from 'async-validator';
@@ -24,50 +24,50 @@ const FormItem = defineComponent({
   name: 'UseFormItem',
   props: formItemProps,
   setup(props, { slots }) {
-    const { state, validate, labelWidth, required, rule,model } = useFormItem(props)
-    let timer:any = 0;
-
-    const renderLabel = () => {
-      return (<label
-        class="u-form-item__label"
-        style={{ width: labelWidth.value + 'px' }}
-      >
-        {required.value && <span>*</span>}
-        {props.label}
-      </label>)
-    }
+    let timer: NodeJS.Timeout | null = null;
+    const { state, validate, labelWidth, required, rule } = useFormItem(props)
 
     const renderContent = () => {
       const VNodes = slots.default && slots.default()
       useBindBlur(VNodes, state, () => {
-        timer = setTimeout(()=>{
-          rule.value && validate()
-        },200)
+        rule.value && validate()
       })
       return VNodes
     }
 
-    const renderErrorMessage = () => {
-      return <div
-        class="u-form-item--error"
-      >
-        <Transition name="zoom-fade-bottom">
-          {state.error && <p>{state.errorMessage}</p>}
-        </Transition>
-      </div>
+    const renderErrorMessage = ():JSX.Element => {
+      return (
+        <div
+          class="u-form-item--error"
+        >
+          <Transition name="zoom-fade-error">
+            {state.error && <p>{state.errorMessage}</p>}
+          </Transition>
+        </div>
+      )
+    }
+
+    const renderLabel= ():JSX.Element  => {
+      return (
+        <label
+          class="u-form-item__label"
+          style={{ width: labelWidth.value + 'px' }}
+        >
+          {required.value && <span>*</span>}
+          {props.label}
+        </label>
+      )
     }
 
 
-    onUnmounted(()=>{
-      if(timer){
-        window.clearTimeout(timer)
-      }
+    onUnmounted(() => {
+      if (timer) window.clearTimeout(timer)
     })
 
     return () => {
       return <div class='u-form-item'>
         {renderLabel()}
-        <div class="u-form-item--content">
+        <div class="u-form-item__content">
           {renderContent()}
           {renderErrorMessage()}
         </div>

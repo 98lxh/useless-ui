@@ -1,105 +1,91 @@
 <template>
-  <div :style="{position: 'relative', width: '440px', height: '280px',margin:'300px'}">
-    <use-popover placement="tl" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'0',left:'70px'}">TL</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-     <use-popover placement="top" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'0',left:'200px'}">TOP</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-    <use-popover placement="tr" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'0',left:'330px'}">TR</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-    <use-popover placement="lt" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'50px',left:'30px'}">LT</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-    <use-popover placement="left" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'100px',left:'30px'}">LEFT</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-     <use-popover placement="lb" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'150px',left:'30px'}">LB</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-     <use-popover placement="bl" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'200px',left:'70px'}">BL</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-     <use-popover placement="bottom" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'200px',left:'200px'}">BOTTOM</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-    <use-popover placement="br">
-      <use-button class="button" :style="{position: 'absolute',top:'200px',left:'330px'}">BR</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-     <use-popover placement="rt" trigger="click">
-      <use-button class="button" :style="{position: 'absolute',top:'50px',left:'360px'}">RT</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-    <use-popover placement="right">
-      <use-button class="button" :style="{position: 'absolute',top:'100px',left:'360px'}">RIGHT</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-
-     <use-popover placement="rb">
-      <use-button class="button" :style="{position: 'absolute',top:'150px',left:'360px'}">RB</use-button>
-      <template #content>
-        <p>Here is the text content</p>
-        <p>Here is the text content</p>
-      </template>
-    </use-popover>
-  </div>
+  <use-space wrap>
+    <div>{{JSON.stringify(formModel)}}</div>
+  </use-space>
+  <use-form :model="formModel" :label-width="100" :rules="rules" ref="formRef">
+   <use-form-item label="name:" prop="name">
+    <use-input v-model:value="formModel.name"></use-input>
+   </use-form-item>
+   <use-form-item label="password:" prop="password">
+    <use-input v-model:value="formModel.password"></use-input>
+   </use-form-item>
+   <use-form-item label="email:" prop="email">
+    <use-input v-model:value="formModel.email"></use-input>
+   </use-form-item>
+   <use-form-item label="city:" prop="city">
+    <use-select v-model:value="formModel.city" :options="options"></use-select>
+   </use-form-item>
+   <use-form-item label="birthday:" prop="birthday">
+    <use-date-picker v-model:value="formModel.birthday"></use-date-picker>
+   </use-form-item>
+   <use-form-item>
+    <use-button @click="register">Register</use-button>
+   </use-form-item>
+  </use-form>
 </template>
+<script setup lang="ts">
+import { reactive, ref } from 'vue';
+const formRef = ref()
+const formModel = reactive({
+  name:'',
+  password:'',
+  city:'',
+  email:'',
+  birthday:null
+})
 
-<style>
-.button{
-  width: 100px;
+const options = [
+  {
+    value:'Beijing',
+    label:'北京'
+  },
+  {
+    value:'HengShui',
+    label:'衡水'
+  },
+  {
+    value:'Disabled',
+    label:'Disabled',
+    disabled:true
+  }
+]
+
+const rules = {
+  'name': [
+    { max: 6, min: 3, message: '用户名必须在3~6位之间' },
+    { required: true, message: '用户名不能为空' }
+  ],
+  'password': [
+    { max: 16, min: 6, message: '密码必须在6~16位之间' },
+    { required: true, message: '密码不能为空' }
+  ],
+  'email': [
+   { required: true, message: '邮箱不能为空' },
+   {
+      validator: (rule, value) => {
+        const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+        return reg.test(value)
+      },
+      message:'邮箱格式不正确'
+   }
+  ],
+  'city': {
+    required: true,
+    message: '请选择一个城市',
+  },
+  'birthday': {
+    required: true,
+    message: '请选择出生日期',
+  },
 }
-</style>
+
+
+const register = () => {
+  formRef.value.validate((hasError)=> {
+    if(!hasError){
+      console.log('register....')
+    }
+  })
+}
+
+</script>
