@@ -1,9 +1,0 @@
-0 silly argv { _: [ 'create' ], lernaVersion: '4.0.0', '$0': 'lerna', name: 'tree' }
-1 notice cli v4.0.0
-2 verbose rootPath /Users/liuxuehan/Documents/GitHub/useless-ui
-3 error Error: Command failed with exit code 1: git config --get user.name
-3 error     at makeError (/Users/liuxuehan/Documents/GitHub/useless-ui/node_modules/execa/lib/error.js:60:11)
-3 error     at Function.module.exports.sync (/Users/liuxuehan/Documents/GitHub/useless-ui/node_modules/execa/index.js:194:17)
-3 error     at Object.execSync (/Users/liuxuehan/Documents/GitHub/useless-ui/node_modules/@lerna/child-process/index.js:39:16)
-3 error     at CreateCommand.gitConfig (/Users/liuxuehan/Documents/GitHub/useless-ui/node_modules/@lerna/create/index.js:181:25)
-3 error     at CreateCommand.initialize (/Users/liuxuehan/Documents/GitHub/useless-ui/node_modules/@lerna/create/index.js:103:46)
