@@ -5,11 +5,14 @@ export const calculatePosition = (
   triggerRect: DOMRect,
   contentSize: ContentSizeType,
   placement: PopoverPlacementType,
-  isShowArrow:boolean
+  isShowArrow: boolean
 ): PopoverNodePositionType => {
-  const triggerTop = triggerRect.top + document.documentElement.scrollTop
-  const triggerLeft = triggerRect.left + document.documentElement.scrollLeft
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+  const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft
+  const triggerTop = triggerRect.top + scrollTop
+  const triggerLeft = triggerRect.left + scrollLeft
   const arrowHeight = isShowArrow ? 10 : 3;
+
   const positonMap = {
     bottom: {
       top: triggerTop + triggerRect.height + arrowHeight + 'px',

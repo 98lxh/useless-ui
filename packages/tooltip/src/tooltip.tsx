@@ -21,7 +21,7 @@ const Tooltip = defineComponent({
       return slots.default && slots.default()
     }
     return () => (<Popover
-      bgColor="#000"
+      bgColor="#404040"
       color="#fff"
       placement={props.placement}
       v-slots={{

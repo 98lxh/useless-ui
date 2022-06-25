@@ -11,9 +11,7 @@ export const createPopoverNode = (
   triggerProps: PopoverProps,
 ) => {
   const container = document.createElement('div')
-
   const positionTarget = createPositionTarget()
-
   const onClose = () => {
     const { placement } = triggerCtx
     vnode.el.className += ` zoom-fade-${placement}-leave-active zoom-fade-${placement}-leave-to`
