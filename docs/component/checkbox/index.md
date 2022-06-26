@@ -10,18 +10,9 @@
 <template>
  <use-checkbox label="option1" v-model="checked"></use-checkbox>
 </template>
-<script>
+<script setup lang="ts">
   import { ref ,defineComponent } from 'vue';
-  export default defineComponent({
-    name:'Demo',
-    setup(){
-      const checked = ref('')
-
-      return {
-        checked
-      }
-    }
-  })
+  const checked = ref('')
 </script>
 ```
 :::
@@ -37,7 +28,7 @@
 <template>
  <use-checkbox v-model="value" disabled>option</use-checkbox>
 </template>
-<script setup>
+<script setup lang="ts">
   import { ref } from 'vue';
   const value = ref(false)
 </script>

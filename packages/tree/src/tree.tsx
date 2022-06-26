@@ -1,7 +1,8 @@
 import { defineComponent, PropType, provide } from "vue";
 import TreeNode from "./tree-node";
-import { TreeNodeOption, TreeProvide } from "./tree.types";
 import { useTree } from '../hooks/use-tree'
+import { TreeNodeOption, TreeProvide } from "./tree.types";
+import { updateDownWard, updateUpWard } from "../utils/update";
 
 const Tree = defineComponent({
   name: 'UseTree',
@@ -29,57 +30,65 @@ const Tree = defineComponent({
     TreeNode
   },
   setup(props, { emit }) {
-    const { updateDownWard, updateUpWard, selectedKey, checkedKeys, data, flatList } = useTree(props)
+    const { selectedKey, checkedKeys, data, flatternList } = useTree(props)
+
+    function handleExpaned(node: TreeNodeOption) {
+      node.expanded = !node.expanded
+    }
+
+    function handleSelectChange(node: TreeNodeOption) {
+      selectedKey.value = node.key
+      emit('selectedChange', node.key)
+    }
+
+    function handleCheckChange(node: TreeNodeOption) {
+      node.checked = !node.checked;
+      node.indeterminate = false;
+      let currentCheckedKeys: Array<string> = []
+
+      if (props.checkStrictly) {
+        updateDownWard(node.children!, node.checked)
+        updateUpWard(node, flatternList)
+      }
+
+      currentCheckedKeys = flatternList.filter(item => item.checked).map(item => item.key)
+      emit('checkedChange', currentCheckedKeys)
+      checkedKeys.value = currentCheckedKeys
+    }
+
     provide<TreeProvide>('UTree', {
       selectedKey,
       checkable: props.checkable
     })
 
-    const handleExpaned = (node: TreeNodeOption) => {
-      node.expanded = !node.expanded
-    }
-
-    const handleSelectChange = (node: TreeNodeOption) => {
-      selectedKey.value = node.key
-      emit('selectedChange', node.key)
-    }
-
-    const handleCheckChange = (node: TreeNodeOption) => {
-      node.checked = !node.checked;
-      node.indeterminate = false;
-      let currentCheckedKeys: string[] = []
-      if (props.checkStrictly) {
-        updateDownWard(node.children!, node.checked)
-        updateUpWard(node, flatList)
-      }
-      currentCheckedKeys = flatList.filter(item => item.checked).map(item => item.key)
-      emit('checkedChange', currentCheckedKeys)
-      checkedKeys.value = currentCheckedKeys
-    }
-
-    const renderTreeNodes = () => {
-      const scanTree = (nodes: TreeNodeOption[]) => {
-        return nodes.map(treeNode => {
-          const nodeProps = {
+    function renderTreeNodes() {
+      function scanTree(nodes: TreeNodeOption[]) {
+        return nodes.map(function (treeNode) {
+          const props = {
             node: treeNode,
             onSelectChange: handleSelectChange,
             onChildExpaned: handleExpaned,
             onCheckChange: handleCheckChange
           }
+
           if (treeNode.children.length) {
-            return <TreeNode {...nodeProps} >
-              {scanTree(treeNode.children)}
-            </TreeNode>
-          } else {
-            return <TreeNode {...nodeProps} />
-          }
+            return (
+              <TreeNode {...props} >
+                {scanTree(treeNode.children)}
+              </TreeNode>
+            )
+          } 
+
+          return <TreeNode {...props} />
         })
       }
       return scanTree(data.value)
     }
 
     return () => (
-      <div class="u-tree">{renderTreeNodes()}</div>
+      <div class="u-tree">
+        {renderTreeNodes()}
+      </div>
     )
   }
 })

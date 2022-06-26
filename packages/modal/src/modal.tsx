@@ -69,10 +69,12 @@ const Modal = defineComponent({
       if (slots.footer) {
         return slots.footer()
       }
-      return <div class="btns">
-        <Button type='outline' onClick={handleCancel}>{props.cancelText || '取消'}</Button>
-        <Button type="primary" onClick={handleConfirm}>{props.confirmText || '确认'}</Button>
-      </div>
+      return (
+        <div class="btns">
+          <Button type='outline' onClick={handleCancel}>{props.cancelText || '取消'}</Button>
+          <Button type="primary" onClick={handleConfirm}>{props.confirmText || '确认'}</Button>
+        </div>
+      )
     }
 
 

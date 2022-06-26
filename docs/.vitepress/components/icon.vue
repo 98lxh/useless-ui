@@ -32,7 +32,7 @@ const copy = (iconName:string) => {
   document.execCommand('Copy')
   message({
     type:'success',
-    message:`复制 ${iconName} 成功!`
+    content:`复制 ${iconName} 成功!`
   })
   input.remove()
 }

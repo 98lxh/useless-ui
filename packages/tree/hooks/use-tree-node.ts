@@ -2,7 +2,7 @@ import { TreeNodeProps } from '../src/tree.types';
 import { inject, computed } from "vue";
 import { TreeProvide } from "../src/tree.types";
 
-export const useTreeNode = (props: TreeNodeProps) => {
+export function useTreeNode(props: TreeNodeProps) {
   const hasChildren = computed(() => props.node.children.length > 0)
   const expanded = computed(() => props.node.expanded);
   const level = computed(() => props.node.level)
@@ -16,7 +16,7 @@ export const useTreeNode = (props: TreeNodeProps) => {
   }
 }
 
-export const useTreeContext = () => {
+export function useTreeContext() {
   const { selectedKey, checkable } = inject<TreeProvide>('UTree')
 
   return {
