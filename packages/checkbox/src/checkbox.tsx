@@ -21,16 +21,25 @@ const Checkbox = defineComponent({
 
     const checkboxIcon = computed(() => {
       const { indeterminate } = props;
-      if (!isChecked.value && !indeterminate) return ''
-      return <i class={isChecked.value ? 'u-icon-success' : 'u-icon-jianhao'} />
+      if (!isChecked.value && !indeterminate) return null
+      return (
+        <i class={isChecked.value ? 'u-icon-success' : 'u-icon-jianhao'} />
+      )
     })
 
     return () => (
-      <div class={['u-checkbox', props.disabled && 'is-disabled']}>
-        <span class={classes.value} onClick={handleCheck}>
+      <div
+        class={['u-checkbox', props.disabled && 'is-disabled']}
+      >
+        <span
+          class={classes.value}
+          onClick={handleCheck}
+        >
           {checkboxIcon.value}
         </span>
-        <span class="u-checkbox__label">
+        <span
+          class="u-checkbox__label"
+        >
           {slots.default?.() || props.label}
         </span>
       </div>

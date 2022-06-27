@@ -1,20 +1,18 @@
-import { ICheckboxGroupProvide } from '../checkbox.types';
-
 import { computed, getCurrentInstance, inject, Ref, unref } from "vue";
+import { ICheckboxGroupProvide } from '../checkbox.types';
 import { ICheckboxProps } from "../checkbox.types";
 
 
-const useCheckboxGroup = () => {
+function useCheckboxGroup() {
   const checkboxGroup = inject<ICheckboxGroupProvide>('UCheckboxGroup', {});
   const isGroup = checkboxGroup.name === 'u-checkbox-group';
-
   return {
     isGroup,
     checkboxGroup
   }
 }
 
-export const useModel = <T>(props: any): Ref<T> => {
+function useVModel<T>(props: any): Ref<T> {
   const emit = getCurrentInstance().emit
   const { isGroup, checkboxGroup } = useCheckboxGroup();
   const store = computed(() => checkboxGroup ? checkboxGroup.modelValue.value : props.modelValue)
@@ -28,7 +26,7 @@ export const useModel = <T>(props: any): Ref<T> => {
   })
 }
 
-const useCheckboxStatus = (props: ICheckboxProps, model: Ref<boolean>) => {
+function useCheckboxStatus(props: ICheckboxProps, model: Ref<boolean>) {
   const isChecked = computed(() => {
     const value = model.value
     if (Array.isArray(value)) {
@@ -41,7 +39,7 @@ const useCheckboxStatus = (props: ICheckboxProps, model: Ref<boolean>) => {
   return isChecked
 }
 
-const useEvent = (props: ICheckboxProps, model: Ref<boolean>) => {
+function useEvent(props: ICheckboxProps, model: Ref<boolean>) {
   if (props.disabled) return
   const emit = getCurrentInstance().emit;
   const { checkboxGroup } = useCheckboxGroup()
@@ -67,11 +65,10 @@ const useEvent = (props: ICheckboxProps, model: Ref<boolean>) => {
   return handleCheck
 }
 
-export const useCheckbox = (props: ICheckboxProps) => {
-  const model = useModel<boolean>(props)
+export function useCheckbox(props: ICheckboxProps) {
+  const model = useVModel<boolean>(props)
   const isChecked = useCheckboxStatus(props, model)
   const handleCheck = useEvent(props, model)
-
 
   return {
     isChecked,

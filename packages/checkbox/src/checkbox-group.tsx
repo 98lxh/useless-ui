@@ -15,7 +15,7 @@ const CheckboxGroup = defineComponent({
       }
     })
 
-    const changeEvent = (value) => {
+    function changeEvent (value) {
       emit('change', value)
       emit('update:modelValue', value)
     }
@@ -27,7 +27,9 @@ const CheckboxGroup = defineComponent({
     })
 
     return () => (
-      <div class="u-checkbox-group">
+      <div
+        class="u-checkbox-group"
+      >
         {slots?.default()}
       </div>
     )
