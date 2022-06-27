@@ -38,6 +38,7 @@ export default defineConfig({
             { text: '树 Tree', link: "/component/tree/" },
             { text: '气泡卡片 Popover', link: '/component/popover/' },
             { text: '文字气泡 Tooltip', link: '/component/tooltip/' },
+            { text: '走马灯 Carousel', link: '/component/carousel/' },
           ]
         },
         {

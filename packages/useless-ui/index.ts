@@ -16,8 +16,9 @@ import Tooltip from "@useless-ui/tooltip"
 import Input from "@useless-ui/input"
 import Modal from "@useless-ui/modal"
 import DatePicker from "@useless-ui/date-picker";
-import {UForm as Form,UFormItem as FormItem} from "@useless-ui/form"
 import Select from "@useless-ui/select"
+import { UForm as Form, UFormItem as FormItem } from "@useless-ui/form"
+import { UCarousel as Carousel, UCarouselItem as CarouselItem } from "@useless-ui/carousel"
 
 const components = [
   Button,
@@ -39,7 +40,9 @@ const components = [
   DatePicker,
   Form,
   FormItem,
-  Select
+  Select,
+  Carousel,
+  CarouselItem
 ]
 const install = (app: App): void => {
   components.forEach(comp => {
@@ -66,7 +69,9 @@ export {
   Modal,
   DatePicker,
   Form,
-  Select
+  Select,
+  Carousel,
+  CarouselItem
 }
 
 export default {

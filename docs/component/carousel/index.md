@@ -1,5 +1,12 @@
+# 走马灯 carousel
+
+<h2>基本用法</h2>
+循环播放图片、文字
+
+:::demo 
+```vue
 <template>
-  <div class="container">
+  <div class="carousel-container">
     <use-carousel>
       <use-carousel-item v-for="i in 4" :key="i">
         <div
@@ -12,11 +19,13 @@
     </use-carousel>
   </div>
 </template>
-<style lang="scss" scoped>
-.container {
+<style lang="scss">
+.carousel-container {
   width: 520px;
   height: 280px;
-  .carousel-item {
+}
+
+.carousel-item {
     width: 520px;
     height: 280px;
     display: flex;
@@ -25,6 +34,7 @@
     font-size: 36px;
     color: #fff;
     font-weight: bold;
-  }
 }
 </style>
+```
+:::

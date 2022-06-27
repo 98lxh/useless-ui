@@ -56,11 +56,6 @@ const Tree = defineComponent({
       checkedKeys.value = currentCheckedKeys
     }
 
-    provide<TreeProvide>('UTree', {
-      selectedKey,
-      checkable: props.checkable
-    })
-
     function renderTreeNodes() {
       function scanTree(nodes: TreeNodeOption[]) {
         return nodes.map(function (treeNode) {
@@ -71,19 +66,22 @@ const Tree = defineComponent({
             onCheckChange: handleCheckChange
           }
 
-          if (treeNode.children.length) {
-            return (
-              <TreeNode {...props} >
-                {scanTree(treeNode.children)}
-              </TreeNode>
-            )
-          } 
+          if (!treeNode.children.length) return <TreeNode {...props} />
 
-          return <TreeNode {...props} />
+          return (
+            <TreeNode {...props} >
+              {scanTree(treeNode.children)}
+            </TreeNode>
+          )
         })
       }
       return scanTree(data.value)
     }
+
+    provide<TreeProvide>('UTree', {
+      selectedKey,
+      checkable: props.checkable
+    })
 
     return () => (
       <div class="u-tree">

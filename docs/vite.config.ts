@@ -21,7 +21,8 @@ const components = [
   'modal',
   'date-picker',
   'select',
-  'form'
+  'form',
+  'carousel'
 ]
 
 
