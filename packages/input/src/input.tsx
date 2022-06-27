@@ -37,44 +37,47 @@ const Input = defineComponent({
   emits: ['focus', 'blur', 'input', 'update:value'],
   setup(props, { slots, emit, expose }) {
     const { modelValue, type, handleShowPassword } = useInput(props)
-    const inputRef = ref<HTMLInputElement>()
+    const inputRef = ref<HTMLInputElement | null>(null)
     const classes = computed(() => ({
       'u-input__input': true,
       'is-disabled': props.disabled,
-      'is-error':typeof props.error === 'object' ? props.error.error : props.error,
+      'is-error': typeof props.error === 'object' ? props.error.error : props.error,
       'is-prefix': slots.prefix,
       'is-suffix': slots.suffix
     }))
 
-    const handleFocus = (event) => {
+    function handleFocus (event:FocusEvent) {
       emit('focus', event)
     }
 
-    const handleBlur = (event) => {
+    function handleBlur (event:FocusEvent)  {
       emit('blur', event)
     }
 
-    const handleInput = (event) => {
-      emit('update:value', event.target.value)
+    function handleInput (event:InputEvent) {
+      emit('update:value', (event.target as HTMLInputElement).value)
       emit('input', event)
     }
 
-    const focus = () => {
+    function focus () {
       inputRef.value && inputRef.value.focus()
     }
 
-    const blur = () => {
+    function blur () {
       inputRef.value && inputRef.value.blur()
     }
 
-    const renderSuffix = () => {
-      if (props.type === 'password') {
-        return <Icon
+    function renderSuffix() {
+      if (props.type !== 'password') return slots.suffix && slots.suffix()
+
+      return (
+        <Icon
           class={props.showPassword && 'is-showpassword'}
           name={type.value === 'password' ? 'eye-close' : 'eye'}
-          onClick={handleShowPassword} />
-      }
-      return slots.suffix && slots.suffix()
+          onClick={handleShowPassword}
+        />
+      )
+
     }
 
     expose({
@@ -95,7 +98,8 @@ const Input = defineComponent({
           onBlur={handleBlur}
           onInput={handleInput}
           type={type.value}
-          value={modelValue.value} />
+          value={modelValue.value}
+        />
         <span class="u-input--suffix" v-show={slots.suffix || props.type === 'password'}>
           {renderSuffix()}
         </span>

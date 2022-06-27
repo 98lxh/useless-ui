@@ -42,7 +42,7 @@ const Carousel = defineComponent({
           break
         case 'prev':
           currentIndex.value -= 1
-          if (currentIndex.value === -1) currentIndex.value = itemLength.value - 0
+          if (currentIndex.value === -1) currentIndex.value = itemLength.value - 1
           break
         default:
           currentIndex.value = direction

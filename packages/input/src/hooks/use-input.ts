@@ -1,7 +1,7 @@
 import { getCurrentInstance, computed, ref, Ref } from "vue";
 import { InputProps, InputType } from "../input.types";
 
-const useModel = (props: InputProps) => {
+const useVModel = (props: InputProps) => {
   const emit = getCurrentInstance().emit
   return computed({
     get() {
@@ -14,21 +14,20 @@ const useModel = (props: InputProps) => {
   })
 }
 
-const useInputPassword = (inputProps: InputProps, type: Ref<InputType>) => {
-  const handleShowPassword = () => {
+function useInputPassword(inputProps: InputProps, type: Ref<InputType>) {
+  function handleShowPassword() {
     if (!inputProps.showPassword) return
     const newType = type.value === 'password' ? 'text' : 'password'
     type.value = newType
   }
-  return {
-    handleShowPassword
-  }
+
+  return handleShowPassword
 }
 
-export const useInput = (inputProps: InputProps) => {
+export function useInput(inputProps: InputProps) {
   const type = ref(inputProps.type)
-  const modelValue = useModel(inputProps)
-  const { handleShowPassword } = useInputPassword(inputProps, type)
+  const modelValue = useVModel(inputProps)
+  const handleShowPassword = useInputPassword(inputProps, type)
 
   return {
     modelValue,
