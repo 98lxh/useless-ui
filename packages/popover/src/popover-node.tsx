@@ -1,71 +1,29 @@
-import { computed, defineComponent, onMounted, PropType, ref, Transition, nextTick, watch, } from "vue";
-import { PopoverNodePositionType, PopoverPlacementType, PopoverTriggerType } from "./popover.types";
+import { computed, defineComponent, onMounted, PropType, ref, Transition, nextTick } from "vue";
+import { basePopoverProps, PopoverNodePositionType, PopoverPlacementType, TriggerContext } from "./popover.types";
+import { useClick } from "./hooks/use-click";
+import { useHover } from "./hooks/use-hover";
 import { calculatePosition } from "./utils/calculate-positon";
 import { calculatePlacement } from "./utils/placement-strategy";
-import { useClick } from "./hooks/use-click";
-
-const popoverProps = {
-  title: {
-    type: String,
-    default: ''
-  },
-  content: {
-    type: [
-      Function,
-      String
-    ],
-    default: ''
-  },
-  placement: {
-    type: String as PropType<PopoverPlacementType>
-  },
-  position: {
-    type: Object as PropType<PopoverNodePositionType>,
-    default: () => ({})
-  },
-  onClose: {
-    type: Function as PropType<() => void>
-  },
-  triggerCtx: {
-    type: Object
-  },
-  color: {
-    type: String,
-    default: '#fff'
-  },
-  bgColor: {
-    type: String,
-    default: '#000'
-  },
-  trigger: {
-    type: String as PropType<PopoverTriggerType>,
-    default: 'hover'
-  },
-  triggerEl: {
-    type: Object as PropType<Element>
-  },
-  showArrow: {
-    type: Boolean,
-    default: true
-  },
-  padding: {
-    type: String,
-    default: '10px'
-  }
-}
-
 
 const Popover = defineComponent({
   name: "UsePopoverNode",
-  props: popoverProps,
+  props: {
+    ...basePopoverProps,
+    triggerEl: {
+      type: Object as PropType<Element>
+    },
+    triggerCtx: {
+      type: Object as PropType<TriggerContext>
+    },
+  },
   setup(props) {
     const visiable = ref(false)
-    const popoverNodeRef = ref<HTMLElement>()
-    const position = ref<PopoverNodePositionType>({})
+    const contentMouseOver = ref(false)
+    const popoverNodeRef = ref<HTMLElement>(null)
+    const position = ref<PopoverNodePositionType>(null)
+    const contentRef = ref<HTMLDivElement>(null)
     const placement = ref<PopoverPlacementType>('top')
     const triggerRect = props.triggerEl.getBoundingClientRect()
-    const contentMouseOver = ref(false)
-    const contentRef = ref<Element>()
 
     const classes = computed(() => ({
       'u-popover-node': true,
@@ -90,7 +48,6 @@ const Popover = defineComponent({
 
     function calcPopoverContentPosition() {
       if (!visiable.value) return
-
       nextTick(() => {
         const contentSize = {
           height: popoverNodeRef.value.clientHeight,
@@ -101,23 +58,35 @@ const Popover = defineComponent({
         position.value = calculatePosition(triggerRect, contentSize, currentPlacement, props.showArrow)
         placement.value = props.triggerCtx.placement = currentPlacement
       })
+    }
 
+    function registerEvent() {
+      switch (props.trigger) {
+        case 'click':
+          useClick(props, contentRef, visiable)
+          break
+        case 'hover':
+          useHover(props, contentMouseOver, visiable, contentRef)
+          break
+      }
+    }
+
+    function renderContent(): JSX.Element {
+      return (
+        <div class="popover-node__content">
+          {
+            typeof props.content === 'function'
+              ? props.content()
+              : props.content
+          }
+        </div>
+      )
     }
 
     onMounted(() => {
+      registerEvent()
       visiable.value = true
       calcPopoverContentPosition()
-    })
-
-    //处理trigger为click
-    if (props.trigger === 'click') {
-      useClick(props, contentRef)
-    }
-
-    watch([props.triggerCtx, contentMouseOver], () => {
-      if (!props.triggerCtx.triggerEventOver && !contentMouseOver.value && props.trigger === 'hover') {
-        props.onClose()
-      }
     })
 
 
@@ -131,17 +100,9 @@ const Popover = defineComponent({
           ref={contentRef}
           v-show={visiable.value}
           style={styles.value}
-          onMouseenter={() => handleMouse(true)}
-          onMouseleave={() => handleMouse(false)}
         >
-          <div
-            class="popover-node__content"
-          >
-            {
-              typeof props.content === 'function'
-                ? props.content()
-                : props.content
-            }
+          <div class="popover-node__content">
+            {renderContent()}
           </div>
           <div
             class="popover-node__arrow"

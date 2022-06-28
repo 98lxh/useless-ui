@@ -18,11 +18,10 @@ function useEventMouse(
   })
 
   function handleOpenPopover() {
-    triggerCtx.triggerEventOver = trigger === 'click' ? false : true
+    triggerCtx.triggerEventOver = (trigger === 'click') ? false : true
 
     if (triggerCtx.instance && trigger === 'click') {
-      triggerCtx.triggerEventOver = false
-      triggerCtx.instance.props.onClose(triggerCtx.placement)
+      triggerCtx.triggerEventOver = true
       return triggerCtx.instance = null
     }
 
@@ -30,9 +29,7 @@ function useEventMouse(
   }
 
   function handleClosePopover() {
-    if (trigger === 'click') {
-      return triggerCtx.instance.props.onClose(triggerCtx.placement)
-    }
+    if (trigger === 'click') return triggerCtx.instance.props.onClose(triggerCtx.placement)
 
     timer = setTimeout(() => {
       triggerCtx.triggerEventOver = false
@@ -42,12 +39,12 @@ function useEventMouse(
   onMounted(() => {
     el = triggerRef.value.$el || triggerRef.value
     el.addEventListener(trigger === 'hover' ? 'mouseenter' : 'click', handleOpenPopover)
-    if (trigger === 'hover') el.addEventListener('mouseleave', handleClosePopover)
+    trigger === 'hover' && el.addEventListener('mouseleave', handleClosePopover)
   })
 
   onUnmounted(() => {
     el.removeEventListener(trigger === 'hover' ? 'mouseenter' : 'click', handleOpenPopover)
-    if (trigger === 'hover') el.removeEventListener('mouseleave', handleClosePopover)
+    trigger === 'hover' && el.removeEventListener('mouseleave', handleClosePopover)
     timer && window.clearTimeout(timer)
   })
 
