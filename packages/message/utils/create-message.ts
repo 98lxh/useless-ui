@@ -5,7 +5,9 @@ import MessageComonent from '../src/message';
 
 const instances: VNode[] = [];
 let seed = 1
-const message = (options: IMessageParams) => {
+
+
+function message(options: IMessageParams) {
   if (typeof options === 'string') {
     options = {
       content: options

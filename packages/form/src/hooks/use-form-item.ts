@@ -3,30 +3,30 @@ import { FormItemProps } from "../form.types"
 import { injectFormKey } from "../context";
 import Schema from "async-validator";
 
-const useValidate = (props: FormItemProps, state: any, rule: any, model: any) => {
+function useValidate(props: FormItemProps, state: any, rule: any, model: any) {
   return () => {
     return new Promise((resolve) => {
-        const descriptor = {}
-        descriptor[props.prop] = rule
-        const validator = new Schema(descriptor)
-        let data = {}
-        data[props.prop] = model[props.prop]
-        validator.validate({ [props.prop]: model[props.prop] }, errors => {
-          if (errors) {
-            state.error = true
-            state.errorMessage = errors[0].message
-            resolve({ state: false, errors })
-          } else {
-            state.error = false
-            state.errorMessage = ''
-            resolve({ state: true })
-          }
-        })
+      const descriptor = {}
+      descriptor[props.prop] = rule
+      const validator = new Schema(descriptor)
+      let data = {}
+      data[props.prop] = model[props.prop]
+      validator.validate({ [props.prop]: model[props.prop] }, errors => {
+        if (errors) {
+          state.error = true
+          state.errorMessage = errors[0].message
+          resolve({ state: false, errors })
+        } else {
+          state.error = false
+          state.errorMessage = ''
+          resolve({ state: true })
+        }
+      })
     })
   }
 }
 
-export const useFormItem = (props: FormItemProps) => {
+export function useFormItem(props: FormItemProps) {
   const { model, rules, labelWidth: formLabelWidth, changeValidateFns } = inject(injectFormKey);
 
   const state = reactive({

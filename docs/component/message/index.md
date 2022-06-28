@@ -46,9 +46,6 @@ const createMessage = (type) => ({
 <template>
   <use-space>
     <use-button @click="()=>this.$message.info(createMessage(1000))">1000 ms</use-button>
-    <use-button @click="()=>this.$message.info(createMessage(3000))">3000 ms</use-button>
-    <use-button @click="()=>this.$message.info(createMessage(5000))">5000 ms</use-button>
-    <use-button @click="()=>this.$message.info(createMessage(10000))">10000 ms</use-button>
   </use-space>
 </template>
 <script setup>

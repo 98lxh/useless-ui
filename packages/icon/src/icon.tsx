@@ -1,6 +1,5 @@
 import { defineComponent } from "vue";
 
-
 const Icon = defineComponent({
   name: "UseIcon",
   props: {
@@ -12,11 +11,16 @@ const Icon = defineComponent({
   emits: ['click'],
   setup(props, { emit }) {
 
-    const handleIconClick = (event) => {
+    function handleIconClick(event) {
       emit('click', event)
     }
 
-    return () => (<i class={`u-icon-${props.name}`} onClick={handleIconClick}></i>)
+    return () => (
+      <i
+        class={`u-icon-${props.name}`}
+        onClick={handleIconClick}
+      />
+    )
   }
 })
 

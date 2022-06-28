@@ -1,6 +1,7 @@
 import { defineComponent, PropType } from "vue";
 import { PopoverPlacementType } from "@useless-ui/popover/src/popover.types";
 import Popover from "@useless-ui/popover";
+
 const Tooltip = defineComponent({
   name: 'UseTooltip',
   props: {
@@ -17,20 +18,26 @@ const Tooltip = defineComponent({
     Popover
   },
   setup(props, { slots }) {
-    const renderTrigger = (): JSX.Element[] => {
+    function renderTrigger(): JSX.Element[] {
       return slots.default && slots.default()
     }
-    return () => (<Popover
-      bgColor="#404040"
-      color="#fff"
-      placement={props.placement}
-      v-slots={{
-        content: () => props.content,
-        default: () => renderTrigger()
-      }}
-    >
-    </Popover>)
+
+    return () => (
+      <Popover
+        bgColor={defaultBgColor}
+        color={defaultTextColor}
+        placement={props.placement}
+        v-slots={{
+          content: () => props.content,
+          default: () => renderTrigger()
+        }}
+      />
+    )
   }
 })
+
+
+const defaultBgColor = '#404040'
+const defaultTextColor = '#fff'
 
 export default Tooltip

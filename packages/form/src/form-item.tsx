@@ -24,10 +24,9 @@ const FormItem = defineComponent({
   name: 'UseFormItem',
   props: formItemProps,
   setup(props, { slots }) {
-    let timer: NodeJS.Timeout | null = null;
     const { state, validate, labelWidth, required, rule } = useFormItem(props)
 
-    const renderContent = () => {
+    function renderContent () {
       const VNodes = slots.default && slots.default()
       useBindBlur(VNodes, state, () => {
         rule.value && validate()
@@ -35,7 +34,7 @@ const FormItem = defineComponent({
       return VNodes
     }
 
-    const renderErrorMessage = ():JSX.Element => {
+    function renderErrorMessage ():JSX.Element {
       return (
         <div
           class="u-form-item--error"
@@ -47,7 +46,7 @@ const FormItem = defineComponent({
       )
     }
 
-    const renderLabel= ():JSX.Element  => {
+    function renderLabel ():JSX.Element {
       return (
         <label
           class="u-form-item__label"
@@ -58,11 +57,6 @@ const FormItem = defineComponent({
         </label>
       )
     }
-
-
-    onUnmounted(() => {
-      if (timer) window.clearTimeout(timer)
-    })
 
     return () => {
       return <div class='u-form-item'>

@@ -1,8 +1,6 @@
-import { App } from 'vue';
+import { withIntall } from '@useless-ui/utils/src/with-install';
 import Col from './src/col';
 
-Col.install = (app: App) => {
-  app.component(Col.name, Col)
-}
+const UCol = withIntall(Col)
 
-export default Col
+export default UCol

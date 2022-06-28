@@ -35,15 +35,15 @@ const Transfer = defineComponent({
       rightChecked: []
     })
 
-    const onSourceChange = (leftValue) => {
+    function onSourceChange(leftValue){
       checkedState.leftChecked = leftValue
     }
 
-    const onTargetChange = (rigthValue) => {
+    function onTargetChange (rigthValue) {
       checkedState.rightChecked = rigthValue
     }
 
-    const addToLeft = () => {
+    function addToLeft () {
       const currentValue = props.modelValue.splice(0);
       checkedState.rightChecked.forEach(item => {
         let index = currentValue.indexOf(item);
@@ -53,11 +53,13 @@ const Transfer = defineComponent({
       })
       emit("update:modelValue", currentValue)
     }
-    const addToRight = () => {
+    
+    function addToRight(){
       const leftChckedKeys = checkedState.leftChecked.map(key => key)
       let currentValue = [...props.modelValue, ...leftChckedKeys]
       emit("update:modelValue", currentValue)
     }
+
     return () => (
       <div class="u-transfer">
         <TransferPanel data={sourceData.value} props={props.props} onCheckedChange={onSourceChange} />

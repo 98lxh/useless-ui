@@ -1,12 +1,12 @@
 import { PopoverPlacementType, PopoverNodePositionType, ContentSizeType } from '../popover.types';
 
 
-export const calculatePosition = (
+export function calculatePosition(
   triggerRect: DOMRect,
   contentSize: ContentSizeType,
   placement: PopoverPlacementType,
   isShowArrow: boolean
-): PopoverNodePositionType => {
+): PopoverNodePositionType {
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
   const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft
   const triggerTop = triggerRect.top + scrollTop

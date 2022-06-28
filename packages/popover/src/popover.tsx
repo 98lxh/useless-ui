@@ -51,7 +51,7 @@ const Popover = defineComponent({
     const triggerRef = ref(null)
     const { triggerCtx } = usePopover(props, triggerRef, slots)
 
-    const close = () => {
+    function close () {
       triggerCtx.instance.props.onClose()
     }
 

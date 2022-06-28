@@ -1,4 +1,4 @@
-export const createPositionTarget = () => {
+export function createPositionTarget() {
   let positionTarget = document.getElementById('position-target');
   if (positionTarget) return positionTarget
   positionTarget = document.createElement('div')

@@ -1,7 +1,7 @@
 import { Ref } from 'vue';
 import { DatePickerType } from '../date-picker.types';
 
-export const getYearMonthDay = (date: Date) => {
+export function getYearMonthDay(date: Date) {
   let year = date.getFullYear()
   let month = date.getMonth()
   let day = date.getDate()
@@ -10,40 +10,39 @@ export const getYearMonthDay = (date: Date) => {
   }
 }
 
-
-export const getDate = (year: number, month: number, day = 1) => {
+export function getDate(year: number, month: number, day = 1) {
   return new Date(year, month, day)
 }
 
-export const buildDays = () => {
+export function buildDays() {
   let arr = Array(42).fill(0)
   arr.forEach((_, i) => arr[i] = i + 1)
   return chunk(arr, 7)
 }
 
-export const buildWeeks = () => {
+export function buildWeeks() {
   return ['日', '一', '二', '三', '四', '五', '六']
 }
 
-export const buildYears = (startYear: number) => {
+export function buildYears(startYear: number) {
   let arr = Array(12).fill(0)
   arr.forEach((_, i) => arr[i] = startYear + i)
   return chunk(arr, 3)
 }
 
 
-export const buildMonth = () => {
+export function buildMonth() {
   const baseList = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二']
   return chunk(baseList.map(item => item + '月'), 3)
 }
 
-export const dateSort = (dateArr: any) => {
+export function dateSort(dateArr: any) {
   const values = dateArr.map((d) => new Date(d).valueOf())
   values.sort((s, e) => s - e)
   return values.map(v => new Date(v))
 }
 
-const chunk = <T = any>(a: T[], len: number): T[][] => {
+function chunk<T = any>(a: Array<T>, len: number): Array<Array<T>> {
   let index = 0;
   let resIndex = 0;
   const arr = []
@@ -54,7 +53,7 @@ const chunk = <T = any>(a: T[], len: number): T[][] => {
   return arr
 }
 
-export const getVisibleDays = (value: Date) => {
+export function getVisibleDays(value: Date) {
   const { year, month } = getYearMonthDay(value)
   const currentFirstDay = getDate(year, month) as any;
   const week = currentFirstDay.getDay()
@@ -67,7 +66,7 @@ export const getVisibleDays = (value: Date) => {
 }
 
 
-export const genFormatDate = (currentDate: Ref<any>, type: DatePickerType) => {
+export function genFormatDate(currentDate: Ref<any>, type: DatePickerType) {
   const { year, month, day } = getYearMonthDay(
     Array.isArray(currentDate.value) ? currentDate.value[0] : currentDate.value
   )

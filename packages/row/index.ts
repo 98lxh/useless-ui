@@ -1,8 +1,5 @@
-import { App } from 'vue';
+import { withIntall } from "@useless-ui/utils/src/with-install";
 import Row from "../col/src/row";
 
-Row.install = (app: App) => {
-  app.component(Row.name, Row)
-}
-
-export default Row
+const URow = withIntall(Row)
+export default URow

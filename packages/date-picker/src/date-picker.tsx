@@ -1,4 +1,4 @@
-import { defineComponent, provide, ref, PropType, Teleport, Transition, watch } from "vue"
+import { defineComponent, provide, ref, PropType, Teleport, Transition, watch, Component } from "vue"
 import { injectDatePicker } from "./context"
 import { DatePickerType, InputProps } from "./date-picker.types"
 import { useDatePicker } from "./hooks/use-date-picker"
@@ -55,15 +55,15 @@ const Datepicker = defineComponent({
   emits: ['update:value', 'blur'],
   setup(props, { emit }) {
     const { currentDate, currentType, formatDate } = useDatePicker(props)
-
     const visible = ref(false)
     const datePickerRef = ref<Element>()
     const positonTarget = createPositionTarget()
 
-    const getPickerPosition = () => {
+    function getPickerPosition (){
       const pickerRect = datePickerRef.value.getBoundingClientRect()
       const pickerTop = pickerRect.top + pickerRect.height + document.documentElement.scrollTop + 5
       const pickerLeft = pickerRect.left + document.documentElement.scrollLeft
+
       return ({
         top: pickerTop + 'px',
         left: pickerLeft + 'px'
@@ -74,20 +74,21 @@ const Datepicker = defineComponent({
       visible.value = true
     }
 
-    const closeDatePickerPanel = () => {
+    function closeDatePickerPanel() {
       visible.value = false
     }
 
-    const changeCurrentDate = (date: Date) => {
+    function changeCurrentDate (date: Date) {
       currentDate.value = date
     }
 
-    const changePickerType = (type: DatePickerType) => {
+    function changePickerType (type: DatePickerType) {
       currentType.value = type
     }
 
-    const renderPicker = () => {
+    function renderPicker () {
       let Picker
+
       switch (currentType.value) {
         case 'date':
           Picker = DayPicker
@@ -102,6 +103,7 @@ const Datepicker = defineComponent({
           Picker = RangerPicker
           break
       }
+
       return (
         <div class="u-picker-wrapper" style={getPickerPosition()}>
           <Picker />
@@ -109,7 +111,7 @@ const Datepicker = defineComponent({
       )
     }
 
-    const rangePickerInput = (inputProps: InputProps<'range'>) => {
+    function rangePickerInput (inputProps: InputProps<'range'>)  {
       const hasDeaultValue = props.value
       return (
         <div class="range-input__wrapper" >
@@ -129,7 +131,7 @@ const Datepicker = defineComponent({
       )
     }
 
-    const pickerInput = (inputProps: InputProps) => {
+    function pickerInput(inputProps: InputProps) {
       const hasDeaultValue = props.value
       return (
         <Input
@@ -143,7 +145,7 @@ const Datepicker = defineComponent({
       )
     }
 
-    const renderInput = () => {
+    function renderInput() {
       const inputProps = {
         disabled: props.disabled,
         onFocus: openDatePickerPanel,
@@ -159,11 +161,11 @@ const Datepicker = defineComponent({
       )
     }
 
-    watch(visible, () => { 
-      if(!visible.value) emit('blur')
-    })
-
     useClickOutSide(datePickerRef, closeDatePickerPanel)
+
+    watch(visible, () => {
+      if (!visible.value) emit('blur')
+    })
 
     provide(injectDatePicker, {
       currentDate,
@@ -176,7 +178,10 @@ const Datepicker = defineComponent({
     })
 
     return () => (
-      <div class="u-date-picker" ref={datePickerRef}>
+      <div
+        class="u-date-picker"
+        ref={datePickerRef}
+      >
         {renderInput()}
         <Teleport to={positonTarget}>
           <Transition name="zoom-fade-panel">

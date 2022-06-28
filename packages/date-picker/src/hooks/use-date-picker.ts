@@ -3,7 +3,7 @@ import { DatePickerValueType } from '../date-picker.types';
 import { DatePickerType } from "../date-picker.types";
 import { getYearMonthDay, getDate, genFormatDate } from "../utils/date-helper";
 
-const useWatchCurrentDate = (currentDate: Ref<any>, type: DatePickerType) => {
+function useWatchCurrentDate(currentDate: Ref<DatePickerValueType>, type: DatePickerType) {
   const emit = getCurrentInstance().emit;
   watch(currentDate, () => {
     emit('update:value', genFormatDate(currentDate, type))
@@ -12,7 +12,7 @@ const useWatchCurrentDate = (currentDate: Ref<any>, type: DatePickerType) => {
   })
 }
 
-const genCurrentDate = (value: DatePickerValueType, type: DatePickerType) => {
+function buildCurrentDate(value: DatePickerValueType, type: DatePickerType) {
   let currentDate: DatePickerValueType
   if (type === 'range') {
     const valueIsArray = Array.isArray(value)
@@ -31,9 +31,9 @@ const genCurrentDate = (value: DatePickerValueType, type: DatePickerType) => {
 }
 
 
-export const useDatePicker = (props: any) => {
+export function useDatePicker(props: any) {
   const { value, type } = props;
-  const currentDate = ref(genCurrentDate(value, type))
+  const currentDate = ref(buildCurrentDate(value, type))
   const currentType = ref(type)
 
   const formatDate = computed(() => genFormatDate(currentDate, type))

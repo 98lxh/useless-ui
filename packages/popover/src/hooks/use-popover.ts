@@ -1,23 +1,23 @@
 import { onMounted, Ref, reactive, onUnmounted } from 'vue';
-import { PopoverProps, ContentType } from '../popover.types';
+import { PopoverProps, ContentType, TriggerContext } from '../popover.types';
 import { createPopoverNode } from "../utils/create-popover-node"
 
-const useEventMouse = (
+function useEventMouse(
   triggerRef: Ref<any>,
   content: ContentType,
   triggerProps: PopoverProps
-) => {
+) {
   let el: HTMLElement
   let timer: NodeJS.Timeout | null = null
   const { trigger } = triggerProps
 
-  const triggerCtx = reactive({
+  const triggerCtx = reactive<TriggerContext>({
     triggerEventOver: false,
     placement: 'top',
     instance: null
   })
 
-  const handleOpenPopover = () => {
+  function handleOpenPopover() {
     triggerCtx.triggerEventOver = trigger === 'click' ? false : true
 
     if (triggerCtx.instance && trigger === 'click') {
@@ -29,7 +29,7 @@ const useEventMouse = (
     triggerCtx.instance = createPopoverNode(el, content, triggerCtx, triggerProps)
   }
 
-  const handleClosePopover = () => {
+  function handleClosePopover() {
     if (trigger === 'click') {
       return triggerCtx.instance.props.onClose(triggerCtx.placement)
     }
@@ -48,7 +48,7 @@ const useEventMouse = (
   onUnmounted(() => {
     el.removeEventListener(trigger === 'hover' ? 'mouseenter' : 'click', handleOpenPopover)
     if (trigger === 'hover') el.removeEventListener('mouseleave', handleClosePopover)
-    if (timer) window.clearTimeout(timer)
+    timer && window.clearTimeout(timer)
   })
 
   return {
@@ -56,7 +56,7 @@ const useEventMouse = (
   }
 }
 
-export const usePopover = (props: PopoverProps, triggerRef: Ref<any>, slots: any) => {
+export function usePopover(props: PopoverProps, triggerRef: Ref<any>, slots: any) {
   const content: ContentType = props.content || slots.content
   const { triggerCtx } = useEventMouse(triggerRef, content, props)
 

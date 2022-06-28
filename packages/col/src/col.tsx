@@ -71,10 +71,15 @@ const Col = defineComponent({
       return {}
     })
 
-    return () => h(props.tag, {
-      class: classes.value,
-      style: styles.value
-    }, slots.default?.())
+    return () => (
+      h(props.tag,
+        {
+          class: classes.value,
+          style: styles.value
+        },
+        slots.default?.()
+      )
+    )
   }
 })
 

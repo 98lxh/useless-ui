@@ -35,7 +35,7 @@ const handleVisible = () => {
 ```vue
 <template>
   <use-button @click="handleVisible">Open Modal</use-button>
-  <use-modal v-model:visible="visible" confirmText="Confirm" cancelText="Cancel">
+  <use-modal v-model:visible="visible" confirm-text="Confirm" cancel-text="Cancel">
     <template #title>
       <span style="font-weight:600">Title</span>
     </template>
@@ -52,50 +52,23 @@ const handleVisible = () => {
 ```
 :::
 
-<h2>自定义动画</h2>
+<h2>异步关闭</h2>
 
-通过`originPosition`,`targetPosition`设置动画的开始位置和结束位置
+点击确定后异步关闭对话框，例如提交表单。
 
 :::demo 
 
 ```vue
 <template>
-  <use-space>
-    <use-button @click="handleVisibleTop">Top to Middle</use-button>
-    <use-button @click="handleVisibleBottom">LeftTop to RightBottom</use-button>
-    <use-button @click="handleVisibleMiddle">Middle to Middle</use-button>
-  </use-space>
-  <use-modal 
-     v-model:visible="visibleTop" 
-     confirmText="Confirm" 
-     cancelText="Cancel"
-     :origin-position="{x:'50%',y:0}"
-  >
-    <template #title>
-      <span style="font-weight:600">Title</span>
-    </template>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero adipisci animi quibusdam consequatur voluptate, fugit et architecto? Minus rem perferendis autem iusto quisquam aliquid cupiditate eveniet esse explicabo? Ipsam atque numquam alias nostrum accusantium, incidunt quae consectetur earum. Odio sit culpa eos est velit reprehenderit molestiae ullam totam asperiores explicabo?
-  </use-modal>
-  <use-modal 
-     v-model:visible="visibleBottom" 
-     confirmText="Confirm" 
-     cancelText="Cancel"
-     :origin-position="{x:0,y:0}"
-    :target-position="{x:'70%',y:'70%'}"
-  >
-    <template #title>
-      <span style="font-weight:600">Title</span>
-    </template>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero adipisci animi quibusdam consequatur voluptate, fugit et architecto? Minus rem perferendis autem iusto quisquam aliquid cupiditate eveniet esse explicabo? Ipsam atque numquam alias nostrum accusantium, incidunt quae consectetur earum. Odio sit culpa eos est velit reprehenderit molestiae ullam totam asperiores explicabo?
-  </use-modal>
-  <use-modal 
-     v-model:visible="visibleMiddle" 
-     confirmText="Confirm" 
-     cancelText="Cancel"
-     :origin-position="{x:'50%',y:'50%'}"
-     :target-position="{x:'50%',y:'50%'}"
-  >
-    <template #title>
+   <use-button @click="showModal">Open Modal with async logic</use-button>
+   <use-modal 
+      v-model:visible="visible" 
+      confirm-text="Confirm" 
+      cancel-text="Cancel" 
+      :confirm-loading="confirmLoading"
+      @confirm="handleConfirm"
+    >
+   <template #title>
       <span style="font-weight:600">Title</span>
     </template>
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero adipisci animi quibusdam consequatur voluptate, fugit et architecto? Minus rem perferendis autem iusto quisquam aliquid cupiditate eveniet esse explicabo? Ipsam atque numquam alias nostrum accusantium, incidunt quae consectetur earum. Odio sit culpa eos est velit reprehenderit molestiae ullam totam asperiores explicabo?
@@ -103,18 +76,22 @@ const handleVisible = () => {
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-const visibleTop = ref(false)
-const visibleBottom = ref(false)
-const visibleMiddle = ref(false)
-const handleVisibleTop = () => {
-  visibleTop.value = true
+const visible = ref(false)
+const confirmLoading = ref(false)
+
+const showModal = () => {
+  visible.value = true
 }
-const handleVisibleBottom = () => {
-  visibleBottom.value = true
+
+const handleConfirm = () => {
+  confirmLoading.value = true
+
+  setTimeout(()=>{
+     confirmLoading.value = false
+     visible.value = false
+  },2000)
 }
-const handleVisibleMiddle = () => {
-  visibleMiddle.value = true
-}
+
 </script>
 ```
 :::
@@ -125,8 +102,7 @@ const handleVisibleMiddle = () => {
 | 参数名        | 描述                 | 类型        | 默认值          |
 | ---------------- | ---------------------- | ------------- | ------------------ |
 | visible(v-model) | 对话框是否可见  | boolean       | -                  |
-| oirginPosition   | 动画的起始位置  | ModalPosition | 显示事件触发的位置 |
-| targetPosition   | 动画的结束位置  | ModalPosition | '{x:'50%',y:'30%'}'  |
+| confirmLoading   | 确认按钮的loading  | boolean | 无 |
 | maskClosable     | 是否可以点击遮罩层关闭 | boolean       | true               |
 | confirmText   | 确认按钮文字  | string | '确认'  |
 | cancelText     | 取消按钮文字 | string       | '取消'               |

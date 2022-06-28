@@ -13,7 +13,7 @@ export interface PopoverProps {
   title?: string,
   trigger?: PopoverTriggerType
   content?: string;
-  placement?: PopoverPlacementType,
+  placement?: PopoverPlacementType
   color?: string
   bgColor?: string
   onClose?: () => void
@@ -21,11 +21,17 @@ export interface PopoverProps {
 
 export interface PopoverNodeProps {
   title?: string,
-  content?: PopoverNodeContent,
+  content?: PopoverNodeContent
   placement: PopoverPlacementType
 }
 
 export type ContentSizeType = {
-  height: number,
+  height: number
   width: number
+}
+
+export type TriggerContext = {
+  triggerEventOver: boolean
+  placement: PopoverPlacementType
+  instance: any
 }

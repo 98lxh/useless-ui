@@ -2,7 +2,7 @@ import { computed, ref, Ref } from "vue"
 import { DatePickerType, DatePickerValueType } from '../date-picker.types';
 import { getYearMonthDay, getDate, buildDays, buildWeeks, getVisibleDays } from '../utils/date-helper';
 
-const getCurrentDate = (currenDate: Ref<DatePickerValueType>, isTarget: Boolean, type: DatePickerType) => {
+function getCurrentDate(currenDate: Ref<DatePickerValueType>, isTarget: Boolean, type: DatePickerType) {
   if (type === 'range') {
     if (isTarget) return currenDate.value[1]
     if (!isTarget) return currenDate.value[0]
@@ -11,7 +11,7 @@ const getCurrentDate = (currenDate: Ref<DatePickerValueType>, isTarget: Boolean,
 }
 
 
-export const useDayPicker = (currenDate: Ref<DatePickerValueType>, isTarget: Boolean, type: DatePickerType) => {
+export function useDayPicker(currenDate: Ref<DatePickerValueType>, isTarget: Boolean, type: DatePickerType) {
   const days = computed(() => buildDays())
   const weeks = computed(() => buildWeeks())
   const originCalendar = getYearMonthDay(getCurrentDate(currenDate, isTarget, type))

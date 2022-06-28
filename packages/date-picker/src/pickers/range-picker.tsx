@@ -9,15 +9,16 @@ const RangerPicker = defineComponent({
     const isMove = ref(false)
     const cellEnd = ref<Date>()
     const { panelVisible } = inject(injectDatePicker)!
-    const onChangeCellStart = (date: Date) => {
+
+    function onChangeCellStart (date: Date) {
       cellStart.value = date
     }
 
-    const onChangeCellEnd = (date: Date) => {
+    function onChangeCellEnd (date: Date) {
       cellEnd.value = date
     }
 
-    const onChangeIsMove = (moveState: boolean) => {
+    function onChangeIsMove (moveState: boolean) {
       isMove.value = moveState
     }
 
@@ -39,8 +40,13 @@ const RangerPicker = defineComponent({
 
       return (
         <div class="u-date-picker-range">
-          <DayPicker {...dayPickerProps} />
-          <DayPicker isTarget {...dayPickerProps} />
+          <DayPicker
+            {...dayPickerProps}
+          />
+          <DayPicker
+            isTarget
+            {...dayPickerProps}
+          />
         </div>
       )
     }

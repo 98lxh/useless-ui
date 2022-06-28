@@ -45,16 +45,21 @@ const Button = defineComponent({
       }
     })
 
-    const handleClick = (e) => {
+    function handleClick(event:MouseEvent){
       if (!props.disabled && props.loading) return
-      emit('click', e)
+      emit('click', event)
     }
 
-    return () => (<button class={classes.value} onClick={handleClick}>
-      {props.loading ? <i class={`u-icon-loading`} /> : ''}
-      {props.icon && !props.loading ? <i class={`u-icon-${props.icon}`} /> : ''}
-      {slots.default ? <span>{slots.default()}</span> : ''}
-    </button>)
+    return () => (
+      <button
+        class={classes.value}
+        onClick={handleClick}
+      >
+        {props.loading ? <i class={`u-icon-loading`} /> : ''}
+        {props.icon && !props.loading ? <i class={`u-icon-${props.icon}`} /> : ''}
+        {slots.default ? <span>{slots.default()}</span> : ''}
+      </button>
+    )
   }
 })
 

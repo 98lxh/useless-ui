@@ -84,12 +84,13 @@ const Popover = defineComponent({
       color: props.color
     }))
 
-    const handleMouse = (state: boolean) => {
+    function handleMouse(state: boolean) {
       if (props.trigger === 'hover') contentMouseOver.value = state
     }
 
-    const calcPopoverContentPosition = () => {
+    function calcPopoverContentPosition() {
       if (!visiable.value) return
+
       nextTick(() => {
         const contentSize = {
           height: popoverNodeRef.value.clientHeight,
@@ -100,6 +101,7 @@ const Popover = defineComponent({
         position.value = calculatePosition(triggerRect, contentSize, currentPlacement, props.showArrow)
         placement.value = props.triggerCtx.placement = currentPlacement
       })
+
     }
 
     onMounted(() => {
@@ -132,8 +134,14 @@ const Popover = defineComponent({
           onMouseenter={() => handleMouse(true)}
           onMouseleave={() => handleMouse(false)}
         >
-          <div class="popover-node__content">
-            {typeof props.content === 'function' ? props.content() : props.content}
+          <div
+            class="popover-node__content"
+          >
+            {
+              typeof props.content === 'function'
+                ? props.content()
+                : props.content
+            }
           </div>
           <div
             class="popover-node__arrow"

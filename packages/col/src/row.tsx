@@ -18,11 +18,11 @@ const Row = defineComponent({
     }
   },
   setup(props, { slots }) {
-    provide('gutter', props.gutter)
     const classes = computed(() => [
       'u-row',
       props.justify !== 'start' ? `is-justify-${props.justify}` : ''
     ])
+
     const styles = computed(() => {
       const ret = {
         marginLeft: '',
@@ -35,10 +35,18 @@ const Row = defineComponent({
 
       return ret
     })
-    return () => h(props.tag, {
-      class: classes.value,
-      style: styles.value,
-    }, slots.default?.())
+
+    provide('gutter', props.gutter)
+
+    return () => (
+      h(props.tag,
+        {
+          class: classes.value,
+          style: styles.value,
+        },
+        slots.default?.()
+      )
+    )
   }
 })
 

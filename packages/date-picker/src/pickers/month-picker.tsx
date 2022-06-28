@@ -13,23 +13,24 @@ const MonthPicker = defineComponent({
     const { currentDate, changeCurrentDate, changePickerType, originType, closeDatePickerPanel } = inject(injectDatePicker)!
     const { currentYear, visibleMonth } = useMonthPicker(currentDate)
 
-    const changeCurrentYear = (mode: 'prev' | 'next') => {
+    function changeCurrentYear(mode: 'prev' | 'next') {
       const incrementNum = mode === 'prev' ? -1 : 1;
       currentYear.value = currentYear.value + incrementNum;
     }
+
     const prevYear = changeCurrentYear.bind(null, 'prev')
     const nextYear = changeCurrentYear.bind(null, 'next')
 
-    const isCurrentMonth = (month: number) => {
+    function isCurrentMonth(month: number) {
       const { year: y, month: m } = getYearMonthDay(new Date())
       return currentYear.value === y && month === m
     }
-    const isSelectMonth = (month: number) => {
+    function isSelectMonth(month: number) {
       const { year: y, month: m } = getYearMonthDay(currentDate.value as Date)
       return currentYear.value === y && month === m
     }
 
-    const chooseMonth = (month: number) => {
+    function chooseMonth(month: number) {
       const { day } = getYearMonthDay(currentDate.value as Date)
       const date = getDate(currentYear.value, month, day)
       changeCurrentDate(date)
@@ -40,43 +41,49 @@ const MonthPicker = defineComponent({
       }
     }
 
-    const renderNav = () => {
-      return <>
-        <Icon name="arrow-double-left" onClick={prevYear} />
-        <span>{currentYear.value}</span>
-        <Icon name="arrow-double-right" onClick={nextYear} />
-      </>
+    function renderNav() {
+      return (
+        <>
+          <Icon name="arrow-double-left" onClick={prevYear} />
+          <span>{currentYear.value}</span>
+          <Icon name="arrow-double-right" onClick={nextYear} />
+        </>
+      )
     }
 
 
-    const renderContent = () => {
-      return <>
-        {
-          visibleMonth.value.map((row, i) => (
-            <div class="month">
-              {
-                row.map((m, j) => {
-                  const month = i * 3 + j
-                  const classes = {
-                    'month-cell': true,
-                    'is-current-month': isCurrentMonth(month),
-                    'is-select-month': isSelectMonth(month)
-                  }
-                  return <span class={classes} onClick={() => chooseMonth(month)}>{m}</span>
-                })
-              }
-            </div>
-          ))
-        }
-      </>
+    function renderContent() {
+      return (
+        <>
+          {
+            visibleMonth.value.map((row, i) => (
+              <div class="month">
+                {
+                  row.map((m, j) => {
+                    const month = i * 3 + j
+                    const classes = {
+                      'month-cell': true,
+                      'is-current-month': isCurrentMonth(month),
+                      'is-select-month': isSelectMonth(month)
+                    }
+                    return <span class={classes} onClick={() => chooseMonth(month)}>{m}</span>
+                  })
+                }
+              </div>
+            ))
+          }
+        </>
+      )
     }
 
-    return () => (<PickerPanel
-      v-slots={{
-        nav: () => renderNav(),
-        content: () => renderContent()
-      }}
-    />)
+    return () => (
+      <PickerPanel
+        v-slots={{
+          nav: () => renderNav(),
+          content: () => renderContent()
+        }}
+      />
+    )
   }
 })
 

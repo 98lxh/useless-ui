@@ -34,6 +34,9 @@ const Message = defineComponent({
   props: MessageProps,
   emits: ['destroy'],
   setup(props, { emit }) {
+    const visiable = ref(false)
+    let timer: NodeJS.Timeout = null;
+
     const classes = computed(() => ({
       'u-message': true,
       [`u-message--${props.type}`]: props.type
@@ -47,8 +50,6 @@ const Message = defineComponent({
       return `u-icon-${props.type}`
     })
 
-    const visiable = ref(false)
-    let timer = null;
     const startTimer = () => {
       timer = setTimeout(() => {
         visiable.value = false
@@ -67,7 +68,12 @@ const Message = defineComponent({
 
 
     return () => (
-      <Transition name='zoom-fade' mode="out-in" onBeforeLeave={props.onClose} onAfterLeave={() => emit('destroy')}>
+      <Transition
+        name='zoom-fade'
+        mode="out-in"
+        onBeforeLeave={props.onClose}
+        onAfterLeave={() => emit('destroy')}
+      >
         <div class={classes.value} v-show={visiable.value} style={styles.value}>
           <i class={messageIcon.value}></i>
           <span>{props.content}</span>

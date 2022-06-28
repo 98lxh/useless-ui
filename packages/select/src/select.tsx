@@ -37,7 +37,11 @@ const Select = defineComponent({
       { label: '', value: '' }
     )
 
-    const handleSelect = (option: SelectOption) => {
+    function handleFocus () {
+      inputRef.value.focus()
+    }
+
+    function handleSelect(option: SelectOption){
       if (option.disabled) return
       emit('update:value', option.value)
       selectValue.value = option
@@ -45,20 +49,18 @@ const Select = defineComponent({
       emit('blur')
     }
 
-    const renderOptions = () => (
-      props.options.map((option) => {
-        const optionClass = {
-          'u-select-option': true,
-          'is-disabled': option.disabled
-        }
-        return <div class={optionClass} onClick={() => handleSelect(option)}>
-          {option.label}
-        </div>
-      })
-    )
-
-    const handleFocus = () => {
-      inputRef.value.focus()
+    function renderOptions():Array<JSX.Element> {
+      return (
+        props.options.map((option) => {
+          const optionClass = {
+            'u-select-option': true,
+            'is-disabled': option.disabled
+          }
+          return <div class={optionClass} onClick={() => handleSelect(option)}>
+            {option.label}
+          </div>
+        })
+      )
     }
 
     return () => (
@@ -73,7 +75,9 @@ const Select = defineComponent({
           v-slots={{
             content: () => renderOptions()
           }}>
-          <span onClick={handleFocus}>
+          <span
+            onClick={handleFocus}
+          >
             <Input
               value={selectValue.value.label}
               placeholder={props.placeholder}

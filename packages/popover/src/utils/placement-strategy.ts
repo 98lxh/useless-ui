@@ -22,7 +22,11 @@ const placementStrategy = {
 }
 
 
-export const calculatePlacement = (triggerRect: DOMRect, contentSize: ContentSizeType, placement: PopoverPlacementType) => {
+export function calculatePlacement(
+  triggerRect: DOMRect,
+  contentSize: ContentSizeType,
+  placement: PopoverPlacementType
+) {
   for (const key in placementStrategy) {
     const strategy = placementStrategy[key]
     const index = strategy.origin.indexOf(placement)

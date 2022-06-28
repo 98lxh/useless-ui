@@ -13,9 +13,9 @@ const formProps = {
   labelWidth: {
     type: Number,
   },
-  layout:{
-    type:String as PropType<FormLayoutType>,
-    default:'horizontal'
+  layout: {
+    type: String as PropType<FormLayoutType>,
+    default: 'horizontal'
   }
 }
 
@@ -24,18 +24,18 @@ const Form = defineComponent({
   props: formProps,
   setup(props, { slots, expose }) {
 
-    const validateFns = ref<any>([])
+    const validateFns = ref<Function[]>([])
 
-    const classes = computed(()=>({
-      'u-form':true,
-      [`is-${props.layout}`]:props.layout
+    const classes = computed(() => ({
+      'u-form': true,
+      [`is-${props.layout}`]: props.layout
     }))
 
-    const changeValidateFns = (validateFn: any) => {
+    const changeValidateFns = (validateFn: Function) => {
       validateFns.value.push(validateFn)
     }
 
-    const validate = (callback: (error: boolean) => void) => {
+    function validate(callback: (error: boolean) => void) {
       const valids = validateFns.value.map(v => v())
       let error = false
       Promise.all(valids).then(result => {
@@ -60,9 +60,13 @@ const Form = defineComponent({
       validate
     })
 
-    return () => (<div class={classes.value}>
-      {slots.default && slots.default()}
-    </div>)
+    return () => (
+      <div
+        class={classes.value}
+      >
+        {slots.default && slots.default()}
+      </div>
+    )
   }
 })
 

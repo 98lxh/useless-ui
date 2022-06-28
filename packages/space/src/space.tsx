@@ -34,14 +34,25 @@ const Space = defineComponent({
       marginBottom: props.wrap || props.direction === 'vertical' ? props.size + 'px' : 0
     }))
 
-    const renderContent = () => {
-      return slots?.default().map(item => {
-        return <div class="u-space-item" style={styles.value}>{item}</div>
-      })
+    function renderContent():Array<JSX.Element> {
+      return (
+        slots?.default().map((item,index) => (<div
+          class="u-space-item"
+          key={index}
+          style={styles.value}
+        >
+          {item}
+        </div>
+        ))
+      )
     }
 
     return () => (
-      <div class={classes.value}>{renderContent()}</div>
+      <div
+        class={classes.value}
+      >
+        {renderContent()}
+      </div>
     )
   }
 })
