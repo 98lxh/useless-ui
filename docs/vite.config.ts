@@ -22,7 +22,8 @@ const components = [
   'date-picker',
   'select',
   'form',
-  'carousel'
+  'carousel',
+  'pagination'
 ]
 
 
