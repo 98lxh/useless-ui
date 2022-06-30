@@ -13,15 +13,12 @@ export default defineConfig({
   ],
   themeConfig: {
     logo: "/logo.png",
-    docsDir: 'docs',
-    editLinks: false,
     sidebar: getGuideSidebar(),
     nav: [
       { text: 'github', link: 'https://github.com/98lxh/useless-ui' }
     ]
   },
   markdown: {
-    lineNumbers: true,
     config: (md) => {
       const { demoBlockPlugin } = demoBlock
       md.use(demoBlockPlugin)
