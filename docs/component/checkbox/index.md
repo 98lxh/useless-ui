@@ -1,6 +1,8 @@
+<Toc />
+
 # 复选框 checkbox
 
-<h2>基本用法</h2>
+## 基本用法
 
 在一组数据中，通过复选框选择一个或者多个值
 
@@ -18,7 +20,7 @@
 :::
 
 
-<h2>禁用状态</h2>
+## 禁用状态
 
 通过`disabled`属性禁用复选框
 
@@ -35,7 +37,7 @@
 ```
 :::
 
-<h2>复选框组</h2>
+## 复选框组
 
 通过`<use-checkbox-group>`组件展示复选框组
 
@@ -59,7 +61,7 @@
 :::
 
 
-`<Checkbox>`Props
+## `<Checkbox>` Props
 | 参数名           | 描述      | 类型  | 默认值 |
 | ------------------- | ----------- | ------- | ------ |
 | modelValue(v-model) | 绑定值   | boolean | -      |
@@ -68,20 +70,20 @@
 | indeterminate       | 是否未半选 | boolean | false  |
 
 
-`<Checkbox>`Events
+## `<Checkbox>` Events
 | 事件名 | 描述       | 参数                   |
 | ------ | ------------ | ------------------------ |
 | change | 值改变时触发 | string|number|boolean [] |
 
 
-`<Checkbox-group>`Props
+## `<Checkbox-group>` Props
 | 参数名           | 描述   | 类型                   | 默认值 |
 | ------------------- | -------- | ------------------------ | ------ |
 | modelValue(v-model) | 绑定值 | string|number|boolean [] | -      |
 | disabled            | 是否禁用 | boolean                  | false  |
 
 
-`<Checkbox-group>`Events
+## `<Checkbox-group>` Events
 | 事件名 | 描述       | 参数                   |
 | ------ | ------------ | ------------------------ |
 | change | 值改变时触发 | string|number|boolean [] |

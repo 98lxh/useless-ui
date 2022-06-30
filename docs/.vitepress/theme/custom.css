@@ -10,7 +10,7 @@
 .sidebar-link-item {
   font-weight: 400 !important;
   line-height: 21px !important;
-  font-size: 12px !important;
+  font-size: 13px !important;
   border-radius: 10px;
 }
 
@@ -80,4 +80,12 @@ tr:nth-child(2n) {
 
 tr{
   border-top: none;
+}
+
+.sidebar-link > .sidebar-links > .sidebar-link > .sidebar-links{
+  position: fixed;
+  top: 0px;
+  right: -70vw;
+  text-align: right;
+  z-index: 99999;
 }

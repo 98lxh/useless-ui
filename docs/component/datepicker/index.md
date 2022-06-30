@@ -1,6 +1,8 @@
+<Toc />
+
 # 日期选择 DatePicker
 
-<h2>基本使用</h2>
+## 基本使用
 
 日期选择器的基本用法
 :::demo 
@@ -16,7 +18,7 @@ const value = ref(null)
 ```
 :::
 
-<h2>月份选择器</h2>
+## 月份选择器
 
 月份选择选择器的基本用法
 :::demo 
@@ -33,7 +35,7 @@ const value = ref(null)
 :::
 
 
-<h2>年份选择器</h2>
+## 年份选择器
 
 年份选择选择器的基本用法
 :::demo 
@@ -50,7 +52,7 @@ const value = ref(null)
 :::
 
 
-<h2>范围选择器</h2>
+## 范围选择器
 
 范围选择器的基本用法
 :::demo 
@@ -66,7 +68,7 @@ const value = ref(null)
 ```
 :::
 
-<h2>验证状态</h2>
+## 验证状态
 
 :::demo 
 
@@ -86,15 +88,15 @@ const value = ref(null)
 
 
 
-`DatePicker`Props
+## `DatePicker` Props
 
 <h1>TODO</h1>
 
 
-`DatePicker`Slots
+## `DatePicker` Slots
 
 <h1>TODO</h1>
 
-`DatePicker`Events
+## `DatePicker` Events
 
 <h1>TODO</h1>

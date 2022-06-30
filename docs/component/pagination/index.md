@@ -1,6 +1,8 @@
+<Toc />
+
 # 分页 Pagination
 
-<h2>基本使用</h2>
+## 基本使用
 
 分页的基本用法
 
@@ -21,7 +23,7 @@ const currentPage = ref(5);
 ```
 :::
 
-<h2>设置最大页码按钮数</h2>
+## 设置最大页码按钮数
 
 默认情况下，当总页数超过 7 页时，`Pagination` 会折叠多余的页码按钮。 通过`pager-count`属性可以设置最大页码按钮数。
 
@@ -43,7 +45,7 @@ const currentPage = ref(50);
 :::
 
 
-<h2>背景颜色</h2>
+## 背景颜色
 
 通过 `background` 属性为 `Pagination` 设置背景颜色
 
@@ -66,7 +68,7 @@ const currentPage = ref(50);
 :::
 
 
-`<Pagination>`Props
+## `<Pagination>` Props
 
 | 参数名        | 描述                 | 类型        | 默认值          |
 | ---------------- | ---------------------- | ------------- | ------------------ |
@@ -77,7 +79,7 @@ const currentPage = ref(50);
 | cancelText     | 取消按钮文字 | string       | '取消'               |
 
 
-`<Pagination>`Events
+## `<Pagination>` Events
 | 事件名 | 描述           | 参数 |
 | ------- | ---------------- | ---- |
 | change | 页码改变时触发 | 新的当前页码    |

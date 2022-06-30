@@ -17,7 +17,7 @@ const MessageProps = {
   },
   duration: {
     type: Number,
-    default: 3000
+    default: 1000
   },
   onClose: {
     type: Function as PropType<() => void>,

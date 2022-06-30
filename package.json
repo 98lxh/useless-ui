@@ -64,7 +64,8 @@
     "vue-loader": "^17.0.0",
     "webpack": "^5.71.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
+    "webpack-dev-server": "^4.7.4",
+    "vitepress": "^0.22.4"
   },
   "dependencies": {
     "@types/lodash": "^4.14.181",
@@ -75,7 +76,6 @@
     "json-schema-merge-allof": "^0.8.1",
     "lodash": "^4.17.21",
     "typescript": "^4.6.3",
-    "vitepress": "^0.22.3",
     "vue": "^3.2.31"
   }
 }

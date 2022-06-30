@@ -1,13 +1,12 @@
 <template>
-  <use-table :columns="columns" :data="data" @sort-change="handleSortChange" />
+  <use-table :columns="columns" :data="data" :max-height="200" />
 </template>
 <script setup lang="ts">
-import { h } from "vue";
-import { Button } from "useless-ui";
 const columns = [
   {
     title: "Name",
     key: "name",
+    fixed: "left",
   },
   {
     title: "Age",
@@ -17,36 +16,40 @@ const columns = [
     title: "Address",
     key: "address",
   },
+  {
+    title: "code",
+    key: "code",
+  },
 ];
 
 const data = [
   {
-    name: "John Brown",
+    name: "Liu Xuehan",
     age: 18,
-    address: "New York No. 1 Lake Park",
-    date: "2016-10-03",
+    address: "Hengshui, Hebei",
+    date: "1997-12-23",
+    code: 1000,
   },
   {
-    name: "Jim Green",
+    name: "Li Ming",
     age: 24,
     address: "London No. 1 Lake Park",
     date: "2016-10-01",
+    code: 1000,
   },
   {
-    name: "Joe Black",
+    name: "Zhang San",
     age: 30,
     address: "Sydney No. 1 Lake Park",
     date: "2016-10-02",
+    code: 1000,
   },
   {
-    name: "Jon Snow",
-    age: 26,
+    name: "Li Lei",
+    age: 28,
     address: "Ottawa No. 2 Lake Park",
     date: "2016-10-04",
+    code: 1000,
   },
 ];
-
-const handleSortChange = ({ column, type }) => {
-  console.log(column, type);
-};
 </script>

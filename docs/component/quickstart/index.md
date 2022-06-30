@@ -1,7 +1,9 @@
+<Toc />
+
 # 安装引入
 
 
-<h2>安装</h2>
+## 安装
 
 ```bash
 $ npm install useless-ui
@@ -9,7 +11,7 @@ $ npm install useless-ui
 $ yarn add useless-ui
 ```
 
-<h2>引入Useless</h2>
+## 引入Useless
 
 <h3>全局完整注册</h3>
 

@@ -1,6 +1,8 @@
+<Toc />
+
 # 数据穿梭框 Transfer
 
-<h2>基本用法</h2>
+## 基本用法
 
 数据穿梭框的基本用法
 
@@ -30,7 +32,7 @@ const value = ref([1,2,3])
 ```
 :::
 
-<h2>节点禁用</h2>
+## 节点禁用
 
 通过`disabled`属性设置某一个节点的禁用
 
@@ -62,14 +64,14 @@ const value = ref([1,3])
 :::
 
 
-`<Transfer>`Props
+## `<Transfer>` Props
 | 参数名            | 描述         | 类型         | 默认值 |
 | -------------------- | -------------- | -------------- | ------ |
 | model-value(v-model) | 目标项的绑定值 | array          | -      |
 | data                 | 穿梭框的数据 | TransferItem[] | []     |
 
 
-`TransferItem`
+## `TransferItem` Props
 | 参数名 | 描述     | 类型  | 默认值 |
 | -------- | ---------- | ------- | ------ |
 | label    | 选项的标签 | string  | -      |

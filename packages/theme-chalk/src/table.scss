@@ -42,9 +42,7 @@
 
     table {
       width: 100%;
-      border-collapse: collapse;
-      border-spacing: 0;
-
+      
       tr{
         transition: background-color 0.2s ease;
         &:hover {

@@ -10,6 +10,7 @@ type OrderColumnProp = {
   width: number
   sortable: boolean | 'custom'
   sortType: SortType
+  fixed: 'right' | 'left'
   render: (row: ITableData) => VNode<any, any>
 }
 

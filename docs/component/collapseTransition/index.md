@@ -1,6 +1,6 @@
 # 折叠渐变 Collapse Transition
 
-<h2>基本使用</h2>
+## 基本使用
 
 为一个不定高度的元素绑定折叠渐变
 
@@ -39,7 +39,7 @@ const handleCollapse = () => {
 ```
 :::
 
-`<CollapseTransition>`Props
+## `<CollapseTransition>` Props
 | 参数名      | 描述           | 类型              | 默认值 |
 | -------------- | ---------------- | ------------------- | ------ |
 | delay | 动画时间       | number              | 0.3(s)     |

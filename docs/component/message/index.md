@@ -1,6 +1,8 @@
+<Toc />
+
 # 全局提醒 Message
 
-<h2>基本使用</h2>
+## 基本使用
 
 全局提醒的用法
 
@@ -8,12 +10,17 @@
 
 ```vue
 <template>
-  <use-button @click="()=> this.$message.info('Info Message')">Info Message</use-button>
+  <use-button @click="()=>this.$message.info(createMessage('info'))">Info Message</use-button>
 </template>
+<script setup>
+const createMessage = (type) => ({
+  content:`${type} Message`,
+})
+</script>
 ```
 :::
 
-<h2>消息类型</h2>
+## 消息类型
 
 全局消息有4种不同类型分别为`info`(默认)、`success`、`warning`、`error`
 
@@ -36,9 +43,9 @@ const createMessage = (type) => ({
 ```
 :::
 
-<h2>消息显示时间</h2>
+## 消息显示时间
 
-通过`duration`属性设置消息的显示时间,默认为`3000ms`
+通过`duration`属性设置消息的显示时间,默认为`1000ms`
 
 :::demo 
 
@@ -57,11 +64,11 @@ const createMessage = (duration) => ({
 ```
 :::
 
-`MessageMethod`
+## `Message`  Method
 | 参数名 | 描述                     | 类型                                | 默认值 |
 | --------- | -------------------------- | ------------------------------------- | ------ |
 | message   | 消息内容               | string                                | -      |
 | id        | 节点的唯一id          | string                                | -      |
 | type      | 消息的类型            | `info`、`error`、`warning`、`success` | `info` |
-| durcation | 消息显示的持续时间 | number (ms)                           | 3000   |
+| durcation | 消息显示的持续时间 | number (ms)                           | 1000   |
 | onClose   | 关闭时的回调(节点未被销毁) | ()=>void                              | -      |
