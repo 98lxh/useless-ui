@@ -3,7 +3,6 @@
 
 @include b(checkbox){
   display: flex;
-  height: 32px;
   align-items: center;
   
   @include e(input){

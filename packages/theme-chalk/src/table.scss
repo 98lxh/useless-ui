@@ -1,0 +1,97 @@
+@import "./common/variables.scss";
+@import "./mixins/mixin.scss";
+
+@include b(table) {
+  width: 100%;
+  position: relative;
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  th,
+  td {
+    padding: 8px;
+    text-align: left;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+
+  td {
+    border-bottom: 0.01rem solid $grey-3;
+    margin:0px;
+  }
+
+  .is-fixed-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  @include e(inner) {
+    overflow: auto;
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 1px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 6px;
+      background: rgba($color: #000000, $alpha: 0.2);
+    }
+    &::-webkit-scrollbar-track {
+      background: $grey-2;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border-spacing: 0;
+
+      tr{
+        transition: background-color 0.2s ease;
+        &:hover {
+          background: $grey-2;
+        }
+      }
+    }
+  }
+
+  @include e(header) {
+    background-color: $grey-2;
+    font-weight: bold !important;
+  }
+
+  @include b(table-cell) {
+    @include when(sort) {
+      .sort-wrapper {
+        position: relative;
+        vertical-align: middle;
+        display: inline-block;
+        width: 24px;
+        height: 30px;
+
+        .u-icon-arrow-up-filling,
+        .u-icon-arrow-down-filling {
+          position: absolute;
+          font-size: 16px;
+          color: $grey-6;
+          cursor: pointer;
+
+          @include when(active) {
+            color: $--color-primary;
+          }
+
+          &:hover {
+            color: $--color-primary;
+          }
+        }
+
+        .u-icon-arrow-up-filling {
+          top: 0;
+        }
+
+        .u-icon-arrow-down-filling {
+          bottom: 0;
+        }
+      }
+    }
+  }
+}

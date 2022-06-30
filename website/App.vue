@@ -1,12 +1,52 @@
 <template>
-  <use-pagination
-    :total="10"
-    :page-count="7"
-    v-model:current-page="currentPage"
-    @change="handleChange"
-  />
+  <use-table :columns="columns" :data="data" @sort-change="handleSortChange" />
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
-const currentPage = ref(10);
+import { h } from "vue";
+import { Button } from "useless-ui";
+const columns = [
+  {
+    title: "Name",
+    key: "name",
+  },
+  {
+    title: "Age",
+    key: "age",
+  },
+  {
+    title: "Address",
+    key: "address",
+  },
+];
+
+const data = [
+  {
+    name: "John Brown",
+    age: 18,
+    address: "New York No. 1 Lake Park",
+    date: "2016-10-03",
+  },
+  {
+    name: "Jim Green",
+    age: 24,
+    address: "London No. 1 Lake Park",
+    date: "2016-10-01",
+  },
+  {
+    name: "Joe Black",
+    age: 30,
+    address: "Sydney No. 1 Lake Park",
+    date: "2016-10-02",
+  },
+  {
+    name: "Jon Snow",
+    age: 26,
+    address: "Ottawa No. 2 Lake Park",
+    date: "2016-10-04",
+  },
+];
+
+const handleSortChange = ({ column, type }) => {
+  console.log(column, type);
+};
 </script>

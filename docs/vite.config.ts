@@ -23,7 +23,8 @@ const components = [
   'select',
   'form',
   'carousel',
-  'pagination'
+  'pagination',
+  'table'
 ]
 
 

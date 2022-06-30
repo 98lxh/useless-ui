@@ -40,6 +40,7 @@ export default defineConfig({
             { text: '文字气泡 Tooltip', link: '/component/tooltip/' },
             { text: '分页 Pagination', link: "/component/pagination/" },
             { text: '走马灯 Carousel', link: '/component/carousel/' },
+            { text: '表格 Table', link: "/component/table/" }
           ]
         },
         {

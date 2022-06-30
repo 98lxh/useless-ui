@@ -46,7 +46,6 @@ const Popover = defineComponent({
       if (!visiable.value) return
 
       nextTick(() => {
-        console.log(111)
         const contentSize = {
           height: popoverNodeRef.value.clientHeight,
           width: popoverNodeRef.value.clientWidth
