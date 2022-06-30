@@ -9,20 +9,21 @@
 
   @include e(item) {
     margin: 5px;
-    min-width: 32px;
-    line-height: 32px;
+    min-width: 30px;
+    line-height: 30px;
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
     user-select: none;
-    font-weight: bold;
 
     @include when(active) {
       color: $--color-primary;
+      border:1px solid $--color-primary;
     }
 
     @include when(background) {
       background-color: #f0f2f5;
+      border: none;
 
       @include when(active) {
         color:#fff;
@@ -31,6 +32,7 @@
     }
 
     @include when(director) {
+      
       i {
         display: none;
         font-size: 12px;
