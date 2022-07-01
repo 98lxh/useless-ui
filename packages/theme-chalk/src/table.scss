@@ -51,14 +51,32 @@
         }
       }
     }
+
+
+    @include b(table-empty){
+      height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 550;
+      border-bottom: 1px solid $grey-3;
+
+      i{
+        font-size: 36px;
+      }
+
+      div{
+        margin-top:5px;
+      }
+    }
   }
 
   @include e(header) {
-    background-color: $grey-2;
     font-weight: bold !important;
 
     @include b(table-cell) {
       background-color: #f2f3f5;
+      background-color: $grey-2 !important;
     }
   }
 

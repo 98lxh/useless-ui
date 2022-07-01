@@ -1,4 +1,4 @@
-import { VNode } from "vue"
+import { Ref, VNode } from "vue"
 
 export type ITableColumn = {
   key: string
@@ -33,4 +33,10 @@ export type HiddenShadow = {
   left: boolean
   right: boolean
   both: boolean
+}
+
+
+export interface TableCloneData {
+  cloneData: Ref<ITableData[]>
+  cloneColumns: Ref<ITableColumn[]>
 }

@@ -1,11 +1,13 @@
-import { computed, defineComponent, PropType, provide } from "vue";
+import { defineComponent, PropType, provide } from "vue";
 import { ITableColumn, ITableData } from "./table.types";
-import TableHeader from "./table-header";
-import TableBody from "./table-body";
 import { useTable } from "./hooks/use-table";
 import { useTableSort } from "./hooks/use-table-sort";
 import { injectTableKey } from "./context";
 import { useTableFixed } from "./hooks/use-table-fixed";
+import { useTableSelection } from "./hooks/use-table-selection";
+import TableHeader from "./table-header";
+import TableBody from "./table-body";
+import TableEmpty from "./table-tools/table-empty";
 
 const tableProps = {
     columns: {
@@ -29,18 +31,21 @@ const Table = defineComponent({
     props: tableProps,
     emit: ['sortChange', 'selectChange'],
     setup(props, { expose }) {
-        const { cloneData, cloneColumns, selectedItems, select, selectAll } = useTable(props)
-        const { tableWrapperRef, tableInnerRef, tableRef, addTableFixedBoth, getFixedTableBothOffset, tableFixedBothRecord ,hiddenShadow} = useTableFixed(props)
+        const { cloneData, cloneColumns,isEmpty } = useTable(props)
+        const { selectedItems, select, selectAll } = useTableSelection({ cloneData })
+        const { tableWrapperRef, tableInnerRef, tableRef, addTableFixedBoth, getFixedTableBothOffset, tableFixedBothRecord, hiddenShadow } = useTableFixed(props)
         const { sort } = useTableSort({ cloneColumns, cloneData })
 
-
         provide(injectTableKey, {
+            //数据
             data: cloneData,
             columns: cloneColumns,
-            hiddenShadow,
+            //固定
             addTableFixedBoth,
             getFixedTableBothOffset,
             tableFixedBothRecord,
+            hiddenShadow,
+            //选择
             selectedItems,
             select,
             sort
@@ -51,24 +56,19 @@ const Table = defineComponent({
         })
 
         return () => {
-            const { maxHeight, scrollX } = props
+            const { maxHeight, scrollX } = props;
+            
             return (
-                <div
-                    class="u-table"
-                    ref={tableWrapperRef}
-                >
-                    <div
-                        class="u-table__inner"
+                <div class="u-table" ref={tableWrapperRef}>
+                    <div class="u-table__inner"
                         style={{ height: maxHeight + 'px' }}
                         ref={tableInnerRef}
                     >
-                        <table
-                            ref={tableRef}
-                            style={{ width: scrollX + 'px' }}
-                        >
+                        <table ref={tableRef} style={{ width: scrollX + 'px' }} >
                             <TableHeader />
-                            <TableBody />
+                            {!isEmpty.value && <TableBody />}
                         </table>
+                        { isEmpty.value && <TableEmpty />}
                     </div>
                 </div>
             )

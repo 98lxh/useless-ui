@@ -14,7 +14,8 @@
   />
 </template>
 <script setup lang="ts">
-const columns = [
+import { ref } from 'vue';
+const columns = ref([
   {
     title: "Name",
     key: "name",
@@ -27,9 +28,9 @@ const columns = [
     title: "Address",
     key: "address",
   },
-];
+])
 
-const data = [
+const data = ref([
   {
     name: "Liu Xuehan",
     age:25,
@@ -54,7 +55,7 @@ const data = [
     address: "Ottawa No. 2 Lake Park",
     date: "2016-10-04",
   },
-];
+])
 </script>
 ```
 :::
@@ -297,6 +298,47 @@ const data = [
     action: "action",
   },
 ];
+</script>
+```
+:::
+
+## 空表格
+
+:::demo 
+
+```vue
+<template>
+  <use-table :columns="columns" :data="data" />
+</template>
+<script setup lang="ts">
+import { ref } from 'vue';
+const data = ref([]);
+const columns = ref([
+  {
+    title: "Name",
+    key: "name",
+    fixed: "left",
+  },
+  {
+    title: "Age",
+    key: "age",
+    fixed: "left",
+  },
+  {
+    title: "Address",
+    key: "address",
+  },
+  {
+    title: "code",
+    key: "code",
+    fixed: "right",
+  },
+  {
+    title: "action",
+    key: "action",
+    fixed: "right",
+  },
+]);
 </script>
 ```
 :::

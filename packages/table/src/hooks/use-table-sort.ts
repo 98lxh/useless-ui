@@ -1,16 +1,15 @@
 import { cloneDeep } from 'lodash';
-import { Ref, getCurrentInstance } from 'vue';
-import { ITableData, ITableColumn, SortType } from './../table.types';
+import { getCurrentInstance } from 'vue';
+import { ITableColumn, SortType, TableCloneData } from './../table.types';
 
-interface TableSortParam {
-  cloneData: Ref<ITableData[]>
-  cloneColumns: Ref<ITableColumn[]>
-}
 
-export function useTableSort({ cloneData, cloneColumns }: TableSortParam) {
+export function useTableSort({ cloneData, cloneColumns }: TableCloneData) {
   const emit = getCurrentInstance().emit
   const sourceData = cloneDeep(cloneData.value)
-  cloneColumns.value.forEach(column => sort(column, column.sortType))
+
+  cloneColumns.value.forEach(column => {
+    sort(column, column.sortType)
+  })
 
   function sort(column: ITableColumn, type: SortType) {
     const { sortable, key } = column
