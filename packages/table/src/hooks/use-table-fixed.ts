@@ -6,6 +6,7 @@ export function useTableFixed(props: ITableProps) {
   const tableInnerRef = ref<HTMLDivElement>(null)
   const tableRef = ref<HTMLTableElement>(null)
   const tableFixedBothRecord = ref<Map<number, number>>(new Map())
+  const fixedHeaderContainer = document.createElement('div')
   const hiddenShadow = ref<HiddenShadow>({
     left: false,
     right: false,
@@ -28,25 +29,28 @@ export function useTableFixed(props: ITableProps) {
     const end = props.columns.length - 1
 
     if (_index === start || _index === end) return offset;
-
     return tableFixedBothRecord.value.get(_index + value)
   }
 
   function fixedTableHeader() {
     const cloneTable = tableRef.value.cloneNode() as HTMLElement
+    fixedHeaderContainer.classList.add('is-fixed-header')
+    fixedHeaderContainer.style.width = '100%'
     const thead = tableRef.value.children[0]
     tableWrapperRef.value.style.paddingTop = thead.getBoundingClientRect().height + 'px'
     cloneTable.appendChild(thead)
-    cloneTable.style.width = '100%'
-    cloneTable.classList.add('is-fixed-header')
     const tds = [...tableRef.value.querySelector('tbody tr').children]
     const ths = [...cloneTable.querySelector('thead tr').children] as HTMLElement[]
 
+    fixedHeaderContainer.appendChild(cloneTable)
+
     tds.forEach((td, index) => {
-      ths[index].style.width = td.getBoundingClientRect().width + 'px'
+      const sourceWidth = td.getBoundingClientRect().width
+      const isLast = index === tds.length - 1
+      ths[index].style.width = sourceWidth + (isLast ? 6 : 0)  +'px'
     })
 
-    tableWrapperRef.value.appendChild(cloneTable)
+    tableWrapperRef.value.appendChild(fixedHeaderContainer)
   }
 
 
@@ -55,23 +59,24 @@ export function useTableFixed(props: ITableProps) {
     const { clientWidth, scrollWidth } = scrollElement
     const { scrollLeft } = scrollElement
     const width = scrollWidth - clientWidth
+    fixedHeaderContainer && fixedHeaderContainer.scrollTo({ left: scrollLeft })
     //右临界误差
     const rightError = Math.abs(scrollLeft - width)
 
     hiddenShadow.value = {
-      both:false,
+      both: false,
       left: scrollLeft === 0,
-      right:scrollLeft >= width || rightError < 5
+      right: scrollLeft >= width || rightError < 5
     }
   }
-  
-  function handleHiddenBothShadow() { 
+
+  function handleHiddenBothShadow() {
     const scrollElement = tableInnerRef.value
 
     hiddenShadow.value = {
       left: false,
       right: false,
-      both:scrollElement.scrollWidth <= scrollElement.clientWidth
+      both: scrollElement.scrollWidth <= scrollElement.clientWidth
     }
   }
 
@@ -79,12 +84,13 @@ export function useTableFixed(props: ITableProps) {
     const { maxHeight } = props
     maxHeight && fixedTableHeader()
     handleHiddenBetweenShadow()
-    tableInnerRef.value.addEventListener('scroll', handleHiddenBetweenShadow)
-    window.addEventListener('resize',handleHiddenBothShadow)
+    tableInnerRef.value && tableInnerRef.value.addEventListener('scroll', handleHiddenBetweenShadow)
+    window.addEventListener('resize', handleHiddenBothShadow)
   })
 
-  onUnmounted(() => { 
-    tableInnerRef.value.removeEventListener('scroll', handleHiddenBetweenShadow)
+  onUnmounted(() => {
+    tableInnerRef.value && tableInnerRef.value.removeEventListener('scroll', handleHiddenBetweenShadow)
+    window.removeEventListener('resize', handleHiddenBothShadow)
   })
 
   return {

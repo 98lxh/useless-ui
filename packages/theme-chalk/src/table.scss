@@ -22,8 +22,13 @@
 
   .is-fixed-header {
     position: absolute;
+    overflow: auto;
     top: 0;
     left: 0;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   @include e(inner) {
