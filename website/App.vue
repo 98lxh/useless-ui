@@ -1,5 +1,5 @@
 <template>
-  <use-table :columns="columns" :data="data" :max-height="200" />
+  <use-table :scroll-x="900" :columns="columns" :data="data" />
 </template>
 <script setup lang="ts">
 const columns = [
@@ -11,6 +11,7 @@ const columns = [
   {
     title: "Age",
     key: "age",
+    fixed: "left",
   },
   {
     title: "Address",
@@ -19,6 +20,12 @@ const columns = [
   {
     title: "code",
     key: "code",
+    fixed: "right",
+  },
+  {
+    title: "action",
+    key: "action",
+    fixed: "right",
   },
 ];
 
@@ -29,6 +36,7 @@ const data = [
     address: "Hengshui, Hebei",
     date: "1997-12-23",
     code: 1000,
+    action: "action",
   },
   {
     name: "Li Ming",
@@ -36,6 +44,7 @@ const data = [
     address: "London No. 1 Lake Park",
     date: "2016-10-01",
     code: 1000,
+    action: "action",
   },
   {
     name: "Zhang San",
@@ -43,6 +52,7 @@ const data = [
     address: "Sydney No. 1 Lake Park",
     date: "2016-10-02",
     code: 1000,
+    action: "action",
   },
   {
     name: "Li Lei",
@@ -50,6 +60,7 @@ const data = [
     address: "Ottawa No. 2 Lake Park",
     date: "2016-10-04",
     code: 1000,
+    action: "action",
   },
 ];
 </script>

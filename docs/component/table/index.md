@@ -59,6 +59,93 @@ const data = [
 ```
 :::
 
+## 多选
+
+添加一个`selection`为`true`的`column`,即可实现多选操作,可以通过`select-change`方法实时获取当前选定项
+
+:::demo 
+
+```vue
+<template>
+  selectItems:{{JSON.stringify(selectItems)}}
+  <use-table
+    :columns="columns"
+    :data="data"
+    @select-change="handleSelect"
+  />
+</template>
+<script setup lang="ts">
+import { ref } from 'vue'
+const selectItems = ref([])
+const columns = [
+  {
+    type:'selection'
+  },
+  {
+    title: "Name",
+    key: "name",
+  },
+  {
+    title: "Age",
+    key: "age",
+  },
+  {
+    title: "Address",
+    key: "address",
+  },
+];
+
+const data = [
+  {
+    name: "Liu Xuehan",
+    age:25,
+    address: "Hengshui, Hebei",
+    date: "1997-12-23",
+  },
+  {
+    name: "Li Ming",
+    age: 24,
+    address: "London No. 1 Lake Park",
+    date: "2016-10-01",
+  },
+  {
+    name: "Zhang San",
+    age: 30,
+    address: "Sydney No. 1 Lake Park",
+    date: "2016-10-02",
+  },
+  {
+    name: "Li Si",
+    age: 26,
+    address: "Ottawa No. 2 Lake Park",
+    date: "2017-10-04",
+  },
+  {
+    name: "Wang Wu",
+    age: 19,
+    address: "Ottawa No. 2 Lake Park",
+    date: "2016-10-04",
+  },
+  {
+    name: "Han Meimei",
+    age: 37,
+    address: "Ottawa No. 2 Lake Park",
+    date: "2016-10-04",
+  },
+   {
+    name: "Li Lei",
+    age: 28,
+    address: "Ottawa No. 2 Lake Park",
+    date: "2016-10-04",
+  },
+];
+
+const handleSelect = (rows) => {
+  selectItems.value = rows.map(row => row.name)
+}
+</script>
+```
+:::
 
 ## 固定表头
 
@@ -144,18 +231,18 @@ const data = [
 
 ```vue
 <template>
-  <use-table
-    :columns="columns"
-    :data="data"
-    :max-height="200"
-  />
+  <use-table :scroll-x="1200" :columns="columns" :data="data" />
 </template>
 <script setup lang="ts">
 const columns = [
   {
+    type:'selection',
+    fixed: "left",
+  },
+  {
     title: "Name",
     key: "name",
-    fixed: "left"
+    fixed: "left",
   },
   {
     title: "Age",
@@ -165,40 +252,49 @@ const columns = [
     title: "Address",
     key: "address",
   },
-   {
+  {
     title: "code",
     key: "code",
+  },
+  {
+    title: "action",
+    key: "action",
+    fixed: "right",
   },
 ];
 
 const data = [
   {
     name: "Liu Xuehan",
-    age:25,
+    age: 18,
     address: "Hengshui, Hebei",
     date: "1997-12-23",
-    code:1000
+    code: 1000,
+    action: "action",
   },
   {
     name: "Li Ming",
     age: 24,
     address: "London No. 1 Lake Park",
     date: "2016-10-01",
-    code:1000
+    code: 1000,
+    action: "action",
   },
   {
     name: "Zhang San",
     age: 30,
     address: "Sydney No. 1 Lake Park",
     date: "2016-10-02",
-    code:1000
+    code: 1000,
+    action: "action",
   },
   {
     name: "Li Lei",
     age: 28,
     address: "Ottawa No. 2 Lake Park",
     date: "2016-10-04",
-    code:1000
+    code: 1000,
+    action: "action",
   },
 ];
 </script>
@@ -282,94 +378,6 @@ const data = [
     date: "2016-10-04",
   },
 ];
-</script>
-```
-:::
-
-## 多选
-
-添加一个`selection`为`true`的`column`,即可实现多选操作,可以通过`select-change`方法实时获取当前选定项
-
-:::demo 
-
-```vue
-<template>
-  selectItems:{{JSON.stringify(selectItems)}}
-  <use-table
-    :columns="columns"
-    :data="data"
-    @select-change="handleSelect"
-  />
-</template>
-<script setup lang="ts">
-import { ref } from 'vue'
-const selectItems = ref([])
-const columns = [
-  {
-    type:'selection'
-  },
-  {
-    title: "Name",
-    key: "name",
-  },
-  {
-    title: "Age",
-    key: "age",
-  },
-  {
-    title: "Address",
-    key: "address",
-  },
-];
-
-const data = [
-  {
-    name: "Liu Xuehan",
-    age:25,
-    address: "Hengshui, Hebei",
-    date: "1997-12-23",
-  },
-  {
-    name: "Li Ming",
-    age: 24,
-    address: "London No. 1 Lake Park",
-    date: "2016-10-01",
-  },
-  {
-    name: "Zhang San",
-    age: 30,
-    address: "Sydney No. 1 Lake Park",
-    date: "2016-10-02",
-  },
-  {
-    name: "Li Si",
-    age: 26,
-    address: "Ottawa No. 2 Lake Park",
-    date: "2017-10-04",
-  },
-  {
-    name: "Wang Wu",
-    age: 19,
-    address: "Ottawa No. 2 Lake Park",
-    date: "2016-10-04",
-  },
-  {
-    name: "Han Meimei",
-    age: 37,
-    address: "Ottawa No. 2 Lake Park",
-    date: "2016-10-04",
-  },
-   {
-    name: "Li Lei",
-    age: 28,
-    address: "Ottawa No. 2 Lake Park",
-    date: "2016-10-04",
-  },
-];
-
-const handleSelect = (rows) => {
-  selectItems.value = rows.map(row => row.name)
-}
 </script>
 ```
 :::

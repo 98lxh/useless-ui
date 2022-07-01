@@ -9,7 +9,15 @@ export function useTable(props: ITableProps) {
   const selectedItems = ref<number[]>([])
   const emit = getCurrentInstance().emit
 
-  cloneColumns.value.forEach(col => col.sortType = col.sortType ?? 'normal')
+  cloneColumns.value.forEach((col, index) => {
+    const next = cloneColumns.value[index + 1]
+    const prev = cloneColumns.value[index - 1]
+    col.sortType = col.sortType ?? 'normal'
+    col._index = index
+    col._has_shadow = (next && !next.fixed) || (prev && !prev.fixed)
+    col._last_fixed = (index === 0) || (index === props.columns.length - 1)
+  })
+
   cloneData.value.forEach(row => row._id = Math.random())
 
   function selectAll() {

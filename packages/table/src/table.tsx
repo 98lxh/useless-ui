@@ -1,4 +1,4 @@
-import { defineComponent, PropType, provide } from "vue";
+import { computed, defineComponent, PropType, provide } from "vue";
 import { ITableColumn, ITableData } from "./table.types";
 import TableHeader from "./table-header";
 import TableBody from "./table-body";
@@ -18,6 +18,9 @@ const tableProps = {
     },
     maxHeight: {
         type: Number,
+    },
+    scrollX: {
+        type: Number
     }
 }
 
@@ -27,12 +30,17 @@ const Table = defineComponent({
     emit: ['sortChange', 'selectChange'],
     setup(props, { expose }) {
         const { cloneData, cloneColumns, selectedItems, select, selectAll } = useTable(props)
-        const { tableWrapperRef, tableInnerRef, tableRef } = useTableFixed(props)
+        const { tableWrapperRef, tableInnerRef, tableRef, addTableFixedBoth, getFixedTableBothOffset, tableFixedBothRecord ,hiddenShadow} = useTableFixed(props)
         const { sort } = useTableSort({ cloneColumns, cloneData })
+
 
         provide(injectTableKey, {
             data: cloneData,
             columns: cloneColumns,
+            hiddenShadow,
+            addTableFixedBoth,
+            getFixedTableBothOffset,
+            tableFixedBothRecord,
             selectedItems,
             select,
             sort
@@ -42,27 +50,29 @@ const Table = defineComponent({
             selectAll
         })
 
-
-        return () => (
-            <div
-                class="u-table"
-                ref={tableWrapperRef}
-            >
+        return () => {
+            const { maxHeight, scrollX } = props
+            return (
                 <div
-                    class="u-table__inner"
-                    ref={tableInnerRef}
-                    style={{ height: props.maxHeight + 'px' }}
+                    class="u-table"
+                    ref={tableWrapperRef}
                 >
-                    <table
-                        ref={tableRef}
+                    <div
+                        class="u-table__inner"
+                        style={{ height: maxHeight + 'px' }}
+                        ref={tableInnerRef}
                     >
-                        <TableHeader />
-                        <TableBody />
-                    </table>
+                        <table
+                            ref={tableRef}
+                            style={{ width: scrollX + 'px' }}
+                        >
+                            <TableHeader />
+                            <TableBody />
+                        </table>
+                    </div>
                 </div>
-            </div>
-
-        )
+            )
+        }
     }
 })
 

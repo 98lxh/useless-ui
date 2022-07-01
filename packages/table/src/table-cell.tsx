@@ -1,7 +1,8 @@
-import { defineComponent, PropType, computed } from "vue";
+import { defineComponent, PropType, computed, ref, inject, onMounted, reactive, watch } from "vue";
 import { ITableColumn } from "./table.types";
 import TableCheckbox from "./table-tools/table-checkbox";
 import TableSort from "./table-tools/table-sort";
+import { injectTableKey } from "./context";
 
 const TableCell = defineComponent({
   name: 'UseTableCell',
@@ -19,17 +20,47 @@ const TableCell = defineComponent({
     }
   },
   setup(props) {
+    const tableCellRef = ref<HTMLTableCellElement | null>(null)
+    const offset = reactive({ left: '', right: '' })
+    const directCalcOffset = props.column.fixed === 'left' || props.column._last_fixed
+    const { addTableFixedBoth, getFixedTableBothOffset, tableFixedBothRecord, hiddenShadow } = inject(injectTableKey)
+
     const classes = computed(() => {
       const { column, isHeader } = props;
+      const { sortable, fixed, _has_shadow } = column
+      const { left,right,both} = hiddenShadow.value
       return ({
+        [`is-fixed-${fixed}`]: fixed,
         'u-table-cell': true,
-        'is-sort': column.sortable && isHeader
+        'is-sort': sortable && isHeader,
+        'is-shadow': _has_shadow,
+        'is-hidden-shadow': (fixed === 'left' && left) || (fixed === 'right' && right) || both
       })
     })
 
+    function calculationOffset() {
+      const { column } = props;
+      offset[column.fixed] = getFixedTableBothOffset(column) + 'px'
+    }
+
+    function intialOffset() {
+      const { column } = props;
+      if (!column.fixed) return
+      const { width } = tableCellRef.value.getBoundingClientRect()
+      addTableFixedBoth(column, width)
+      if (directCalcOffset) calculationOffset()
+    }
+
+    onMounted(() => intialOffset())
+
+    if (!directCalcOffset) {
+      watch(() => tableFixedBothRecord, () => calculationOffset(), {
+        deep: true
+      })
+    }
+
     function renderColumn() {
       const { isHeader, column, row } = props;
-      
       return (
         <span>
           {
@@ -51,9 +82,11 @@ const TableCell = defineComponent({
       return (
         <td
           class={classes.value}
+          style={offset}
+          ref={tableCellRef}
         >
           {renderColumn()}
-          { Tool && ( <Tool {...props} /> ) }
+          {Tool && (<Tool {...props} />)}
         </td>
       )
     }

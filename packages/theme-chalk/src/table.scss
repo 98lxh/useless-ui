@@ -17,7 +17,7 @@
 
   td {
     border-bottom: 0.01rem solid $grey-3;
-    margin:0px;
+    margin: 0px;
   }
 
   .is-fixed-header {
@@ -27,14 +27,15 @@
   }
 
   @include e(inner) {
+    width: 100%;
     overflow: auto;
     &::-webkit-scrollbar {
       width: 6px;
-      height: 1px;
+      height: 6px;
     }
     &::-webkit-scrollbar-thumb {
       border-radius: 6px;
-      background: rgba($color: #000000, $alpha: 0.2);
+      background: rgba($color: #000000, $alpha: 0.1);
     }
     &::-webkit-scrollbar-track {
       background: $grey-2;
@@ -42,8 +43,8 @@
 
     table {
       width: 100%;
-      
-      tr{
+
+      tr {
         transition: background-color 0.2s ease;
         &:hover {
           background: $grey-2;
@@ -55,21 +56,29 @@
   @include e(header) {
     background-color: $grey-2;
     font-weight: bold !important;
+
+    @include b(table-cell) {
+      background-color: #f2f3f5;
+    }
   }
 
   @include b(table-cell) {
+    z-index: 1;
+    background-color: #fff;
+
     @include when(sort) {
       .sort-wrapper {
         position: relative;
         vertical-align: middle;
         display: inline-block;
         width: 24px;
-        height: 30px;
+        height: 26px;
 
         .u-icon-arrow-up-filling,
         .u-icon-arrow-down-filling {
           position: absolute;
-          font-size: 16px;
+          font-size: 14px;
+          left: 2px;
           color: $grey-6;
           cursor: pointer;
 
@@ -84,11 +93,58 @@
 
         .u-icon-arrow-up-filling {
           top: 0;
+
         }
 
         .u-icon-arrow-down-filling {
           bottom: 0;
         }
+      }
+    }
+
+    @include when(fixed-left) {
+      position: sticky;
+      z-index: 2;
+
+      @include when(shadow){
+        &::before {
+          content: "";
+          position: absolute;
+          width: 10px;
+          bottom: 0px;
+          top:0px;
+          overflow: hidden;
+          touch-action: none;
+          pointer-events: none;
+          box-shadow: inset 10px 0 10px -10px rgba(0, 0, 0, 0.15);
+          right: -10px;
+        }
+      }
+    }
+
+    @include when(fixed-right) {
+      position: sticky;
+      z-index: 1;
+      @include when(shadow){
+        &::before {
+          content: "";
+          position: absolute;
+          width: 10px;
+          bottom: 0px;
+          top:0px;
+          overflow: hidden;
+          touch-action: none;
+          pointer-events: none;
+          box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, .15);
+          left: -10px;
+        }
+      }
+    }
+
+
+    @include when(hidden-shadow){
+      &::before {
+        box-shadow: none !important;
       }
     }
   }
