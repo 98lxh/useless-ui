@@ -1,4 +1,5 @@
 @import "./common/variables.scss";
+
 @font-face {
   font-family: "u-ui-icons"; /* Project id 3301718 */
   src: url('./fonts/iconfont.woff2?t=1649073166340') format('woff2'),
@@ -112,6 +113,17 @@
   content: "\e67d";
 }
 
+.u-icon-nodata:before {
+  content: "\e729";
+}
+
+.u-icon-search:before {
+  content: "\e6e1";
+}
+
+.u-icon-upload:before {
+  content: "\e682";
+}
 
 @keyframes roate{
   0%{transform:rotate(0deg);}

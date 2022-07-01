@@ -3,7 +3,6 @@ import message from "@useless-ui/message";
 const icons = [
   "arrow-right",
   "calendar",
-  "snow",
   "eye",
   "eye-close",
   "error",
@@ -22,6 +21,11 @@ const icons = [
   "arrow-double-left",
   "arrow-double-right",
   "setting",
+  "loading",
+  "upload",
+  "snow",
+  "nodata",
+  "search",
 ];
 
 const copy = (iconName: string) => {
