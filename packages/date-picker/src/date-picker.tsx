@@ -123,7 +123,7 @@ const Datepicker = defineComponent({
           <span>-</span>
           <Input
             {...inputProps}
-            value={hasDeaultValue ? inputProps.value[0] : ''}
+            value={hasDeaultValue ? inputProps.value[1] : ''}
             placeholder={inputProps?.placeholder[1] || ''}
           />
           <Icon name="calendar" />
