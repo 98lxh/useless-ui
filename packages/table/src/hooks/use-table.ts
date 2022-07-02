@@ -7,7 +7,6 @@ export function useTable(props: ITableProps) {
   const cloneData = ref(cloneDeep(data))
   const cloneColumns = ref(cloneDeep(columns))
   const isEmpty = computed(() => !props.data.length)
-  console.log(cloneData.value)
   cloneData.value.forEach(row => row._id = Math.random())
 
   cloneColumns.value.forEach((col, index) => {

@@ -1,3 +1,4 @@
+import { debounce } from "@useless-ui/utils"
 import { onMounted, onUnmounted, ref } from "vue"
 import { ITableProps, ITableColumn, HiddenShadow } from "../table.types"
 
@@ -80,17 +81,22 @@ export function useTableFixed(props: ITableProps) {
     }
   }
 
+  const debounceHiddenBothShadow = debounce(handleHiddenBothShadow, {
+    immediate: true,
+    delay:100
+  })
+
   onMounted(() => {
     const { maxHeight } = props
     maxHeight && fixedTableHeader()
     handleHiddenBetweenShadow()
     tableInnerRef.value && tableInnerRef.value.addEventListener('scroll', handleHiddenBetweenShadow)
-    window.addEventListener('resize', handleHiddenBothShadow)
+    window.addEventListener('resize', debounceHiddenBothShadow)
   })
 
   onUnmounted(() => {
     tableInnerRef.value && tableInnerRef.value.removeEventListener('scroll', handleHiddenBetweenShadow)
-    window.removeEventListener('resize', handleHiddenBothShadow)
+    window.removeEventListener('resize', debounceHiddenBothShadow)
   })
 
   return {
