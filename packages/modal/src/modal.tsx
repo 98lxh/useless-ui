@@ -1,6 +1,7 @@
 import { defineComponent, onUnmounted, Teleport, Transition } from "vue"
 import { useModal } from "./hooks/use-modal"
 import Button from "@useless-ui/button"
+import { createPositionTarget } from "@useless-ui/utils"
 
 const modalProps = {
   visible: {
@@ -18,7 +19,7 @@ const modalProps = {
   },
   confirmLoading: {
     type: Boolean,
-    default:undefined
+    default: undefined
   }
 }
 
@@ -32,6 +33,7 @@ const Modal = defineComponent({
   setup(props, { slots, emit }) {
     let timer: NodeJS.Timeout = null
     const { visible, modalRef, modalContainerRef, mouseLocation } = useModal(props)
+    const positionTarget = createPositionTarget()
 
     //默认打开情况下展示动画
     if (visible.value === true) {
@@ -42,13 +44,14 @@ const Modal = defineComponent({
     }
 
     function handleCloseModal() {
-      if (!props.maskClosable) return
+      const { maskClosable, confirmLoading } = props;
+      if (!maskClosable || confirmLoading) return
       visible.value = false
     }
 
     function handleConfirm() {
       emit('confirm')
-      if(typeof props.confirmLoading === 'undefined') visible.value = false
+      if (typeof props.confirmLoading === 'undefined') visible.value = false
     }
 
     function handleCancel() {
@@ -73,7 +76,7 @@ const Modal = defineComponent({
           </Button>
           <Button
             type="primary"
-            loading={ props.confirmLoading}
+            loading={props.confirmLoading}
             onClick={handleConfirm}
           >
             {props.confirmText || '确认'}
@@ -86,7 +89,7 @@ const Modal = defineComponent({
 
 
     return () => (
-      <Teleport to="body">
+      <Teleport to={positionTarget}>
         <div class="u-modal-root">
           <Transition
             onBeforeEnter={(el: HTMLElement) => {

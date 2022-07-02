@@ -6,8 +6,6 @@
   z-index: 100000;
 
   @include b(modal-container) {
-    width: 100vw;
-    height: 100vh;
     position: fixed;
     z-index: 999;
     left: 0;
