@@ -1,5 +1,5 @@
-import { debounce } from "@useless-ui/utils"
 import { onMounted, onUnmounted, ref } from "vue"
+import { throttle } from "@useless-ui/utils"
 import { ITableProps, ITableColumn, HiddenShadow } from "../table.types"
 
 export function useTableFixed(props: ITableProps) {
@@ -44,11 +44,9 @@ export function useTableFixed(props: ITableProps) {
     const ths = [...cloneTable.querySelector('thead tr').children] as HTMLElement[]
 
     fixedHeaderContainer.appendChild(cloneTable)
-
     tds.forEach((td, index) => {
       const sourceWidth = td.getBoundingClientRect().width
-      const isLast = index === tds.length - 1
-      ths[index].style.width = sourceWidth + (isLast ? 6 : 0)  +'px'
+      ths[index].style.width = sourceWidth + 'px'
     })
 
     tableWrapperRef.value.appendChild(fixedHeaderContainer)
@@ -81,9 +79,8 @@ export function useTableFixed(props: ITableProps) {
     }
   }
 
-  const debounceHiddenBothShadow = debounce(handleHiddenBothShadow, {
-    immediate: true,
-    delay:100
+  const { run: throttleHiddenBothShadow } = throttle(handleHiddenBothShadow, {
+    trailing: true,
   })
 
   onMounted(() => {
@@ -91,12 +88,12 @@ export function useTableFixed(props: ITableProps) {
     maxHeight && fixedTableHeader()
     handleHiddenBetweenShadow()
     tableInnerRef.value && tableInnerRef.value.addEventListener('scroll', handleHiddenBetweenShadow)
-    window.addEventListener('resize', debounceHiddenBothShadow)
+    window.addEventListener('resize', throttleHiddenBothShadow)
   })
 
   onUnmounted(() => {
     tableInnerRef.value && tableInnerRef.value.removeEventListener('scroll', handleHiddenBetweenShadow)
-    window.removeEventListener('resize', debounceHiddenBothShadow)
+    window.removeEventListener('resize', throttleHiddenBothShadow)
   })
 
   return {

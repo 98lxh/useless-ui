@@ -14,7 +14,7 @@ const defaultDebounceConfig: IDebounceConfig = {
  * @param {fn} 防抖处理的函数
  * @param {config} 配置项
 */
-export function debounce<T = any>(fn: Function, config?: IDebounceConfig) {
+export function debounce(fn: Function, config?: IDebounceConfig) {
   const _config = { ...defaultDebounceConfig, ...config }
   let _timer: NodeJS.Timeout = null
   let _isInvoke = false
@@ -38,12 +38,15 @@ export function debounce<T = any>(fn: Function, config?: IDebounceConfig) {
     }
   }
 
-  //取消
-  _debounce.cancel = function () { 
+  function cancel() { 
     if(_timer) clearTimeout(_timer)
     _timer = null
     _isInvoke = false
   }
 
-  return _debounce
+
+  return {
+    run:_debounce,
+    cancel
+  }
 }

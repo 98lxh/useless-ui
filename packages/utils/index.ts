@@ -1,5 +1,6 @@
+export { createPositionTarget } from "./src/create-position-target"
 export { withIntall } from "./src/with-install"
 export { cloneDeep } from "./src/clone-deep"
 export { isObject } from "./src/is-object"
-export { createPositionTarget } from "./src/create-position-target"
 export { debounce } from "./src/debounce"
+export { throttle } from "./src/throttle"

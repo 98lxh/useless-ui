@@ -64,7 +64,7 @@ const Table = defineComponent({
                         style={{ height: maxHeight + 'px' }}
                         ref={tableInnerRef}
                     >
-                        <table ref={tableRef} style={{ width: scrollX + 'px' }} >
+                        <table ref={tableRef} style={{ minWidth: scrollX + 'px' }} >
                             <TableHeader />
                             {!isEmpty.value && <TableBody />}
                         </table>
