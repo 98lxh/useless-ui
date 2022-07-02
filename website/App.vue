@@ -1,5 +1,7 @@
 <template>
-  <use-table :columns="columns" :data="data" :max-height="200" :scroll-x="1200" />
+  <div class="container">
+    <use-table :columns="columns" :data="data" :max-height="200" :scroll-x="1200" />
+  </div>
 </template>
 <script setup lang="ts">
 import { ref, h } from "vue";
@@ -100,3 +102,9 @@ const data = ref([
   },
 ]);
 </script>
+
+<style>
+.container {
+  padding: 20px;
+}
+</style>

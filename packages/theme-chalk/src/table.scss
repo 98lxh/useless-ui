@@ -5,6 +5,7 @@
   width: 100%;
   position: relative;
   border-collapse: collapse;
+  display:flex;
   border-spacing: 0;
 
   th,
@@ -171,4 +172,12 @@
       }
     }
   }
+}
+
+
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin:0
 }

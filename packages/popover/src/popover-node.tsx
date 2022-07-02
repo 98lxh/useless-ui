@@ -60,7 +60,7 @@ const Popover = defineComponent({
     function registerEvent() {
       switch (props.trigger) {
         case 'click':
-          useClick(props, contentRef, visiable,calcPopoverContentPosition)
+          useClick(props, contentRef, visiable, calcPopoverContentPosition)
           break
         case 'hover':
           useHover(props, contentMouseOver, visiable)
@@ -81,8 +81,8 @@ const Popover = defineComponent({
     }
 
     onMounted(() => {
-      registerEvent()
       visiable.value = true
+      registerEvent()
       calcPopoverContentPosition()
     })
 
@@ -96,8 +96,8 @@ const Popover = defineComponent({
           class={classes.value}
           ref={contentRef}
           v-show={visiable.value}
-          onMouseleave={()=> contentMouseOver.value = false }
-          onMouseenter={()=> contentMouseOver.value = true }
+          onMouseleave={() => contentMouseOver.value = false}
+          onMouseenter={() => contentMouseOver.value = true}
           style={styles.value}
         >
           <div class="popover-node__content">
