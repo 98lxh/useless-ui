@@ -1,13 +1,13 @@
-import { computed, getCurrentInstance, ref } from 'vue';
+import { cloneDeep } from '@useless-ui/utils';
+import { computed, ref } from 'vue';
 import { ITableProps } from './../table.types';
-import { cloneDeep } from 'lodash';
 
 export function useTable(props: ITableProps) {
   const { data, columns } = props;
   const cloneData = ref(cloneDeep(data))
   const cloneColumns = ref(cloneDeep(columns))
   const isEmpty = computed(() => !props.data.length)
-  
+  console.log(cloneData.value)
   cloneData.value.forEach(row => row._id = Math.random())
 
   cloneColumns.value.forEach((col, index) => {

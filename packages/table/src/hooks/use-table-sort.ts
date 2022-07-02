@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from '@useless-ui/utils';
 import { getCurrentInstance } from 'vue';
 import { ITableColumn, SortType, TableCloneData } from './../table.types';
 

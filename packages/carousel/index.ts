@@ -1,4 +1,4 @@
-import { withIntall } from "@useless-ui/utils/src/with-install";
+import { withIntall } from "@useless-ui/utils";
 import Carousel from "./src/carousel";
 import CarouselItem from "./src/carousel-item";
 

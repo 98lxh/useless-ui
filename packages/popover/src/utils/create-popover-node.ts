@@ -1,7 +1,7 @@
 import { render, createVNode } from 'vue';
 import PopoverNode from '../popover-node'
 import { PopoverProps, ContentType, TriggerContext } from '../popover.types';
-import { createPositionTarget } from './create-position-target';
+import { createPositionTarget } from '@useless-ui/utils';
 
 export function createPopoverNode(
   triggerEl: HTMLElement,

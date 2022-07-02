@@ -60,21 +60,19 @@
     "ts-loader": "^9.2.8",
     "url-loader": "^4.1.1",
     "vite": "^2.9.1",
+    "vitepress": "^0.22.4",
     "vitepress-theme-demoblock": "^1.4.2",
     "vue-loader": "^17.0.0",
     "webpack": "^5.71.0",
     "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4",
-    "vitepress": "^0.22.4"
+    "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.181",
     "@vue/babel-preset-jsx": "^1.2.4",
     "acorn-jsx": "^5.3.2",
     "async-validator": "^4.0.7",
     "babel-loader": "8.2.2",
     "json-schema-merge-allof": "^0.8.1",
-    "lodash": "^4.17.21",
     "typescript": "^4.6.3",
     "vue": "^3.2.31"
   }

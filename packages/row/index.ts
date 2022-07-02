@@ -1,4 +1,4 @@
-import { withIntall } from "@useless-ui/utils/src/with-install";
+import { withIntall } from "@useless-ui/utils";
 import Row from "../col/src/row";
 
 const URow = withIntall(Row)

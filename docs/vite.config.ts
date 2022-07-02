@@ -34,6 +34,7 @@ export default defineConfig({
     extensions: ['.ts', '.tsx', '.js', '.vue', '.json'],
     alias: [
       { find: 'useless-ui', replacement: resolve('node_modules/useless-ui/index.ts') },
+      { find: '@useless-ui/utils', replacement: resolve('node_modules/@useless-ui/utils/index.ts') },
       ...components.map(c => ({ find: `@useless-ui/${c}`, replacement: resolve(`node_modules/@useless-ui/${c}/index.ts`) })),
     ]
   },

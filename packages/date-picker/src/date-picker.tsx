@@ -1,15 +1,15 @@
-import { defineComponent, provide, ref, PropType, Teleport, Transition, watch, Component } from "vue"
+import { defineComponent, provide, ref, PropType, Teleport, Transition, watch } from "vue"
 import { injectDatePicker } from "./context"
 import { DatePickerType, InputProps } from "./date-picker.types"
 import { useDatePicker } from "./hooks/use-date-picker"
 import { useClickOutSide } from "./hooks/use-click-outside"
-import { createPositionTarget } from "./utils/create-position-target"
 import DayPicker from "./pickers/day-picker"
 import YearPicker from "./pickers/year-pickers"
 import MonthPicker from './pickers/month-picker'
 import RangerPicker from "./pickers/range-picker"
 import Input from "@useless-ui/input"
 import Icon from "@useless-ui/icon"
+import { createPositionTarget } from "@useless-ui/utils"
 
 const datePickerProps = {
   type: {
@@ -54,9 +54,9 @@ const Datepicker = defineComponent({
   },
   emits: ['update:value', 'blur'],
   setup(props, { emit }) {
-    const { currentDate, currentType, formatDate } = useDatePicker(props)
     const visible = ref(false)
-    const datePickerRef = ref<Element>()
+    const datePickerRef = ref<HTMLDivElement>(null)
+    const { currentDate, currentType, formatDate } = useDatePicker(props)
     const positonTarget = createPositionTarget()
 
     function getPickerPosition (){
