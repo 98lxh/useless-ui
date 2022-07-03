@@ -11,15 +11,23 @@ type OrderColumnProp = {
   sortable: boolean | 'custom'
   sortType: SortType
   fixed: 'right' | 'left'
-  _index?: number
+  filterOption?: Array<ITableFilterOption>
+  filter: (row: ITableData, value: string) => boolean,
+  render: (row: ITableData) => VNode<any, any>
+  _index: number
   _last_fixed?: boolean
   _has_shadow?: boolean
-  render: (row: ITableData) => VNode<any, any>
 }
 
 export type SortType = 'asc' | 'desc' | 'normal' | 'custom'
 
 export type ITableData = Record<any, any>
+
+
+export interface ITableFilterOption {
+  label: string
+  value: string
+}
 
 export interface ITableProps {
   columns: ITableColumn[]
@@ -37,6 +45,7 @@ export type HiddenShadow = {
 
 
 export interface TableCloneData {
-  cloneData: Ref<ITableData[]>
-  cloneColumns: Ref<ITableColumn[]>
+  cloneData: Ref<Array<ITableData>>
+  cloneColumns: Ref<Array<ITableColumn>>
+  sourceData?: Ref<Array<ITableData>>
 }

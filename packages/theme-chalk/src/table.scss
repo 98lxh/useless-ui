@@ -5,7 +5,7 @@
   width: 100%;
   position: relative;
   border-collapse: collapse;
-  display:flex;
+  display: flex;
   border-spacing: 0;
 
   th,
@@ -35,31 +35,23 @@
   @include e(inner) {
     width: 100%;
     overflow: auto;
-    &::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    &::-webkit-scrollbar-thumb {
-      border-radius: 6px;
-      background: rgba($color: #000000, $alpha: 0.1);
-    }
-    &::-webkit-scrollbar-track {
-      background: $grey-2;
-    }
+
+    @include scroll();
 
     table {
       width: 100%;
+    }
 
-      tr {
-        transition: background-color 0.2s ease;
-        &:hover {
-          background: $grey-2;
+    @include b(table-column) {
+      transition: background-color 0.2s ease;
+      &:hover {
+        @include b(table-cell){
+          background: $grey-2 !important;
         }
       }
     }
 
-
-    @include b(table-empty){
+    @include b(table-empty) {
       height: 120px;
       display: flex;
       justify-content: center;
@@ -67,21 +59,21 @@
       font-weight: 550;
       border-bottom: 1px solid $grey-3;
 
-      i{
+      i {
         font-size: 36px;
       }
 
-      div{
-        margin-top:5px;
+      div {
+        margin-top: 5px;
       }
     }
   }
 
   @include e(header) {
     font-weight: bold !important;
+    background-color: #f2f3f5;
 
     @include b(table-cell) {
-      background-color: #f2f3f5;
       background-color: $grey-2 !important;
     }
   }
@@ -89,6 +81,16 @@
   @include b(table-cell) {
     z-index: 1;
     background-color: #fff;
+
+    @include when(filter){
+     display: flex;
+     justify-content: space-between;
+
+     @include b(icon-filter){
+      margin-left: 5px;
+      cursor: pointer;
+     }
+    }
 
     @include when(sort) {
       .sort-wrapper {
@@ -117,7 +119,6 @@
 
         .u-icon-arrow-up-filling {
           top: 0;
-
         }
 
         .u-icon-arrow-down-filling {
@@ -130,13 +131,13 @@
       position: sticky;
       z-index: 2;
 
-      @include when(shadow){
+      @include when(shadow) {
         &::before {
           content: "";
           position: absolute;
           width: 10px;
           bottom: 0px;
-          top:0px;
+          top: 0px;
           overflow: hidden;
           touch-action: none;
           pointer-events: none;
@@ -149,24 +150,23 @@
     @include when(fixed-right) {
       position: sticky;
       z-index: 1;
-      @include when(shadow){
+      @include when(shadow) {
         &::before {
           content: "";
           position: absolute;
           width: 10px;
           bottom: 0px;
-          top:0px;
+          top: 0px;
           overflow: hidden;
           touch-action: none;
           pointer-events: none;
-          box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, .15);
+          box-shadow: inset -10px 0 10px -10px rgba(0, 0, 0, 0.15);
           left: -10px;
         }
       }
     }
 
-
-    @include when(hidden-shadow){
+    @include when(hidden-shadow) {
       &::before {
         box-shadow: none !important;
       }
@@ -174,10 +174,20 @@
   }
 }
 
-
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  margin:0
+  margin: 0;
+}
+
+@include b(table-filter){
+  padding: 5px;
+
+  @include e(btns){
+    display: flex;
+    margin-top: 10px;
+    button{
+      margin-right: 5px;
+    }
+  }
 }

@@ -3,6 +3,7 @@ import { ITableColumn } from "./table.types";
 import TableCheckbox from "./table-tools/table-checkbox";
 import TableSort from "./table-tools/table-sort";
 import { injectTableKey } from "./context";
+import TableFilter from "./table-tools/table-filter";
 
 const TableCell = defineComponent({
   name: 'UseTableCell',
@@ -27,12 +28,13 @@ const TableCell = defineComponent({
 
     const classes = computed(() => {
       const { column, isHeader } = props;
-      const { sortable, fixed, _has_shadow } = column
-      const { left,right,both} = hiddenShadow.value
+      const { sortable, fixed, _has_shadow,filterOption } = column
+      const { left, right, both } = hiddenShadow.value
       return ({
         [`is-fixed-${fixed}`]: fixed,
         'u-table-cell': true,
         'is-sort': sortable && isHeader,
+        'is-filter':filterOption && isHeader,
         'is-shadow': _has_shadow,
         'is-hidden-shadow': (fixed === 'left' && left) || (fixed === 'right' && right) || both
       })
@@ -62,22 +64,23 @@ const TableCell = defineComponent({
     function renderColumn() {
       const { isHeader, column, row } = props;
       return (
-        <span>
+        <>
           {
             isHeader
               ? column.title
               : column.render ? column.render(row) : row[column.key]
           }
-        </span>
+        </>
       )
     }
 
     return () => {
       let Tool = null
       const { column, isHeader } = props;
-      const { type, sortable } = column
+      const { type, sortable, filterOption } = column
       if (type === 'selection') Tool = TableCheckbox
       if (sortable && isHeader) Tool = TableSort
+      if (filterOption && isHeader) Tool = TableFilter
 
       return (
         <td

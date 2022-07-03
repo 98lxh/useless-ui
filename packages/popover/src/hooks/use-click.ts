@@ -1,4 +1,4 @@
-import { onUnmounted, Ref } from "vue"
+import { nextTick, onUnmounted, Ref } from "vue"
 import { PopoverNodeProps } from "../popover.types"
 
 export function useClick(props: PopoverNodeProps, contentRef: Ref<HTMLDivElement>, visible: Ref<boolean>, calcFn: Function) {
@@ -19,12 +19,12 @@ export function useClick(props: PopoverNodeProps, contentRef: Ref<HTMLDivElement
 
   document.addEventListener('click', handleClickOutside)
   window.addEventListener('resize', closePopover)
-  window.addEventListener('contextmenu',closePopover)
+  window.addEventListener('contextmenu', closePopover)
 
   onUnmounted(() => {
     document.removeEventListener('click', handleClickOutside)
     window.removeEventListener('resize', closePopover)
-    window.removeEventListener('contextmenu',closePopover)
+    window.removeEventListener('contextmenu', closePopover)
     window.clearTimeout(clickTimer)
   })
 }

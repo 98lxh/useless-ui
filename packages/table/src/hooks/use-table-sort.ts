@@ -1,7 +1,6 @@
-import { cloneDeep } from '@useless-ui/utils';
 import { getCurrentInstance } from 'vue';
 import { ITableColumn, SortType, TableCloneData } from './../table.types';
-
+import { cloneDeep } from '@useless-ui/utils';
 
 export function useTableSort({ cloneData, cloneColumns }: TableCloneData) {
   const emit = getCurrentInstance().emit

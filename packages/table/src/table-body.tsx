@@ -13,7 +13,7 @@ const TableBody = defineComponent({
           data.value.map((row, index) => {
 
             return (
-              <tr key={index}>
+              <tr class="u-table-column" key={index}>
                 {
                   columns.value.map((col, index) => (
                     <TableCell

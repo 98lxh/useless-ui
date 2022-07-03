@@ -8,10 +8,11 @@ interface TableProvide {
   selectedItems: Ref<number[]>
   select: (row?: ITableData) => void
   sort: (column: ITableColumn, type: SortType) => void
+  filter: (column: ITableColumn, value?: string) => void
   addTableFixedBoth: (column: ITableColumn, colWidth: number) => void
   getFixedTableBothOffset: (column: ITableColumn) => void
   tableFixedBothRecord: Ref<Map<number, number>>
-  hiddenShadow:Ref<HiddenShadow>
+  hiddenShadow: Ref<HiddenShadow>
 }
 
 export const injectTableKey: InjectionKey<TableProvide> = Symbol();

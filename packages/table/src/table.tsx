@@ -8,6 +8,7 @@ import { useTableSelection } from "./hooks/use-table-selection";
 import TableHeader from "./table-header";
 import TableBody from "./table-body";
 import TableEmpty from "./table-tools/table-empty";
+import { useTableFilter } from "./hooks/use-table-filter";
 
 const tableProps = {
     columns: {
@@ -31,10 +32,11 @@ const Table = defineComponent({
     props: tableProps,
     emit: ['sortChange', 'selectChange'],
     setup(props, { expose }) {
-        const { cloneData, cloneColumns,isEmpty } = useTable(props)
+        const { cloneData, cloneColumns, isEmpty } = useTable(props)
         const { selectedItems, select, selectAll } = useTableSelection({ cloneData })
         const { tableWrapperRef, tableInnerRef, tableRef, addTableFixedBoth, getFixedTableBothOffset, tableFixedBothRecord, hiddenShadow } = useTableFixed(props)
         const { sort } = useTableSort({ cloneColumns, cloneData })
+        const { filter } = useTableFilter({ cloneColumns, cloneData })
 
         provide(injectTableKey, {
             //数据
@@ -48,7 +50,10 @@ const Table = defineComponent({
             //选择
             selectedItems,
             select,
-            sort
+            //排序
+            sort,
+            //筛选
+            filter
         })
 
         expose({
@@ -57,7 +62,7 @@ const Table = defineComponent({
 
         return () => {
             const { maxHeight, scrollX } = props;
-            
+
             return (
                 <div class="u-table" ref={tableWrapperRef}>
                     <div class="u-table__inner"
@@ -68,7 +73,7 @@ const Table = defineComponent({
                             <TableHeader />
                             {!isEmpty.value && <TableBody />}
                         </table>
-                        { isEmpty.value && <TableEmpty />}
+                        {isEmpty.value && <TableEmpty />}
                     </div>
                 </div>
             )

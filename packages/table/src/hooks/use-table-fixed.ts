@@ -45,8 +45,9 @@ export function useTableFixed(props: ITableProps) {
 
     fixedHeaderContainer.appendChild(cloneTable)
     tds.forEach((td, index) => {
+      const last = index === tds.length - 1
       const sourceWidth = td.getBoundingClientRect().width
-      ths[index].style.width = sourceWidth + 'px'
+      ths[index].style.width = sourceWidth + (last ? 6 :0)  + 'px'
     })
 
     tableWrapperRef.value.appendChild(fixedHeaderContainer)
@@ -87,12 +88,12 @@ export function useTableFixed(props: ITableProps) {
     const { maxHeight } = props
     maxHeight && fixedTableHeader()
     handleHiddenBetweenShadow()
-    tableInnerRef.value && tableInnerRef.value.addEventListener('scroll', handleHiddenBetweenShadow)
+    tableInnerRef.value.addEventListener('scroll', handleHiddenBetweenShadow)
     window.addEventListener('resize', throttleHiddenBothShadow)
   })
 
   onUnmounted(() => {
-    tableInnerRef.value && tableInnerRef.value.removeEventListener('scroll', handleHiddenBetweenShadow)
+    tableInnerRef.value.removeEventListener('scroll', handleHiddenBetweenShadow)
     window.removeEventListener('resize', throttleHiddenBothShadow)
   })
 
