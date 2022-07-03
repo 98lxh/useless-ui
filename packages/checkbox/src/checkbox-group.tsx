@@ -30,7 +30,7 @@ const CheckboxGroup = defineComponent({
       <div
         class="u-checkbox-group"
       >
-        {slots?.default()}
+        {slots.default && slots.default()}
       </div>
     )
   }
