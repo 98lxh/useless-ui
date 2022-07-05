@@ -78,7 +78,7 @@ const data = ref([
 <script setup lang="ts">
 import { ref } from 'vue'
 const selectItems = ref([])
-const columns = [
+const columns = ref([
   {
     type:'selection'
   },
@@ -94,9 +94,9 @@ const columns = [
     title: "Address",
     key: "address",
   },
-];
+]);
 
-const data = [
+const data = ref([
   {
     name: "Liu Xuehan",
     age:25,
@@ -139,7 +139,7 @@ const data = [
     address: "Ottawa No. 2 Lake Park",
     date: "2016-10-04",
   },
-];
+]);
 
 const handleSelect = (rows) => {
   selectItems.value = rows.map(row => row.name)
@@ -163,7 +163,8 @@ const handleSelect = (rows) => {
   />
 </template>
 <script setup lang="ts">
-const columns = [
+import { ref } from 'vue'
+const columns = ref([
   {
     title: "Name",
     key: "name",
@@ -176,9 +177,9 @@ const columns = [
     title: "Address",
     key: "address",
   },
-];
+]);
 
-const data = [
+const data = ref([
   {
     name: "Liu Xuehan",
     age:25,
@@ -221,7 +222,7 @@ const data = [
     address: "Ottawa No. 2 Lake Park",
     date: "2016-10-04",
   },
-];
+]);
 </script>
 ```
 :::
@@ -236,7 +237,8 @@ const data = [
   <use-table :scroll-x="1200" :columns="columns" :data="data" />
 </template>
 <script setup lang="ts">
-const columns = [
+import { ref } from 'vue'
+const columns = ref([
   {
     type:'selection',
     fixed: "left",
@@ -263,9 +265,9 @@ const columns = [
     key: "action",
     fixed: "right",
   },
-];
+]);
 
-const data = [
+const data = ref([
   {
     name: "Liu Xuehan",
     age: 18,
@@ -298,7 +300,7 @@ const data = [
     code: 1000,
     action: "action",
   },
-];
+]);
 </script>
 ```
 :::
@@ -565,7 +567,8 @@ const columns = ref([
   />
 </template>
 <script setup lang="ts">
-const columns = [
+import { ref } from 'vue'
+const columns = ref([
   {
     title: "Name",
     key: "name",
@@ -579,9 +582,9 @@ const columns = [
     title: "Address",
     key: "address",
   },
-];
+]);
 
-const data = [
+const data = ref([
   {
     name: "Liu Xuehan",
     age:25,
@@ -624,7 +627,7 @@ const data = [
     address: "Ottawa No. 2 Lake Park",
     date: "2016-10-04",
   },
-];
+]);
 </script>
 ```
 :::
