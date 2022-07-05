@@ -1,6 +1,6 @@
 {
   "name": "useless-ui",
-  "private": false,
+  "private": true,
   "version": "0.2.0",
   "license": "MIT",
   "workspaces": [
