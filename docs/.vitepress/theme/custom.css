@@ -20,7 +20,6 @@
 
 .sidebar-link-item.active {
   background-color: rgb(237, 255, 243) !important;
-  padding-left: 10px;
 }
 
 p.sidebar-link-item {

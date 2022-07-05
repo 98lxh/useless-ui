@@ -1,4 +1,4 @@
-import uselessUi from 'useless-ui';
+import uselessUi from './../../../dist/es/index';
 import message from '@useless-ui/message';
 import DeafultTheme from 'vitepress/theme'
 import Demo from "vitepress-theme-demoblock/components/Demo.vue"

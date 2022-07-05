@@ -88,12 +88,12 @@ export function useTableFixed(props: ITableProps) {
     const { maxHeight } = props
     maxHeight && fixedTableHeader()
     handleHiddenBetweenShadow()
-    tableInnerRef.value.addEventListener('scroll', handleHiddenBetweenShadow)
+    tableInnerRef.value && tableInnerRef.value.addEventListener('scroll', handleHiddenBetweenShadow)
     window.addEventListener('resize', throttleHiddenBothShadow)
   })
 
   onUnmounted(() => {
-    tableInnerRef.value.removeEventListener('scroll', handleHiddenBetweenShadow)
+    tableInnerRef.value && tableInnerRef.value.removeEventListener('scroll', handleHiddenBetweenShadow)
     window.removeEventListener('resize', throttleHiddenBothShadow)
   })
 

@@ -1,10 +1,14 @@
 <template>
-  <use-table :columns="columns" :data="data" />
+  selectItems:{{ JSON.stringify(selectItems) }}
+  <use-table :columns="columns" :data="data" @select-change="handleSelect" />
 </template>
-
 <script setup lang="ts">
 import { ref } from "vue";
-const columns = ref([
+const selectItems = ref([]);
+const columns = [
+  {
+    type: "selection",
+  },
   {
     title: "Name",
     key: "name",
@@ -16,23 +20,10 @@ const columns = ref([
   {
     title: "Address",
     key: "address",
-    filterOption: [
-      {
-        label: "地址在河北",
-        value: "Hebei",
-      },
-      {
-        label: "地址在北京",
-        value: "Beijing",
-      },
-    ],
-    filter(row, value) {
-      return row.address.includes(value);
-    },
   },
-]);
+];
 
-const data = ref([
+const data = [
   {
     name: "Liu Xuehan",
     age: 25,
@@ -48,13 +39,13 @@ const data = ref([
   {
     name: "Zhang San",
     age: 30,
-    address: "Beijing",
+    address: "Sydney No. 1 Lake Park",
     date: "2016-10-02",
   },
   {
     name: "Li Si",
     age: 26,
-    address: "Hebei",
+    address: "Ottawa No. 2 Lake Park",
     date: "2017-10-04",
   },
   {
@@ -75,5 +66,9 @@ const data = ref([
     address: "Ottawa No. 2 Lake Park",
     date: "2016-10-04",
   },
-]);
+];
+
+const handleSelect = (rows) => {
+  selectItems.value = rows.map((row) => row.name);
+};
 </script>

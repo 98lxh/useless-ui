@@ -1,7 +1,9 @@
 node_modules
+settings.json
 dist
 lib
 
 
 yarn-error.log
 lerna-debug.log
+

@@ -5,6 +5,10 @@ export function useTableSelection({ cloneData }: Partial<TableCloneData>) {
   const selectedItems = ref<number[]>([])
   const emit = getCurrentInstance().emit
 
+  cloneData.value.forEach((item,index) => { 
+    item._id = index
+  })
+
   function selectAll() {
     selectedItems.value = []
     cloneData.value.forEach(row => selectedItems.value.push(row._id))
